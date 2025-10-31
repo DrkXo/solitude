@@ -14,6 +14,7 @@ import 'package:injectable/injectable.dart' as _i526;
 
 import '../../features/library/presentation/bloc/library_bloc.dart' as _i395;
 import '../../features/reader/presentation/bloc/reader_bloc.dart' as _i523;
+import '../../router/app_router.dart' as _i630;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -22,8 +23,9 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    gh.factory<_i395.LibraryBloc>(() => _i395.LibraryBloc());
     gh.factory<_i523.ReaderBloc>(() => _i523.ReaderBloc());
-    gh.lazySingleton<_i395.LibraryBloc>(() => _i395.LibraryBloc());
+    gh.singleton<_i630.AppRouter>(() => _i630.AppRouter());
     return this;
   }
 }

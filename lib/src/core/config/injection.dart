@@ -7,8 +7,6 @@ final sl = GetIt.instance;
   preferRelativeImports: true, // default
   asExtension: true, // default
 )
-void configureDependencies() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
+Future<void> configureDependencies() async {
   sl.init();
 }
