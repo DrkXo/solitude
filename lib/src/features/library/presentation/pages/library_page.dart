@@ -1,122 +1,177 @@
-import 'package:ebook_x/ebook_x.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../reader/presentation/pages/chapter_page.dart';
-import '../../../reader/presentation/pages/reader_page.dart';
+import '../../../../core/localization/app_localizations.dart';
+import '../../../../router/app_router.dart';
+import '../../data/models/ebook_entry.dart';
+import '../bloc/library_bloc.dart';
 
 class LibraryPage extends StatefulWidget {
-  const LibraryPage({super.key});
+  const LibraryPage({
+    super.key,
+  });
 
   @override
   State<LibraryPage> createState() => _LibraryPageState();
 }
 
 class _LibraryPageState extends State<LibraryPage> {
-  final EbookX reader = EbookX();
-  Ebook? ebook;
-  EbookXController? controller;
-
-  Future<void> pickAndReadEpub() async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['epub', 'pdf', 'mobi'],
-    );
-
-    if (result != null) {
-      final file = result.files.first;
-      if (file.path != null) {
-        try {
-          final loadedEbook = await reader.read(file.path!);
-          setState(() {
-            ebook = loadedEbook;
-            controller = EbookXController(
-              loadedEbook,
-              charactersPerPage: 1000000,
-            ); // Large to show full chapters
-          });
-        } catch (e) {
-          if (mounted) {
-            String message = 'Error reading ebook: $e';
-            if (e.toString().contains('MOBI parsing not yet implemented')) {
-              message =
-                  'MOBI format detected. Full parsing support coming soon!';
-            }
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(message)),
-            );
-          }
-        }
-      }
-    }
+  @override
+  void initState() {
+    super.initState();
+    context.read<LibraryBloc>().add(const LibraryEvent.started());
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return const _LibraryPageView();
+  }
+}
+
+class _LibraryPageView extends StatelessWidget {
+  const _LibraryPageView();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('EbookX Example'),
+        title: Text(AppLocalizations.of(context)!.appTitle),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              context.pushNamed(AppRoutes.settings.name);
+            },
+          ),
+        ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: pickAndReadEpub,
-              child: const Text('Pick and Read Ebook (EPUB/PDF/MOBI)'),
+      body: BlocConsumer<LibraryBloc, LibraryState>(
+        listener: (context, state) {
+          state.whenOrNull(
+            error: (message, ebooks) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(message)),
+              );
+            },
+          );
+        },
+        builder: (context, state) {
+          return state.maybeWhen(
+            loaded: (ebooks, isAdding) =>
+                _buildLoaded(context, ebooks, isAdding),
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (message, ebooks) => _buildLoaded(context, ebooks, false),
+            orElse: () => Center(
+              child: Text(AppLocalizations.of(context)!.welcomeMessage),
             ),
-            if (ebook != null) ...[
-              const SizedBox(height: 20),
-              Text('Title: ${ebook!.metadata.title}'),
-              Text('Author: ${ebook!.metadata.author}'),
-              Text('Chapters: ${ebook!.chapters.length}'),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: ebook!.chapters.length,
-                  itemBuilder: (context, index) {
-                    final chapter = ebook!.chapters[index];
-                    final preview = chapter.content
-                        .map(
-                          (c) => c.when(
-                            text: (v) => v,
-                            html: (v) => 'HTML content',
-                            image: (src, alt, title) => '[IMAGE]',
-                          ),
-                        )
-                        .join(' ');
-                    return ListTile(
-                      title: Text(chapter.title),
-                      subtitle: Text(
-                        '${preview.substring(0, preview.length > 100 ? 100 : preview.length)}...',
-                      ),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ChapterPage(chapter: chapter),
-                          ),
-                        );
-                      },
+          );
+        },
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () =>
+            context.read<LibraryBloc>().add(const LibraryEvent.pickEbook()),
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+
+  Widget _buildLoaded(
+    BuildContext context,
+    List<EbookEntry> ebooks,
+    bool isAdding,
+  ) {
+    if (ebooks.isEmpty) {
+      return Center(
+        child: Text(AppLocalizations.of(context)!.noEbooksMessage),
+      );
+    }
+
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            decoration: InputDecoration(
+              hintText: 'Search ebooks...',
+              prefixIcon: const Icon(Icons.search),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+            onChanged: (query) {
+              context.read<LibraryBloc>().add(LibraryEvent.searchEbooks(query));
+            },
+          ),
+        ),
+        Expanded(
+          child: ListView.builder(
+            itemCount: ebooks.length + (isAdding ? 1 : 0),
+            itemBuilder: (context, index) {
+              if (index < ebooks.length) {
+                final entry = ebooks[index];
+                return Dismissible(
+                  key: Key(entry.id),
+                  onDismissed: (direction) {
+                    context.read<LibraryBloc>().add(
+                      LibraryEvent.removeEbook(entry.id),
                     );
                   },
-                ),
-              ),
-              if (controller != null) ...[
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ReaderPage(controller: controller!),
+                  background: Container(
+                    color: Colors.red,
+                    alignment: Alignment.centerRight,
+                    padding: const EdgeInsets.only(right: 20),
+                    child: const Icon(Icons.delete, color: Colors.white),
+                  ),
+                  child: ListTile(
+                    leading: entry.coverImagePath != null
+                        ? SizedBox(
+                            width: 50,
+                            height: 70,
+                            child: Image.asset(entry.coverImagePath!),
+                          )
+                        : const Icon(Icons.book),
+                    title: Text(entry.ebook.metadata.title),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          AppLocalizations.of(
+                            context,
+                          )!.authorLabel(entry.ebook.metadata.author),
+                        ),
+                        Text(
+                          AppLocalizations.of(
+                            context,
+                          )!.chaptersLabel(entry.ebook.chapters.length),
+                        ),
+                      ],
+                    ),
+                    trailing: IconButton(
+                      onPressed: () {
+                        context.goNamed(
+                          AppRoutes.reader.name,
+                          pathParameters: {
+                            'ebookId': entry.id,
+                          },
+                        );
+                      },
+                      icon: const Icon(Icons.open_in_new),
                     ),
                   ),
-                  child: const Text('Start Reading'),
-                ),
-              ],
-            ],
-          ],
+                );
+              } else {
+                return ListTile(
+                  title: Text(AppLocalizations.of(context)!.addingBookMessage),
+                  leading: CircularProgressIndicator(),
+                );
+              }
+            },
+          ),
         ),
-      ),
+      ],
     );
   }
 }

@@ -1,9 +1,11 @@
 part of 'app_router.dart';
 
-
 enum AppRoutes {
-  library("Library", '/library'),
-  reader('Reader', '/reader');
+  library('library', '/library'),
+  reader('reader', ':ebookId'),
+  settings('settings', '/settings')
+  // chapter('chapter', ':chapterIndex'),
+  ;
 
   final String name;
   final String path;
