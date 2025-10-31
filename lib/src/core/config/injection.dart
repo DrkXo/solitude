@@ -8,5 +8,5 @@ final sl = GetIt.instance;
   asExtension: true, // default
 )
 Future<void> configureDependencies() async {
-  sl.init();
+  await sl.init();
 }

@@ -4,7 +4,9 @@ part of 'app_router.dart';
 class AppRouter {
   late final GoRouter router;
 
-  AppRouter() {
+  final EbookLibraryService _ebookLibraryService;
+
+  AppRouter(this._ebookLibraryService) {
     router = GoRouter(
       initialLocation: AppRoutes.library.path,
       debugLogDiagnostics: true,
@@ -14,14 +16,31 @@ class AppRouter {
           path: AppRoutes.library.path,
           name: AppRoutes.library.name,
           builder: (context, state) => const LibraryPage(),
-        ),
-        GoRoute(
-          path: AppRoutes.reader.path,
-          name: AppRoutes.reader.name,
-          builder: (context, state) => BlocProvider(
-            create: (context) => sl<ReaderBloc>(),
-            child: const ReaderPage(),
-          ),
+          routes: [
+            GoRoute(
+              path: AppRoutes.reader.path,
+              name: AppRoutes.reader.name,
+                builder: (context, state) {
+                  final ebookId = state.pathParameters['ebookId']!;
+                  return BlocProvider<ReaderBloc>(
+                    create: (context) {
+                      final bloc = ReaderBloc(
+                        readerService: GetIt.I<ReaderService>(),
+                        libraryService: _ebookLibraryService,
+                      );
+                      bloc.add(ReaderEvent.loadEbook(ebookId));
+                      return bloc;
+                    },
+                    child: const ReaderPage(),
+                  );
+                },
+            ),
+            GoRoute(
+              path: AppRoutes.settings.path,
+              name: AppRoutes.settings.name,
+              builder: (context, state) => const SettingsPage(),
+            ),
+          ],
         ),
       ],
     );

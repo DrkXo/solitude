@@ -1,3 +1,9 @@
 part of 'utils.dart';
 
-final logger = Talker();
+@module
+abstract class Logger {
+  @singleton
+  Talker get logger => Talker();
+}
+
+Talker get logger => sl.get<Talker>();
