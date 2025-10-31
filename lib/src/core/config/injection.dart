@@ -1,9 +1,14 @@
-library;
+part of 'config.dart';
 
-import 'package:flutter/material.dart';
+final sl = GetIt.instance;
 
-class DependencyInjection {
-  static Future<void> init() async {
-    WidgetsFlutterBinding.ensureInitialized();
-  }
+@InjectableInit(
+  initializerName: 'init', // default
+  preferRelativeImports: true, // default
+  asExtension: true, // default
+)
+void configureDependencies() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  sl.init();
 }
