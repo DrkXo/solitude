@@ -1,7 +1,10 @@
 import 'dart:io';
 
 import 'package:drift/drift.dart';
-import 'package:drift/native.dart';
+import 'package:drift/wasm.dart' as wasm;
+import 'package:drift/native.dart' as native;
+import 'package:sqlite3/wasm.dart' as sqlite3_wasm;
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
@@ -23,11 +26,13 @@ class SolitudeDatabase extends _$SolitudeDatabase {
   @override
   MigrationStrategy get migration => MigrationStrategy(
     beforeOpen: (details) async {
-      // Ensure database directory exists
-      final dbFolder = await getApplicationSupportDirectory();
-      final dbDir = Directory(p.join(dbFolder.path, 'solitude'));
-      if (!await dbDir.exists()) {
-        await dbDir.create(recursive: true);
+      if (!kIsWeb) {
+        // Ensure database directory exists
+        final dbFolder = await getApplicationSupportDirectory();
+        final dbDir = Directory(p.join(dbFolder.path, 'solitude'));
+        if (!await dbDir.exists()) {
+          await dbDir.create(recursive: true);
+        }
       }
     },
     onUpgrade: (Migrator m, int from, int to) async {
@@ -47,17 +52,22 @@ class SolitudeDatabase extends _$SolitudeDatabase {
 
   static LazyDatabase _openConnection() {
     return LazyDatabase(() async {
-      try {
-        final dbFolder = await getApplicationSupportDirectory();
-        final dbDir = Directory(p.join(dbFolder.path, 'solitude'));
-        if (!await dbDir.exists()) {
-          await dbDir.create(recursive: true);
+      if (kIsWeb) {
+        final sqlite3 = await sqlite3_wasm.WasmSqlite3.loadFromUrl(Uri.parse('sqlite3.wasm'));
+        return wasm.WasmDatabase(path: 'solitude.db', sqlite3: sqlite3);
+      } else {
+        try {
+          final dbFolder = await getApplicationSupportDirectory();
+          final dbDir = Directory(p.join(dbFolder.path, 'solitude'));
+          if (!await dbDir.exists()) {
+            await dbDir.create(recursive: true);
+          }
+          final file = File(p.join(dbDir.path, 'solitude.db'));
+          return native.NativeDatabase(file);
+        } catch (e) {
+          logger.error('Failed to open database connection: $e');
+          rethrow;
         }
-        final file = File(p.join(dbDir.path, 'solitude.db'));
-        return NativeDatabase(file);
-      } catch (e) {
-        logger.error('Failed to open database connection: $e');
-        rethrow;
       }
     });
   }
