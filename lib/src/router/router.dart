@@ -40,12 +40,7 @@ class AppRouter {
         GoRoute(
           path: AppRoutes.settings.path,
           name: AppRoutes.settings.name,
-          builder: (context, state) => BlocProvider<SettingsBloc>(
-            create: (context) => SettingsBloc(
-              GetIt.I<ReaderSettingsService>(),
-            ),
-            child: const SettingsPage(),
-          ),
+          builder: (context, state) => const SettingsPage(),
         ),
       ],
     );

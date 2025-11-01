@@ -55,12 +55,13 @@ extension SettingsEventPatterns on SettingsEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _FontSizeChanged value)?  fontSizeChanged,TResult Function( _ReadingModeChanged value)?  readingModeChanged,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _FontSizeChanged value)?  fontSizeChanged,TResult Function( _ReadingModeChanged value)?  readingModeChanged,TResult Function( _ThemeModeChanged value)?  themeModeChanged,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _FontSizeChanged() when fontSizeChanged != null:
 return fontSizeChanged(_that);case _ReadingModeChanged() when readingModeChanged != null:
-return readingModeChanged(_that);case _:
+return readingModeChanged(_that);case _ThemeModeChanged() when themeModeChanged != null:
+return themeModeChanged(_that);case _:
   return orElse();
 
 }
@@ -78,12 +79,13 @@ return readingModeChanged(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _FontSizeChanged value)  fontSizeChanged,required TResult Function( _ReadingModeChanged value)  readingModeChanged,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _FontSizeChanged value)  fontSizeChanged,required TResult Function( _ReadingModeChanged value)  readingModeChanged,required TResult Function( _ThemeModeChanged value)  themeModeChanged,}){
 final _that = this;
 switch (_that) {
 case _FontSizeChanged():
 return fontSizeChanged(_that);case _ReadingModeChanged():
-return readingModeChanged(_that);case _:
+return readingModeChanged(_that);case _ThemeModeChanged():
+return themeModeChanged(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -100,12 +102,13 @@ return readingModeChanged(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _FontSizeChanged value)?  fontSizeChanged,TResult? Function( _ReadingModeChanged value)?  readingModeChanged,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _FontSizeChanged value)?  fontSizeChanged,TResult? Function( _ReadingModeChanged value)?  readingModeChanged,TResult? Function( _ThemeModeChanged value)?  themeModeChanged,}){
 final _that = this;
 switch (_that) {
 case _FontSizeChanged() when fontSizeChanged != null:
 return fontSizeChanged(_that);case _ReadingModeChanged() when readingModeChanged != null:
-return readingModeChanged(_that);case _:
+return readingModeChanged(_that);case _ThemeModeChanged() when themeModeChanged != null:
+return themeModeChanged(_that);case _:
   return null;
 
 }
@@ -122,11 +125,12 @@ return readingModeChanged(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( double fontSize)?  fontSizeChanged,TResult Function( String readingMode)?  readingModeChanged,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( double fontSize)?  fontSizeChanged,TResult Function( String readingMode)?  readingModeChanged,TResult Function( ThemeMode themeMode)?  themeModeChanged,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FontSizeChanged() when fontSizeChanged != null:
 return fontSizeChanged(_that.fontSize);case _ReadingModeChanged() when readingModeChanged != null:
-return readingModeChanged(_that.readingMode);case _:
+return readingModeChanged(_that.readingMode);case _ThemeModeChanged() when themeModeChanged != null:
+return themeModeChanged(_that.themeMode);case _:
   return orElse();
 
 }
@@ -144,11 +148,12 @@ return readingModeChanged(_that.readingMode);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( double fontSize)  fontSizeChanged,required TResult Function( String readingMode)  readingModeChanged,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( double fontSize)  fontSizeChanged,required TResult Function( String readingMode)  readingModeChanged,required TResult Function( ThemeMode themeMode)  themeModeChanged,}) {final _that = this;
 switch (_that) {
 case _FontSizeChanged():
 return fontSizeChanged(_that.fontSize);case _ReadingModeChanged():
-return readingModeChanged(_that.readingMode);case _:
+return readingModeChanged(_that.readingMode);case _ThemeModeChanged():
+return themeModeChanged(_that.themeMode);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -165,11 +170,12 @@ return readingModeChanged(_that.readingMode);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( double fontSize)?  fontSizeChanged,TResult? Function( String readingMode)?  readingModeChanged,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( double fontSize)?  fontSizeChanged,TResult? Function( String readingMode)?  readingModeChanged,TResult? Function( ThemeMode themeMode)?  themeModeChanged,}) {final _that = this;
 switch (_that) {
 case _FontSizeChanged() when fontSizeChanged != null:
 return fontSizeChanged(_that.fontSize);case _ReadingModeChanged() when readingModeChanged != null:
-return readingModeChanged(_that.readingMode);case _:
+return readingModeChanged(_that.readingMode);case _ThemeModeChanged() when themeModeChanged != null:
+return themeModeChanged(_that.themeMode);case _:
   return null;
 
 }
@@ -310,9 +316,338 @@ as String,
 }
 
 /// @nodoc
+
+
+class _ThemeModeChanged implements SettingsEvent {
+  const _ThemeModeChanged(this.themeMode);
+  
+
+ final  ThemeMode themeMode;
+
+/// Create a copy of SettingsEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ThemeModeChangedCopyWith<_ThemeModeChanged> get copyWith => __$ThemeModeChangedCopyWithImpl<_ThemeModeChanged>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ThemeModeChanged&&(identical(other.themeMode, themeMode) || other.themeMode == themeMode));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,themeMode);
+
+@override
+String toString() {
+  return 'SettingsEvent.themeModeChanged(themeMode: $themeMode)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ThemeModeChangedCopyWith<$Res> implements $SettingsEventCopyWith<$Res> {
+  factory _$ThemeModeChangedCopyWith(_ThemeModeChanged value, $Res Function(_ThemeModeChanged) _then) = __$ThemeModeChangedCopyWithImpl;
+@useResult
+$Res call({
+ ThemeMode themeMode
+});
+
+
+
+
+}
+/// @nodoc
+class __$ThemeModeChangedCopyWithImpl<$Res>
+    implements _$ThemeModeChangedCopyWith<$Res> {
+  __$ThemeModeChangedCopyWithImpl(this._self, this._then);
+
+  final _ThemeModeChanged _self;
+  final $Res Function(_ThemeModeChanged) _then;
+
+/// Create a copy of SettingsEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? themeMode = null,}) {
+  return _then(_ThemeModeChanged(
+null == themeMode ? _self.themeMode : themeMode // ignore: cast_nullable_to_non_nullable
+as ThemeMode,
+  ));
+}
+
+
+}
+
+/// @nodoc
+mixin _$SettingsModel {
+
+ double get fontSize; String get readingMode; ThemeMode get themeMode;
+/// Create a copy of SettingsModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SettingsModelCopyWith<SettingsModel> get copyWith => _$SettingsModelCopyWithImpl<SettingsModel>(this as SettingsModel, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SettingsModel&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize)&&(identical(other.readingMode, readingMode) || other.readingMode == readingMode)&&(identical(other.themeMode, themeMode) || other.themeMode == themeMode));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,fontSize,readingMode,themeMode);
+
+@override
+String toString() {
+  return 'SettingsModel(fontSize: $fontSize, readingMode: $readingMode, themeMode: $themeMode)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SettingsModelCopyWith<$Res>  {
+  factory $SettingsModelCopyWith(SettingsModel value, $Res Function(SettingsModel) _then) = _$SettingsModelCopyWithImpl;
+@useResult
+$Res call({
+ double fontSize, String readingMode, ThemeMode themeMode
+});
+
+
+
+
+}
+/// @nodoc
+class _$SettingsModelCopyWithImpl<$Res>
+    implements $SettingsModelCopyWith<$Res> {
+  _$SettingsModelCopyWithImpl(this._self, this._then);
+
+  final SettingsModel _self;
+  final $Res Function(SettingsModel) _then;
+
+/// Create a copy of SettingsModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? fontSize = null,Object? readingMode = null,Object? themeMode = null,}) {
+  return _then(_self.copyWith(
+fontSize: null == fontSize ? _self.fontSize : fontSize // ignore: cast_nullable_to_non_nullable
+as double,readingMode: null == readingMode ? _self.readingMode : readingMode // ignore: cast_nullable_to_non_nullable
+as String,themeMode: null == themeMode ? _self.themeMode : themeMode // ignore: cast_nullable_to_non_nullable
+as ThemeMode,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [SettingsModel].
+extension SettingsModelPatterns on SettingsModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _SettingsModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _SettingsModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _SettingsModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _SettingsModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _SettingsModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _SettingsModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double fontSize,  String readingMode,  ThemeMode themeMode)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _SettingsModel() when $default != null:
+return $default(_that.fontSize,_that.readingMode,_that.themeMode);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double fontSize,  String readingMode,  ThemeMode themeMode)  $default,) {final _that = this;
+switch (_that) {
+case _SettingsModel():
+return $default(_that.fontSize,_that.readingMode,_that.themeMode);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double fontSize,  String readingMode,  ThemeMode themeMode)?  $default,) {final _that = this;
+switch (_that) {
+case _SettingsModel() when $default != null:
+return $default(_that.fontSize,_that.readingMode,_that.themeMode);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _SettingsModel implements SettingsModel {
+  const _SettingsModel({this.fontSize = 16.0, this.readingMode = 'page', this.themeMode = ThemeMode.system});
+  
+
+@override@JsonKey() final  double fontSize;
+@override@JsonKey() final  String readingMode;
+@override@JsonKey() final  ThemeMode themeMode;
+
+/// Create a copy of SettingsModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SettingsModelCopyWith<_SettingsModel> get copyWith => __$SettingsModelCopyWithImpl<_SettingsModel>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SettingsModel&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize)&&(identical(other.readingMode, readingMode) || other.readingMode == readingMode)&&(identical(other.themeMode, themeMode) || other.themeMode == themeMode));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,fontSize,readingMode,themeMode);
+
+@override
+String toString() {
+  return 'SettingsModel(fontSize: $fontSize, readingMode: $readingMode, themeMode: $themeMode)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SettingsModelCopyWith<$Res> implements $SettingsModelCopyWith<$Res> {
+  factory _$SettingsModelCopyWith(_SettingsModel value, $Res Function(_SettingsModel) _then) = __$SettingsModelCopyWithImpl;
+@override @useResult
+$Res call({
+ double fontSize, String readingMode, ThemeMode themeMode
+});
+
+
+
+
+}
+/// @nodoc
+class __$SettingsModelCopyWithImpl<$Res>
+    implements _$SettingsModelCopyWith<$Res> {
+  __$SettingsModelCopyWithImpl(this._self, this._then);
+
+  final _SettingsModel _self;
+  final $Res Function(_SettingsModel) _then;
+
+/// Create a copy of SettingsModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? fontSize = null,Object? readingMode = null,Object? themeMode = null,}) {
+  return _then(_SettingsModel(
+fontSize: null == fontSize ? _self.fontSize : fontSize // ignore: cast_nullable_to_non_nullable
+as double,readingMode: null == readingMode ? _self.readingMode : readingMode // ignore: cast_nullable_to_non_nullable
+as String,themeMode: null == themeMode ? _self.themeMode : themeMode // ignore: cast_nullable_to_non_nullable
+as ThemeMode,
+  ));
+}
+
+
+}
+
+/// @nodoc
 mixin _$SettingsState {
 
- double get fontSize; String get readingMode;
+ SettingsModel get settings;
 /// Create a copy of SettingsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -323,16 +658,16 @@ $SettingsStateCopyWith<SettingsState> get copyWith => _$SettingsStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SettingsState&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize)&&(identical(other.readingMode, readingMode) || other.readingMode == readingMode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SettingsState&&(identical(other.settings, settings) || other.settings == settings));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,fontSize,readingMode);
+int get hashCode => Object.hash(runtimeType,settings);
 
 @override
 String toString() {
-  return 'SettingsState(fontSize: $fontSize, readingMode: $readingMode)';
+  return 'SettingsState(settings: $settings)';
 }
 
 
@@ -343,11 +678,11 @@ abstract mixin class $SettingsStateCopyWith<$Res>  {
   factory $SettingsStateCopyWith(SettingsState value, $Res Function(SettingsState) _then) = _$SettingsStateCopyWithImpl;
 @useResult
 $Res call({
- double fontSize, String readingMode
+ SettingsModel settings
 });
 
 
-
+$SettingsModelCopyWith<$Res> get settings;
 
 }
 /// @nodoc
@@ -360,14 +695,22 @@ class _$SettingsStateCopyWithImpl<$Res>
 
 /// Create a copy of SettingsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? fontSize = null,Object? readingMode = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? settings = null,}) {
   return _then(_self.copyWith(
-fontSize: null == fontSize ? _self.fontSize : fontSize // ignore: cast_nullable_to_non_nullable
-as double,readingMode: null == readingMode ? _self.readingMode : readingMode // ignore: cast_nullable_to_non_nullable
-as String,
+settings: null == settings ? _self.settings : settings // ignore: cast_nullable_to_non_nullable
+as SettingsModel,
   ));
 }
-
+/// Create a copy of SettingsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SettingsModelCopyWith<$Res> get settings {
+  
+  return $SettingsModelCopyWith<$Res>(_self.settings, (value) {
+    return _then(_self.copyWith(settings: value));
+  });
+}
 }
 
 
@@ -449,10 +792,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double fontSize,  String readingMode)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( SettingsModel settings)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SettingsState() when $default != null:
-return $default(_that.fontSize,_that.readingMode);case _:
+return $default(_that.settings);case _:
   return orElse();
 
 }
@@ -470,10 +813,10 @@ return $default(_that.fontSize,_that.readingMode);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double fontSize,  String readingMode)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( SettingsModel settings)  $default,) {final _that = this;
 switch (_that) {
 case _SettingsState():
-return $default(_that.fontSize,_that.readingMode);case _:
+return $default(_that.settings);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -490,10 +833,10 @@ return $default(_that.fontSize,_that.readingMode);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double fontSize,  String readingMode)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( SettingsModel settings)?  $default,) {final _that = this;
 switch (_that) {
 case _SettingsState() when $default != null:
-return $default(_that.fontSize,_that.readingMode);case _:
+return $default(_that.settings);case _:
   return null;
 
 }
@@ -505,11 +848,10 @@ return $default(_that.fontSize,_that.readingMode);case _:
 
 
 class _SettingsState implements SettingsState {
-  const _SettingsState({required this.fontSize, required this.readingMode});
+  const _SettingsState({required this.settings});
   
 
-@override final  double fontSize;
-@override final  String readingMode;
+@override final  SettingsModel settings;
 
 /// Create a copy of SettingsState
 /// with the given fields replaced by the non-null parameter values.
@@ -521,16 +863,16 @@ _$SettingsStateCopyWith<_SettingsState> get copyWith => __$SettingsStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SettingsState&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize)&&(identical(other.readingMode, readingMode) || other.readingMode == readingMode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SettingsState&&(identical(other.settings, settings) || other.settings == settings));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,fontSize,readingMode);
+int get hashCode => Object.hash(runtimeType,settings);
 
 @override
 String toString() {
-  return 'SettingsState(fontSize: $fontSize, readingMode: $readingMode)';
+  return 'SettingsState(settings: $settings)';
 }
 
 
@@ -541,11 +883,11 @@ abstract mixin class _$SettingsStateCopyWith<$Res> implements $SettingsStateCopy
   factory _$SettingsStateCopyWith(_SettingsState value, $Res Function(_SettingsState) _then) = __$SettingsStateCopyWithImpl;
 @override @useResult
 $Res call({
- double fontSize, String readingMode
+ SettingsModel settings
 });
 
 
-
+@override $SettingsModelCopyWith<$Res> get settings;
 
 }
 /// @nodoc
@@ -558,15 +900,23 @@ class __$SettingsStateCopyWithImpl<$Res>
 
 /// Create a copy of SettingsState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? fontSize = null,Object? readingMode = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? settings = null,}) {
   return _then(_SettingsState(
-fontSize: null == fontSize ? _self.fontSize : fontSize // ignore: cast_nullable_to_non_nullable
-as double,readingMode: null == readingMode ? _self.readingMode : readingMode // ignore: cast_nullable_to_non_nullable
-as String,
+settings: null == settings ? _self.settings : settings // ignore: cast_nullable_to_non_nullable
+as SettingsModel,
   ));
 }
 
-
+/// Create a copy of SettingsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SettingsModelCopyWith<$Res> get settings {
+  
+  return $SettingsModelCopyWith<$Res>(_self.settings, (value) {
+    return _then(_self.copyWith(settings: value));
+  });
+}
 }
 
 // dart format on

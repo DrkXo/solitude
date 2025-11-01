@@ -20,46 +20,23 @@ class SettingsPage extends StatelessWidget {
           body: ListView(
             children: [
               ListTile(
-                title: const Text('Font Size'),
-                subtitle: Slider(
-                  value: state.fontSize,
-                  min: 12.0,
-                  max: 24.0,
-                  divisions: 6,
-                  label: state.fontSize.round().toString(),
-                  onChanged: (value) {
-                    context.read<SettingsBloc>().add(
-                      SettingsEvent.fontSizeChanged(value),
-                    );
+                title: Text('Theme Mode'),
+                trailing: DropdownButton<ThemeMode>(
+                  value: state.settings.themeMode,
+                  onChanged: (ThemeMode? newMode) {
+                    if (newMode != null) {
+                      context.read<SettingsBloc>().add(
+                        SettingsEvent.themeModeChanged(newMode),
+                      );
+                    }
                   },
-                ),
-              ),
-              ListTile(
-                title: const Text('Reading Mode'),
-                subtitle: Text(state.readingMode),
-                onTap: () async {
-                  final selected = await showDialog<String>(
-                    context: context,
-                    builder: (context) => SimpleDialog(
-                      title: const Text('Select Reading Mode'),
-                      children: [
-                        SimpleDialogOption(
-                          onPressed: () => Navigator.pop(context, 'Page'),
-                          child: const Text('Page'),
-                        ),
-                        SimpleDialogOption(
-                          onPressed: () => Navigator.pop(context, 'Scroll'),
-                          child: const Text('Scroll'),
-                        ),
-                      ],
-                    ),
-                  );
-                  if (selected != null && context.mounted) {
-                    context.read<SettingsBloc>().add(
-                      SettingsEvent.readingModeChanged(selected),
+                  items: ThemeMode.values.map((ThemeMode mode) {
+                    return DropdownMenuItem<ThemeMode>(
+                      value: mode,
+                      child: Text(mode.name),
                     );
-                  }
-                },
+                  }).toList(),
+                ),
               ),
             ],
           ),

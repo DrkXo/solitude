@@ -58,13 +58,16 @@ extension GetItInjectableX on _i174.GetIt {
         ebookLibraryService: gh<_i222.EbookLibraryService>(),
       ),
     );
-    gh.factory<_i585.SettingsBloc>(
-      () => _i585.SettingsBloc(gh<_i974.ReaderSettingsService>()),
-    );
     gh.factory<_i523.ReaderBloc>(
       () => _i523.ReaderBloc(
         readerService: gh<_i534.ReaderService>(),
         libraryService: gh<_i222.EbookLibraryService>(),
+      ),
+    );
+    gh.lazySingleton<_i585.SettingsBloc>(
+      () => _i585.SettingsBloc(
+        gh<_i974.ReaderSettingsService>(),
+        gh<_i982.ThemeService>(),
       ),
     );
     gh.factory<_i395.LibraryBloc>(

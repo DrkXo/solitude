@@ -1,4 +1,3 @@
-import 'package:dynamik_theme/dynamik_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -9,6 +8,7 @@ import 'core/config/config.dart';
 import 'core/localization/app_localizations.dart';
 import 'features/library/presentation/bloc/library_bloc.dart';
 import 'features/reader/presentation/bloc/reader_bloc.dart';
+import 'features/settings/presentation/bloc/settings_bloc.dart';
 import 'router/app_router.dart';
 
 Future<void> entryPoint() async {
@@ -35,24 +35,26 @@ class Solitude extends StatelessWidget {
 
     final themeService = sl<ThemeService>();
 
-    return DynamikTheme(
-      config: themeService.getThemeConfig(),
-      builder: (theme, darkTheme, themeMode) {
-        return MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) => sl<LibraryBloc>(),
-            ),
-            BlocProvider(
-              create: (context) => sl<ReaderBloc>(),
-            ),
-          ],
-          child: DismissKeyboard(
-            child: MaterialApp.router(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => sl<LibraryBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<ReaderBloc>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<SettingsBloc>(),
+        ),
+      ],
+      child: DismissKeyboard(
+        child: BlocBuilder<SettingsBloc, SettingsState>(
+          builder: (context, state) {
+            return MaterialApp.router(
               debugShowCheckedModeBanner: false,
-              theme: theme,
-              darkTheme: darkTheme,
-              themeMode: themeMode,
+              theme: themeService.getLightThemeData(),
+              darkTheme: themeService.getDarkThemeData(),
+              themeMode: state.settings.themeMode,
               localizationsDelegates: const [
                 AppLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,
@@ -65,10 +67,10 @@ class Solitude extends StatelessWidget {
               routerDelegate: appRouter.routerDelegate,
               routeInformationParser: appRouter.routeInformationParser,
               routeInformationProvider: appRouter.routeInformationProvider,
-            ),
-          ),
-        );
-      },
+            );
+          },
+        ),
+      ),
     );
   }
 }
