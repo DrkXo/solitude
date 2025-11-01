@@ -75,7 +75,7 @@ class _LibraryPageState extends State<LibraryPage> {
                     size: 80,
                     color: Theme.of(
                       context,
-                    ).colorScheme.primary.withOpacity(0.5),
+                    ).colorScheme.primary.withValues(alpha: .5),
                   ),
                   const SizedBox(height: 16),
                   Text(
@@ -110,13 +110,17 @@ class _LibraryPageState extends State<LibraryPage> {
             Icon(
               Icons.library_books_outlined,
               size: 80,
-              color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+              color: Theme.of(
+                context,
+              ).colorScheme.primary.withValues(alpha: 0.3),
             ),
             const SizedBox(height: 16),
             Text(
               AppLocalizations.of(context)!.noEbooksMessage,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                color: Theme.of(
+                  context,
+                ).colorScheme.onSurface.withValues(alpha: 0.6),
               ),
             ),
           ],
@@ -138,7 +142,7 @@ class _LibraryPageState extends State<LibraryPage> {
                   filled: true,
                   fillColor: Theme.of(
                     context,
-                  ).colorScheme.surfaceContainerHighest.withOpacity(0.5),
+                  ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12.0),
                     borderSide: BorderSide.none,
@@ -163,7 +167,7 @@ class _LibraryPageState extends State<LibraryPage> {
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   color: Theme.of(
                     context,
-                  ).colorScheme.onSurface.withOpacity(0.6),
+                  ).colorScheme.onSurface.withValues(alpha: 0.6),
                   fontWeight: FontWeight.w600,
                 ),
               ),

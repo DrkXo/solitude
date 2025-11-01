@@ -1,11 +1,11 @@
 part of '../local_db_service.dart';
 
 @DriftAccessor(tables: [DbKeyValue])
-class KeyValueDao extends DatabaseAccessor<SolitudeDatabase> {
+class KeyValueDao extends DatabaseAccessor<SolitudeDatabase> with _$KeyValueDaoMixin {
   KeyValueDao(super.db);
 
   Future<void> setValue(String key, String value) async {
-    await into(db.dbKeyValue).insertOnConflictUpdate(
+    await into(dbKeyValue).insertOnConflictUpdate(
       DbKeyValueCompanion(
         key: Value(key),
         value: Value(value),
@@ -14,17 +14,17 @@ class KeyValueDao extends DatabaseAccessor<SolitudeDatabase> {
   }
 
   Future<String?> getValue(String key) async {
-    final query = select(db.dbKeyValue)..where((tbl) => tbl.key.equals(key));
+    final query = select(dbKeyValue)..where((tbl) => tbl.key.equals(key));
     final result = await query.getSingleOrNull();
     return result?.value;
   }
 
   Future<void> deleteValue(String key) async {
-    await (delete(db.dbKeyValue)..where((tbl) => tbl.key.equals(key))).go();
+    await (delete(dbKeyValue)..where((tbl) => tbl.key.equals(key))).go();
   }
 
   Future<Map<String, String>> getAll() async {
-    final results = await select(db.dbKeyValue).get();
+    final results = await select(dbKeyValue).get();
     return {for (var r in results) r.key: r.value};
   }
 }

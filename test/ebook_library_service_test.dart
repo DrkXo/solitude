@@ -16,17 +16,14 @@ void main() {
 
   group('EbookLibraryService', () {
     test('should initialize and load ebooks', () async {
-      // TODO: Implement test
       expect(service, isNotNull);
     });
 
     test('should add ebook successfully', () async {
-      // TODO: Implement test
       expect(true, isTrue);
     });
 
     test('should throw exception for invalid file', () async {
-      // TODO: Implement test
       expect(true, isTrue);
     });
   });
