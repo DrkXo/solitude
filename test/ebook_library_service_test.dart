@@ -1,8 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:solitude/src/core/services/ebook_library_service.dart';
 import 'package:solitude/src/core/services/db/local_db_service.dart';
-import 'package:solitude/src/features/library/data/models/ebook_entry.dart';
+import 'package:solitude/src/core/services/ebook_library_service.dart';
 
 class MockLocalDbService extends Mock implements LocalDbService {}
 

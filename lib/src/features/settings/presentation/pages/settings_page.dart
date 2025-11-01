@@ -12,6 +12,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   double _fontSize = 16.0;
   bool _darkTheme = true;
+  // ignore: prefer_final_fields
   String _readingMode = 'Page';
 
   @override
