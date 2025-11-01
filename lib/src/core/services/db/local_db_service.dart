@@ -33,7 +33,7 @@ class SolitudeDatabase extends _$SolitudeDatabase {
   static LazyDatabase _openConnection() {
     return LazyDatabase(() async {
       final dbFolder = await getApplicationDocumentsDirectory();
-      final file = File(p.join(dbFolder.path, 'solitude.db'));
+      final file = File(p.join(dbFolder.path, 'solitude', 'solitude.db'));
       return NativeDatabase(file);
     });
   }
