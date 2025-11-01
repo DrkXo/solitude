@@ -13,5 +13,7 @@ abstract class SettingsModel with _$SettingsModel {
 abstract class SettingsState with _$SettingsState {
   const factory SettingsState({
     required SettingsModel settings,
+    @Default(null) String? backupMessage,
+    @Default(false) bool isBackupLoading,
   }) = _SettingsState;
 }

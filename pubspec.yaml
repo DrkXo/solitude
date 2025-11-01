@@ -45,6 +45,8 @@ dependencies:
   uuid: ^4.5.1
   dynamik_theme: ^0.0.1
   rxdart: ^0.28.0
+  yaml: ^3.1.2
+  yaml_writer: ^2.0.0
 
 dev_dependencies:
   flutter_test:

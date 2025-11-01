@@ -17,6 +17,7 @@ import '../../features/library/presentation/bloc/library_bloc.dart' as _i395;
 import '../../features/reader/presentation/bloc/reader_bloc.dart' as _i523;
 import '../../features/settings/presentation/bloc/settings_bloc.dart' as _i585;
 import '../../router/app_router.dart' as _i630;
+import '../services/backup_service.dart' as _i832;
 import '../services/db/local_db_service.dart' as _i1058;
 import '../services/ebook_library_service.dart' as _i222;
 import '../services/reader_service.dart' as _i534;
@@ -64,14 +65,22 @@ extension GetItInjectableX on _i174.GetIt {
         libraryService: gh<_i222.EbookLibraryService>(),
       ),
     );
+    gh.factory<_i395.LibraryBloc>(
+      () => _i395.LibraryBloc(gh<_i222.EbookLibraryService>()),
+    );
+    gh.factory<_i832.BackupService>(
+      () => _i832.BackupService(
+        gh<_i974.ReaderSettingsService>(),
+        gh<_i982.ThemeService>(),
+        gh<_i222.EbookLibraryService>(),
+      ),
+    );
     gh.lazySingleton<_i585.SettingsBloc>(
       () => _i585.SettingsBloc(
         gh<_i974.ReaderSettingsService>(),
         gh<_i982.ThemeService>(),
+        gh<_i832.BackupService>(),
       ),
-    );
-    gh.factory<_i395.LibraryBloc>(
-      () => _i395.LibraryBloc(gh<_i222.EbookLibraryService>()),
     );
     gh.singleton<_i630.AppRouter>(
       () => _i630.AppRouter(gh<_i222.EbookLibraryService>()),

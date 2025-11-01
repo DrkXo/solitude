@@ -5,4 +5,6 @@ abstract class SettingsEvent with _$SettingsEvent {
   const factory SettingsEvent.fontSizeChanged(double fontSize) = _FontSizeChanged;
   const factory SettingsEvent.readingModeChanged(String readingMode) = _ReadingModeChanged;
   const factory SettingsEvent.themeModeChanged(ThemeMode themeMode) = _ThemeModeChanged;
+  const factory SettingsEvent.exportSettings(ExportFormat format) = _ExportSettings;
+  const factory SettingsEvent.importSettings(String filePath) = _ImportSettings;
 }
