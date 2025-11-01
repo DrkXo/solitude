@@ -50,15 +50,15 @@ class EbookLibraryService extends BaseService {
           fileName: dbEbook.fileName,
           addedAt: dbEbook.addedAt,
           lastReadAt: dbEbook.lastReadAt,
-          currentChapter: dbEbook.currentChapter,
-          fileSize: dbEbook.fileSize,
-          coverImagePath: dbEbook.coverImage,
-        );
-        _ebooks.add(entry);
-      } catch (e) {
-        // Skip ebooks that can't be parsed (file might be missing or corrupted)
-        logger.error('Failed to load ebook ${dbEbook.filePath}: $e');
-        continue;
+           currentChapter: dbEbook.currentChapter,
+           fileSize: dbEbook.fileSize,
+           coverImageHtml: dbEbook.coverImage,
+         );
+         _ebooks.add(entry);
+       } catch (e) {
+         // Skip ebooks that can't be parsed (file might be missing or corrupted)
+         logger.error('Failed to load ebook ${dbEbook.filePath}: $e');
+         continue;
       }
     }
     _ebooksController.add(List.from(_ebooks));
@@ -103,9 +103,9 @@ class EbookLibraryService extends BaseService {
         ebook: ebook,
         filePath: sanitizedPath,
         fileName: path.basename(sanitizedPath),
-        addedAt: DateTime.now(),
-        fileSize: fileSize,
-        coverImagePath: ebook.metadata.coverImagePath,
+         addedAt: DateTime.now(),
+         fileSize: fileSize,
+         coverImageHtml: ebook.metadata.coverImagePath,
       );
 
       // Save to database
@@ -118,8 +118,8 @@ class EbookLibraryService extends BaseService {
             title: Value(entry.ebook.metadata.title),
             author: Value(entry.ebook.metadata.author),
             addedAt: Value(entry.addedAt),
-            fileSize: Value(entry.fileSize),
-            coverImage: Value(entry.coverImagePath),
+             fileSize: Value(entry.fileSize),
+             coverImage: Value(entry.coverImageHtml),
           ),
         ),
         exceptionFactory: (msg) =>
@@ -226,8 +226,8 @@ class EbookLibraryService extends BaseService {
             addedAt: Value(updatedEntry.addedAt),
             lastReadAt: Value(updatedEntry.lastReadAt),
             currentChapter: Value(updatedEntry.currentChapter),
-            fileSize: Value(updatedEntry.fileSize),
-            coverImage: Value(updatedEntry.coverImagePath),
+             fileSize: Value(updatedEntry.fileSize),
+             coverImage: Value(updatedEntry.coverImageHtml),
           ),
         ),
       );
@@ -269,14 +269,14 @@ class EbookLibraryService extends BaseService {
           fileName: dbEbook.fileName,
           addedAt: dbEbook.addedAt,
           lastReadAt: dbEbook.lastReadAt,
-          currentChapter: dbEbook.currentChapter,
-          fileSize: dbEbook.fileSize,
-          coverImagePath: dbEbook.coverImage,
-        );
-        _ebooks.add(entry);
-      } catch (e) {
-        // Skip
-        continue;
+           currentChapter: dbEbook.currentChapter,
+           fileSize: dbEbook.fileSize,
+           coverImageHtml: dbEbook.coverImage,
+         );
+         _ebooks.add(entry);
+       } catch (e) {
+         // Skip
+         continue;
       }
     }
     _ebooksController.add(List.from(_ebooks));

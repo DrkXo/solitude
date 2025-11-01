@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_html/flutter_html.dart';
-import 'package:go_router/go_router.dart';
+import 'dart:io';
+
+ import 'package:flutter/material.dart';
+ import 'package:flutter_bloc/flutter_bloc.dart';
+ import 'package:flutter_html/flutter_html.dart';
+ import 'package:go_router/go_router.dart';
 
 import '../../../../core/localization/app_localizations.dart';
 import '../../../../router/app_router.dart';
@@ -126,13 +128,13 @@ class _LibraryPageView extends StatelessWidget {
                     child: const Icon(Icons.delete, color: Colors.white),
                   ),
                   child: ListTile(
-                    leading: entry.coverImagePath != null
+                     leading: entry.coverImageHtml != null
                         ? SizedBox(
                             width: 50,
                             height: 70,
-                            child: Html(
-                              data: entry.coverImagePath!,
-                            ),
+                             child: Html(
+                                data: '<img src="${entry.coverImageHtml!}" />',
+                             ),
                           )
                         : const Icon(Icons.book),
                     title: Text(entry.ebook.metadata.title),

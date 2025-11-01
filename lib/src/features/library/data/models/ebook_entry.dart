@@ -18,6 +18,6 @@ abstract class EbookEntry with _$EbookEntry {
     @Default(0.0) double pageOffset,
     @Default([]) List<Bookmark> bookmarks,
     int? fileSize,
-    String? coverImagePath,
+     String? coverImageHtml,
   }) = _EbookEntry;
 }
