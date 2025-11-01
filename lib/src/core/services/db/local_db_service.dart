@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
+import 'package:injectable/injectable.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
@@ -32,10 +33,17 @@ class SolitudeDatabase extends _$SolitudeDatabase {
   }
 }
 
+@lazySingleton
 class LocalDbService {
+  static LocalDbService? _instance;
   final SolitudeDatabase solitude;
 
-  LocalDbService() : solitude = SolitudeDatabase();
+  LocalDbService._internal() : solitude = SolitudeDatabase();
+
+  factory LocalDbService() {
+    _instance ??= LocalDbService._internal();
+    return _instance!;
+  }
 
   Future<void> close() async {
     await solitude.close();
