@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:solitude/src/core/theme/theme.dart';
 
 import '../abstracts/base_service.dart';
 import '../utils/utils.dart';
@@ -9,7 +10,6 @@ class ThemeService extends BaseService {
   final LocalDbService _localDbService;
 
   ThemeMode _currentThemeMode = ThemeMode.dark;
-  final Color _seedColor = const Color(0xFF262624);
 
   ThemeService({
     required LocalDbService localDbService,
@@ -35,7 +35,7 @@ class ThemeService extends BaseService {
 
   ThemeMode get currentThemeMode => _currentThemeMode;
 
-  Color get seedColor => _seedColor;
+  // Color get seedColor => _seedColor;
 
   Future<void> setThemeMode(ThemeMode mode) async {
     _currentThemeMode = mode;
@@ -53,60 +53,10 @@ class ThemeService extends BaseService {
   }
 
   ThemeData getLightThemeData() {
-    final colorScheme = ColorScheme.fromSeed(
-      seedColor: _seedColor,
-      brightness: Brightness.light,
-    );
-    return ThemeData(
-      useMaterial3: true,
-      colorScheme: colorScheme,
-    ).copyWith(
-      appBarTheme: const AppBarTheme(
-        elevation: 0,
-      ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-        ),
-      ),
-      inputDecorationTheme: InputDecorationTheme(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        filled: true,
-      ),
-    );
+    return AppTheme.light;
   }
 
   ThemeData getDarkThemeData() {
-    final colorScheme = ColorScheme.fromSeed(
-      seedColor: _seedColor,
-      brightness: Brightness.dark,
-    );
-    return ThemeData(
-      useMaterial3: true,
-      colorScheme: colorScheme,
-    ).copyWith(
-      appBarTheme: const AppBarTheme(
-        elevation: 0,
-      ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-        ),
-      ),
-      inputDecorationTheme: InputDecorationTheme(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        filled: true,
-      ),
-    );
+    return AppTheme.dark;
   }
 }
