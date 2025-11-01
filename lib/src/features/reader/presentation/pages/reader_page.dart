@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get_it/get_it.dart';
+import 'package:rxdart/rxdart.dart';
 
 import '../../../../core/localization/app_localizations.dart';
 import '../../../../core/services/reader_settings_service.dart';
@@ -18,26 +21,38 @@ class _ReaderPageState extends State<ReaderPage> {
   bool _showAppBar = true;
   late ScrollController _scrollController;
   bool _hasJumped = false;
+  late StreamController<double> _scrollStreamController;
+  late StreamSubscription<double> _scrollSubscription;
 
   @override
   void initState() {
     super.initState();
     _scrollController = ScrollController();
+    _scrollStreamController = StreamController<double>();
+    _scrollSubscription = _scrollStreamController.stream
+        .debounceTime(const Duration(milliseconds: 100))
+        .listen((offset) {
+          if (!mounted) return;
+          context.read<ReaderBloc>().add(ReaderEvent.updatePageOffset(offset));
+        });
     _scrollController.addListener(_onScroll);
   }
 
   @override
   void dispose() {
+    _scrollSubscription.cancel();
+    _scrollStreamController.close();
     if (_scrollController.hasClients) {
-      context.read<ReaderBloc>().add(ReaderEvent.updatePageOffset(_scrollController.offset));
+      context.read<ReaderBloc>().add(
+        ReaderEvent.updatePageOffset(_scrollController.offset),
+      );
     }
     _scrollController.dispose();
     super.dispose();
   }
 
   void _onScroll() {
-    final offset = _scrollController.offset;
-    context.read<ReaderBloc>().add(ReaderEvent.updatePageOffset(offset));
+    _scrollStreamController.add(_scrollController.offset);
   }
 
   @override
@@ -47,24 +62,24 @@ class _ReaderPageState extends State<ReaderPage> {
     return BlocBuilder<ReaderBloc, ReaderState>(
       builder: (context, state) {
         return state.maybeWhen(
-               loaded:
-               (
-                 controller,
-                 currentChapterIndex,
-                 currentPageIndex,
-                 pageOffset,
-                 bookmarks,
-               ) {
-                  if (!_hasJumped) {
-                    _hasJumped = true;
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      Future.delayed(const Duration(milliseconds: 100), () {
-                        if (mounted && _scrollController.hasClients) {
-                          _scrollController.jumpTo(pageOffset);
-                        }
-                      });
+          loaded:
+              (
+                controller,
+                currentChapterIndex,
+                currentPageIndex,
+                pageOffset,
+                bookmarks,
+              ) {
+                if (!_hasJumped) {
+                  _hasJumped = true;
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    Future.delayed(const Duration(milliseconds: 100), () {
+                      if (mounted && _scrollController.hasClients) {
+                        _scrollController.jumpTo(pageOffset);
+                      }
                     });
-                  }
+                  });
+                }
 
                 return Scaffold(
                   body: NestedScrollView(
@@ -125,7 +140,7 @@ class _ReaderPageState extends State<ReaderPage> {
                                   margin: Margins.only(bottom: 16.0),
                                 ),
                                 "h1": Style(
-                                  fontSize:  FontSize(28.0),
+                                  fontSize: FontSize(28.0),
                                   fontWeight: FontWeight.bold,
                                   margin: Margins.only(
                                     bottom: 20.0,
@@ -133,7 +148,7 @@ class _ReaderPageState extends State<ReaderPage> {
                                   ),
                                 ),
                                 "h2": Style(
-                                  fontSize:  FontSize(24.0),
+                                  fontSize: FontSize(24.0),
                                   fontWeight: FontWeight.bold,
                                   margin: Margins.only(
                                     bottom: 16.0,
@@ -141,7 +156,7 @@ class _ReaderPageState extends State<ReaderPage> {
                                   ),
                                 ),
                                 "h3": Style(
-                                  fontSize:  FontSize(20.0),
+                                  fontSize: FontSize(20.0),
                                   fontWeight: FontWeight.bold,
                                   margin: Margins.only(
                                     bottom: 12.0,

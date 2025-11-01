@@ -44,6 +44,7 @@ dependencies:
   flutter_html: ^3.0.0-beta.2
   uuid: ^4.5.1
   dynamik_theme: ^0.0.1
+  rxdart: ^0.28.0
 
 dev_dependencies:
   flutter_test:
