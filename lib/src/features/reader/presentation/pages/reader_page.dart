@@ -113,7 +113,7 @@ class ReaderPage extends StatelessWidget {
                                   }
                                 : null,
                             icon: const Icon(Icons.chevron_left),
-                            tooltip: 'Previous Page',
+                             tooltip: 'Previous Chapter',
                           ),
                           Expanded(
                             child: Column(
@@ -155,7 +155,7 @@ class ReaderPage extends StatelessWidget {
                                   }
                                 : null,
                             icon: const Icon(Icons.chevron_right),
-                            tooltip: 'Next Page',
+                             tooltip: 'Next Chapter',
                           ),
                         ],
                       ),

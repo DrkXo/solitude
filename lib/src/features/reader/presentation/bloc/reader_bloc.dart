@@ -63,9 +63,12 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
 
   void _onNextChapter(_NextChapter event, Emitter<ReaderState> emit) async {
     if (_controller != null && state is _Loaded) {
-      _controller!.nextPage();
-      emit(ReaderState.loaded(_controller!, _controller!.currentChapterIndex, _controller!.currentPageIndex));
-      await _saveReadingProgress();
+      final nextChapterIndex = _controller!.currentChapterIndex + 1;
+      if (nextChapterIndex < _controller!.totalChapters) {
+        _controller!.goToChapter(nextChapterIndex);
+        emit(ReaderState.loaded(_controller!, _controller!.currentChapterIndex, _controller!.currentPageIndex));
+        await _saveReadingProgress();
+      }
     }
   }
 
@@ -74,9 +77,12 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
     Emitter<ReaderState> emit,
   ) async {
     if (_controller != null && state is _Loaded) {
-      _controller!.previousPage();
-      emit(ReaderState.loaded(_controller!, _controller!.currentChapterIndex, _controller!.currentPageIndex));
-      await _saveReadingProgress();
+      final prevChapterIndex = _controller!.currentChapterIndex - 1;
+      if (prevChapterIndex >= 0) {
+        _controller!.goToChapter(prevChapterIndex);
+        emit(ReaderState.loaded(_controller!, _controller!.currentChapterIndex, _controller!.currentPageIndex));
+        await _saveReadingProgress();
+      }
     }
   }
 
