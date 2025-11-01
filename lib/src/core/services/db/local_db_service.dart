@@ -6,15 +6,17 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
 part 'daos/ebook_dao.dart';
+part 'daos/key_value_dao.dart';
 part 'local_db_service.g.dart';
 part 'models/db_ebooks.dart';
+part 'models/db_key_value.dart';
 
-@DriftDatabase(tables: [DbEbooks], daos: [EbookDao])
+@DriftDatabase(tables: [DbEbooks, DbKeyValue], daos: [EbookDao, KeyValueDao])
 class SolitudeDatabase extends _$SolitudeDatabase {
   SolitudeDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
