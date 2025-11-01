@@ -2,10 +2,11 @@ import 'package:dynamik_theme/dynamik_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
+import '../abstracts/base_service.dart';
 import '../utils/utils.dart';
 import 'db/local_db_service.dart';
 
-class ThemeService {
+class ThemeService extends BaseService {
   final LocalDbService _localDbService;
 
   ThemeMode _currentThemeMode = ThemeMode.dark;
@@ -17,17 +18,15 @@ class ThemeService {
   @PostConstruct(preResolve: true)
   Future<void> init() async {
     try {
-      final modeString = await _localDbService.solitude.keyValueDao.getValue(
-        'theme_mode',
-      );
+      final modeString = await executeDBOperation(() => _localDbService.solitude.keyValueDao.getValue('theme_mode'));
       if (modeString != null) {
         _currentThemeMode = ThemeMode.values.firstWhere(
           (mode) => mode.name == modeString,
           orElse: () => ThemeMode.dark,
         );
       }
-    } catch (e, stackTrace) {
-      logger.error('Failed to load theme mode from database', e, stackTrace);
+    } catch (e) {
+      logger.error('Failed to load theme mode from database: $e');
       // Keep default ThemeMode.dark
     }
   }
@@ -37,12 +36,12 @@ class ThemeService {
   Future<void> setThemeMode(ThemeMode mode) async {
     _currentThemeMode = mode;
     try {
-      await _localDbService.solitude.keyValueDao.setValue(
+      await executeDBOperation(() => _localDbService.solitude.keyValueDao.setValue(
         'theme_mode',
         mode.name,
-      );
-    } catch (e, stackTrace) {
-      logger.error('Failed to save theme mode to database', e, stackTrace);
+      ));
+    } catch (e) {
+      logger.error('Failed to save theme mode to database: $e');
       // Theme mode is updated in memory, but persistence failed
     }
   }

@@ -7,3 +7,11 @@ abstract class AppError implements Exception {
   @override
   String toString() => '$runtimeType: $message';
 }
+
+abstract class LocalDbError extends AppError {
+  const LocalDbError(super.message);
+}
+
+class DatabaseOperationError extends LocalDbError {
+  const DatabaseOperationError(super.message);
+}
