@@ -8,9 +8,7 @@ import '../../../../core/services/reader_settings_service.dart';
 import '../bloc/reader_bloc.dart';
 
 class ReaderPage extends StatefulWidget {
-  const ReaderPage({
-    super.key,
-  });
+  const ReaderPage({super.key});
 
   @override
   State<ReaderPage> createState() => _ReaderPageState();
@@ -18,138 +16,176 @@ class ReaderPage extends StatefulWidget {
 
 class _ReaderPageState extends State<ReaderPage> {
   bool _showAppBar = true;
+  late ScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    final offset = _scrollController.offset;
+    context.read<ReaderBloc>().add(ReaderEvent.updatePageOffset(offset));
+  }
 
   @override
   Widget build(BuildContext context) {
     final readerSettingsService = GetIt.I<ReaderSettingsService>();
+
     return BlocBuilder<ReaderBloc, ReaderState>(
       builder: (context, state) {
         return state.maybeWhen(
-          loaded: (controller, currentChapterIndex, currentPageIndex) =>
-              Scaffold(
-                body: NestedScrollView(
-                  headerSliverBuilder: (context, innerBoxIsScrolled) =>
-                      _showAppBar
-                      ? [
-                          SliverAppBar(
-                            title: Text(controller.currentChapter.title),
-                            pinned: false,
-                            floating: true,
-                            snap: true,
-                          ),
-                        ]
-                      : [],
-                  body: SizedBox.expand(
-                    child: GestureDetector(
-                      onTap: () => setState(() => _showAppBar = !_showAppBar),
-                      onHorizontalDragEnd: (details) {
-                        if (details.velocity.pixelsPerSecond.dx > 0) {
-                          // Swipe right: previous chapter
-                          if (currentChapterIndex > 0) {
-                            context.read<ReaderBloc>().add(
-                              const ReaderEvent.previousChapter(),
-                            );
+          loaded:
+              (
+                controller,
+                currentChapterIndex,
+                currentPageIndex,
+                pageOffset,
+                bookmarks,
+              ) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (_scrollController.hasClients &&
+                      _scrollController.offset != pageOffset) {
+                    _scrollController.jumpTo(pageOffset);
+                  }
+                });
+
+                return Scaffold(
+                  body: NestedScrollView(
+                    headerSliverBuilder: (context, innerBoxIsScrolled) =>
+                        _showAppBar
+                        ? [
+                            SliverAppBar(
+                              title: Text(controller.currentChapter.title),
+                              pinned: false,
+                              floating: true,
+                              snap: true,
+                            ),
+                          ]
+                        : [],
+                    body: SizedBox.expand(
+                      child: GestureDetector(
+                        onTap: () => setState(() => _showAppBar = !_showAppBar),
+                        onHorizontalDragEnd: (details) {
+                          if (details.velocity.pixelsPerSecond.dx > 0) {
+                            // Swipe right: previous chapter
+                            if (currentChapterIndex > 0) {
+                              context.read<ReaderBloc>().add(
+                                const ReaderEvent.previousChapter(),
+                              );
+                            }
+                          } else if (details.velocity.pixelsPerSecond.dx < 0) {
+                            // Swipe left: next chapter
+                            if (currentChapterIndex <
+                                controller.totalChapters - 1) {
+                              context.read<ReaderBloc>().add(
+                                const ReaderEvent.nextChapter(),
+                              );
+                            }
                           }
-                        } else if (details.velocity.pixelsPerSecond.dx < 0) {
-                          // Swipe left: next chapter
-                          if (currentChapterIndex <
-                              controller.totalChapters - 1) {
-                            context.read<ReaderBloc>().add(
-                              const ReaderEvent.nextChapter(),
-                            );
-                          }
-                        }
-                      },
-                      child: Container(
-                        color: Theme.of(context).colorScheme.surface,
-                        child: SingleChildScrollView(
-                          physics: const AlwaysScrollableScrollPhysics(),
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 24.0,
-                            vertical: 16.0,
-                          ),
-                          child: Html(
-                            data: controller.getFullChapterContent(),
-                            style: {
-                              "body": Style(
-                                fontSize: FontSize(
-                                  readerSettingsService.fontSize,
+                        },
+                        child: Container(
+                          color: Theme.of(context).colorScheme.surface,
+                          child: SingleChildScrollView(
+                            controller: _scrollController,
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 24.0,
+                              vertical: 16.0,
+                            ),
+                            child: Html(
+                              data: controller.getFullChapterContent(),
+                              style: {
+                                "body": Style(
+                                  fontSize: FontSize(
+                                    readerSettingsService.fontSize,
+                                  ),
+                                  lineHeight: const LineHeight(1.8),
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurface,
                                 ),
-                                lineHeight: LineHeight(1.8),
-                                color: Theme.of(
-                                  context,
-                                ).colorScheme.onSurface,
-                              ),
-                              "p": Style(
-                                margin: Margins.only(bottom: 16.0),
-                              ),
-                              "h1": Style(
-                                fontSize: FontSize(28.0),
-                                fontWeight: FontWeight.bold,
-                                margin: Margins.only(
-                                  bottom: 20.0,
-                                  top: 32.0,
+                                "p": Style(
+                                  margin: Margins.only(bottom: 16.0),
                                 ),
-                              ),
-                              "h2": Style(
-                                fontSize: FontSize(24.0),
-                                fontWeight: FontWeight.bold,
-                                margin: Margins.only(
-                                  bottom: 16.0,
-                                  top: 28.0,
+                                "h1": Style(
+                                  fontSize:  FontSize(28.0),
+                                  fontWeight: FontWeight.bold,
+                                  margin: Margins.only(
+                                    bottom: 20.0,
+                                    top: 32.0,
+                                  ),
                                 ),
-                              ),
-                              "h3": Style(
-                                fontSize: FontSize(20.0),
-                                fontWeight: FontWeight.bold,
-                                margin: Margins.only(
-                                  bottom: 12.0,
-                                  top: 24.0,
+                                "h2": Style(
+                                  fontSize:  FontSize(24.0),
+                                  fontWeight: FontWeight.bold,
+                                  margin: Margins.only(
+                                    bottom: 16.0,
+                                    top: 28.0,
+                                  ),
                                 ),
-                              ),
-                            },
+                                "h3": Style(
+                                  fontSize:  FontSize(20.0),
+                                  fontWeight: FontWeight.bold,
+                                  margin: Margins.only(
+                                    bottom: 12.0,
+                                    top: 24.0,
+                                  ),
+                                ),
+                              },
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
+                );
+              },
+          error: (message) {
+            return Scaffold(
+              appBar: AppBar(
+                title: Text(AppLocalizations.of(context)!.errorTitle),
+              ),
+              body: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.error_outline, size: 64),
+                    const SizedBox(height: 16),
+                    Text(message, textAlign: TextAlign.center),
+                    const SizedBox(height: 16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            // Retry loading
+                            context.read<ReaderBloc>().add(
+                              const ReaderEvent.started(),
+                            );
+                          },
+                          child: const Text('Retry'),
+                        ),
+                        const SizedBox(width: 16),
+                        ElevatedButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          child: const Text('Go Back'),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-          error: (message) => Scaffold(
-            appBar: AppBar(
-              title: Text(AppLocalizations.of(context)!.errorTitle),
-            ),
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.error_outline, size: 64),
-                  const SizedBox(height: 16),
-                  Text(message, textAlign: TextAlign.center),
-                  const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          // Retry loading
-                          context.read<ReaderBloc>().add(
-                            const ReaderEvent.started(),
-                          );
-                        },
-                        child: const Text('Retry'),
-                      ),
-                      const SizedBox(width: 16),
-                      ElevatedButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        child: const Text('Go Back'),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
+            );
+          },
           orElse: () => const Scaffold(
             body: Center(child: CircularProgressIndicator()),
           ),

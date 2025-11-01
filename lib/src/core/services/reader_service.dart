@@ -1,3 +1,5 @@
+import 'package:ebook_x/models/bookmark.dart';
+
 import '../../features/library/data/models/ebook_entry.dart';
 import 'ebook_library_service.dart';
 
@@ -10,13 +12,22 @@ class ReaderService {
 
   /// Updates the reading progress for an ebook
   /// Returns true if the update was successful
-  Future<bool> updateReadingProgress(String ebookId, int currentChapter) async {
+  Future<bool> updateReadingProgress(
+    String ebookId,
+    int currentChapter, {
+    int currentPage = 0,
+    double pageOffset = 0.0,
+    List<Bookmark>? bookmarks,
+  }) async {
     final ebookEntry = _ebookLibraryService.getEbook(ebookId);
     if (ebookEntry == null) return false;
 
     // Update the ebook entry with new reading progress
     final updatedEntry = ebookEntry.copyWith(
       currentChapter: currentChapter,
+      currentPage: currentPage,
+      pageOffset: pageOffset,
+      bookmarks: bookmarks ?? ebookEntry.bookmarks,
       lastReadAt: DateTime.now(),
     );
 
@@ -24,7 +35,14 @@ class ReaderService {
   }
 
   /// Gets the current reading progress for an ebook
-  ({int currentChapter, DateTime? lastReadAt})? getReadingProgress(
+  ({
+    int currentChapter,
+    int currentPage,
+    double pageOffset,
+    List<Bookmark> bookmarks,
+    DateTime? lastReadAt,
+  })?
+  getReadingProgress(
     String ebookId,
   ) {
     final ebookEntry = _ebookLibraryService.getEbook(ebookId);
@@ -32,6 +50,9 @@ class ReaderService {
 
     return (
       currentChapter: ebookEntry.currentChapter,
+      currentPage: ebookEntry.currentPage,
+      pageOffset: ebookEntry.pageOffset,
+      bookmarks: ebookEntry.bookmarks,
       lastReadAt: ebookEntry.lastReadAt,
     );
   }
@@ -80,9 +101,49 @@ class ReaderService {
 
     final updatedEntry = ebookEntry.copyWith(
       currentChapter: 0,
+      currentPage: 0,
+      pageOffset: 0.0,
+      bookmarks: [],
       lastReadAt: null,
     );
 
     return await _ebookLibraryService.updateEbook(updatedEntry);
+  }
+
+  /// Adds a bookmark to an ebook
+  Future<bool> addBookmark(String ebookId, Bookmark bookmark) async {
+    final ebookEntry = _ebookLibraryService.getEbook(ebookId);
+    if (ebookEntry == null) return false;
+
+    final updatedBookmarks = [...ebookEntry.bookmarks, bookmark];
+    final updatedEntry = ebookEntry.copyWith(
+      bookmarks: updatedBookmarks,
+    );
+
+    return await _ebookLibraryService.updateEbook(updatedEntry);
+  }
+
+  /// Removes a bookmark from an ebook by index
+  Future<bool> removeBookmark(String ebookId, int index) async {
+    final ebookEntry = _ebookLibraryService.getEbook(ebookId);
+    if (ebookEntry == null ||
+        index < 0 ||
+        index >= ebookEntry.bookmarks.length) {
+      return false;
+    }
+
+    final updatedBookmarks = List<Bookmark>.from(ebookEntry.bookmarks)
+      ..removeAt(index);
+    final updatedEntry = ebookEntry.copyWith(
+      bookmarks: updatedBookmarks,
+    );
+
+    return await _ebookLibraryService.updateEbook(updatedEntry);
+  }
+
+  /// Gets all bookmarks for an ebook
+  List<Bookmark> getBookmarks(String ebookId) {
+    final ebookEntry = _ebookLibraryService.getEbook(ebookId);
+    return ebookEntry?.bookmarks ?? [];
   }
 }

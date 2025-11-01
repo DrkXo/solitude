@@ -12,9 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
   ebook_x:
-    git:
-      url: https://github.com/DrkXo/ebook_x.git
-      ref: master # or specific branch/tag/commit
+    # git:
+    #   url: https://github.com/DrkXo/ebook_x.git
+    #   ref: master # or specific branch/tag/commit
+    path: ../ebook_x
   cupertino_icons: ^1.0.8
   flutter_screenutil: ^5.9.3
   freezed: ^3.2.3
