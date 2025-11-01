@@ -1,6 +1,7 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// The [AppTheme] defines light and dark themes for the app.
 ///
@@ -19,6 +20,8 @@ import 'package:flutter/material.dart';
 abstract final class AppTheme {
   // The FlexColorScheme defined light mode ThemeData.
   static ThemeData light = FlexThemeData.light(
+    fontFamily: GoogleFonts.openSans().fontFamily,
+
     // Using FlexColorScheme built-in FlexScheme enum based colors
     scheme: FlexScheme.shadStone,
     // Input color modifiers.
@@ -142,6 +145,7 @@ abstract final class AppTheme {
 
   // The FlexColorScheme defined dark mode ThemeData.
   static ThemeData dark = FlexThemeData.dark(
+    fontFamily: GoogleFonts.openSans().fontFamily,
     // Using FlexColorScheme built-in FlexScheme enum based colors.
     scheme: FlexScheme.shadStone,
     // Input color modifiers.
