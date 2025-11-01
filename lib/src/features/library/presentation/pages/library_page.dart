@@ -41,7 +41,7 @@ class _LibraryPageView extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              context.goNamed(AppRoutes.settings.name);
+              context.pushNamed(AppRoutes.settings.name);
             },
           ),
         ],
@@ -62,7 +62,9 @@ class _LibraryPageView extends StatelessWidget {
                 _buildLoaded(context, ebooks, isAdding),
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (message, ebooks) => _buildLoaded(context, ebooks, false),
-            orElse: () => Center(child: Text(AppLocalizations.of(context)!.welcomeMessage)),
+            orElse: () => Center(
+              child: Text(AppLocalizations.of(context)!.welcomeMessage),
+            ),
           );
         },
       ),
@@ -105,61 +107,69 @@ class _LibraryPageView extends StatelessWidget {
         ),
         Expanded(
           child: ListView.builder(
-      itemCount: ebooks.length + (isAdding ? 1 : 0),
-      itemBuilder: (context, index) {
-        if (index < ebooks.length) {
-          final entry = ebooks[index];
-          return Dismissible(
-            key: Key(entry.id),
-            onDismissed: (direction) {
-              context.read<LibraryBloc>().add(
-                LibraryEvent.removeEbook(entry.id),
-              );
+            itemCount: ebooks.length + (isAdding ? 1 : 0),
+            itemBuilder: (context, index) {
+              if (index < ebooks.length) {
+                final entry = ebooks[index];
+                return Dismissible(
+                  key: Key(entry.id),
+                  onDismissed: (direction) {
+                    context.read<LibraryBloc>().add(
+                      LibraryEvent.removeEbook(entry.id),
+                    );
+                  },
+                  background: Container(
+                    color: Colors.red,
+                    alignment: Alignment.centerRight,
+                    padding: const EdgeInsets.only(right: 20),
+                    child: const Icon(Icons.delete, color: Colors.white),
+                  ),
+                  child: ListTile(
+                    leading: entry.coverImagePath != null
+                        ? SizedBox(
+                            width: 50,
+                            height: 70,
+                            child: Image.asset(entry.coverImagePath!),
+                          )
+                        : const Icon(Icons.book),
+                    title: Text(entry.ebook.metadata.title),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          AppLocalizations.of(
+                            context,
+                          )!.authorLabel(entry.ebook.metadata.author),
+                        ),
+                        Text(
+                          AppLocalizations.of(
+                            context,
+                          )!.chaptersLabel(entry.ebook.chapters.length),
+                        ),
+                      ],
+                    ),
+                    trailing: IconButton(
+                      onPressed: () {
+                        context.goNamed(
+                          AppRoutes.reader.name,
+                          pathParameters: {
+                            'ebookId': entry.id,
+                          },
+                        );
+                      },
+                      icon: const Icon(Icons.open_in_new),
+                    ),
+                  ),
+                );
+              } else {
+                return ListTile(
+                  title: Text(AppLocalizations.of(context)!.addingBookMessage),
+                  leading: CircularProgressIndicator(),
+                );
+              }
             },
-            background: Container(
-              color: Colors.red,
-              alignment: Alignment.centerRight,
-              padding: const EdgeInsets.only(right: 20),
-              child: const Icon(Icons.delete, color: Colors.white),
-            ),
-            child: ListTile(
-              leading: entry.coverImagePath != null
-                  ? SizedBox(
-                      width: 50,
-                      height: 70,
-                      child: Image.asset(entry.coverImagePath!),
-                    )
-                  : const Icon(Icons.book),
-              title: Text(entry.ebook.metadata.title),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(AppLocalizations.of(context)!.authorLabel(entry.ebook.metadata.author)),
-                  Text(AppLocalizations.of(context)!.chaptersLabel(entry.ebook.chapters.length)),
-                ],
-              ),
-              trailing: IconButton(
-                onPressed: () {
-                  context.goNamed(
-                    AppRoutes.reader.name,
-                    pathParameters: {
-                      'ebookId': entry.id,
-                    },
-                  );
-                },
-                icon: const Icon(Icons.open_in_new),
-              ),
-            ),
-          );
-        } else {
-          return ListTile(
-            title: Text(AppLocalizations.of(context)!.addingBookMessage),
-            leading: CircularProgressIndicator(),
-          );
-        }
-      },
-    ),
+          ),
         ),
       ],
     );

@@ -17,31 +17,6 @@ Future<void> entryPoint() async {
 
   await configureDependencies();
 
-  ErrorWidget.builder = (FlutterErrorDetails details) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Error')),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.error, size: 64, color: Colors.red),
-              const SizedBox(height: 16),
-              const Text('Something went wrong!'),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  // Restart the app or go back
-                },
-                child: const Text('Restart'),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  };
-
   runApp(const Solitude());
 
   WidgetsBinding.instance.addPostFrameCallback((_) {
