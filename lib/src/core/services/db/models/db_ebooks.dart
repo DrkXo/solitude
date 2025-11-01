@@ -9,6 +9,8 @@ class DbEbooks extends Table {
   DateTimeColumn get addedAt => dateTime()();
   DateTimeColumn get lastReadAt => dateTime().nullable()();
   IntColumn get currentChapter => integer().withDefault(const Constant(0))();
+  IntColumn get currentPage => integer().withDefault(const Constant(0))();
+  RealColumn get pageOffset => real().withDefault(const Constant(0.0))();
    IntColumn get fileSize => integer().nullable()();
    TextColumn get coverImage => text().nullable()();
 

@@ -39,29 +39,31 @@ class EbookLibraryService extends BaseService {
     } catch (e) {
       logger.error('Failed to load ebooks from database: $e');
       // Continue with empty list
-    }
-    for (final dbEbook in dbEbooks) {
-      try {
-        final ebook = await _ebookReader.read(dbEbook.filePath);
-        final entry = EbookEntry(
-          id: dbEbook.id,
-          ebook: ebook,
-          filePath: dbEbook.filePath,
-          fileName: dbEbook.fileName,
-          addedAt: dbEbook.addedAt,
-          lastReadAt: dbEbook.lastReadAt,
-           currentChapter: dbEbook.currentChapter,
-           fileSize: dbEbook.fileSize,
-           coverImageHtml: dbEbook.coverImage,
-         );
-         _ebooks.add(entry);
-       } catch (e) {
-         // Skip ebooks that can't be parsed (file might be missing or corrupted)
-         logger.error('Failed to load ebook ${dbEbook.filePath}: $e');
-         continue;
-      }
-    }
-    _ebooksController.add(List.from(_ebooks));
+     }
+     for (final dbEbook in dbEbooks) {
+       try {
+         final ebook = await _ebookReader.read(dbEbook.filePath);
+         final entry = EbookEntry(
+           id: dbEbook.id,
+           ebook: ebook,
+           filePath: dbEbook.filePath,
+           fileName: dbEbook.fileName,
+           addedAt: dbEbook.addedAt,
+           lastReadAt: dbEbook.lastReadAt,
+            currentChapter: dbEbook.currentChapter,
+            currentPage: dbEbook.currentPage,
+            pageOffset: dbEbook.pageOffset,
+            fileSize: dbEbook.fileSize,
+            coverImageHtml: dbEbook.coverImage,
+          );
+          _ebooks.add(entry);
+        } catch (e) {
+          // Skip ebooks that can't be parsed (file might be missing or corrupted)
+          logger.error('Failed to load ebook ${dbEbook.filePath}: $e');
+          continue;
+        }
+       }
+     _ebooksController.add(List.from(_ebooks));
   }
 
   /// Parses and adds an ebook from the given file path
@@ -226,6 +228,8 @@ class EbookLibraryService extends BaseService {
             addedAt: Value(updatedEntry.addedAt),
             lastReadAt: Value(updatedEntry.lastReadAt),
             currentChapter: Value(updatedEntry.currentChapter),
+            currentPage: Value(updatedEntry.currentPage),
+            pageOffset: Value(updatedEntry.pageOffset),
              fileSize: Value(updatedEntry.fileSize),
              coverImage: Value(updatedEntry.coverImageHtml),
           ),
@@ -270,6 +274,8 @@ class EbookLibraryService extends BaseService {
           addedAt: dbEbook.addedAt,
           lastReadAt: dbEbook.lastReadAt,
            currentChapter: dbEbook.currentChapter,
+           currentPage: dbEbook.currentPage,
+           pageOffset: dbEbook.pageOffset,
            fileSize: dbEbook.fileSize,
            coverImageHtml: dbEbook.coverImage,
          );

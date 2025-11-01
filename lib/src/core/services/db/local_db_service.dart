@@ -17,11 +17,17 @@ class SolitudeDatabase extends _$SolitudeDatabase {
   SolitudeDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
-    onUpgrade: (Migrator m, int from, int to) async {},
+    onUpgrade: (Migrator m, int from, int to) async {
+      if (from < 4) {
+        // Add currentPage and pageOffset columns to existing DbEbooks table
+        await m.addColumn(dbEbooks, dbEbooks.currentPage);
+        await m.addColumn(dbEbooks, dbEbooks.pageOffset);
+      }
+    },
   );
 
   static LazyDatabase _openConnection() {

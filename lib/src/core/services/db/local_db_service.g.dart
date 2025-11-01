@@ -92,6 +92,30 @@ class $DbEbooksTable extends DbEbooks with TableInfo<$DbEbooksTable, DbEbook> {
     requiredDuringInsert: false,
     defaultValue: const Constant(0),
   );
+  static const VerificationMeta _currentPageMeta = const VerificationMeta(
+    'currentPage',
+  );
+  @override
+  late final GeneratedColumn<int> currentPage = GeneratedColumn<int>(
+    'current_page',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _pageOffsetMeta = const VerificationMeta(
+    'pageOffset',
+  );
+  @override
+  late final GeneratedColumn<double> pageOffset = GeneratedColumn<double>(
+    'page_offset',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0.0),
+  );
   static const VerificationMeta _fileSizeMeta = const VerificationMeta(
     'fileSize',
   );
@@ -124,6 +148,8 @@ class $DbEbooksTable extends DbEbooks with TableInfo<$DbEbooksTable, DbEbook> {
     addedAt,
     lastReadAt,
     currentChapter,
+    currentPage,
+    pageOffset,
     fileSize,
     coverImage,
   ];
@@ -202,6 +228,21 @@ class $DbEbooksTable extends DbEbooks with TableInfo<$DbEbooksTable, DbEbook> {
         ),
       );
     }
+    if (data.containsKey('current_page')) {
+      context.handle(
+        _currentPageMeta,
+        currentPage.isAcceptableOrUnknown(
+          data['current_page']!,
+          _currentPageMeta,
+        ),
+      );
+    }
+    if (data.containsKey('page_offset')) {
+      context.handle(
+        _pageOffsetMeta,
+        pageOffset.isAcceptableOrUnknown(data['page_offset']!, _pageOffsetMeta),
+      );
+    }
     if (data.containsKey('file_size')) {
       context.handle(
         _fileSizeMeta,
@@ -255,6 +296,14 @@ class $DbEbooksTable extends DbEbooks with TableInfo<$DbEbooksTable, DbEbook> {
         DriftSqlType.int,
         data['${effectivePrefix}current_chapter'],
       )!,
+      currentPage: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}current_page'],
+      )!,
+      pageOffset: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}page_offset'],
+      )!,
       fileSize: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}file_size'],
@@ -281,6 +330,8 @@ class DbEbook extends DataClass implements Insertable<DbEbook> {
   final DateTime addedAt;
   final DateTime? lastReadAt;
   final int currentChapter;
+  final int currentPage;
+  final double pageOffset;
   final int? fileSize;
   final String? coverImage;
   const DbEbook({
@@ -292,6 +343,8 @@ class DbEbook extends DataClass implements Insertable<DbEbook> {
     required this.addedAt,
     this.lastReadAt,
     required this.currentChapter,
+    required this.currentPage,
+    required this.pageOffset,
     this.fileSize,
     this.coverImage,
   });
@@ -308,6 +361,8 @@ class DbEbook extends DataClass implements Insertable<DbEbook> {
       map['last_read_at'] = Variable<DateTime>(lastReadAt);
     }
     map['current_chapter'] = Variable<int>(currentChapter);
+    map['current_page'] = Variable<int>(currentPage);
+    map['page_offset'] = Variable<double>(pageOffset);
     if (!nullToAbsent || fileSize != null) {
       map['file_size'] = Variable<int>(fileSize);
     }
@@ -329,6 +384,8 @@ class DbEbook extends DataClass implements Insertable<DbEbook> {
           ? const Value.absent()
           : Value(lastReadAt),
       currentChapter: Value(currentChapter),
+      currentPage: Value(currentPage),
+      pageOffset: Value(pageOffset),
       fileSize: fileSize == null && nullToAbsent
           ? const Value.absent()
           : Value(fileSize),
@@ -352,6 +409,8 @@ class DbEbook extends DataClass implements Insertable<DbEbook> {
       addedAt: serializer.fromJson<DateTime>(json['addedAt']),
       lastReadAt: serializer.fromJson<DateTime?>(json['lastReadAt']),
       currentChapter: serializer.fromJson<int>(json['currentChapter']),
+      currentPage: serializer.fromJson<int>(json['currentPage']),
+      pageOffset: serializer.fromJson<double>(json['pageOffset']),
       fileSize: serializer.fromJson<int?>(json['fileSize']),
       coverImage: serializer.fromJson<String?>(json['coverImage']),
     );
@@ -368,6 +427,8 @@ class DbEbook extends DataClass implements Insertable<DbEbook> {
       'addedAt': serializer.toJson<DateTime>(addedAt),
       'lastReadAt': serializer.toJson<DateTime?>(lastReadAt),
       'currentChapter': serializer.toJson<int>(currentChapter),
+      'currentPage': serializer.toJson<int>(currentPage),
+      'pageOffset': serializer.toJson<double>(pageOffset),
       'fileSize': serializer.toJson<int?>(fileSize),
       'coverImage': serializer.toJson<String?>(coverImage),
     };
@@ -382,6 +443,8 @@ class DbEbook extends DataClass implements Insertable<DbEbook> {
     DateTime? addedAt,
     Value<DateTime?> lastReadAt = const Value.absent(),
     int? currentChapter,
+    int? currentPage,
+    double? pageOffset,
     Value<int?> fileSize = const Value.absent(),
     Value<String?> coverImage = const Value.absent(),
   }) => DbEbook(
@@ -393,6 +456,8 @@ class DbEbook extends DataClass implements Insertable<DbEbook> {
     addedAt: addedAt ?? this.addedAt,
     lastReadAt: lastReadAt.present ? lastReadAt.value : this.lastReadAt,
     currentChapter: currentChapter ?? this.currentChapter,
+    currentPage: currentPage ?? this.currentPage,
+    pageOffset: pageOffset ?? this.pageOffset,
     fileSize: fileSize.present ? fileSize.value : this.fileSize,
     coverImage: coverImage.present ? coverImage.value : this.coverImage,
   );
@@ -410,6 +475,12 @@ class DbEbook extends DataClass implements Insertable<DbEbook> {
       currentChapter: data.currentChapter.present
           ? data.currentChapter.value
           : this.currentChapter,
+      currentPage: data.currentPage.present
+          ? data.currentPage.value
+          : this.currentPage,
+      pageOffset: data.pageOffset.present
+          ? data.pageOffset.value
+          : this.pageOffset,
       fileSize: data.fileSize.present ? data.fileSize.value : this.fileSize,
       coverImage: data.coverImage.present
           ? data.coverImage.value
@@ -428,6 +499,8 @@ class DbEbook extends DataClass implements Insertable<DbEbook> {
           ..write('addedAt: $addedAt, ')
           ..write('lastReadAt: $lastReadAt, ')
           ..write('currentChapter: $currentChapter, ')
+          ..write('currentPage: $currentPage, ')
+          ..write('pageOffset: $pageOffset, ')
           ..write('fileSize: $fileSize, ')
           ..write('coverImage: $coverImage')
           ..write(')'))
@@ -444,6 +517,8 @@ class DbEbook extends DataClass implements Insertable<DbEbook> {
     addedAt,
     lastReadAt,
     currentChapter,
+    currentPage,
+    pageOffset,
     fileSize,
     coverImage,
   );
@@ -459,6 +534,8 @@ class DbEbook extends DataClass implements Insertable<DbEbook> {
           other.addedAt == this.addedAt &&
           other.lastReadAt == this.lastReadAt &&
           other.currentChapter == this.currentChapter &&
+          other.currentPage == this.currentPage &&
+          other.pageOffset == this.pageOffset &&
           other.fileSize == this.fileSize &&
           other.coverImage == this.coverImage);
 }
@@ -472,6 +549,8 @@ class DbEbooksCompanion extends UpdateCompanion<DbEbook> {
   final Value<DateTime> addedAt;
   final Value<DateTime?> lastReadAt;
   final Value<int> currentChapter;
+  final Value<int> currentPage;
+  final Value<double> pageOffset;
   final Value<int?> fileSize;
   final Value<String?> coverImage;
   final Value<int> rowid;
@@ -484,6 +563,8 @@ class DbEbooksCompanion extends UpdateCompanion<DbEbook> {
     this.addedAt = const Value.absent(),
     this.lastReadAt = const Value.absent(),
     this.currentChapter = const Value.absent(),
+    this.currentPage = const Value.absent(),
+    this.pageOffset = const Value.absent(),
     this.fileSize = const Value.absent(),
     this.coverImage = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -497,6 +578,8 @@ class DbEbooksCompanion extends UpdateCompanion<DbEbook> {
     required DateTime addedAt,
     this.lastReadAt = const Value.absent(),
     this.currentChapter = const Value.absent(),
+    this.currentPage = const Value.absent(),
+    this.pageOffset = const Value.absent(),
     this.fileSize = const Value.absent(),
     this.coverImage = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -515,6 +598,8 @@ class DbEbooksCompanion extends UpdateCompanion<DbEbook> {
     Expression<DateTime>? addedAt,
     Expression<DateTime>? lastReadAt,
     Expression<int>? currentChapter,
+    Expression<int>? currentPage,
+    Expression<double>? pageOffset,
     Expression<int>? fileSize,
     Expression<String>? coverImage,
     Expression<int>? rowid,
@@ -528,6 +613,8 @@ class DbEbooksCompanion extends UpdateCompanion<DbEbook> {
       if (addedAt != null) 'added_at': addedAt,
       if (lastReadAt != null) 'last_read_at': lastReadAt,
       if (currentChapter != null) 'current_chapter': currentChapter,
+      if (currentPage != null) 'current_page': currentPage,
+      if (pageOffset != null) 'page_offset': pageOffset,
       if (fileSize != null) 'file_size': fileSize,
       if (coverImage != null) 'cover_image': coverImage,
       if (rowid != null) 'rowid': rowid,
@@ -543,6 +630,8 @@ class DbEbooksCompanion extends UpdateCompanion<DbEbook> {
     Value<DateTime>? addedAt,
     Value<DateTime?>? lastReadAt,
     Value<int>? currentChapter,
+    Value<int>? currentPage,
+    Value<double>? pageOffset,
     Value<int?>? fileSize,
     Value<String?>? coverImage,
     Value<int>? rowid,
@@ -556,6 +645,8 @@ class DbEbooksCompanion extends UpdateCompanion<DbEbook> {
       addedAt: addedAt ?? this.addedAt,
       lastReadAt: lastReadAt ?? this.lastReadAt,
       currentChapter: currentChapter ?? this.currentChapter,
+      currentPage: currentPage ?? this.currentPage,
+      pageOffset: pageOffset ?? this.pageOffset,
       fileSize: fileSize ?? this.fileSize,
       coverImage: coverImage ?? this.coverImage,
       rowid: rowid ?? this.rowid,
@@ -589,6 +680,12 @@ class DbEbooksCompanion extends UpdateCompanion<DbEbook> {
     if (currentChapter.present) {
       map['current_chapter'] = Variable<int>(currentChapter.value);
     }
+    if (currentPage.present) {
+      map['current_page'] = Variable<int>(currentPage.value);
+    }
+    if (pageOffset.present) {
+      map['page_offset'] = Variable<double>(pageOffset.value);
+    }
     if (fileSize.present) {
       map['file_size'] = Variable<int>(fileSize.value);
     }
@@ -612,6 +709,8 @@ class DbEbooksCompanion extends UpdateCompanion<DbEbook> {
           ..write('addedAt: $addedAt, ')
           ..write('lastReadAt: $lastReadAt, ')
           ..write('currentChapter: $currentChapter, ')
+          ..write('currentPage: $currentPage, ')
+          ..write('pageOffset: $pageOffset, ')
           ..write('fileSize: $fileSize, ')
           ..write('coverImage: $coverImage, ')
           ..write('rowid: $rowid')
@@ -852,6 +951,8 @@ typedef $$DbEbooksTableCreateCompanionBuilder =
       required DateTime addedAt,
       Value<DateTime?> lastReadAt,
       Value<int> currentChapter,
+      Value<int> currentPage,
+      Value<double> pageOffset,
       Value<int?> fileSize,
       Value<String?> coverImage,
       Value<int> rowid,
@@ -866,6 +967,8 @@ typedef $$DbEbooksTableUpdateCompanionBuilder =
       Value<DateTime> addedAt,
       Value<DateTime?> lastReadAt,
       Value<int> currentChapter,
+      Value<int> currentPage,
+      Value<double> pageOffset,
       Value<int?> fileSize,
       Value<String?> coverImage,
       Value<int> rowid,
@@ -917,6 +1020,16 @@ class $$DbEbooksTableFilterComposer
 
   ColumnFilters<int> get currentChapter => $composableBuilder(
     column: $table.currentChapter,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get currentPage => $composableBuilder(
+    column: $table.currentPage,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get pageOffset => $composableBuilder(
+    column: $table.pageOffset,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -980,6 +1093,16 @@ class $$DbEbooksTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<int> get currentPage => $composableBuilder(
+    column: $table.currentPage,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get pageOffset => $composableBuilder(
+    column: $table.pageOffset,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<int> get fileSize => $composableBuilder(
     column: $table.fileSize,
     builder: (column) => ColumnOrderings(column),
@@ -1025,6 +1148,16 @@ class $$DbEbooksTableAnnotationComposer
 
   GeneratedColumn<int> get currentChapter => $composableBuilder(
     column: $table.currentChapter,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get currentPage => $composableBuilder(
+    column: $table.currentPage,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get pageOffset => $composableBuilder(
+    column: $table.pageOffset,
     builder: (column) => column,
   );
 
@@ -1076,6 +1209,8 @@ class $$DbEbooksTableTableManager
                 Value<DateTime> addedAt = const Value.absent(),
                 Value<DateTime?> lastReadAt = const Value.absent(),
                 Value<int> currentChapter = const Value.absent(),
+                Value<int> currentPage = const Value.absent(),
+                Value<double> pageOffset = const Value.absent(),
                 Value<int?> fileSize = const Value.absent(),
                 Value<String?> coverImage = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
@@ -1088,6 +1223,8 @@ class $$DbEbooksTableTableManager
                 addedAt: addedAt,
                 lastReadAt: lastReadAt,
                 currentChapter: currentChapter,
+                currentPage: currentPage,
+                pageOffset: pageOffset,
                 fileSize: fileSize,
                 coverImage: coverImage,
                 rowid: rowid,
@@ -1102,6 +1239,8 @@ class $$DbEbooksTableTableManager
                 required DateTime addedAt,
                 Value<DateTime?> lastReadAt = const Value.absent(),
                 Value<int> currentChapter = const Value.absent(),
+                Value<int> currentPage = const Value.absent(),
+                Value<double> pageOffset = const Value.absent(),
                 Value<int?> fileSize = const Value.absent(),
                 Value<String?> coverImage = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
@@ -1114,6 +1253,8 @@ class $$DbEbooksTableTableManager
                 addedAt: addedAt,
                 lastReadAt: lastReadAt,
                 currentChapter: currentChapter,
+                currentPage: currentPage,
+                pageOffset: pageOffset,
                 fileSize: fileSize,
                 coverImage: coverImage,
                 rowid: rowid,
