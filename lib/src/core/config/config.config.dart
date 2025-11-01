@@ -34,7 +34,9 @@ extension GetItInjectableX on _i174.GetIt {
     final logger = _$Logger();
     gh.factory<_i1058.SolitudeDatabase>(() => _i1058.SolitudeDatabase());
     gh.singleton<_i207.Talker>(() => logger.logger);
-    gh.lazySingleton<_i1058.LocalDbService>(() => _i1058.LocalDbService());
+    gh.lazySingleton<_i1058.LocalDbService>(
+      () => _i1058.LocalDbService(gh<_i1058.SolitudeDatabase>()),
+    );
     await gh.factoryAsync<_i222.EbookLibraryService>(() {
       final i = _i222.EbookLibraryService(
         localDbService: gh<_i1058.LocalDbService>(),

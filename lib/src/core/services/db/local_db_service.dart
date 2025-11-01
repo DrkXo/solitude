@@ -5,6 +5,7 @@ import 'package:drift/native.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
+import 'package:solitude/src/core/utils/utils.dart';
 
 part 'daos/ebook_dao.dart';
 part 'daos/key_value_dao.dart';
@@ -21,37 +22,65 @@ class SolitudeDatabase extends _$SolitudeDatabase {
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
+    beforeOpen: (details) async {
+      // Ensure database directory exists
+      final dbFolder = await getApplicationSupportDirectory();
+      final dbDir = Directory(p.join(dbFolder.path, 'solitude'));
+      if (!await dbDir.exists()) {
+        await dbDir.create(recursive: true);
+      }
+    },
     onUpgrade: (Migrator m, int from, int to) async {
-      if (from < 4) {
-        // Add currentPage and pageOffset columns to existing DbEbooks table
-        await m.addColumn(dbEbooks, dbEbooks.currentPage);
-        await m.addColumn(dbEbooks, dbEbooks.pageOffset);
+      try {
+        if (from < 4) {
+          // Add currentPage and pageOffset columns to existing DbEbooks table
+          await m.addColumn(dbEbooks, dbEbooks.currentPage);
+          await m.addColumn(dbEbooks, dbEbooks.pageOffset);
+        }
+        // Add more version-specific logic here as needed
+      } catch (e) {
+        logger.error('Migration failed: $e');
+        rethrow;
       }
     },
   );
 
   static LazyDatabase _openConnection() {
     return LazyDatabase(() async {
-      final dbFolder = await getApplicationDocumentsDirectory();
-      final file = File(p.join(dbFolder.path, 'solitude', 'solitude.db'));
-      return NativeDatabase(file);
+      try {
+        final dbFolder = await getApplicationSupportDirectory();
+        final dbDir = Directory(p.join(dbFolder.path, 'solitude'));
+        if (!await dbDir.exists()) {
+          await dbDir.create(recursive: true);
+        }
+        final file = File(p.join(dbDir.path, 'solitude.db'));
+        return NativeDatabase(file);
+      } catch (e) {
+        logger.error('Failed to open database connection: $e');
+        rethrow;
+      }
     });
   }
 }
 
+// @module
+// abstract class LocalDbModule {
+//   SolitudeDatabase get solitude => SolitudeDatabase();
+// }
+
 @lazySingleton
 class LocalDbService {
-  static LocalDbService? _instance;
   final SolitudeDatabase solitude;
 
-  LocalDbService._internal() : solitude = SolitudeDatabase();
-
-  factory LocalDbService() {
-    _instance ??= LocalDbService._internal();
-    return _instance!;
-  }
+  LocalDbService(this.solitude);
 
   Future<void> close() async {
-    await solitude.close();
+    try {
+      await solitude.close();
+      logger.info('Database closed successfully');
+    } catch (e) {
+      logger.error('Failed to close database: $e');
+      rethrow;
+    }
   }
 }
