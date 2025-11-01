@@ -17,6 +17,7 @@ class ReaderPage extends StatefulWidget {
 class _ReaderPageState extends State<ReaderPage> {
   bool _showAppBar = true;
   late ScrollController _scrollController;
+  bool _hasJumped = false;
 
   @override
   void initState() {
@@ -27,6 +28,9 @@ class _ReaderPageState extends State<ReaderPage> {
 
   @override
   void dispose() {
+    if (_scrollController.hasClients) {
+      context.read<ReaderBloc>().add(ReaderEvent.updatePageOffset(_scrollController.offset));
+    }
     _scrollController.dispose();
     super.dispose();
   }
@@ -43,20 +47,22 @@ class _ReaderPageState extends State<ReaderPage> {
     return BlocBuilder<ReaderBloc, ReaderState>(
       builder: (context, state) {
         return state.maybeWhen(
-          loaded:
-              (
-                controller,
-                currentChapterIndex,
-                currentPageIndex,
-                pageOffset,
-                bookmarks,
-              ) {
-                WidgetsBinding.instance.addPostFrameCallback((_) {
-                  if (_scrollController.hasClients &&
-                      _scrollController.offset != pageOffset) {
-                    _scrollController.jumpTo(pageOffset);
-                  }
-                });
+               loaded:
+               (
+                 controller,
+                 currentChapterIndex,
+                 currentPageIndex,
+                 pageOffset,
+                 bookmarks,
+               ) {
+                 if (!_hasJumped) {
+                   _hasJumped = true;
+                   WidgetsBinding.instance.addPostFrameCallback((_) {
+                     if (_scrollController.hasClients) {
+                       _scrollController.jumpTo(pageOffset);
+                     }
+                   });
+                 }
 
                 return Scaffold(
                   body: NestedScrollView(
