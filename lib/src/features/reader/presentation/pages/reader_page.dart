@@ -55,14 +55,16 @@ class _ReaderPageState extends State<ReaderPage> {
                  pageOffset,
                  bookmarks,
                ) {
-                 if (!_hasJumped) {
-                   _hasJumped = true;
-                   WidgetsBinding.instance.addPostFrameCallback((_) {
-                     if (_scrollController.hasClients) {
-                       _scrollController.jumpTo(pageOffset);
-                     }
-                   });
-                 }
+                  if (!_hasJumped) {
+                    _hasJumped = true;
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      Future.delayed(const Duration(milliseconds: 100), () {
+                        if (mounted && _scrollController.hasClients) {
+                          _scrollController.jumpTo(pageOffset);
+                        }
+                      });
+                    });
+                  }
 
                 return Scaffold(
                   body: NestedScrollView(
