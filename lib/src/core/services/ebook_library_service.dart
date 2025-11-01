@@ -30,7 +30,9 @@ class EbookLibraryService {
   @PostConstruct(preResolve: true)
   Future<void> init() async {
     // Load ebooks from database with pagination for memory optimization
-    final dbEbooks = await _localDbService.getAllEbooks(limit: 50);
+    final dbEbooks = await _localDbService.solitude.ebookDao.getAllEbooks(
+      limit: 50,
+    );
     for (final dbEbook in dbEbooks) {
       try {
         final ebook = await _ebookReader.read(dbEbook.filePath);
@@ -65,7 +67,9 @@ class EbookLibraryService {
     // Validate file extension
     final extension = path.extension(sanitizedPath).toLowerCase();
     if (!['.epub', '.mobi', '.pdf'].contains(extension)) {
-      throw EbookLibraryException('Unsupported file type. Only EPUB, MOBI, and PDF are supported.');
+      throw EbookLibraryException(
+        'Unsupported file type. Only EPUB, MOBI, and PDF are supported.',
+      );
     }
 
     // Validate file exists and is readable
@@ -75,7 +79,8 @@ class EbookLibraryService {
 
     // Check file size (optional, prevent very large files)
     final fileSize = await file.length();
-    if (fileSize > 100 * 1024 * 1024) { // 100MB limit
+    if (fileSize > 100 * 1024 * 1024) {
+      // 100MB limit
       throw EbookLibraryException('File is too large. Maximum size is 100MB.');
     }
 
@@ -97,7 +102,7 @@ class EbookLibraryService {
       _ebooks.add(entry);
 
       // Save to database
-      await _localDbService.addEbook(
+      await _localDbService.solitude.ebookDao.addEbook(
         DbEbooksCompanion(
           id: Value(entry.id),
           filePath: Value(entry.filePath),
@@ -129,7 +134,7 @@ class EbookLibraryService {
     final index = _ebooks.indexWhere((entry) => entry.id == id);
     if (index != -1) {
       _ebooks.removeAt(index);
-      await _localDbService.removeEbook(id);
+      await _localDbService.solitude.ebookDao.removeEbook(id);
       _ebooksController.add(List.from(_ebooks));
       return true;
     }
@@ -178,7 +183,7 @@ class EbookLibraryService {
   /// Clears all ebooks
   Future<void> clearLibrary() async {
     _ebooks.clear();
-    await _localDbService.clearAllEbooks();
+    await _localDbService.solitude.ebookDao.clearAllEbooks();
   }
 
   /// Updates an existing ebook entry
@@ -186,7 +191,7 @@ class EbookLibraryService {
     final index = _ebooks.indexWhere((entry) => entry.id == updatedEntry.id);
     if (index != -1) {
       _ebooks[index] = updatedEntry;
-      await _localDbService.updateEbook(
+      await _localDbService.solitude.ebookDao.updateEbook(
         DbEbooksCompanion(
           id: Value(updatedEntry.id),
           filePath: Value(updatedEntry.filePath),
@@ -209,7 +214,10 @@ class EbookLibraryService {
   /// Loads more ebooks for pagination (loads next 50)
   Future<void> loadMoreEbooks() async {
     final offset = _ebooks.length;
-    final dbEbooks = await _localDbService.getAllEbooks(limit: 50, offset: offset);
+    final dbEbooks = await _localDbService.solitude.ebookDao.getAllEbooks(
+      limit: 50,
+      offset: offset,
+    );
     for (final dbEbook in dbEbooks) {
       try {
         final ebook = await _ebookReader.read(dbEbook.filePath);
@@ -235,8 +243,9 @@ class EbookLibraryService {
 
   /// Gets library statistics
   Future<LibraryStats> getStats() async {
-    final totalEbooks = await _localDbService.getTotalEbooks();
-    final totalSize = await _localDbService.getTotalSize();
+    final totalEbooks = await _localDbService.solitude.ebookDao
+        .getTotalEbooks();
+    final totalSize = await _localDbService.solitude.ebookDao.getTotalSize();
     return LibraryStats(
       totalEbooks: totalEbooks,
       totalSize: totalSize,

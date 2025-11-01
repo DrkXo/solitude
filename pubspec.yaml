@@ -42,6 +42,7 @@ dependencies:
   flutter_native_splash: ^2.4.4
   flutter_html: ^3.0.0-beta.2
   uuid: ^4.5.1
+  dynamik_theme: ^0.0.1
 
 dev_dependencies:
   flutter_test:

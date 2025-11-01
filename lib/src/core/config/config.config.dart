@@ -19,6 +19,7 @@ import '../../router/app_router.dart' as _i630;
 import '../services/db/local_db_service.dart' as _i1058;
 import '../services/ebook_library_service.dart' as _i222;
 import '../services/reader_service.dart' as _i534;
+import '../services/theme_service.dart' as _i982;
 import '../utils/utils.dart' as _i1021;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -36,6 +37,10 @@ extension GetItInjectableX on _i174.GetIt {
       final i = _i222.EbookLibraryService(
         localDbService: gh<_i1058.LocalDbService>(),
       );
+      return i.init().then((_) => i);
+    }, preResolve: true);
+    await gh.factoryAsync<_i982.ThemeService>(() {
+      final i = _i982.ThemeService(localDbService: gh<_i1058.LocalDbService>());
       return i.init().then((_) => i);
     }, preResolve: true);
     gh.factory<_i534.ReaderService>(
