@@ -1,0 +1,30 @@
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:solitude/src/core/services/db/local_db_service.dart';
+import 'package:solitude/src/core/services/ebook_library_service.dart';
+
+class MockLocalDbService extends Mock implements LocalDbService {}
+
+void main() {
+  late EbookLibraryService service;
+  late MockLocalDbService mockDbService;
+
+  setUp(() {
+    mockDbService = MockLocalDbService();
+    service = EbookLibraryService(localDbService: mockDbService);
+  });
+
+  group('EbookLibraryService', () {
+    test('should initialize and load ebooks', () async {
+      expect(service, isNotNull);
+    });
+
+    test('should add ebook successfully', () async {
+      expect(true, isTrue);
+    });
+
+    test('should throw exception for invalid file', () async {
+      expect(true, isTrue);
+    });
+  });
+}

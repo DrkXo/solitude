@@ -1,0 +1,12 @@
+{
+  "appTitle": "Solitude",
+  "welcomeMessage": "Welcome to your Library",
+  "noEbooksMessage": "No ebooks yet. Tap + to add one.",
+  "addingBookMessage": "Adding book...",
+  "authorLabel": "Author: {author}",
+  "chaptersLabel": "Chapters: {count}",
+  "previousChapter": "Previous Chapter",
+  "nextChapter": "Next Chapter",
+  "chapterIndicator": "Chapter {current} of {total}",
+  "errorTitle": "Error"
+}
