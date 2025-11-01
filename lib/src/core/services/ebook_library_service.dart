@@ -33,7 +33,9 @@ class EbookLibraryService extends BaseService {
     // Load ebooks from database with pagination for memory optimization
     List<dynamic> dbEbooks = [];
     try {
-      dbEbooks = await executeDBOperation(() => _localDbService.solitude.ebookDao.getAllEbooks(limit: 50));
+      dbEbooks = await executeDBOperation(
+        () => _localDbService.solitude.ebookDao.getAllEbooks(limit: 50),
+      );
     } catch (e) {
       logger.error('Failed to load ebooks from database: $e');
       // Continue with empty list
@@ -95,7 +97,7 @@ class EbookLibraryService extends BaseService {
     }
 
     try {
-      final ebook = await _ebookReader.read(sanitizedPath);
+      final Ebook ebook = await _ebookReader.read(sanitizedPath);
       final entry = EbookEntry(
         id: const Uuid().v4(), // UUID for unique ID
         ebook: ebook,
@@ -103,6 +105,7 @@ class EbookLibraryService extends BaseService {
         fileName: path.basename(sanitizedPath),
         addedAt: DateTime.now(),
         fileSize: fileSize,
+        coverImagePath: ebook.metadata.coverImagePath,
       );
 
       // Save to database
@@ -119,7 +122,8 @@ class EbookLibraryService extends BaseService {
             coverImage: Value(entry.coverImagePath),
           ),
         ),
-        exceptionFactory: (msg) => EbookLibraryException('Failed to save ebook to database: $msg'),
+        exceptionFactory: (msg) =>
+            EbookLibraryException('Failed to save ebook to database: $msg'),
       );
 
       _ebooks.add(entry);
@@ -140,7 +144,9 @@ class EbookLibraryService extends BaseService {
   /// Removes an ebook by its ID
   Future<bool> removeEbook(String id) async {
     try {
-      await executeDBOperation(() => _localDbService.solitude.ebookDao.removeEbook(id));
+      await executeDBOperation(
+        () => _localDbService.solitude.ebookDao.removeEbook(id),
+      );
       final index = _ebooks.indexWhere((entry) => entry.id == id);
       if (index != -1) {
         _ebooks.removeAt(index);
@@ -196,7 +202,9 @@ class EbookLibraryService extends BaseService {
   /// Clears all ebooks
   Future<void> clearLibrary() async {
     try {
-      await executeDBOperation(() => _localDbService.solitude.ebookDao.clearAllEbooks());
+      await executeDBOperation(
+        () => _localDbService.solitude.ebookDao.clearAllEbooks(),
+      );
       _ebooks.clear();
     } catch (e) {
       logger.error('Failed to clear library: $e');
@@ -207,20 +215,22 @@ class EbookLibraryService extends BaseService {
   /// Updates an existing ebook entry
   Future<bool> updateEbook(EbookEntry updatedEntry) async {
     try {
-      await executeDBOperation(() => _localDbService.solitude.ebookDao.updateEbook(
-        DbEbooksCompanion(
-          id: Value(updatedEntry.id),
-          filePath: Value(updatedEntry.filePath),
-          fileName: Value(updatedEntry.fileName),
-          title: Value(updatedEntry.ebook.metadata.title),
-          author: Value(updatedEntry.ebook.metadata.author),
-          addedAt: Value(updatedEntry.addedAt),
-          lastReadAt: Value(updatedEntry.lastReadAt),
-          currentChapter: Value(updatedEntry.currentChapter),
-          fileSize: Value(updatedEntry.fileSize),
-          coverImage: Value(updatedEntry.coverImagePath),
+      await executeDBOperation(
+        () => _localDbService.solitude.ebookDao.updateEbook(
+          DbEbooksCompanion(
+            id: Value(updatedEntry.id),
+            filePath: Value(updatedEntry.filePath),
+            fileName: Value(updatedEntry.fileName),
+            title: Value(updatedEntry.ebook.metadata.title),
+            author: Value(updatedEntry.ebook.metadata.author),
+            addedAt: Value(updatedEntry.addedAt),
+            lastReadAt: Value(updatedEntry.lastReadAt),
+            currentChapter: Value(updatedEntry.currentChapter),
+            fileSize: Value(updatedEntry.fileSize),
+            coverImage: Value(updatedEntry.coverImagePath),
+          ),
         ),
-      ));
+      );
       final index = _ebooks.indexWhere((entry) => entry.id == updatedEntry.id);
       if (index != -1) {
         _ebooks[index] = updatedEntry;
@@ -239,10 +249,12 @@ class EbookLibraryService extends BaseService {
     final offset = _ebooks.length;
     List<dynamic> dbEbooks = [];
     try {
-      dbEbooks = await executeDBOperation(() => _localDbService.solitude.ebookDao.getAllEbooks(
-        limit: 50,
-        offset: offset,
-      ));
+      dbEbooks = await executeDBOperation(
+        () => _localDbService.solitude.ebookDao.getAllEbooks(
+          limit: 50,
+          offset: offset,
+        ),
+      );
     } catch (e) {
       logger.error('Failed to load more ebooks from database: $e');
       return;
@@ -273,8 +285,12 @@ class EbookLibraryService extends BaseService {
   /// Gets library statistics
   Future<LibraryStats> getStats() async {
     try {
-      final totalEbooks = await executeDBOperation(() => _localDbService.solitude.ebookDao.getTotalEbooks());
-      final totalSize = await executeDBOperation(() => _localDbService.solitude.ebookDao.getTotalSize());
+      final totalEbooks = await executeDBOperation(
+        () => _localDbService.solitude.ebookDao.getTotalEbooks(),
+      );
+      final totalSize = await executeDBOperation(
+        () => _localDbService.solitude.ebookDao.getTotalSize(),
+      );
       return LibraryStats(
         totalEbooks: totalEbooks,
         totalSize: totalSize,

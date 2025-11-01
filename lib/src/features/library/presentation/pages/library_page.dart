@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/localization/app_localizations.dart';
@@ -129,7 +130,9 @@ class _LibraryPageView extends StatelessWidget {
                         ? SizedBox(
                             width: 50,
                             height: 70,
-                            child: Image.asset(entry.coverImagePath!),
+                            child: Html(
+                              data: entry.coverImagePath!,
+                            ),
                           )
                         : const Icon(Icons.book),
                     title: Text(entry.ebook.metadata.title),
