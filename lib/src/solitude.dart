@@ -75,7 +75,10 @@ class Solitude extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               theme: themeService.getLightThemeData(),
               darkTheme: themeService.getDarkThemeData(),
-              themeMode: state.settings.themeMode,
+              themeMode: ThemeMode.values.firstWhere(
+                (mode) => mode.name == state.appSettings.display.theme,
+                orElse: () => ThemeMode.system,
+              ),
               localizationsDelegates: const [
                 AppLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,

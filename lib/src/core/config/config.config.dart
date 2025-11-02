@@ -83,15 +83,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i222.EbookLibraryService>(),
       ),
     );
-    gh.lazySingleton<_i585.SettingsBloc>(
-      () => _i585.SettingsBloc(
-        gh<_i974.ReaderSettingsService>(),
-        gh<_i982.ThemeService>(),
-        gh<_i832.BackupService>(),
-      ),
-    );
     gh.singleton<_i630.AppRouter>(
       () => _i630.AppRouter(gh<_i222.EbookLibraryService>()),
+    );
+    gh.lazySingleton<_i585.SettingsBloc>(
+      () => _i585.SettingsBloc(
+        gh<_i327.AppSettingsService>(),
+        gh<_i832.BackupService>(),
+      ),
     );
     return this;
   }
