@@ -90,20 +90,6 @@
         "enableAnimations": true,
         "soundFeedback": false
     },
-    "performance": {
-        "gpuAcceleration": true,
-        "cacheLimitMB": 256,
-        "preloadNextChapter": true,
-        "reduceMotion": false,
-        "hardwareDecoding": true
-    },
-    "sync": {
-        "cloudProvider": "dropbox",
-        "autoSyncOnOpen": true,
-        "autoSyncOnClose": true,
-        "backupFrequency": "weekly",
-        "backupPath": "/backups/ebook_reader"
-    },
     "localization": {
         "language": "en",
         "region": "US",

@@ -96,9 +96,11 @@ class BackupService extends BaseService {
   Future<PortableSettings> _collectSettings() async {
     // Collect app settings
     final appSettings = AppSettings(
-      fontSize: _readerSettingsService.fontSize,
-      readingMode: _readerSettingsService.readingMode,
-      themeMode: _themeService.currentThemeMode.name,
+      display: DisplaySettings(
+        fontSize: _readerSettingsService.fontSize,
+        pageLayout: _readerSettingsService.readingMode,
+        theme: _themeService.currentThemeMode.name,
+      ),
     );
 
     return PortableSettings(
@@ -111,13 +113,13 @@ class BackupService extends BaseService {
 
   Future<void> _applySettings(PortableSettings settings) async {
     // Apply app settings
-    await _readerSettingsService.setFontSize(settings.appSettings.fontSize);
+    await _readerSettingsService.setFontSize(settings.appSettings.display.fontSize);
     await _readerSettingsService.setReadingMode(
-      settings.appSettings.readingMode,
+      settings.appSettings.display.pageLayout,
     );
 
     final themeMode = ThemeMode.values.firstWhere(
-      (mode) => mode.name == settings.appSettings.themeMode,
+      (mode) => mode.name == settings.appSettings.display.theme,
       orElse: () => ThemeMode.system,
     );
     await _themeService.setThemeMode(themeMode);
