@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:solitude/src/features/library/presentation/widgets/e_book_card.dart';
 
 import '../../../../core/localization/app_localizations.dart';
 import '../../../../router/app_router.dart';
 import '../../data/models/ebook_entry.dart';
 import '../bloc/library_bloc.dart';
+import '../widgets/e_book_adding_card.dart';
+import '../widgets/e_book_card.dart';
+import '../widgets/ebook_library_empty_widget.dart';
+import '../widgets/ebook_library_unkown_widget.dart';
 
 class LibraryPage extends StatefulWidget {
   const LibraryPage({
@@ -27,18 +30,15 @@ class _LibraryPageState extends State<LibraryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        centerTitle: false,
         title: Text(
           AppLocalizations.of(context)!.appTitle,
-          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
         ),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {},
+          ),
           IconButton(
             icon: const Icon(Icons.settings_outlined),
             onPressed: () {
@@ -66,25 +66,7 @@ class _LibraryPageState extends State<LibraryPage> {
                 _buildLoaded(context, ebooks, isAdding),
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (message, ebooks) => _buildLoaded(context, ebooks, false),
-            orElse: () => Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.auto_stories_outlined,
-                    size: 80,
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.primary.withValues(alpha: .5),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    AppLocalizations.of(context)!.welcomeMessage,
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                ],
-              ),
-            ),
+            orElse: () => EbookLibraryUnkownWidget(),
           );
         },
       ),
@@ -103,61 +85,11 @@ class _LibraryPageState extends State<LibraryPage> {
     bool isAdding,
   ) {
     if (ebooks.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.library_books_outlined,
-              size: 80,
-              color: Theme.of(
-                context,
-              ).colorScheme.primary.withValues(alpha: 0.3),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              AppLocalizations.of(context)!.noEbooksMessage,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: Theme.of(
-                  context,
-                ).colorScheme.onSurface.withValues(alpha: 0.6),
-              ),
-            ),
-          ],
-        ),
-      );
+      return EbookLibraryEmptyWidget();
     }
 
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 600),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search your library...',
-                  prefixIcon: const Icon(Icons.search),
-                  filled: true,
-                  fillColor: Theme.of(
-                    context,
-                  ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                    borderSide: BorderSide.none,
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 12),
-                ),
-                onChanged: (query) {
-                  context.read<LibraryBloc>().add(
-                    LibraryEvent.searchEbooks(query),
-                  );
-                },
-              ),
-            ),
-          ),
-        ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Row(
@@ -207,28 +139,11 @@ class _LibraryPageState extends State<LibraryPage> {
                 itemBuilder: (context, index) {
                   if (index < ebooks.length) {
                     final entry = ebooks[index];
-                    return EBookCard(entry: entry);
-                  } else {
-                    return Card(
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const CircularProgressIndicator(),
-                            const SizedBox(height: 16),
-                            Text(
-                              AppLocalizations.of(context)!.addingBookMessage,
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
-                          ],
-                        ),
-                      ),
+                    return EBookCard(
+                      entry: entry,
                     );
+                  } else {
+                    return EBookAddingCard();
                   }
                 },
               );

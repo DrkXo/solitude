@@ -126,44 +126,7 @@ class _ReaderPageState extends State<ReaderPage> {
                             ),
                             child: Html(
                               data: controller.getFullChapterContent(),
-                              style: {
-                                "body": Style(
-                                  fontSize: FontSize(
-                                    readerSettingsService.fontSize,
-                                  ),
-                                  lineHeight: const LineHeight(1.8),
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onSurface,
-                                ),
-                                "p": Style(
-                                  margin: Margins.only(bottom: 16.0),
-                                ),
-                                "h1": Style(
-                                  fontSize: FontSize(28.0),
-                                  fontWeight: FontWeight.bold,
-                                  margin: Margins.only(
-                                    bottom: 20.0,
-                                    top: 32.0,
-                                  ),
-                                ),
-                                "h2": Style(
-                                  fontSize: FontSize(24.0),
-                                  fontWeight: FontWeight.bold,
-                                  margin: Margins.only(
-                                    bottom: 16.0,
-                                    top: 28.0,
-                                  ),
-                                ),
-                                "h3": Style(
-                                  fontSize: FontSize(20.0),
-                                  fontWeight: FontWeight.bold,
-                                  margin: Margins.only(
-                                    bottom: 12.0,
-                                    top: 24.0,
-                                  ),
-                                ),
-                              },
+                             
                             ),
                           ),
                         ),
