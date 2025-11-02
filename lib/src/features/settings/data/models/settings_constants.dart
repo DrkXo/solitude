@@ -64,6 +64,16 @@ enum ScrollMode {
   final String value;
 }
 
+/// Navigation methods for reader
+enum NavigationMethod {
+  scroll('scroll'),
+  tap('tap'),
+  swipe('swipe');
+
+  const NavigationMethod(this.value);
+  final String value;
+}
+
 /// Sort options
 enum SortBy {
   title('title'),

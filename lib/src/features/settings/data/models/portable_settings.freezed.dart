@@ -1600,7 +1600,7 @@ as int,
 /// @nodoc
 mixin _$BehaviorSettings {
 
- TapZones get tapZones; bool get rememberLastPosition; bool get syncProgress; AutoScroll get autoScroll; ReadingDirection get readingDirection;
+ TapZones get tapZones; bool get rememberLastPosition; bool get syncProgress; AutoScroll get autoScroll; ReadingDirection get readingDirection; NavigationMethod get navigationMethod;
 /// Create a copy of BehaviorSettings
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1613,16 +1613,16 @@ $BehaviorSettingsCopyWith<BehaviorSettings> get copyWith => _$BehaviorSettingsCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is BehaviorSettings&&(identical(other.tapZones, tapZones) || other.tapZones == tapZones)&&(identical(other.rememberLastPosition, rememberLastPosition) || other.rememberLastPosition == rememberLastPosition)&&(identical(other.syncProgress, syncProgress) || other.syncProgress == syncProgress)&&(identical(other.autoScroll, autoScroll) || other.autoScroll == autoScroll)&&(identical(other.readingDirection, readingDirection) || other.readingDirection == readingDirection));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BehaviorSettings&&(identical(other.tapZones, tapZones) || other.tapZones == tapZones)&&(identical(other.rememberLastPosition, rememberLastPosition) || other.rememberLastPosition == rememberLastPosition)&&(identical(other.syncProgress, syncProgress) || other.syncProgress == syncProgress)&&(identical(other.autoScroll, autoScroll) || other.autoScroll == autoScroll)&&(identical(other.readingDirection, readingDirection) || other.readingDirection == readingDirection)&&(identical(other.navigationMethod, navigationMethod) || other.navigationMethod == navigationMethod));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,tapZones,rememberLastPosition,syncProgress,autoScroll,readingDirection);
+int get hashCode => Object.hash(runtimeType,tapZones,rememberLastPosition,syncProgress,autoScroll,readingDirection,navigationMethod);
 
 @override
 String toString() {
-  return 'BehaviorSettings(tapZones: $tapZones, rememberLastPosition: $rememberLastPosition, syncProgress: $syncProgress, autoScroll: $autoScroll, readingDirection: $readingDirection)';
+  return 'BehaviorSettings(tapZones: $tapZones, rememberLastPosition: $rememberLastPosition, syncProgress: $syncProgress, autoScroll: $autoScroll, readingDirection: $readingDirection, navigationMethod: $navigationMethod)';
 }
 
 
@@ -1633,7 +1633,7 @@ abstract mixin class $BehaviorSettingsCopyWith<$Res>  {
   factory $BehaviorSettingsCopyWith(BehaviorSettings value, $Res Function(BehaviorSettings) _then) = _$BehaviorSettingsCopyWithImpl;
 @useResult
 $Res call({
- TapZones tapZones, bool rememberLastPosition, bool syncProgress, AutoScroll autoScroll, ReadingDirection readingDirection
+ TapZones tapZones, bool rememberLastPosition, bool syncProgress, AutoScroll autoScroll, ReadingDirection readingDirection, NavigationMethod navigationMethod
 });
 
 
@@ -1650,14 +1650,15 @@ class _$BehaviorSettingsCopyWithImpl<$Res>
 
 /// Create a copy of BehaviorSettings
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? tapZones = null,Object? rememberLastPosition = null,Object? syncProgress = null,Object? autoScroll = null,Object? readingDirection = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? tapZones = null,Object? rememberLastPosition = null,Object? syncProgress = null,Object? autoScroll = null,Object? readingDirection = null,Object? navigationMethod = null,}) {
   return _then(_self.copyWith(
 tapZones: null == tapZones ? _self.tapZones : tapZones // ignore: cast_nullable_to_non_nullable
 as TapZones,rememberLastPosition: null == rememberLastPosition ? _self.rememberLastPosition : rememberLastPosition // ignore: cast_nullable_to_non_nullable
 as bool,syncProgress: null == syncProgress ? _self.syncProgress : syncProgress // ignore: cast_nullable_to_non_nullable
 as bool,autoScroll: null == autoScroll ? _self.autoScroll : autoScroll // ignore: cast_nullable_to_non_nullable
 as AutoScroll,readingDirection: null == readingDirection ? _self.readingDirection : readingDirection // ignore: cast_nullable_to_non_nullable
-as ReadingDirection,
+as ReadingDirection,navigationMethod: null == navigationMethod ? _self.navigationMethod : navigationMethod // ignore: cast_nullable_to_non_nullable
+as NavigationMethod,
   ));
 }
 /// Create a copy of BehaviorSettings
@@ -1760,10 +1761,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TapZones tapZones,  bool rememberLastPosition,  bool syncProgress,  AutoScroll autoScroll,  ReadingDirection readingDirection)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TapZones tapZones,  bool rememberLastPosition,  bool syncProgress,  AutoScroll autoScroll,  ReadingDirection readingDirection,  NavigationMethod navigationMethod)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _BehaviorSettings() when $default != null:
-return $default(_that.tapZones,_that.rememberLastPosition,_that.syncProgress,_that.autoScroll,_that.readingDirection);case _:
+return $default(_that.tapZones,_that.rememberLastPosition,_that.syncProgress,_that.autoScroll,_that.readingDirection,_that.navigationMethod);case _:
   return orElse();
 
 }
@@ -1781,10 +1782,10 @@ return $default(_that.tapZones,_that.rememberLastPosition,_that.syncProgress,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TapZones tapZones,  bool rememberLastPosition,  bool syncProgress,  AutoScroll autoScroll,  ReadingDirection readingDirection)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TapZones tapZones,  bool rememberLastPosition,  bool syncProgress,  AutoScroll autoScroll,  ReadingDirection readingDirection,  NavigationMethod navigationMethod)  $default,) {final _that = this;
 switch (_that) {
 case _BehaviorSettings():
-return $default(_that.tapZones,_that.rememberLastPosition,_that.syncProgress,_that.autoScroll,_that.readingDirection);case _:
+return $default(_that.tapZones,_that.rememberLastPosition,_that.syncProgress,_that.autoScroll,_that.readingDirection,_that.navigationMethod);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1801,10 +1802,10 @@ return $default(_that.tapZones,_that.rememberLastPosition,_that.syncProgress,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TapZones tapZones,  bool rememberLastPosition,  bool syncProgress,  AutoScroll autoScroll,  ReadingDirection readingDirection)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TapZones tapZones,  bool rememberLastPosition,  bool syncProgress,  AutoScroll autoScroll,  ReadingDirection readingDirection,  NavigationMethod navigationMethod)?  $default,) {final _that = this;
 switch (_that) {
 case _BehaviorSettings() when $default != null:
-return $default(_that.tapZones,_that.rememberLastPosition,_that.syncProgress,_that.autoScroll,_that.readingDirection);case _:
+return $default(_that.tapZones,_that.rememberLastPosition,_that.syncProgress,_that.autoScroll,_that.readingDirection,_that.navigationMethod);case _:
   return null;
 
 }
@@ -1816,7 +1817,7 @@ return $default(_that.tapZones,_that.rememberLastPosition,_that.syncProgress,_th
 @JsonSerializable()
 
 class _BehaviorSettings implements BehaviorSettings {
-  const _BehaviorSettings({this.tapZones = const TapZones(), this.rememberLastPosition = true, this.syncProgress = true, this.autoScroll = const AutoScroll(), this.readingDirection = ReadingDirection.ltr});
+  const _BehaviorSettings({this.tapZones = const TapZones(), this.rememberLastPosition = true, this.syncProgress = true, this.autoScroll = const AutoScroll(), this.readingDirection = ReadingDirection.ltr, this.navigationMethod = NavigationMethod.swipe});
   factory _BehaviorSettings.fromJson(Map<String, dynamic> json) => _$BehaviorSettingsFromJson(json);
 
 @override@JsonKey() final  TapZones tapZones;
@@ -1824,6 +1825,7 @@ class _BehaviorSettings implements BehaviorSettings {
 @override@JsonKey() final  bool syncProgress;
 @override@JsonKey() final  AutoScroll autoScroll;
 @override@JsonKey() final  ReadingDirection readingDirection;
+@override@JsonKey() final  NavigationMethod navigationMethod;
 
 /// Create a copy of BehaviorSettings
 /// with the given fields replaced by the non-null parameter values.
@@ -1838,16 +1840,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BehaviorSettings&&(identical(other.tapZones, tapZones) || other.tapZones == tapZones)&&(identical(other.rememberLastPosition, rememberLastPosition) || other.rememberLastPosition == rememberLastPosition)&&(identical(other.syncProgress, syncProgress) || other.syncProgress == syncProgress)&&(identical(other.autoScroll, autoScroll) || other.autoScroll == autoScroll)&&(identical(other.readingDirection, readingDirection) || other.readingDirection == readingDirection));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BehaviorSettings&&(identical(other.tapZones, tapZones) || other.tapZones == tapZones)&&(identical(other.rememberLastPosition, rememberLastPosition) || other.rememberLastPosition == rememberLastPosition)&&(identical(other.syncProgress, syncProgress) || other.syncProgress == syncProgress)&&(identical(other.autoScroll, autoScroll) || other.autoScroll == autoScroll)&&(identical(other.readingDirection, readingDirection) || other.readingDirection == readingDirection)&&(identical(other.navigationMethod, navigationMethod) || other.navigationMethod == navigationMethod));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,tapZones,rememberLastPosition,syncProgress,autoScroll,readingDirection);
+int get hashCode => Object.hash(runtimeType,tapZones,rememberLastPosition,syncProgress,autoScroll,readingDirection,navigationMethod);
 
 @override
 String toString() {
-  return 'BehaviorSettings(tapZones: $tapZones, rememberLastPosition: $rememberLastPosition, syncProgress: $syncProgress, autoScroll: $autoScroll, readingDirection: $readingDirection)';
+  return 'BehaviorSettings(tapZones: $tapZones, rememberLastPosition: $rememberLastPosition, syncProgress: $syncProgress, autoScroll: $autoScroll, readingDirection: $readingDirection, navigationMethod: $navigationMethod)';
 }
 
 
@@ -1858,7 +1860,7 @@ abstract mixin class _$BehaviorSettingsCopyWith<$Res> implements $BehaviorSettin
   factory _$BehaviorSettingsCopyWith(_BehaviorSettings value, $Res Function(_BehaviorSettings) _then) = __$BehaviorSettingsCopyWithImpl;
 @override @useResult
 $Res call({
- TapZones tapZones, bool rememberLastPosition, bool syncProgress, AutoScroll autoScroll, ReadingDirection readingDirection
+ TapZones tapZones, bool rememberLastPosition, bool syncProgress, AutoScroll autoScroll, ReadingDirection readingDirection, NavigationMethod navigationMethod
 });
 
 
@@ -1875,14 +1877,15 @@ class __$BehaviorSettingsCopyWithImpl<$Res>
 
 /// Create a copy of BehaviorSettings
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? tapZones = null,Object? rememberLastPosition = null,Object? syncProgress = null,Object? autoScroll = null,Object? readingDirection = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? tapZones = null,Object? rememberLastPosition = null,Object? syncProgress = null,Object? autoScroll = null,Object? readingDirection = null,Object? navigationMethod = null,}) {
   return _then(_BehaviorSettings(
 tapZones: null == tapZones ? _self.tapZones : tapZones // ignore: cast_nullable_to_non_nullable
 as TapZones,rememberLastPosition: null == rememberLastPosition ? _self.rememberLastPosition : rememberLastPosition // ignore: cast_nullable_to_non_nullable
 as bool,syncProgress: null == syncProgress ? _self.syncProgress : syncProgress // ignore: cast_nullable_to_non_nullable
 as bool,autoScroll: null == autoScroll ? _self.autoScroll : autoScroll // ignore: cast_nullable_to_non_nullable
 as AutoScroll,readingDirection: null == readingDirection ? _self.readingDirection : readingDirection // ignore: cast_nullable_to_non_nullable
-as ReadingDirection,
+as ReadingDirection,navigationMethod: null == navigationMethod ? _self.navigationMethod : navigationMethod // ignore: cast_nullable_to_non_nullable
+as NavigationMethod,
   ));
 }
 

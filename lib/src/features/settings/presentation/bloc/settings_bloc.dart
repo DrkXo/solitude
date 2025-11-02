@@ -33,6 +33,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         readingDirectionChanged: (e) => _updateSetting(() => _appSettingsService.setReadingDirection(e.readingDirection), emit),
         rememberLastPositionChanged: (e) => _updateSetting(() => _appSettingsService.setRememberLastPosition(e.remember), emit),
         syncProgressChanged: (e) => _updateSetting(() => _appSettingsService.setSyncProgress(e.sync), emit),
+        navigationMethodChanged: (e) => _updateSetting(() => _appSettingsService.setNavigationMethod(e.method), emit),
         dyslexicFontChanged: (e) => _updateSetting(() => _appSettingsService.setDyslexicFont(e.enabled), emit),
         highContrastChanged: (e) => _updateSetting(() => _appSettingsService.setHighContrast(e.enabled), emit),
         immersiveModeChanged: (e) => _updateSetting(() => _appSettingsService.setImmersiveMode(e.enabled), emit),

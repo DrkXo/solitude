@@ -123,6 +123,11 @@ class AppSettingsService extends BaseService {
     await updateBehaviorSettings(behaviorSettings);
   }
 
+  Future<void> setNavigationMethod(NavigationMethod method) async {
+    final behaviorSettings = _appSettings.behavior.copyWith(navigationMethod: method);
+    await updateBehaviorSettings(behaviorSettings);
+  }
+
   Future<void> setDyslexicFont(bool enabled) async {
     final accessibilitySettings = _appSettings.accessibility.copyWith(dyslexicFont: enabled);
     await updateAccessibilitySettings(accessibilitySettings);

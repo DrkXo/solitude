@@ -163,6 +163,12 @@ _BehaviorSettings _$BehaviorSettingsFromJson(Map<String, dynamic> json) =>
             json['readingDirection'],
           ) ??
           ReadingDirection.ltr,
+      navigationMethod:
+          $enumDecodeNullable(
+            _$NavigationMethodEnumMap,
+            json['navigationMethod'],
+          ) ??
+          NavigationMethod.swipe,
     );
 
 Map<String, dynamic> _$BehaviorSettingsToJson(_BehaviorSettings instance) =>
@@ -172,11 +178,18 @@ Map<String, dynamic> _$BehaviorSettingsToJson(_BehaviorSettings instance) =>
       'syncProgress': instance.syncProgress,
       'autoScroll': instance.autoScroll,
       'readingDirection': _$ReadingDirectionEnumMap[instance.readingDirection]!,
+      'navigationMethod': _$NavigationMethodEnumMap[instance.navigationMethod]!,
     };
 
 const _$ReadingDirectionEnumMap = {
   ReadingDirection.ltr: 'LTR',
   ReadingDirection.rtl: 'RTL',
+};
+
+const _$NavigationMethodEnumMap = {
+  NavigationMethod.scroll: 'scroll',
+  NavigationMethod.tap: 'tap',
+  NavigationMethod.swipe: 'swipe',
 };
 
 _TapZones _$TapZonesFromJson(Map<String, dynamic> json) => _TapZones(

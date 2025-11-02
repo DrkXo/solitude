@@ -184,6 +184,22 @@ class SettingsPage extends StatelessWidget {
             },
           ),
         ),
+        ListTile(
+          title: const Text('Navigation Method'),
+          trailing: DropdownButton<NavigationMethod>(
+            value: state.appSettings.behavior.navigationMethod,
+            items: NavigationMethod.values
+                .map((method) => DropdownMenuItem(value: method, child: Text(method.value)))
+                .toList(),
+            onChanged: (value) {
+              if (value != null) {
+                context.read<SettingsBloc>().add(
+                  SettingsEvent.navigationMethodChanged(value),
+                );
+              }
+            },
+          ),
+        ),
         SwitchListTile(
           title: const Text('Remember Last Position'),
           value: state.appSettings.behavior.rememberLastPosition,
