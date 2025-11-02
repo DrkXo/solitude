@@ -927,7 +927,7 @@ return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeigh
 @JsonSerializable()
 
 class _DisplaySettings implements DisplaySettings {
-  const _DisplaySettings({this.fontFamily = FontFamily.openSans, this.fontSize = 18.0, this.fontWeight = 'normal', this.lineHeight = 1.5, this.letterSpacing = 0.2, this.paragraphSpacing = 1.2, this.theme = ThemeOption.dark, this.orientation = 'auto', this.textAlign = TextAlignOption.justify, this.pageTurnAnimation = 'slide', this.margins = const Margins(), this.headerFontSizeMultiplier = 1.2, this.headerMarginTop = 10.0, this.headerMarginBottom = 10.0, this.footerMarginTop = 10.0, this.footerMarginBottom = 10.0});
+  const _DisplaySettings({this.fontFamily = FontFamily.openSans, this.fontSize = 18.0, this.fontWeight = 'normal', this.lineHeight = 1.5, this.letterSpacing = 0.2, this.paragraphSpacing = 1.2, this.theme = ThemeOption.dark, this.orientation = 'auto', this.textAlign = TextAlignOption.left, this.pageTurnAnimation = 'slide', this.margins = const Margins(), this.headerFontSizeMultiplier = 1.2, this.headerMarginTop = 10.0, this.headerMarginBottom = 10.0, this.footerMarginTop = 10.0, this.footerMarginBottom = 10.0});
   factory _DisplaySettings.fromJson(Map<String, dynamic> json) => _$DisplaySettingsFromJson(json);
 
 @override@JsonKey() final  FontFamily fontFamily;
@@ -3212,7 +3212,7 @@ return $default(_that.highlightColors,_that.sync,_that.autoSave,_that.exportForm
 @JsonSerializable()
 
 class _AnnotationsSettings implements AnnotationsSettings {
-  const _AnnotationsSettings({final  List<String> highlightColors = const ['#f4d03f', '#58d68d', '#5dade2'], this.sync = true, this.autoSave = true, this.exportFormat = AnnotationExportFormat.markdown, this.showSidebar = true}): _highlightColors = highlightColors;
+  const _AnnotationsSettings({final  List<String> highlightColors = const ['#f4d03f', '#58d68d', '#5dade2'], this.sync = true, this.autoSave = true, this.exportFormat = AnnotationExportFormat.json, this.showSidebar = true}): _highlightColors = highlightColors;
   factory _AnnotationsSettings.fromJson(Map<String, dynamic> json) => _$AnnotationsSettingsFromJson(json);
 
  final  List<String> _highlightColors;

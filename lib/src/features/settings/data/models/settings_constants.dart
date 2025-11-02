@@ -19,6 +19,7 @@ enum FontFamily {
   georgia('Georgia'),
   @JsonValue('Open Sans')
   openSans('Open Sans');
+
   const FontFamily(this.displayName);
   final String displayName;
 }
@@ -109,7 +110,6 @@ enum ViewStyle {
 
 /// Export formats for annotations
 enum AnnotationExportFormat {
-  markdown('markdown'),
   html('html'),
   json('json');
 

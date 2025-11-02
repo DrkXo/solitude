@@ -80,7 +80,7 @@ _DisplaySettings _$DisplaySettingsFromJson(
   orientation: json['orientation'] as String? ?? 'auto',
   textAlign:
       $enumDecodeNullable(_$TextAlignOptionEnumMap, json['textAlign']) ??
-      TextAlignOption.justify,
+      TextAlignOption.left,
   pageTurnAnimation: json['pageTurnAnimation'] as String? ?? 'slide',
   margins: json['margins'] == null
       ? const Margins()
@@ -303,7 +303,7 @@ _AnnotationsSettings _$AnnotationsSettingsFromJson(Map<String, dynamic> json) =>
             _$AnnotationExportFormatEnumMap,
             json['exportFormat'],
           ) ??
-          AnnotationExportFormat.markdown,
+          AnnotationExportFormat.json,
       showSidebar: json['showSidebar'] as bool? ?? true,
     );
 
@@ -318,7 +318,6 @@ Map<String, dynamic> _$AnnotationsSettingsToJson(
 };
 
 const _$AnnotationExportFormatEnumMap = {
-  AnnotationExportFormat.markdown: 'markdown',
   AnnotationExportFormat.html: 'html',
   AnnotationExportFormat.json: 'json',
 };

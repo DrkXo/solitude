@@ -112,8 +112,8 @@ class _ReaderPageState extends State<ReaderPage> {
                     }
 
                     return Scaffold(
-                      appBar: _showAppBar ? AppBar(
-                              title: Text(controller.currentChapter.title),
+                      appBar: _showAppBar
+                          ? AppBar(
                               actions: [
                                 IconButton(
                                   icon: const Icon(LucideIcons.settings),

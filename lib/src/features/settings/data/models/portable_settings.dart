@@ -44,7 +44,7 @@ abstract class DisplaySettings with _$DisplaySettings {
     @Default(1.2) double paragraphSpacing,
     @Default(ThemeOption.dark) ThemeOption theme,
     @Default('auto') String orientation,
-    @Default(TextAlignOption.justify) TextAlignOption textAlign,
+    @Default(TextAlignOption.left) TextAlignOption textAlign,
     @Default('slide') String pageTurnAnimation,
     @Default(Margins()) Margins margins,
     @Default(1.2) double headerFontSizeMultiplier,
@@ -78,7 +78,8 @@ abstract class BehaviorSettings with _$BehaviorSettings {
     @Default(true) bool rememberLastPosition,
     @Default(AutoScroll()) AutoScroll autoScroll,
     @Default(ReadingDirection.ltr) ReadingDirection readingDirection,
-    @Default(NavigationMethod.swipeHorizontal) NavigationMethod navigationMethod,
+    @Default(NavigationMethod.swipeHorizontal)
+    NavigationMethod navigationMethod,
   }) = _BehaviorSettings;
 
   factory BehaviorSettings.fromJson(Map<String, dynamic> json) =>
@@ -156,7 +157,8 @@ abstract class AnnotationsSettings with _$AnnotationsSettings {
     @Default(['#f4d03f', '#58d68d', '#5dade2']) List<String> highlightColors,
     @Default(true) bool sync,
     @Default(true) bool autoSave,
-    @Default(AnnotationExportFormat.markdown) AnnotationExportFormat exportFormat,
+    @Default(AnnotationExportFormat.json)
+    AnnotationExportFormat exportFormat,
     @Default(true) bool showSidebar,
   }) = _AnnotationsSettings;
 
@@ -200,5 +202,3 @@ abstract class LocalizationSettings with _$LocalizationSettings {
   factory LocalizationSettings.fromJson(Map<String, dynamic> json) =>
       _$LocalizationSettingsFromJson(json);
 }
-
-
