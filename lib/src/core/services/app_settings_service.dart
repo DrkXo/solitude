@@ -84,10 +84,7 @@ class AppSettingsService extends BaseService {
     await _saveSettings();
   }
 
-  Future<void> updateDeveloperSettings(DeveloperSettings developerSettings) async {
-    _appSettings = _appSettings.copyWith(developer: developerSettings);
-    await _saveSettings();
-  }
+
 
   // Convenience methods for common settings
   Future<void> setFontSize(double fontSize) async {
@@ -183,10 +180,7 @@ class AppSettingsService extends BaseService {
     await updateAccessibilitySettings(accessibilitySettings);
   }
 
-  Future<void> setImmersiveMode(bool enabled) async {
-    final accessibilitySettings = _appSettings.accessibility.copyWith(immersiveMode: enabled);
-    await updateAccessibilitySettings(accessibilitySettings);
-  }
+
 
   Future<void> setTextToSpeech(TextToSpeech tts) async {
     final accessibilitySettings = _appSettings.accessibility.copyWith(textToSpeech: tts);
@@ -295,20 +289,7 @@ class AppSettingsService extends BaseService {
     await updateLocalizationSettings(localizationSettings);
   }
 
-  Future<void> setDebugLogging(bool enabled) async {
-    final developerSettings = _appSettings.developer.copyWith(debugLogging: enabled);
-    await updateDeveloperSettings(developerSettings);
-  }
 
-  Future<void> setEnableDevTools(bool enabled) async {
-    final developerSettings = _appSettings.developer.copyWith(enableDevTools: enabled);
-    await updateDeveloperSettings(developerSettings);
-  }
-
-  Future<void> setCustomJS(String js) async {
-    final developerSettings = _appSettings.developer.copyWith(customJS: js);
-    await updateDeveloperSettings(developerSettings);
-  }
 
   Future<void> resetToDefaults() async {
     _appSettings = AppSettings();

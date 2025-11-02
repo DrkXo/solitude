@@ -50,9 +50,6 @@ _AppSettings _$AppSettingsFromJson(Map<String, dynamic> json) => _AppSettings(
       : LocalizationSettings.fromJson(
           json['localization'] as Map<String, dynamic>,
         ),
-  developer: json['developer'] == null
-      ? const DeveloperSettings()
-      : DeveloperSettings.fromJson(json['developer'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$AppSettingsToJson(_AppSettings instance) =>
@@ -64,7 +61,6 @@ Map<String, dynamic> _$AppSettingsToJson(_AppSettings instance) =>
       'annotations': instance.annotations,
       'ui': instance.ui,
       'localization': instance.localization,
-      'developer': instance.developer,
     };
 
 _DisplaySettings _$DisplaySettingsFromJson(
@@ -81,9 +77,6 @@ _DisplaySettings _$DisplaySettingsFromJson(
   theme:
       $enumDecodeNullable(_$ThemeOptionEnumMap, json['theme']) ??
       ThemeOption.dark,
-  customTheme: json['customTheme'] == null
-      ? const CustomTheme()
-      : CustomTheme.fromJson(json['customTheme'] as Map<String, dynamic>),
   orientation: json['orientation'] as String? ?? 'auto',
   textAlign:
       $enumDecodeNullable(_$TextAlignOptionEnumMap, json['textAlign']) ??
@@ -109,7 +102,6 @@ Map<String, dynamic> _$DisplaySettingsToJson(_DisplaySettings instance) =>
       'letterSpacing': instance.letterSpacing,
       'paragraphSpacing': instance.paragraphSpacing,
       'theme': _$ThemeOptionEnumMap[instance.theme]!,
-      'customTheme': instance.customTheme,
       'orientation': instance.orientation,
       'textAlign': _$TextAlignOptionEnumMap[instance.textAlign]!,
       'pageTurnAnimation': instance.pageTurnAnimation,
@@ -132,7 +124,6 @@ const _$FontFamilyEnumMap = {
 const _$ThemeOptionEnumMap = {
   ThemeOption.light: 'light',
   ThemeOption.dark: 'dark',
-  ThemeOption.custom: 'custom',
   ThemeOption.device: 'device',
 };
 
@@ -142,17 +133,6 @@ const _$TextAlignOptionEnumMap = {
   TextAlignOption.right: 'right',
   TextAlignOption.justify: 'justify',
 };
-
-_CustomTheme _$CustomThemeFromJson(Map<String, dynamic> json) => _CustomTheme(
-  backgroundColor: json['backgroundColor'] as String? ?? '#f4ecd8',
-  textColor: json['textColor'] as String? ?? '#3b2f2f',
-);
-
-Map<String, dynamic> _$CustomThemeToJson(_CustomTheme instance) =>
-    <String, dynamic>{
-      'backgroundColor': instance.backgroundColor,
-      'textColor': instance.textColor,
-    };
 
 _Margins _$MarginsFromJson(Map<String, dynamic> json) => _Margins(
   top: (json['top'] as num?)?.toInt() ?? 20,
@@ -237,7 +217,6 @@ _AccessibilitySettings _$AccessibilitySettingsFromJson(
   dyslexicFont: json['dyslexicFont'] as bool? ?? false,
   highContrast: json['highContrast'] as bool? ?? false,
   fontSmoothing: json['fontSmoothing'] as bool? ?? true,
-  immersiveMode: json['immersiveMode'] as bool? ?? false,
   textToSpeech: json['textToSpeech'] == null
       ? const TextToSpeech()
       : TextToSpeech.fromJson(json['textToSpeech'] as Map<String, dynamic>),
@@ -250,7 +229,6 @@ Map<String, dynamic> _$AccessibilitySettingsToJson(
   'dyslexicFont': instance.dyslexicFont,
   'highContrast': instance.highContrast,
   'fontSmoothing': instance.fontSmoothing,
-  'immersiveMode': instance.immersiveMode,
   'textToSpeech': instance.textToSpeech,
   'customCSS': instance.customCSS,
 };
@@ -420,17 +398,3 @@ const _$DateFormatEnumMap = {
   DateFormat.mmDdYyyy: 'mmDdYyyy',
   DateFormat.yyyyMmDd: 'yyyyMmDd',
 };
-
-_DeveloperSettings _$DeveloperSettingsFromJson(Map<String, dynamic> json) =>
-    _DeveloperSettings(
-      debugLogging: json['debugLogging'] as bool? ?? false,
-      enableDevTools: json['enableDevTools'] as bool? ?? false,
-      customJS: json['customJS'] as String? ?? '',
-    );
-
-Map<String, dynamic> _$DeveloperSettingsToJson(_DeveloperSettings instance) =>
-    <String, dynamic>{
-      'debugLogging': instance.debugLogging,
-      'enableDevTools': instance.enableDevTools,
-      'customJS': instance.customJS,
-    };

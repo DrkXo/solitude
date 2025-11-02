@@ -72,9 +72,7 @@ class SettingsPage extends StatelessWidget {
                   _buildLocalizationSettings(context, state),
                   const Divider(),
 
-                  // Developer Settings
-                  _buildDeveloperSettings(context, state),
-                  const Divider(),
+
 
                   // Backup & Restore
                   _buildBackupSettings(context, state),
@@ -457,15 +455,7 @@ class SettingsPage extends StatelessWidget {
             );
           },
         ),
-        SwitchListTile(
-          title: const Text('Immersive Mode'),
-          value: state.appSettings.accessibility.immersiveMode,
-          onChanged: (value) {
-            context.read<SettingsBloc>().add(
-              SettingsEvent.immersiveModeChanged(value),
-            );
-          },
-        ),
+
       ],
     );
   }
@@ -698,32 +688,7 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  Widget _buildDeveloperSettings(BuildContext context, SettingsState state) {
-    return ExpansionTile(
-      leading: const Icon(LucideIcons.code),
-      title: const Text('Developer'),
-      children: [
-        SwitchListTile(
-          title: const Text('Debug Logging'),
-          value: state.appSettings.developer.debugLogging,
-          onChanged: (value) {
-            context.read<SettingsBloc>().add(
-              SettingsEvent.debugLoggingChanged(value),
-            );
-          },
-        ),
-        SwitchListTile(
-          title: const Text('Enable DevTools'),
-          value: state.appSettings.developer.enableDevTools,
-          onChanged: (value) {
-            context.read<SettingsBloc>().add(
-              SettingsEvent.enableDevToolsChanged(value),
-            );
-          },
-        ),
-      ],
-    );
-  }
+
 
   Widget _buildBackupSettings(BuildContext context, SettingsState state) {
     return ExpansionTile(

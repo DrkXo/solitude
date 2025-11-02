@@ -24,7 +24,7 @@ abstract class SettingsEvent with _$SettingsEvent {
   // Accessibility settings
   const factory SettingsEvent.dyslexicFontChanged(bool enabled) = _DyslexicFontChanged;
   const factory SettingsEvent.highContrastChanged(bool enabled) = _HighContrastChanged;
-  const factory SettingsEvent.immersiveModeChanged(bool enabled) = _ImmersiveModeChanged;
+
   const factory SettingsEvent.textToSpeechChanged(TextToSpeech tts) = _TextToSpeechChanged;
 
   // Library settings
@@ -52,10 +52,7 @@ abstract class SettingsEvent with _$SettingsEvent {
   const factory SettingsEvent.regionChanged(Region region) = _RegionChanged;
   const factory SettingsEvent.dateFormatChanged(DateFormat format) = _DateFormatChanged;
 
-  // Developer settings
-  const factory SettingsEvent.debugLoggingChanged(bool enabled) = _DebugLoggingChanged;
-  const factory SettingsEvent.enableDevToolsChanged(bool enabled) = _EnableDevToolsChanged;
-  const factory SettingsEvent.customJSChanged(String js) = _CustomJSChanged;
+
 
   // General actions
   const factory SettingsEvent.resetToDefaults() = _ResetToDefaults;

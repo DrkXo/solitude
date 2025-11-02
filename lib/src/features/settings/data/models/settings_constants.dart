@@ -42,7 +42,6 @@ enum TextAlignOption {
 enum ThemeOption {
   light('light'),
   dark('dark'),
-  custom('custom'),
   device('system');
 
   const ThemeOption(this.value);

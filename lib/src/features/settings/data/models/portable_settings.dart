@@ -27,7 +27,6 @@ abstract class AppSettings with _$AppSettings {
     @Default(AnnotationsSettings()) AnnotationsSettings annotations,
     @Default(UISettings()) UISettings ui,
     @Default(LocalizationSettings()) LocalizationSettings localization,
-    @Default(DeveloperSettings()) DeveloperSettings developer,
   }) = _AppSettings;
 
   factory AppSettings.fromJson(Map<String, dynamic> json) =>
@@ -44,7 +43,6 @@ abstract class DisplaySettings with _$DisplaySettings {
     @Default(0.2) double letterSpacing,
     @Default(1.2) double paragraphSpacing,
     @Default(ThemeOption.dark) ThemeOption theme,
-    @Default(CustomTheme()) CustomTheme customTheme,
     @Default('auto') String orientation,
     @Default(TextAlignOption.justify) TextAlignOption textAlign,
     @Default('slide') String pageTurnAnimation,
@@ -58,17 +56,6 @@ abstract class DisplaySettings with _$DisplaySettings {
 
   factory DisplaySettings.fromJson(Map<String, dynamic> json) =>
       _$DisplaySettingsFromJson(json);
-}
-
-@freezed
-abstract class CustomTheme with _$CustomTheme {
-  const factory CustomTheme({
-    @Default('#f4ecd8') String backgroundColor,
-    @Default('#3b2f2f') String textColor,
-  }) = _CustomTheme;
-
-  factory CustomTheme.fromJson(Map<String, dynamic> json) =>
-      _$CustomThemeFromJson(json);
 }
 
 @freezed
@@ -127,7 +114,6 @@ abstract class AccessibilitySettings with _$AccessibilitySettings {
     @Default(false) bool dyslexicFont,
     @Default(false) bool highContrast,
     @Default(true) bool fontSmoothing,
-    @Default(false) bool immersiveMode,
     @Default(TextToSpeech()) TextToSpeech textToSpeech,
     @Default('') String customCSS,
   }) = _AccessibilitySettings;
@@ -215,14 +201,4 @@ abstract class LocalizationSettings with _$LocalizationSettings {
       _$LocalizationSettingsFromJson(json);
 }
 
-@freezed
-abstract class DeveloperSettings with _$DeveloperSettings {
-  const factory DeveloperSettings({
-    @Default(false) bool debugLogging,
-    @Default(false) bool enableDevTools,
-    @Default('') String customJS,
-  }) = _DeveloperSettings;
 
-  factory DeveloperSettings.fromJson(Map<String, dynamic> json) =>
-      _$DeveloperSettingsFromJson(json);
-}

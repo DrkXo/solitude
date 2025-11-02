@@ -302,7 +302,7 @@ $AppSettingsCopyWith<$Res> get appSettings {
 /// @nodoc
 mixin _$AppSettings {
 
- DisplaySettings get display; BehaviorSettings get behavior; AccessibilitySettings get accessibility; LibrarySettings get library; AnnotationsSettings get annotations; UISettings get ui; LocalizationSettings get localization; DeveloperSettings get developer;
+ DisplaySettings get display; BehaviorSettings get behavior; AccessibilitySettings get accessibility; LibrarySettings get library; AnnotationsSettings get annotations; UISettings get ui; LocalizationSettings get localization;
 /// Create a copy of AppSettings
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -315,16 +315,16 @@ $AppSettingsCopyWith<AppSettings> get copyWith => _$AppSettingsCopyWithImpl<AppS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppSettings&&(identical(other.display, display) || other.display == display)&&(identical(other.behavior, behavior) || other.behavior == behavior)&&(identical(other.accessibility, accessibility) || other.accessibility == accessibility)&&(identical(other.library, library) || other.library == library)&&(identical(other.annotations, annotations) || other.annotations == annotations)&&(identical(other.ui, ui) || other.ui == ui)&&(identical(other.localization, localization) || other.localization == localization)&&(identical(other.developer, developer) || other.developer == developer));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppSettings&&(identical(other.display, display) || other.display == display)&&(identical(other.behavior, behavior) || other.behavior == behavior)&&(identical(other.accessibility, accessibility) || other.accessibility == accessibility)&&(identical(other.library, library) || other.library == library)&&(identical(other.annotations, annotations) || other.annotations == annotations)&&(identical(other.ui, ui) || other.ui == ui)&&(identical(other.localization, localization) || other.localization == localization));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,display,behavior,accessibility,library,annotations,ui,localization,developer);
+int get hashCode => Object.hash(runtimeType,display,behavior,accessibility,library,annotations,ui,localization);
 
 @override
 String toString() {
-  return 'AppSettings(display: $display, behavior: $behavior, accessibility: $accessibility, library: $library, annotations: $annotations, ui: $ui, localization: $localization, developer: $developer)';
+  return 'AppSettings(display: $display, behavior: $behavior, accessibility: $accessibility, library: $library, annotations: $annotations, ui: $ui, localization: $localization)';
 }
 
 
@@ -335,11 +335,11 @@ abstract mixin class $AppSettingsCopyWith<$Res>  {
   factory $AppSettingsCopyWith(AppSettings value, $Res Function(AppSettings) _then) = _$AppSettingsCopyWithImpl;
 @useResult
 $Res call({
- DisplaySettings display, BehaviorSettings behavior, AccessibilitySettings accessibility, LibrarySettings library, AnnotationsSettings annotations, UISettings ui, LocalizationSettings localization, DeveloperSettings developer
+ DisplaySettings display, BehaviorSettings behavior, AccessibilitySettings accessibility, LibrarySettings library, AnnotationsSettings annotations, UISettings ui, LocalizationSettings localization
 });
 
 
-$DisplaySettingsCopyWith<$Res> get display;$BehaviorSettingsCopyWith<$Res> get behavior;$AccessibilitySettingsCopyWith<$Res> get accessibility;$LibrarySettingsCopyWith<$Res> get library;$AnnotationsSettingsCopyWith<$Res> get annotations;$UISettingsCopyWith<$Res> get ui;$LocalizationSettingsCopyWith<$Res> get localization;$DeveloperSettingsCopyWith<$Res> get developer;
+$DisplaySettingsCopyWith<$Res> get display;$BehaviorSettingsCopyWith<$Res> get behavior;$AccessibilitySettingsCopyWith<$Res> get accessibility;$LibrarySettingsCopyWith<$Res> get library;$AnnotationsSettingsCopyWith<$Res> get annotations;$UISettingsCopyWith<$Res> get ui;$LocalizationSettingsCopyWith<$Res> get localization;
 
 }
 /// @nodoc
@@ -352,7 +352,7 @@ class _$AppSettingsCopyWithImpl<$Res>
 
 /// Create a copy of AppSettings
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? display = null,Object? behavior = null,Object? accessibility = null,Object? library = null,Object? annotations = null,Object? ui = null,Object? localization = null,Object? developer = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? display = null,Object? behavior = null,Object? accessibility = null,Object? library = null,Object? annotations = null,Object? ui = null,Object? localization = null,}) {
   return _then(_self.copyWith(
 display: null == display ? _self.display : display // ignore: cast_nullable_to_non_nullable
 as DisplaySettings,behavior: null == behavior ? _self.behavior : behavior // ignore: cast_nullable_to_non_nullable
@@ -361,8 +361,7 @@ as AccessibilitySettings,library: null == library ? _self.library : library // i
 as LibrarySettings,annotations: null == annotations ? _self.annotations : annotations // ignore: cast_nullable_to_non_nullable
 as AnnotationsSettings,ui: null == ui ? _self.ui : ui // ignore: cast_nullable_to_non_nullable
 as UISettings,localization: null == localization ? _self.localization : localization // ignore: cast_nullable_to_non_nullable
-as LocalizationSettings,developer: null == developer ? _self.developer : developer // ignore: cast_nullable_to_non_nullable
-as DeveloperSettings,
+as LocalizationSettings,
   ));
 }
 /// Create a copy of AppSettings
@@ -427,15 +426,6 @@ $LocalizationSettingsCopyWith<$Res> get localization {
   
   return $LocalizationSettingsCopyWith<$Res>(_self.localization, (value) {
     return _then(_self.copyWith(localization: value));
-  });
-}/// Create a copy of AppSettings
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DeveloperSettingsCopyWith<$Res> get developer {
-  
-  return $DeveloperSettingsCopyWith<$Res>(_self.developer, (value) {
-    return _then(_self.copyWith(developer: value));
   });
 }
 }
@@ -519,10 +509,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( DisplaySettings display,  BehaviorSettings behavior,  AccessibilitySettings accessibility,  LibrarySettings library,  AnnotationsSettings annotations,  UISettings ui,  LocalizationSettings localization,  DeveloperSettings developer)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( DisplaySettings display,  BehaviorSettings behavior,  AccessibilitySettings accessibility,  LibrarySettings library,  AnnotationsSettings annotations,  UISettings ui,  LocalizationSettings localization)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AppSettings() when $default != null:
-return $default(_that.display,_that.behavior,_that.accessibility,_that.library,_that.annotations,_that.ui,_that.localization,_that.developer);case _:
+return $default(_that.display,_that.behavior,_that.accessibility,_that.library,_that.annotations,_that.ui,_that.localization);case _:
   return orElse();
 
 }
@@ -540,10 +530,10 @@ return $default(_that.display,_that.behavior,_that.accessibility,_that.library,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( DisplaySettings display,  BehaviorSettings behavior,  AccessibilitySettings accessibility,  LibrarySettings library,  AnnotationsSettings annotations,  UISettings ui,  LocalizationSettings localization,  DeveloperSettings developer)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( DisplaySettings display,  BehaviorSettings behavior,  AccessibilitySettings accessibility,  LibrarySettings library,  AnnotationsSettings annotations,  UISettings ui,  LocalizationSettings localization)  $default,) {final _that = this;
 switch (_that) {
 case _AppSettings():
-return $default(_that.display,_that.behavior,_that.accessibility,_that.library,_that.annotations,_that.ui,_that.localization,_that.developer);case _:
+return $default(_that.display,_that.behavior,_that.accessibility,_that.library,_that.annotations,_that.ui,_that.localization);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -560,10 +550,10 @@ return $default(_that.display,_that.behavior,_that.accessibility,_that.library,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( DisplaySettings display,  BehaviorSettings behavior,  AccessibilitySettings accessibility,  LibrarySettings library,  AnnotationsSettings annotations,  UISettings ui,  LocalizationSettings localization,  DeveloperSettings developer)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( DisplaySettings display,  BehaviorSettings behavior,  AccessibilitySettings accessibility,  LibrarySettings library,  AnnotationsSettings annotations,  UISettings ui,  LocalizationSettings localization)?  $default,) {final _that = this;
 switch (_that) {
 case _AppSettings() when $default != null:
-return $default(_that.display,_that.behavior,_that.accessibility,_that.library,_that.annotations,_that.ui,_that.localization,_that.developer);case _:
+return $default(_that.display,_that.behavior,_that.accessibility,_that.library,_that.annotations,_that.ui,_that.localization);case _:
   return null;
 
 }
@@ -575,7 +565,7 @@ return $default(_that.display,_that.behavior,_that.accessibility,_that.library,_
 @JsonSerializable()
 
 class _AppSettings implements AppSettings {
-  const _AppSettings({this.display = const DisplaySettings(), this.behavior = const BehaviorSettings(), this.accessibility = const AccessibilitySettings(), this.library = const LibrarySettings(), this.annotations = const AnnotationsSettings(), this.ui = const UISettings(), this.localization = const LocalizationSettings(), this.developer = const DeveloperSettings()});
+  const _AppSettings({this.display = const DisplaySettings(), this.behavior = const BehaviorSettings(), this.accessibility = const AccessibilitySettings(), this.library = const LibrarySettings(), this.annotations = const AnnotationsSettings(), this.ui = const UISettings(), this.localization = const LocalizationSettings()});
   factory _AppSettings.fromJson(Map<String, dynamic> json) => _$AppSettingsFromJson(json);
 
 @override@JsonKey() final  DisplaySettings display;
@@ -585,7 +575,6 @@ class _AppSettings implements AppSettings {
 @override@JsonKey() final  AnnotationsSettings annotations;
 @override@JsonKey() final  UISettings ui;
 @override@JsonKey() final  LocalizationSettings localization;
-@override@JsonKey() final  DeveloperSettings developer;
 
 /// Create a copy of AppSettings
 /// with the given fields replaced by the non-null parameter values.
@@ -600,16 +589,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppSettings&&(identical(other.display, display) || other.display == display)&&(identical(other.behavior, behavior) || other.behavior == behavior)&&(identical(other.accessibility, accessibility) || other.accessibility == accessibility)&&(identical(other.library, library) || other.library == library)&&(identical(other.annotations, annotations) || other.annotations == annotations)&&(identical(other.ui, ui) || other.ui == ui)&&(identical(other.localization, localization) || other.localization == localization)&&(identical(other.developer, developer) || other.developer == developer));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppSettings&&(identical(other.display, display) || other.display == display)&&(identical(other.behavior, behavior) || other.behavior == behavior)&&(identical(other.accessibility, accessibility) || other.accessibility == accessibility)&&(identical(other.library, library) || other.library == library)&&(identical(other.annotations, annotations) || other.annotations == annotations)&&(identical(other.ui, ui) || other.ui == ui)&&(identical(other.localization, localization) || other.localization == localization));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,display,behavior,accessibility,library,annotations,ui,localization,developer);
+int get hashCode => Object.hash(runtimeType,display,behavior,accessibility,library,annotations,ui,localization);
 
 @override
 String toString() {
-  return 'AppSettings(display: $display, behavior: $behavior, accessibility: $accessibility, library: $library, annotations: $annotations, ui: $ui, localization: $localization, developer: $developer)';
+  return 'AppSettings(display: $display, behavior: $behavior, accessibility: $accessibility, library: $library, annotations: $annotations, ui: $ui, localization: $localization)';
 }
 
 
@@ -620,11 +609,11 @@ abstract mixin class _$AppSettingsCopyWith<$Res> implements $AppSettingsCopyWith
   factory _$AppSettingsCopyWith(_AppSettings value, $Res Function(_AppSettings) _then) = __$AppSettingsCopyWithImpl;
 @override @useResult
 $Res call({
- DisplaySettings display, BehaviorSettings behavior, AccessibilitySettings accessibility, LibrarySettings library, AnnotationsSettings annotations, UISettings ui, LocalizationSettings localization, DeveloperSettings developer
+ DisplaySettings display, BehaviorSettings behavior, AccessibilitySettings accessibility, LibrarySettings library, AnnotationsSettings annotations, UISettings ui, LocalizationSettings localization
 });
 
 
-@override $DisplaySettingsCopyWith<$Res> get display;@override $BehaviorSettingsCopyWith<$Res> get behavior;@override $AccessibilitySettingsCopyWith<$Res> get accessibility;@override $LibrarySettingsCopyWith<$Res> get library;@override $AnnotationsSettingsCopyWith<$Res> get annotations;@override $UISettingsCopyWith<$Res> get ui;@override $LocalizationSettingsCopyWith<$Res> get localization;@override $DeveloperSettingsCopyWith<$Res> get developer;
+@override $DisplaySettingsCopyWith<$Res> get display;@override $BehaviorSettingsCopyWith<$Res> get behavior;@override $AccessibilitySettingsCopyWith<$Res> get accessibility;@override $LibrarySettingsCopyWith<$Res> get library;@override $AnnotationsSettingsCopyWith<$Res> get annotations;@override $UISettingsCopyWith<$Res> get ui;@override $LocalizationSettingsCopyWith<$Res> get localization;
 
 }
 /// @nodoc
@@ -637,7 +626,7 @@ class __$AppSettingsCopyWithImpl<$Res>
 
 /// Create a copy of AppSettings
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? display = null,Object? behavior = null,Object? accessibility = null,Object? library = null,Object? annotations = null,Object? ui = null,Object? localization = null,Object? developer = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? display = null,Object? behavior = null,Object? accessibility = null,Object? library = null,Object? annotations = null,Object? ui = null,Object? localization = null,}) {
   return _then(_AppSettings(
 display: null == display ? _self.display : display // ignore: cast_nullable_to_non_nullable
 as DisplaySettings,behavior: null == behavior ? _self.behavior : behavior // ignore: cast_nullable_to_non_nullable
@@ -646,8 +635,7 @@ as AccessibilitySettings,library: null == library ? _self.library : library // i
 as LibrarySettings,annotations: null == annotations ? _self.annotations : annotations // ignore: cast_nullable_to_non_nullable
 as AnnotationsSettings,ui: null == ui ? _self.ui : ui // ignore: cast_nullable_to_non_nullable
 as UISettings,localization: null == localization ? _self.localization : localization // ignore: cast_nullable_to_non_nullable
-as LocalizationSettings,developer: null == developer ? _self.developer : developer // ignore: cast_nullable_to_non_nullable
-as DeveloperSettings,
+as LocalizationSettings,
   ));
 }
 
@@ -714,15 +702,6 @@ $LocalizationSettingsCopyWith<$Res> get localization {
   return $LocalizationSettingsCopyWith<$Res>(_self.localization, (value) {
     return _then(_self.copyWith(localization: value));
   });
-}/// Create a copy of AppSettings
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DeveloperSettingsCopyWith<$Res> get developer {
-  
-  return $DeveloperSettingsCopyWith<$Res>(_self.developer, (value) {
-    return _then(_self.copyWith(developer: value));
-  });
 }
 }
 
@@ -730,7 +709,7 @@ $DeveloperSettingsCopyWith<$Res> get developer {
 /// @nodoc
 mixin _$DisplaySettings {
 
- FontFamily get fontFamily; double get fontSize; String get fontWeight; double get lineHeight; double get letterSpacing; double get paragraphSpacing; ThemeOption get theme; CustomTheme get customTheme; String get orientation; TextAlignOption get textAlign; String get pageTurnAnimation; Margins get margins; double get headerFontSizeMultiplier; double get headerMarginTop; double get headerMarginBottom; double get footerMarginTop; double get footerMarginBottom;
+ FontFamily get fontFamily; double get fontSize; String get fontWeight; double get lineHeight; double get letterSpacing; double get paragraphSpacing; ThemeOption get theme; String get orientation; TextAlignOption get textAlign; String get pageTurnAnimation; Margins get margins; double get headerFontSizeMultiplier; double get headerMarginTop; double get headerMarginBottom; double get footerMarginTop; double get footerMarginBottom;
 /// Create a copy of DisplaySettings
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -743,16 +722,16 @@ $DisplaySettingsCopyWith<DisplaySettings> get copyWith => _$DisplaySettingsCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DisplaySettings&&(identical(other.fontFamily, fontFamily) || other.fontFamily == fontFamily)&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize)&&(identical(other.fontWeight, fontWeight) || other.fontWeight == fontWeight)&&(identical(other.lineHeight, lineHeight) || other.lineHeight == lineHeight)&&(identical(other.letterSpacing, letterSpacing) || other.letterSpacing == letterSpacing)&&(identical(other.paragraphSpacing, paragraphSpacing) || other.paragraphSpacing == paragraphSpacing)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.customTheme, customTheme) || other.customTheme == customTheme)&&(identical(other.orientation, orientation) || other.orientation == orientation)&&(identical(other.textAlign, textAlign) || other.textAlign == textAlign)&&(identical(other.pageTurnAnimation, pageTurnAnimation) || other.pageTurnAnimation == pageTurnAnimation)&&(identical(other.margins, margins) || other.margins == margins)&&(identical(other.headerFontSizeMultiplier, headerFontSizeMultiplier) || other.headerFontSizeMultiplier == headerFontSizeMultiplier)&&(identical(other.headerMarginTop, headerMarginTop) || other.headerMarginTop == headerMarginTop)&&(identical(other.headerMarginBottom, headerMarginBottom) || other.headerMarginBottom == headerMarginBottom)&&(identical(other.footerMarginTop, footerMarginTop) || other.footerMarginTop == footerMarginTop)&&(identical(other.footerMarginBottom, footerMarginBottom) || other.footerMarginBottom == footerMarginBottom));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DisplaySettings&&(identical(other.fontFamily, fontFamily) || other.fontFamily == fontFamily)&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize)&&(identical(other.fontWeight, fontWeight) || other.fontWeight == fontWeight)&&(identical(other.lineHeight, lineHeight) || other.lineHeight == lineHeight)&&(identical(other.letterSpacing, letterSpacing) || other.letterSpacing == letterSpacing)&&(identical(other.paragraphSpacing, paragraphSpacing) || other.paragraphSpacing == paragraphSpacing)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.orientation, orientation) || other.orientation == orientation)&&(identical(other.textAlign, textAlign) || other.textAlign == textAlign)&&(identical(other.pageTurnAnimation, pageTurnAnimation) || other.pageTurnAnimation == pageTurnAnimation)&&(identical(other.margins, margins) || other.margins == margins)&&(identical(other.headerFontSizeMultiplier, headerFontSizeMultiplier) || other.headerFontSizeMultiplier == headerFontSizeMultiplier)&&(identical(other.headerMarginTop, headerMarginTop) || other.headerMarginTop == headerMarginTop)&&(identical(other.headerMarginBottom, headerMarginBottom) || other.headerMarginBottom == headerMarginBottom)&&(identical(other.footerMarginTop, footerMarginTop) || other.footerMarginTop == footerMarginTop)&&(identical(other.footerMarginBottom, footerMarginBottom) || other.footerMarginBottom == footerMarginBottom));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,fontFamily,fontSize,fontWeight,lineHeight,letterSpacing,paragraphSpacing,theme,customTheme,orientation,textAlign,pageTurnAnimation,margins,headerFontSizeMultiplier,headerMarginTop,headerMarginBottom,footerMarginTop,footerMarginBottom);
+int get hashCode => Object.hash(runtimeType,fontFamily,fontSize,fontWeight,lineHeight,letterSpacing,paragraphSpacing,theme,orientation,textAlign,pageTurnAnimation,margins,headerFontSizeMultiplier,headerMarginTop,headerMarginBottom,footerMarginTop,footerMarginBottom);
 
 @override
 String toString() {
-  return 'DisplaySettings(fontFamily: $fontFamily, fontSize: $fontSize, fontWeight: $fontWeight, lineHeight: $lineHeight, letterSpacing: $letterSpacing, paragraphSpacing: $paragraphSpacing, theme: $theme, customTheme: $customTheme, orientation: $orientation, textAlign: $textAlign, pageTurnAnimation: $pageTurnAnimation, margins: $margins, headerFontSizeMultiplier: $headerFontSizeMultiplier, headerMarginTop: $headerMarginTop, headerMarginBottom: $headerMarginBottom, footerMarginTop: $footerMarginTop, footerMarginBottom: $footerMarginBottom)';
+  return 'DisplaySettings(fontFamily: $fontFamily, fontSize: $fontSize, fontWeight: $fontWeight, lineHeight: $lineHeight, letterSpacing: $letterSpacing, paragraphSpacing: $paragraphSpacing, theme: $theme, orientation: $orientation, textAlign: $textAlign, pageTurnAnimation: $pageTurnAnimation, margins: $margins, headerFontSizeMultiplier: $headerFontSizeMultiplier, headerMarginTop: $headerMarginTop, headerMarginBottom: $headerMarginBottom, footerMarginTop: $footerMarginTop, footerMarginBottom: $footerMarginBottom)';
 }
 
 
@@ -763,11 +742,11 @@ abstract mixin class $DisplaySettingsCopyWith<$Res>  {
   factory $DisplaySettingsCopyWith(DisplaySettings value, $Res Function(DisplaySettings) _then) = _$DisplaySettingsCopyWithImpl;
 @useResult
 $Res call({
- FontFamily fontFamily, double fontSize, String fontWeight, double lineHeight, double letterSpacing, double paragraphSpacing, ThemeOption theme, CustomTheme customTheme, String orientation, TextAlignOption textAlign, String pageTurnAnimation, Margins margins, double headerFontSizeMultiplier, double headerMarginTop, double headerMarginBottom, double footerMarginTop, double footerMarginBottom
+ FontFamily fontFamily, double fontSize, String fontWeight, double lineHeight, double letterSpacing, double paragraphSpacing, ThemeOption theme, String orientation, TextAlignOption textAlign, String pageTurnAnimation, Margins margins, double headerFontSizeMultiplier, double headerMarginTop, double headerMarginBottom, double footerMarginTop, double footerMarginBottom
 });
 
 
-$CustomThemeCopyWith<$Res> get customTheme;$MarginsCopyWith<$Res> get margins;
+$MarginsCopyWith<$Res> get margins;
 
 }
 /// @nodoc
@@ -780,7 +759,7 @@ class _$DisplaySettingsCopyWithImpl<$Res>
 
 /// Create a copy of DisplaySettings
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? fontFamily = null,Object? fontSize = null,Object? fontWeight = null,Object? lineHeight = null,Object? letterSpacing = null,Object? paragraphSpacing = null,Object? theme = null,Object? customTheme = null,Object? orientation = null,Object? textAlign = null,Object? pageTurnAnimation = null,Object? margins = null,Object? headerFontSizeMultiplier = null,Object? headerMarginTop = null,Object? headerMarginBottom = null,Object? footerMarginTop = null,Object? footerMarginBottom = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? fontFamily = null,Object? fontSize = null,Object? fontWeight = null,Object? lineHeight = null,Object? letterSpacing = null,Object? paragraphSpacing = null,Object? theme = null,Object? orientation = null,Object? textAlign = null,Object? pageTurnAnimation = null,Object? margins = null,Object? headerFontSizeMultiplier = null,Object? headerMarginTop = null,Object? headerMarginBottom = null,Object? footerMarginTop = null,Object? footerMarginBottom = null,}) {
   return _then(_self.copyWith(
 fontFamily: null == fontFamily ? _self.fontFamily : fontFamily // ignore: cast_nullable_to_non_nullable
 as FontFamily,fontSize: null == fontSize ? _self.fontSize : fontSize // ignore: cast_nullable_to_non_nullable
@@ -789,8 +768,7 @@ as String,lineHeight: null == lineHeight ? _self.lineHeight : lineHeight // igno
 as double,letterSpacing: null == letterSpacing ? _self.letterSpacing : letterSpacing // ignore: cast_nullable_to_non_nullable
 as double,paragraphSpacing: null == paragraphSpacing ? _self.paragraphSpacing : paragraphSpacing // ignore: cast_nullable_to_non_nullable
 as double,theme: null == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
-as ThemeOption,customTheme: null == customTheme ? _self.customTheme : customTheme // ignore: cast_nullable_to_non_nullable
-as CustomTheme,orientation: null == orientation ? _self.orientation : orientation // ignore: cast_nullable_to_non_nullable
+as ThemeOption,orientation: null == orientation ? _self.orientation : orientation // ignore: cast_nullable_to_non_nullable
 as String,textAlign: null == textAlign ? _self.textAlign : textAlign // ignore: cast_nullable_to_non_nullable
 as TextAlignOption,pageTurnAnimation: null == pageTurnAnimation ? _self.pageTurnAnimation : pageTurnAnimation // ignore: cast_nullable_to_non_nullable
 as String,margins: null == margins ? _self.margins : margins // ignore: cast_nullable_to_non_nullable
@@ -803,15 +781,6 @@ as double,
   ));
 }
 /// Create a copy of DisplaySettings
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CustomThemeCopyWith<$Res> get customTheme {
-  
-  return $CustomThemeCopyWith<$Res>(_self.customTheme, (value) {
-    return _then(_self.copyWith(customTheme: value));
-  });
-}/// Create a copy of DisplaySettings
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -902,10 +871,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  CustomTheme customTheme,  String orientation,  TextAlignOption textAlign,  String pageTurnAnimation,  Margins margins,  double headerFontSizeMultiplier,  double headerMarginTop,  double headerMarginBottom,  double footerMarginTop,  double footerMarginBottom)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  String orientation,  TextAlignOption textAlign,  String pageTurnAnimation,  Margins margins,  double headerFontSizeMultiplier,  double headerMarginTop,  double headerMarginBottom,  double footerMarginTop,  double footerMarginBottom)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DisplaySettings() when $default != null:
-return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.customTheme,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins,_that.headerFontSizeMultiplier,_that.headerMarginTop,_that.headerMarginBottom,_that.footerMarginTop,_that.footerMarginBottom);case _:
+return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins,_that.headerFontSizeMultiplier,_that.headerMarginTop,_that.headerMarginBottom,_that.footerMarginTop,_that.footerMarginBottom);case _:
   return orElse();
 
 }
@@ -923,10 +892,10 @@ return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeigh
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  CustomTheme customTheme,  String orientation,  TextAlignOption textAlign,  String pageTurnAnimation,  Margins margins,  double headerFontSizeMultiplier,  double headerMarginTop,  double headerMarginBottom,  double footerMarginTop,  double footerMarginBottom)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  String orientation,  TextAlignOption textAlign,  String pageTurnAnimation,  Margins margins,  double headerFontSizeMultiplier,  double headerMarginTop,  double headerMarginBottom,  double footerMarginTop,  double footerMarginBottom)  $default,) {final _that = this;
 switch (_that) {
 case _DisplaySettings():
-return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.customTheme,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins,_that.headerFontSizeMultiplier,_that.headerMarginTop,_that.headerMarginBottom,_that.footerMarginTop,_that.footerMarginBottom);case _:
+return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins,_that.headerFontSizeMultiplier,_that.headerMarginTop,_that.headerMarginBottom,_that.footerMarginTop,_that.footerMarginBottom);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -943,10 +912,10 @@ return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeigh
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  CustomTheme customTheme,  String orientation,  TextAlignOption textAlign,  String pageTurnAnimation,  Margins margins,  double headerFontSizeMultiplier,  double headerMarginTop,  double headerMarginBottom,  double footerMarginTop,  double footerMarginBottom)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  String orientation,  TextAlignOption textAlign,  String pageTurnAnimation,  Margins margins,  double headerFontSizeMultiplier,  double headerMarginTop,  double headerMarginBottom,  double footerMarginTop,  double footerMarginBottom)?  $default,) {final _that = this;
 switch (_that) {
 case _DisplaySettings() when $default != null:
-return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.customTheme,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins,_that.headerFontSizeMultiplier,_that.headerMarginTop,_that.headerMarginBottom,_that.footerMarginTop,_that.footerMarginBottom);case _:
+return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins,_that.headerFontSizeMultiplier,_that.headerMarginTop,_that.headerMarginBottom,_that.footerMarginTop,_that.footerMarginBottom);case _:
   return null;
 
 }
@@ -958,7 +927,7 @@ return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeigh
 @JsonSerializable()
 
 class _DisplaySettings implements DisplaySettings {
-  const _DisplaySettings({this.fontFamily = FontFamily.openSans, this.fontSize = 18.0, this.fontWeight = 'normal', this.lineHeight = 1.5, this.letterSpacing = 0.2, this.paragraphSpacing = 1.2, this.theme = ThemeOption.dark, this.customTheme = const CustomTheme(), this.orientation = 'auto', this.textAlign = TextAlignOption.justify, this.pageTurnAnimation = 'slide', this.margins = const Margins(), this.headerFontSizeMultiplier = 1.2, this.headerMarginTop = 10.0, this.headerMarginBottom = 10.0, this.footerMarginTop = 10.0, this.footerMarginBottom = 10.0});
+  const _DisplaySettings({this.fontFamily = FontFamily.openSans, this.fontSize = 18.0, this.fontWeight = 'normal', this.lineHeight = 1.5, this.letterSpacing = 0.2, this.paragraphSpacing = 1.2, this.theme = ThemeOption.dark, this.orientation = 'auto', this.textAlign = TextAlignOption.justify, this.pageTurnAnimation = 'slide', this.margins = const Margins(), this.headerFontSizeMultiplier = 1.2, this.headerMarginTop = 10.0, this.headerMarginBottom = 10.0, this.footerMarginTop = 10.0, this.footerMarginBottom = 10.0});
   factory _DisplaySettings.fromJson(Map<String, dynamic> json) => _$DisplaySettingsFromJson(json);
 
 @override@JsonKey() final  FontFamily fontFamily;
@@ -968,7 +937,6 @@ class _DisplaySettings implements DisplaySettings {
 @override@JsonKey() final  double letterSpacing;
 @override@JsonKey() final  double paragraphSpacing;
 @override@JsonKey() final  ThemeOption theme;
-@override@JsonKey() final  CustomTheme customTheme;
 @override@JsonKey() final  String orientation;
 @override@JsonKey() final  TextAlignOption textAlign;
 @override@JsonKey() final  String pageTurnAnimation;
@@ -992,16 +960,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DisplaySettings&&(identical(other.fontFamily, fontFamily) || other.fontFamily == fontFamily)&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize)&&(identical(other.fontWeight, fontWeight) || other.fontWeight == fontWeight)&&(identical(other.lineHeight, lineHeight) || other.lineHeight == lineHeight)&&(identical(other.letterSpacing, letterSpacing) || other.letterSpacing == letterSpacing)&&(identical(other.paragraphSpacing, paragraphSpacing) || other.paragraphSpacing == paragraphSpacing)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.customTheme, customTheme) || other.customTheme == customTheme)&&(identical(other.orientation, orientation) || other.orientation == orientation)&&(identical(other.textAlign, textAlign) || other.textAlign == textAlign)&&(identical(other.pageTurnAnimation, pageTurnAnimation) || other.pageTurnAnimation == pageTurnAnimation)&&(identical(other.margins, margins) || other.margins == margins)&&(identical(other.headerFontSizeMultiplier, headerFontSizeMultiplier) || other.headerFontSizeMultiplier == headerFontSizeMultiplier)&&(identical(other.headerMarginTop, headerMarginTop) || other.headerMarginTop == headerMarginTop)&&(identical(other.headerMarginBottom, headerMarginBottom) || other.headerMarginBottom == headerMarginBottom)&&(identical(other.footerMarginTop, footerMarginTop) || other.footerMarginTop == footerMarginTop)&&(identical(other.footerMarginBottom, footerMarginBottom) || other.footerMarginBottom == footerMarginBottom));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DisplaySettings&&(identical(other.fontFamily, fontFamily) || other.fontFamily == fontFamily)&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize)&&(identical(other.fontWeight, fontWeight) || other.fontWeight == fontWeight)&&(identical(other.lineHeight, lineHeight) || other.lineHeight == lineHeight)&&(identical(other.letterSpacing, letterSpacing) || other.letterSpacing == letterSpacing)&&(identical(other.paragraphSpacing, paragraphSpacing) || other.paragraphSpacing == paragraphSpacing)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.orientation, orientation) || other.orientation == orientation)&&(identical(other.textAlign, textAlign) || other.textAlign == textAlign)&&(identical(other.pageTurnAnimation, pageTurnAnimation) || other.pageTurnAnimation == pageTurnAnimation)&&(identical(other.margins, margins) || other.margins == margins)&&(identical(other.headerFontSizeMultiplier, headerFontSizeMultiplier) || other.headerFontSizeMultiplier == headerFontSizeMultiplier)&&(identical(other.headerMarginTop, headerMarginTop) || other.headerMarginTop == headerMarginTop)&&(identical(other.headerMarginBottom, headerMarginBottom) || other.headerMarginBottom == headerMarginBottom)&&(identical(other.footerMarginTop, footerMarginTop) || other.footerMarginTop == footerMarginTop)&&(identical(other.footerMarginBottom, footerMarginBottom) || other.footerMarginBottom == footerMarginBottom));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,fontFamily,fontSize,fontWeight,lineHeight,letterSpacing,paragraphSpacing,theme,customTheme,orientation,textAlign,pageTurnAnimation,margins,headerFontSizeMultiplier,headerMarginTop,headerMarginBottom,footerMarginTop,footerMarginBottom);
+int get hashCode => Object.hash(runtimeType,fontFamily,fontSize,fontWeight,lineHeight,letterSpacing,paragraphSpacing,theme,orientation,textAlign,pageTurnAnimation,margins,headerFontSizeMultiplier,headerMarginTop,headerMarginBottom,footerMarginTop,footerMarginBottom);
 
 @override
 String toString() {
-  return 'DisplaySettings(fontFamily: $fontFamily, fontSize: $fontSize, fontWeight: $fontWeight, lineHeight: $lineHeight, letterSpacing: $letterSpacing, paragraphSpacing: $paragraphSpacing, theme: $theme, customTheme: $customTheme, orientation: $orientation, textAlign: $textAlign, pageTurnAnimation: $pageTurnAnimation, margins: $margins, headerFontSizeMultiplier: $headerFontSizeMultiplier, headerMarginTop: $headerMarginTop, headerMarginBottom: $headerMarginBottom, footerMarginTop: $footerMarginTop, footerMarginBottom: $footerMarginBottom)';
+  return 'DisplaySettings(fontFamily: $fontFamily, fontSize: $fontSize, fontWeight: $fontWeight, lineHeight: $lineHeight, letterSpacing: $letterSpacing, paragraphSpacing: $paragraphSpacing, theme: $theme, orientation: $orientation, textAlign: $textAlign, pageTurnAnimation: $pageTurnAnimation, margins: $margins, headerFontSizeMultiplier: $headerFontSizeMultiplier, headerMarginTop: $headerMarginTop, headerMarginBottom: $headerMarginBottom, footerMarginTop: $footerMarginTop, footerMarginBottom: $footerMarginBottom)';
 }
 
 
@@ -1012,11 +980,11 @@ abstract mixin class _$DisplaySettingsCopyWith<$Res> implements $DisplaySettings
   factory _$DisplaySettingsCopyWith(_DisplaySettings value, $Res Function(_DisplaySettings) _then) = __$DisplaySettingsCopyWithImpl;
 @override @useResult
 $Res call({
- FontFamily fontFamily, double fontSize, String fontWeight, double lineHeight, double letterSpacing, double paragraphSpacing, ThemeOption theme, CustomTheme customTheme, String orientation, TextAlignOption textAlign, String pageTurnAnimation, Margins margins, double headerFontSizeMultiplier, double headerMarginTop, double headerMarginBottom, double footerMarginTop, double footerMarginBottom
+ FontFamily fontFamily, double fontSize, String fontWeight, double lineHeight, double letterSpacing, double paragraphSpacing, ThemeOption theme, String orientation, TextAlignOption textAlign, String pageTurnAnimation, Margins margins, double headerFontSizeMultiplier, double headerMarginTop, double headerMarginBottom, double footerMarginTop, double footerMarginBottom
 });
 
 
-@override $CustomThemeCopyWith<$Res> get customTheme;@override $MarginsCopyWith<$Res> get margins;
+@override $MarginsCopyWith<$Res> get margins;
 
 }
 /// @nodoc
@@ -1029,7 +997,7 @@ class __$DisplaySettingsCopyWithImpl<$Res>
 
 /// Create a copy of DisplaySettings
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? fontFamily = null,Object? fontSize = null,Object? fontWeight = null,Object? lineHeight = null,Object? letterSpacing = null,Object? paragraphSpacing = null,Object? theme = null,Object? customTheme = null,Object? orientation = null,Object? textAlign = null,Object? pageTurnAnimation = null,Object? margins = null,Object? headerFontSizeMultiplier = null,Object? headerMarginTop = null,Object? headerMarginBottom = null,Object? footerMarginTop = null,Object? footerMarginBottom = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? fontFamily = null,Object? fontSize = null,Object? fontWeight = null,Object? lineHeight = null,Object? letterSpacing = null,Object? paragraphSpacing = null,Object? theme = null,Object? orientation = null,Object? textAlign = null,Object? pageTurnAnimation = null,Object? margins = null,Object? headerFontSizeMultiplier = null,Object? headerMarginTop = null,Object? headerMarginBottom = null,Object? footerMarginTop = null,Object? footerMarginBottom = null,}) {
   return _then(_DisplaySettings(
 fontFamily: null == fontFamily ? _self.fontFamily : fontFamily // ignore: cast_nullable_to_non_nullable
 as FontFamily,fontSize: null == fontSize ? _self.fontSize : fontSize // ignore: cast_nullable_to_non_nullable
@@ -1038,8 +1006,7 @@ as String,lineHeight: null == lineHeight ? _self.lineHeight : lineHeight // igno
 as double,letterSpacing: null == letterSpacing ? _self.letterSpacing : letterSpacing // ignore: cast_nullable_to_non_nullable
 as double,paragraphSpacing: null == paragraphSpacing ? _self.paragraphSpacing : paragraphSpacing // ignore: cast_nullable_to_non_nullable
 as double,theme: null == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
-as ThemeOption,customTheme: null == customTheme ? _self.customTheme : customTheme // ignore: cast_nullable_to_non_nullable
-as CustomTheme,orientation: null == orientation ? _self.orientation : orientation // ignore: cast_nullable_to_non_nullable
+as ThemeOption,orientation: null == orientation ? _self.orientation : orientation // ignore: cast_nullable_to_non_nullable
 as String,textAlign: null == textAlign ? _self.textAlign : textAlign // ignore: cast_nullable_to_non_nullable
 as TextAlignOption,pageTurnAnimation: null == pageTurnAnimation ? _self.pageTurnAnimation : pageTurnAnimation // ignore: cast_nullable_to_non_nullable
 as String,margins: null == margins ? _self.margins : margins // ignore: cast_nullable_to_non_nullable
@@ -1056,287 +1023,12 @@ as double,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$CustomThemeCopyWith<$Res> get customTheme {
-  
-  return $CustomThemeCopyWith<$Res>(_self.customTheme, (value) {
-    return _then(_self.copyWith(customTheme: value));
-  });
-}/// Create a copy of DisplaySettings
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
 $MarginsCopyWith<$Res> get margins {
   
   return $MarginsCopyWith<$Res>(_self.margins, (value) {
     return _then(_self.copyWith(margins: value));
   });
 }
-}
-
-
-/// @nodoc
-mixin _$CustomTheme {
-
- String get backgroundColor; String get textColor;
-/// Create a copy of CustomTheme
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$CustomThemeCopyWith<CustomTheme> get copyWith => _$CustomThemeCopyWithImpl<CustomTheme>(this as CustomTheme, _$identity);
-
-  /// Serializes this CustomTheme to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CustomTheme&&(identical(other.backgroundColor, backgroundColor) || other.backgroundColor == backgroundColor)&&(identical(other.textColor, textColor) || other.textColor == textColor));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,backgroundColor,textColor);
-
-@override
-String toString() {
-  return 'CustomTheme(backgroundColor: $backgroundColor, textColor: $textColor)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $CustomThemeCopyWith<$Res>  {
-  factory $CustomThemeCopyWith(CustomTheme value, $Res Function(CustomTheme) _then) = _$CustomThemeCopyWithImpl;
-@useResult
-$Res call({
- String backgroundColor, String textColor
-});
-
-
-
-
-}
-/// @nodoc
-class _$CustomThemeCopyWithImpl<$Res>
-    implements $CustomThemeCopyWith<$Res> {
-  _$CustomThemeCopyWithImpl(this._self, this._then);
-
-  final CustomTheme _self;
-  final $Res Function(CustomTheme) _then;
-
-/// Create a copy of CustomTheme
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? backgroundColor = null,Object? textColor = null,}) {
-  return _then(_self.copyWith(
-backgroundColor: null == backgroundColor ? _self.backgroundColor : backgroundColor // ignore: cast_nullable_to_non_nullable
-as String,textColor: null == textColor ? _self.textColor : textColor // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [CustomTheme].
-extension CustomThemePatterns on CustomTheme {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CustomTheme value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _CustomTheme() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CustomTheme value)  $default,){
-final _that = this;
-switch (_that) {
-case _CustomTheme():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CustomTheme value)?  $default,){
-final _that = this;
-switch (_that) {
-case _CustomTheme() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String backgroundColor,  String textColor)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _CustomTheme() when $default != null:
-return $default(_that.backgroundColor,_that.textColor);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String backgroundColor,  String textColor)  $default,) {final _that = this;
-switch (_that) {
-case _CustomTheme():
-return $default(_that.backgroundColor,_that.textColor);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String backgroundColor,  String textColor)?  $default,) {final _that = this;
-switch (_that) {
-case _CustomTheme() when $default != null:
-return $default(_that.backgroundColor,_that.textColor);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _CustomTheme implements CustomTheme {
-  const _CustomTheme({this.backgroundColor = '#f4ecd8', this.textColor = '#3b2f2f'});
-  factory _CustomTheme.fromJson(Map<String, dynamic> json) => _$CustomThemeFromJson(json);
-
-@override@JsonKey() final  String backgroundColor;
-@override@JsonKey() final  String textColor;
-
-/// Create a copy of CustomTheme
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$CustomThemeCopyWith<_CustomTheme> get copyWith => __$CustomThemeCopyWithImpl<_CustomTheme>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$CustomThemeToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CustomTheme&&(identical(other.backgroundColor, backgroundColor) || other.backgroundColor == backgroundColor)&&(identical(other.textColor, textColor) || other.textColor == textColor));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,backgroundColor,textColor);
-
-@override
-String toString() {
-  return 'CustomTheme(backgroundColor: $backgroundColor, textColor: $textColor)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$CustomThemeCopyWith<$Res> implements $CustomThemeCopyWith<$Res> {
-  factory _$CustomThemeCopyWith(_CustomTheme value, $Res Function(_CustomTheme) _then) = __$CustomThemeCopyWithImpl;
-@override @useResult
-$Res call({
- String backgroundColor, String textColor
-});
-
-
-
-
-}
-/// @nodoc
-class __$CustomThemeCopyWithImpl<$Res>
-    implements _$CustomThemeCopyWith<$Res> {
-  __$CustomThemeCopyWithImpl(this._self, this._then);
-
-  final _CustomTheme _self;
-  final $Res Function(_CustomTheme) _then;
-
-/// Create a copy of CustomTheme
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? backgroundColor = null,Object? textColor = null,}) {
-  return _then(_CustomTheme(
-backgroundColor: null == backgroundColor ? _self.backgroundColor : backgroundColor // ignore: cast_nullable_to_non_nullable
-as String,textColor: null == textColor ? _self.textColor : textColor // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-
 }
 
 
@@ -2461,7 +2153,7 @@ as double,
 /// @nodoc
 mixin _$AccessibilitySettings {
 
- bool get dyslexicFont; bool get highContrast; bool get fontSmoothing; bool get immersiveMode; TextToSpeech get textToSpeech; String get customCSS;
+ bool get dyslexicFont; bool get highContrast; bool get fontSmoothing; TextToSpeech get textToSpeech; String get customCSS;
 /// Create a copy of AccessibilitySettings
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2474,16 +2166,16 @@ $AccessibilitySettingsCopyWith<AccessibilitySettings> get copyWith => _$Accessib
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AccessibilitySettings&&(identical(other.dyslexicFont, dyslexicFont) || other.dyslexicFont == dyslexicFont)&&(identical(other.highContrast, highContrast) || other.highContrast == highContrast)&&(identical(other.fontSmoothing, fontSmoothing) || other.fontSmoothing == fontSmoothing)&&(identical(other.immersiveMode, immersiveMode) || other.immersiveMode == immersiveMode)&&(identical(other.textToSpeech, textToSpeech) || other.textToSpeech == textToSpeech)&&(identical(other.customCSS, customCSS) || other.customCSS == customCSS));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AccessibilitySettings&&(identical(other.dyslexicFont, dyslexicFont) || other.dyslexicFont == dyslexicFont)&&(identical(other.highContrast, highContrast) || other.highContrast == highContrast)&&(identical(other.fontSmoothing, fontSmoothing) || other.fontSmoothing == fontSmoothing)&&(identical(other.textToSpeech, textToSpeech) || other.textToSpeech == textToSpeech)&&(identical(other.customCSS, customCSS) || other.customCSS == customCSS));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,dyslexicFont,highContrast,fontSmoothing,immersiveMode,textToSpeech,customCSS);
+int get hashCode => Object.hash(runtimeType,dyslexicFont,highContrast,fontSmoothing,textToSpeech,customCSS);
 
 @override
 String toString() {
-  return 'AccessibilitySettings(dyslexicFont: $dyslexicFont, highContrast: $highContrast, fontSmoothing: $fontSmoothing, immersiveMode: $immersiveMode, textToSpeech: $textToSpeech, customCSS: $customCSS)';
+  return 'AccessibilitySettings(dyslexicFont: $dyslexicFont, highContrast: $highContrast, fontSmoothing: $fontSmoothing, textToSpeech: $textToSpeech, customCSS: $customCSS)';
 }
 
 
@@ -2494,7 +2186,7 @@ abstract mixin class $AccessibilitySettingsCopyWith<$Res>  {
   factory $AccessibilitySettingsCopyWith(AccessibilitySettings value, $Res Function(AccessibilitySettings) _then) = _$AccessibilitySettingsCopyWithImpl;
 @useResult
 $Res call({
- bool dyslexicFont, bool highContrast, bool fontSmoothing, bool immersiveMode, TextToSpeech textToSpeech, String customCSS
+ bool dyslexicFont, bool highContrast, bool fontSmoothing, TextToSpeech textToSpeech, String customCSS
 });
 
 
@@ -2511,12 +2203,11 @@ class _$AccessibilitySettingsCopyWithImpl<$Res>
 
 /// Create a copy of AccessibilitySettings
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? dyslexicFont = null,Object? highContrast = null,Object? fontSmoothing = null,Object? immersiveMode = null,Object? textToSpeech = null,Object? customCSS = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? dyslexicFont = null,Object? highContrast = null,Object? fontSmoothing = null,Object? textToSpeech = null,Object? customCSS = null,}) {
   return _then(_self.copyWith(
 dyslexicFont: null == dyslexicFont ? _self.dyslexicFont : dyslexicFont // ignore: cast_nullable_to_non_nullable
 as bool,highContrast: null == highContrast ? _self.highContrast : highContrast // ignore: cast_nullable_to_non_nullable
 as bool,fontSmoothing: null == fontSmoothing ? _self.fontSmoothing : fontSmoothing // ignore: cast_nullable_to_non_nullable
-as bool,immersiveMode: null == immersiveMode ? _self.immersiveMode : immersiveMode // ignore: cast_nullable_to_non_nullable
 as bool,textToSpeech: null == textToSpeech ? _self.textToSpeech : textToSpeech // ignore: cast_nullable_to_non_nullable
 as TextToSpeech,customCSS: null == customCSS ? _self.customCSS : customCSS // ignore: cast_nullable_to_non_nullable
 as String,
@@ -2613,10 +2304,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool dyslexicFont,  bool highContrast,  bool fontSmoothing,  bool immersiveMode,  TextToSpeech textToSpeech,  String customCSS)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool dyslexicFont,  bool highContrast,  bool fontSmoothing,  TextToSpeech textToSpeech,  String customCSS)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AccessibilitySettings() when $default != null:
-return $default(_that.dyslexicFont,_that.highContrast,_that.fontSmoothing,_that.immersiveMode,_that.textToSpeech,_that.customCSS);case _:
+return $default(_that.dyslexicFont,_that.highContrast,_that.fontSmoothing,_that.textToSpeech,_that.customCSS);case _:
   return orElse();
 
 }
@@ -2634,10 +2325,10 @@ return $default(_that.dyslexicFont,_that.highContrast,_that.fontSmoothing,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool dyslexicFont,  bool highContrast,  bool fontSmoothing,  bool immersiveMode,  TextToSpeech textToSpeech,  String customCSS)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool dyslexicFont,  bool highContrast,  bool fontSmoothing,  TextToSpeech textToSpeech,  String customCSS)  $default,) {final _that = this;
 switch (_that) {
 case _AccessibilitySettings():
-return $default(_that.dyslexicFont,_that.highContrast,_that.fontSmoothing,_that.immersiveMode,_that.textToSpeech,_that.customCSS);case _:
+return $default(_that.dyslexicFont,_that.highContrast,_that.fontSmoothing,_that.textToSpeech,_that.customCSS);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -2654,10 +2345,10 @@ return $default(_that.dyslexicFont,_that.highContrast,_that.fontSmoothing,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool dyslexicFont,  bool highContrast,  bool fontSmoothing,  bool immersiveMode,  TextToSpeech textToSpeech,  String customCSS)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool dyslexicFont,  bool highContrast,  bool fontSmoothing,  TextToSpeech textToSpeech,  String customCSS)?  $default,) {final _that = this;
 switch (_that) {
 case _AccessibilitySettings() when $default != null:
-return $default(_that.dyslexicFont,_that.highContrast,_that.fontSmoothing,_that.immersiveMode,_that.textToSpeech,_that.customCSS);case _:
+return $default(_that.dyslexicFont,_that.highContrast,_that.fontSmoothing,_that.textToSpeech,_that.customCSS);case _:
   return null;
 
 }
@@ -2669,13 +2360,12 @@ return $default(_that.dyslexicFont,_that.highContrast,_that.fontSmoothing,_that.
 @JsonSerializable()
 
 class _AccessibilitySettings implements AccessibilitySettings {
-  const _AccessibilitySettings({this.dyslexicFont = false, this.highContrast = false, this.fontSmoothing = true, this.immersiveMode = false, this.textToSpeech = const TextToSpeech(), this.customCSS = ''});
+  const _AccessibilitySettings({this.dyslexicFont = false, this.highContrast = false, this.fontSmoothing = true, this.textToSpeech = const TextToSpeech(), this.customCSS = ''});
   factory _AccessibilitySettings.fromJson(Map<String, dynamic> json) => _$AccessibilitySettingsFromJson(json);
 
 @override@JsonKey() final  bool dyslexicFont;
 @override@JsonKey() final  bool highContrast;
 @override@JsonKey() final  bool fontSmoothing;
-@override@JsonKey() final  bool immersiveMode;
 @override@JsonKey() final  TextToSpeech textToSpeech;
 @override@JsonKey() final  String customCSS;
 
@@ -2692,16 +2382,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AccessibilitySettings&&(identical(other.dyslexicFont, dyslexicFont) || other.dyslexicFont == dyslexicFont)&&(identical(other.highContrast, highContrast) || other.highContrast == highContrast)&&(identical(other.fontSmoothing, fontSmoothing) || other.fontSmoothing == fontSmoothing)&&(identical(other.immersiveMode, immersiveMode) || other.immersiveMode == immersiveMode)&&(identical(other.textToSpeech, textToSpeech) || other.textToSpeech == textToSpeech)&&(identical(other.customCSS, customCSS) || other.customCSS == customCSS));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AccessibilitySettings&&(identical(other.dyslexicFont, dyslexicFont) || other.dyslexicFont == dyslexicFont)&&(identical(other.highContrast, highContrast) || other.highContrast == highContrast)&&(identical(other.fontSmoothing, fontSmoothing) || other.fontSmoothing == fontSmoothing)&&(identical(other.textToSpeech, textToSpeech) || other.textToSpeech == textToSpeech)&&(identical(other.customCSS, customCSS) || other.customCSS == customCSS));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,dyslexicFont,highContrast,fontSmoothing,immersiveMode,textToSpeech,customCSS);
+int get hashCode => Object.hash(runtimeType,dyslexicFont,highContrast,fontSmoothing,textToSpeech,customCSS);
 
 @override
 String toString() {
-  return 'AccessibilitySettings(dyslexicFont: $dyslexicFont, highContrast: $highContrast, fontSmoothing: $fontSmoothing, immersiveMode: $immersiveMode, textToSpeech: $textToSpeech, customCSS: $customCSS)';
+  return 'AccessibilitySettings(dyslexicFont: $dyslexicFont, highContrast: $highContrast, fontSmoothing: $fontSmoothing, textToSpeech: $textToSpeech, customCSS: $customCSS)';
 }
 
 
@@ -2712,7 +2402,7 @@ abstract mixin class _$AccessibilitySettingsCopyWith<$Res> implements $Accessibi
   factory _$AccessibilitySettingsCopyWith(_AccessibilitySettings value, $Res Function(_AccessibilitySettings) _then) = __$AccessibilitySettingsCopyWithImpl;
 @override @useResult
 $Res call({
- bool dyslexicFont, bool highContrast, bool fontSmoothing, bool immersiveMode, TextToSpeech textToSpeech, String customCSS
+ bool dyslexicFont, bool highContrast, bool fontSmoothing, TextToSpeech textToSpeech, String customCSS
 });
 
 
@@ -2729,12 +2419,11 @@ class __$AccessibilitySettingsCopyWithImpl<$Res>
 
 /// Create a copy of AccessibilitySettings
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? dyslexicFont = null,Object? highContrast = null,Object? fontSmoothing = null,Object? immersiveMode = null,Object? textToSpeech = null,Object? customCSS = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? dyslexicFont = null,Object? highContrast = null,Object? fontSmoothing = null,Object? textToSpeech = null,Object? customCSS = null,}) {
   return _then(_AccessibilitySettings(
 dyslexicFont: null == dyslexicFont ? _self.dyslexicFont : dyslexicFont // ignore: cast_nullable_to_non_nullable
 as bool,highContrast: null == highContrast ? _self.highContrast : highContrast // ignore: cast_nullable_to_non_nullable
 as bool,fontSmoothing: null == fontSmoothing ? _self.fontSmoothing : fontSmoothing // ignore: cast_nullable_to_non_nullable
-as bool,immersiveMode: null == immersiveMode ? _self.immersiveMode : immersiveMode // ignore: cast_nullable_to_non_nullable
 as bool,textToSpeech: null == textToSpeech ? _self.textToSpeech : textToSpeech // ignore: cast_nullable_to_non_nullable
 as TextToSpeech,customCSS: null == customCSS ? _self.customCSS : customCSS // ignore: cast_nullable_to_non_nullable
 as String,
@@ -4424,275 +4113,6 @@ language: null == language ? _self.language : language // ignore: cast_nullable_
 as Language,region: null == region ? _self.region : region // ignore: cast_nullable_to_non_nullable
 as Region,dateFormat: null == dateFormat ? _self.dateFormat : dateFormat // ignore: cast_nullable_to_non_nullable
 as DateFormat,
-  ));
-}
-
-
-}
-
-
-/// @nodoc
-mixin _$DeveloperSettings {
-
- bool get debugLogging; bool get enableDevTools; String get customJS;
-/// Create a copy of DeveloperSettings
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$DeveloperSettingsCopyWith<DeveloperSettings> get copyWith => _$DeveloperSettingsCopyWithImpl<DeveloperSettings>(this as DeveloperSettings, _$identity);
-
-  /// Serializes this DeveloperSettings to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DeveloperSettings&&(identical(other.debugLogging, debugLogging) || other.debugLogging == debugLogging)&&(identical(other.enableDevTools, enableDevTools) || other.enableDevTools == enableDevTools)&&(identical(other.customJS, customJS) || other.customJS == customJS));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,debugLogging,enableDevTools,customJS);
-
-@override
-String toString() {
-  return 'DeveloperSettings(debugLogging: $debugLogging, enableDevTools: $enableDevTools, customJS: $customJS)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $DeveloperSettingsCopyWith<$Res>  {
-  factory $DeveloperSettingsCopyWith(DeveloperSettings value, $Res Function(DeveloperSettings) _then) = _$DeveloperSettingsCopyWithImpl;
-@useResult
-$Res call({
- bool debugLogging, bool enableDevTools, String customJS
-});
-
-
-
-
-}
-/// @nodoc
-class _$DeveloperSettingsCopyWithImpl<$Res>
-    implements $DeveloperSettingsCopyWith<$Res> {
-  _$DeveloperSettingsCopyWithImpl(this._self, this._then);
-
-  final DeveloperSettings _self;
-  final $Res Function(DeveloperSettings) _then;
-
-/// Create a copy of DeveloperSettings
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? debugLogging = null,Object? enableDevTools = null,Object? customJS = null,}) {
-  return _then(_self.copyWith(
-debugLogging: null == debugLogging ? _self.debugLogging : debugLogging // ignore: cast_nullable_to_non_nullable
-as bool,enableDevTools: null == enableDevTools ? _self.enableDevTools : enableDevTools // ignore: cast_nullable_to_non_nullable
-as bool,customJS: null == customJS ? _self.customJS : customJS // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [DeveloperSettings].
-extension DeveloperSettingsPatterns on DeveloperSettings {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _DeveloperSettings value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _DeveloperSettings() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _DeveloperSettings value)  $default,){
-final _that = this;
-switch (_that) {
-case _DeveloperSettings():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _DeveloperSettings value)?  $default,){
-final _that = this;
-switch (_that) {
-case _DeveloperSettings() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool debugLogging,  bool enableDevTools,  String customJS)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _DeveloperSettings() when $default != null:
-return $default(_that.debugLogging,_that.enableDevTools,_that.customJS);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool debugLogging,  bool enableDevTools,  String customJS)  $default,) {final _that = this;
-switch (_that) {
-case _DeveloperSettings():
-return $default(_that.debugLogging,_that.enableDevTools,_that.customJS);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool debugLogging,  bool enableDevTools,  String customJS)?  $default,) {final _that = this;
-switch (_that) {
-case _DeveloperSettings() when $default != null:
-return $default(_that.debugLogging,_that.enableDevTools,_that.customJS);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _DeveloperSettings implements DeveloperSettings {
-  const _DeveloperSettings({this.debugLogging = false, this.enableDevTools = false, this.customJS = ''});
-  factory _DeveloperSettings.fromJson(Map<String, dynamic> json) => _$DeveloperSettingsFromJson(json);
-
-@override@JsonKey() final  bool debugLogging;
-@override@JsonKey() final  bool enableDevTools;
-@override@JsonKey() final  String customJS;
-
-/// Create a copy of DeveloperSettings
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$DeveloperSettingsCopyWith<_DeveloperSettings> get copyWith => __$DeveloperSettingsCopyWithImpl<_DeveloperSettings>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$DeveloperSettingsToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DeveloperSettings&&(identical(other.debugLogging, debugLogging) || other.debugLogging == debugLogging)&&(identical(other.enableDevTools, enableDevTools) || other.enableDevTools == enableDevTools)&&(identical(other.customJS, customJS) || other.customJS == customJS));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,debugLogging,enableDevTools,customJS);
-
-@override
-String toString() {
-  return 'DeveloperSettings(debugLogging: $debugLogging, enableDevTools: $enableDevTools, customJS: $customJS)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$DeveloperSettingsCopyWith<$Res> implements $DeveloperSettingsCopyWith<$Res> {
-  factory _$DeveloperSettingsCopyWith(_DeveloperSettings value, $Res Function(_DeveloperSettings) _then) = __$DeveloperSettingsCopyWithImpl;
-@override @useResult
-$Res call({
- bool debugLogging, bool enableDevTools, String customJS
-});
-
-
-
-
-}
-/// @nodoc
-class __$DeveloperSettingsCopyWithImpl<$Res>
-    implements _$DeveloperSettingsCopyWith<$Res> {
-  __$DeveloperSettingsCopyWithImpl(this._self, this._then);
-
-  final _DeveloperSettings _self;
-  final $Res Function(_DeveloperSettings) _then;
-
-/// Create a copy of DeveloperSettings
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? debugLogging = null,Object? enableDevTools = null,Object? customJS = null,}) {
-  return _then(_DeveloperSettings(
-debugLogging: null == debugLogging ? _self.debugLogging : debugLogging // ignore: cast_nullable_to_non_nullable
-as bool,enableDevTools: null == enableDevTools ? _self.enableDevTools : enableDevTools // ignore: cast_nullable_to_non_nullable
-as bool,customJS: null == customJS ? _self.customJS : customJS // ignore: cast_nullable_to_non_nullable
-as String,
   ));
 }
 

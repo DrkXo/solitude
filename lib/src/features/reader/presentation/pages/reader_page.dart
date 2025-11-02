@@ -37,10 +37,6 @@ class _ReaderPageState extends State<ReaderPage> {
       case ThemeOption.dark:
         baseColor = Colors.white;
         break;
-      case ThemeOption.custom:
-        // For now, use black text color as fallback
-        baseColor = Colors.black;
-        break;
       case ThemeOption.device:
         // Use black as default for device
         baseColor = Colors.black;
@@ -116,13 +112,7 @@ class _ReaderPageState extends State<ReaderPage> {
                     }
 
                     return Scaffold(
-                      appBar:
-                          _showAppBar &&
-                              !settingsState
-                                  .appSettings
-                                  .accessibility
-                                  .immersiveMode
-                          ? AppBar(
+                      appBar: _showAppBar ? AppBar(
                               title: Text(controller.currentChapter.title),
                               actions: [
                                 IconButton(

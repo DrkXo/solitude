@@ -45,7 +45,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         navigationMethodChanged: (e) => _updateSetting(() => _appSettingsService.setNavigationMethod(e.method), emit),
         dyslexicFontChanged: (e) => _updateSetting(() => _appSettingsService.setDyslexicFont(e.enabled), emit),
         highContrastChanged: (e) => _updateSetting(() => _appSettingsService.setHighContrast(e.enabled), emit),
-        immersiveModeChanged: (e) => _updateSetting(() => _appSettingsService.setImmersiveMode(e.enabled), emit),
+
         textToSpeechChanged: (e) => _updateSetting(() => _appSettingsService.setTextToSpeech(e.tts), emit),
         sortByChanged: (e) => _updateSetting(() => _appSettingsService.setSortBy(e.sortBy), emit),
         viewStyleChanged: (e) => _updateSetting(() => _appSettingsService.setViewStyle(e.viewStyle), emit),
@@ -64,9 +64,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         languageChanged: (e) => _updateSetting(() => _appSettingsService.setLanguage(e.language), emit),
         regionChanged: (e) => _updateSetting(() => _appSettingsService.setRegion(e.region), emit),
         dateFormatChanged: (e) => _updateSetting(() => _appSettingsService.setDateFormat(e.format), emit),
-        debugLoggingChanged: (e) => _updateSetting(() => _appSettingsService.setDebugLogging(e.enabled), emit),
-        enableDevToolsChanged: (e) => _updateSetting(() => _appSettingsService.setEnableDevTools(e.enabled), emit),
-        customJSChanged: (e) => _updateSetting(() => _appSettingsService.setCustomJS(e.js), emit),
+
         resetToDefaults: (e) => _onResetToDefaults(e, emit),
         exportSettings: (e) => _onExportSettings(e, emit),
         importSettings: (e) => _onImportSettings(e, emit),

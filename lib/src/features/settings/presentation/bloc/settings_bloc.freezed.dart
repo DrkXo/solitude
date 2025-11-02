@@ -55,7 +55,7 @@ extension SettingsEventPatterns on SettingsEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _FontSizeChanged value)?  fontSizeChanged,TResult Function( _FontFamilyChanged value)?  fontFamilyChanged,TResult Function( _FontWeightChanged value)?  fontWeightChanged,TResult Function( _LineHeightChanged value)?  lineHeightChanged,TResult Function( _LetterSpacingChanged value)?  letterSpacingChanged,TResult Function( _ParagraphSpacingChanged value)?  paragraphSpacingChanged,TResult Function( _TextAlignChanged value)?  textAlignChanged,TResult Function( _ThemeChanged value)?  themeChanged,TResult Function( _HeaderFontSizeMultiplierChanged value)?  headerFontSizeMultiplierChanged,TResult Function( _HeaderMarginTopChanged value)?  headerMarginTopChanged,TResult Function( _HeaderMarginBottomChanged value)?  headerMarginBottomChanged,TResult Function( _FooterMarginTopChanged value)?  footerMarginTopChanged,TResult Function( _FooterMarginBottomChanged value)?  footerMarginBottomChanged,TResult Function( _ReadingDirectionChanged value)?  readingDirectionChanged,TResult Function( _RememberLastPositionChanged value)?  rememberLastPositionChanged,TResult Function( _NavigationMethodChanged value)?  navigationMethodChanged,TResult Function( _DyslexicFontChanged value)?  dyslexicFontChanged,TResult Function( _HighContrastChanged value)?  highContrastChanged,TResult Function( _ImmersiveModeChanged value)?  immersiveModeChanged,TResult Function( _TextToSpeechChanged value)?  textToSpeechChanged,TResult Function( _SortByChanged value)?  sortByChanged,TResult Function( _ViewStyleChanged value)?  viewStyleChanged,TResult Function( _ShowCoversChanged value)?  showCoversChanged,TResult Function( _MetadataSourcesChanged value)?  metadataSourcesChanged,TResult Function( _ScanPathsChanged value)?  scanPathsChanged,TResult Function( _FormatsChanged value)?  formatsChanged,TResult Function( _HighlightColorsChanged value)?  highlightColorsChanged,TResult Function( _AnnotationsSyncChanged value)?  annotationsSyncChanged,TResult Function( _AutoSaveAnnotationsChanged value)?  autoSaveAnnotationsChanged,TResult Function( _ExportFormatChanged value)?  exportFormatChanged,TResult Function( _ShowSidebarChanged value)?  showSidebarChanged,TResult Function( _ToolbarPositionChanged value)?  toolbarPositionChanged,TResult Function( _EnableAnimationsChanged value)?  enableAnimationsChanged,TResult Function( _SoundFeedbackChanged value)?  soundFeedbackChanged,TResult Function( _LanguageChanged value)?  languageChanged,TResult Function( _RegionChanged value)?  regionChanged,TResult Function( _DateFormatChanged value)?  dateFormatChanged,TResult Function( _DebugLoggingChanged value)?  debugLoggingChanged,TResult Function( _EnableDevToolsChanged value)?  enableDevToolsChanged,TResult Function( _CustomJSChanged value)?  customJSChanged,TResult Function( _ResetToDefaults value)?  resetToDefaults,TResult Function( _ExportSettings value)?  exportSettings,TResult Function( _ImportSettings value)?  importSettings,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _FontSizeChanged value)?  fontSizeChanged,TResult Function( _FontFamilyChanged value)?  fontFamilyChanged,TResult Function( _FontWeightChanged value)?  fontWeightChanged,TResult Function( _LineHeightChanged value)?  lineHeightChanged,TResult Function( _LetterSpacingChanged value)?  letterSpacingChanged,TResult Function( _ParagraphSpacingChanged value)?  paragraphSpacingChanged,TResult Function( _TextAlignChanged value)?  textAlignChanged,TResult Function( _ThemeChanged value)?  themeChanged,TResult Function( _HeaderFontSizeMultiplierChanged value)?  headerFontSizeMultiplierChanged,TResult Function( _HeaderMarginTopChanged value)?  headerMarginTopChanged,TResult Function( _HeaderMarginBottomChanged value)?  headerMarginBottomChanged,TResult Function( _FooterMarginTopChanged value)?  footerMarginTopChanged,TResult Function( _FooterMarginBottomChanged value)?  footerMarginBottomChanged,TResult Function( _ReadingDirectionChanged value)?  readingDirectionChanged,TResult Function( _RememberLastPositionChanged value)?  rememberLastPositionChanged,TResult Function( _NavigationMethodChanged value)?  navigationMethodChanged,TResult Function( _DyslexicFontChanged value)?  dyslexicFontChanged,TResult Function( _HighContrastChanged value)?  highContrastChanged,TResult Function( _TextToSpeechChanged value)?  textToSpeechChanged,TResult Function( _SortByChanged value)?  sortByChanged,TResult Function( _ViewStyleChanged value)?  viewStyleChanged,TResult Function( _ShowCoversChanged value)?  showCoversChanged,TResult Function( _MetadataSourcesChanged value)?  metadataSourcesChanged,TResult Function( _ScanPathsChanged value)?  scanPathsChanged,TResult Function( _FormatsChanged value)?  formatsChanged,TResult Function( _HighlightColorsChanged value)?  highlightColorsChanged,TResult Function( _AnnotationsSyncChanged value)?  annotationsSyncChanged,TResult Function( _AutoSaveAnnotationsChanged value)?  autoSaveAnnotationsChanged,TResult Function( _ExportFormatChanged value)?  exportFormatChanged,TResult Function( _ShowSidebarChanged value)?  showSidebarChanged,TResult Function( _ToolbarPositionChanged value)?  toolbarPositionChanged,TResult Function( _EnableAnimationsChanged value)?  enableAnimationsChanged,TResult Function( _SoundFeedbackChanged value)?  soundFeedbackChanged,TResult Function( _LanguageChanged value)?  languageChanged,TResult Function( _RegionChanged value)?  regionChanged,TResult Function( _DateFormatChanged value)?  dateFormatChanged,TResult Function( _ResetToDefaults value)?  resetToDefaults,TResult Function( _ExportSettings value)?  exportSettings,TResult Function( _ImportSettings value)?  importSettings,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _FontSizeChanged() when fontSizeChanged != null:
@@ -76,8 +76,7 @@ return readingDirectionChanged(_that);case _RememberLastPositionChanged() when r
 return rememberLastPositionChanged(_that);case _NavigationMethodChanged() when navigationMethodChanged != null:
 return navigationMethodChanged(_that);case _DyslexicFontChanged() when dyslexicFontChanged != null:
 return dyslexicFontChanged(_that);case _HighContrastChanged() when highContrastChanged != null:
-return highContrastChanged(_that);case _ImmersiveModeChanged() when immersiveModeChanged != null:
-return immersiveModeChanged(_that);case _TextToSpeechChanged() when textToSpeechChanged != null:
+return highContrastChanged(_that);case _TextToSpeechChanged() when textToSpeechChanged != null:
 return textToSpeechChanged(_that);case _SortByChanged() when sortByChanged != null:
 return sortByChanged(_that);case _ViewStyleChanged() when viewStyleChanged != null:
 return viewStyleChanged(_that);case _ShowCoversChanged() when showCoversChanged != null:
@@ -95,10 +94,7 @@ return enableAnimationsChanged(_that);case _SoundFeedbackChanged() when soundFee
 return soundFeedbackChanged(_that);case _LanguageChanged() when languageChanged != null:
 return languageChanged(_that);case _RegionChanged() when regionChanged != null:
 return regionChanged(_that);case _DateFormatChanged() when dateFormatChanged != null:
-return dateFormatChanged(_that);case _DebugLoggingChanged() when debugLoggingChanged != null:
-return debugLoggingChanged(_that);case _EnableDevToolsChanged() when enableDevToolsChanged != null:
-return enableDevToolsChanged(_that);case _CustomJSChanged() when customJSChanged != null:
-return customJSChanged(_that);case _ResetToDefaults() when resetToDefaults != null:
+return dateFormatChanged(_that);case _ResetToDefaults() when resetToDefaults != null:
 return resetToDefaults(_that);case _ExportSettings() when exportSettings != null:
 return exportSettings(_that);case _ImportSettings() when importSettings != null:
 return importSettings(_that);case _:
@@ -119,7 +115,7 @@ return importSettings(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _FontSizeChanged value)  fontSizeChanged,required TResult Function( _FontFamilyChanged value)  fontFamilyChanged,required TResult Function( _FontWeightChanged value)  fontWeightChanged,required TResult Function( _LineHeightChanged value)  lineHeightChanged,required TResult Function( _LetterSpacingChanged value)  letterSpacingChanged,required TResult Function( _ParagraphSpacingChanged value)  paragraphSpacingChanged,required TResult Function( _TextAlignChanged value)  textAlignChanged,required TResult Function( _ThemeChanged value)  themeChanged,required TResult Function( _HeaderFontSizeMultiplierChanged value)  headerFontSizeMultiplierChanged,required TResult Function( _HeaderMarginTopChanged value)  headerMarginTopChanged,required TResult Function( _HeaderMarginBottomChanged value)  headerMarginBottomChanged,required TResult Function( _FooterMarginTopChanged value)  footerMarginTopChanged,required TResult Function( _FooterMarginBottomChanged value)  footerMarginBottomChanged,required TResult Function( _ReadingDirectionChanged value)  readingDirectionChanged,required TResult Function( _RememberLastPositionChanged value)  rememberLastPositionChanged,required TResult Function( _NavigationMethodChanged value)  navigationMethodChanged,required TResult Function( _DyslexicFontChanged value)  dyslexicFontChanged,required TResult Function( _HighContrastChanged value)  highContrastChanged,required TResult Function( _ImmersiveModeChanged value)  immersiveModeChanged,required TResult Function( _TextToSpeechChanged value)  textToSpeechChanged,required TResult Function( _SortByChanged value)  sortByChanged,required TResult Function( _ViewStyleChanged value)  viewStyleChanged,required TResult Function( _ShowCoversChanged value)  showCoversChanged,required TResult Function( _MetadataSourcesChanged value)  metadataSourcesChanged,required TResult Function( _ScanPathsChanged value)  scanPathsChanged,required TResult Function( _FormatsChanged value)  formatsChanged,required TResult Function( _HighlightColorsChanged value)  highlightColorsChanged,required TResult Function( _AnnotationsSyncChanged value)  annotationsSyncChanged,required TResult Function( _AutoSaveAnnotationsChanged value)  autoSaveAnnotationsChanged,required TResult Function( _ExportFormatChanged value)  exportFormatChanged,required TResult Function( _ShowSidebarChanged value)  showSidebarChanged,required TResult Function( _ToolbarPositionChanged value)  toolbarPositionChanged,required TResult Function( _EnableAnimationsChanged value)  enableAnimationsChanged,required TResult Function( _SoundFeedbackChanged value)  soundFeedbackChanged,required TResult Function( _LanguageChanged value)  languageChanged,required TResult Function( _RegionChanged value)  regionChanged,required TResult Function( _DateFormatChanged value)  dateFormatChanged,required TResult Function( _DebugLoggingChanged value)  debugLoggingChanged,required TResult Function( _EnableDevToolsChanged value)  enableDevToolsChanged,required TResult Function( _CustomJSChanged value)  customJSChanged,required TResult Function( _ResetToDefaults value)  resetToDefaults,required TResult Function( _ExportSettings value)  exportSettings,required TResult Function( _ImportSettings value)  importSettings,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _FontSizeChanged value)  fontSizeChanged,required TResult Function( _FontFamilyChanged value)  fontFamilyChanged,required TResult Function( _FontWeightChanged value)  fontWeightChanged,required TResult Function( _LineHeightChanged value)  lineHeightChanged,required TResult Function( _LetterSpacingChanged value)  letterSpacingChanged,required TResult Function( _ParagraphSpacingChanged value)  paragraphSpacingChanged,required TResult Function( _TextAlignChanged value)  textAlignChanged,required TResult Function( _ThemeChanged value)  themeChanged,required TResult Function( _HeaderFontSizeMultiplierChanged value)  headerFontSizeMultiplierChanged,required TResult Function( _HeaderMarginTopChanged value)  headerMarginTopChanged,required TResult Function( _HeaderMarginBottomChanged value)  headerMarginBottomChanged,required TResult Function( _FooterMarginTopChanged value)  footerMarginTopChanged,required TResult Function( _FooterMarginBottomChanged value)  footerMarginBottomChanged,required TResult Function( _ReadingDirectionChanged value)  readingDirectionChanged,required TResult Function( _RememberLastPositionChanged value)  rememberLastPositionChanged,required TResult Function( _NavigationMethodChanged value)  navigationMethodChanged,required TResult Function( _DyslexicFontChanged value)  dyslexicFontChanged,required TResult Function( _HighContrastChanged value)  highContrastChanged,required TResult Function( _TextToSpeechChanged value)  textToSpeechChanged,required TResult Function( _SortByChanged value)  sortByChanged,required TResult Function( _ViewStyleChanged value)  viewStyleChanged,required TResult Function( _ShowCoversChanged value)  showCoversChanged,required TResult Function( _MetadataSourcesChanged value)  metadataSourcesChanged,required TResult Function( _ScanPathsChanged value)  scanPathsChanged,required TResult Function( _FormatsChanged value)  formatsChanged,required TResult Function( _HighlightColorsChanged value)  highlightColorsChanged,required TResult Function( _AnnotationsSyncChanged value)  annotationsSyncChanged,required TResult Function( _AutoSaveAnnotationsChanged value)  autoSaveAnnotationsChanged,required TResult Function( _ExportFormatChanged value)  exportFormatChanged,required TResult Function( _ShowSidebarChanged value)  showSidebarChanged,required TResult Function( _ToolbarPositionChanged value)  toolbarPositionChanged,required TResult Function( _EnableAnimationsChanged value)  enableAnimationsChanged,required TResult Function( _SoundFeedbackChanged value)  soundFeedbackChanged,required TResult Function( _LanguageChanged value)  languageChanged,required TResult Function( _RegionChanged value)  regionChanged,required TResult Function( _DateFormatChanged value)  dateFormatChanged,required TResult Function( _ResetToDefaults value)  resetToDefaults,required TResult Function( _ExportSettings value)  exportSettings,required TResult Function( _ImportSettings value)  importSettings,}){
 final _that = this;
 switch (_that) {
 case _FontSizeChanged():
@@ -140,8 +136,7 @@ return readingDirectionChanged(_that);case _RememberLastPositionChanged():
 return rememberLastPositionChanged(_that);case _NavigationMethodChanged():
 return navigationMethodChanged(_that);case _DyslexicFontChanged():
 return dyslexicFontChanged(_that);case _HighContrastChanged():
-return highContrastChanged(_that);case _ImmersiveModeChanged():
-return immersiveModeChanged(_that);case _TextToSpeechChanged():
+return highContrastChanged(_that);case _TextToSpeechChanged():
 return textToSpeechChanged(_that);case _SortByChanged():
 return sortByChanged(_that);case _ViewStyleChanged():
 return viewStyleChanged(_that);case _ShowCoversChanged():
@@ -159,10 +154,7 @@ return enableAnimationsChanged(_that);case _SoundFeedbackChanged():
 return soundFeedbackChanged(_that);case _LanguageChanged():
 return languageChanged(_that);case _RegionChanged():
 return regionChanged(_that);case _DateFormatChanged():
-return dateFormatChanged(_that);case _DebugLoggingChanged():
-return debugLoggingChanged(_that);case _EnableDevToolsChanged():
-return enableDevToolsChanged(_that);case _CustomJSChanged():
-return customJSChanged(_that);case _ResetToDefaults():
+return dateFormatChanged(_that);case _ResetToDefaults():
 return resetToDefaults(_that);case _ExportSettings():
 return exportSettings(_that);case _ImportSettings():
 return importSettings(_that);case _:
@@ -182,7 +174,7 @@ return importSettings(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _FontSizeChanged value)?  fontSizeChanged,TResult? Function( _FontFamilyChanged value)?  fontFamilyChanged,TResult? Function( _FontWeightChanged value)?  fontWeightChanged,TResult? Function( _LineHeightChanged value)?  lineHeightChanged,TResult? Function( _LetterSpacingChanged value)?  letterSpacingChanged,TResult? Function( _ParagraphSpacingChanged value)?  paragraphSpacingChanged,TResult? Function( _TextAlignChanged value)?  textAlignChanged,TResult? Function( _ThemeChanged value)?  themeChanged,TResult? Function( _HeaderFontSizeMultiplierChanged value)?  headerFontSizeMultiplierChanged,TResult? Function( _HeaderMarginTopChanged value)?  headerMarginTopChanged,TResult? Function( _HeaderMarginBottomChanged value)?  headerMarginBottomChanged,TResult? Function( _FooterMarginTopChanged value)?  footerMarginTopChanged,TResult? Function( _FooterMarginBottomChanged value)?  footerMarginBottomChanged,TResult? Function( _ReadingDirectionChanged value)?  readingDirectionChanged,TResult? Function( _RememberLastPositionChanged value)?  rememberLastPositionChanged,TResult? Function( _NavigationMethodChanged value)?  navigationMethodChanged,TResult? Function( _DyslexicFontChanged value)?  dyslexicFontChanged,TResult? Function( _HighContrastChanged value)?  highContrastChanged,TResult? Function( _ImmersiveModeChanged value)?  immersiveModeChanged,TResult? Function( _TextToSpeechChanged value)?  textToSpeechChanged,TResult? Function( _SortByChanged value)?  sortByChanged,TResult? Function( _ViewStyleChanged value)?  viewStyleChanged,TResult? Function( _ShowCoversChanged value)?  showCoversChanged,TResult? Function( _MetadataSourcesChanged value)?  metadataSourcesChanged,TResult? Function( _ScanPathsChanged value)?  scanPathsChanged,TResult? Function( _FormatsChanged value)?  formatsChanged,TResult? Function( _HighlightColorsChanged value)?  highlightColorsChanged,TResult? Function( _AnnotationsSyncChanged value)?  annotationsSyncChanged,TResult? Function( _AutoSaveAnnotationsChanged value)?  autoSaveAnnotationsChanged,TResult? Function( _ExportFormatChanged value)?  exportFormatChanged,TResult? Function( _ShowSidebarChanged value)?  showSidebarChanged,TResult? Function( _ToolbarPositionChanged value)?  toolbarPositionChanged,TResult? Function( _EnableAnimationsChanged value)?  enableAnimationsChanged,TResult? Function( _SoundFeedbackChanged value)?  soundFeedbackChanged,TResult? Function( _LanguageChanged value)?  languageChanged,TResult? Function( _RegionChanged value)?  regionChanged,TResult? Function( _DateFormatChanged value)?  dateFormatChanged,TResult? Function( _DebugLoggingChanged value)?  debugLoggingChanged,TResult? Function( _EnableDevToolsChanged value)?  enableDevToolsChanged,TResult? Function( _CustomJSChanged value)?  customJSChanged,TResult? Function( _ResetToDefaults value)?  resetToDefaults,TResult? Function( _ExportSettings value)?  exportSettings,TResult? Function( _ImportSettings value)?  importSettings,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _FontSizeChanged value)?  fontSizeChanged,TResult? Function( _FontFamilyChanged value)?  fontFamilyChanged,TResult? Function( _FontWeightChanged value)?  fontWeightChanged,TResult? Function( _LineHeightChanged value)?  lineHeightChanged,TResult? Function( _LetterSpacingChanged value)?  letterSpacingChanged,TResult? Function( _ParagraphSpacingChanged value)?  paragraphSpacingChanged,TResult? Function( _TextAlignChanged value)?  textAlignChanged,TResult? Function( _ThemeChanged value)?  themeChanged,TResult? Function( _HeaderFontSizeMultiplierChanged value)?  headerFontSizeMultiplierChanged,TResult? Function( _HeaderMarginTopChanged value)?  headerMarginTopChanged,TResult? Function( _HeaderMarginBottomChanged value)?  headerMarginBottomChanged,TResult? Function( _FooterMarginTopChanged value)?  footerMarginTopChanged,TResult? Function( _FooterMarginBottomChanged value)?  footerMarginBottomChanged,TResult? Function( _ReadingDirectionChanged value)?  readingDirectionChanged,TResult? Function( _RememberLastPositionChanged value)?  rememberLastPositionChanged,TResult? Function( _NavigationMethodChanged value)?  navigationMethodChanged,TResult? Function( _DyslexicFontChanged value)?  dyslexicFontChanged,TResult? Function( _HighContrastChanged value)?  highContrastChanged,TResult? Function( _TextToSpeechChanged value)?  textToSpeechChanged,TResult? Function( _SortByChanged value)?  sortByChanged,TResult? Function( _ViewStyleChanged value)?  viewStyleChanged,TResult? Function( _ShowCoversChanged value)?  showCoversChanged,TResult? Function( _MetadataSourcesChanged value)?  metadataSourcesChanged,TResult? Function( _ScanPathsChanged value)?  scanPathsChanged,TResult? Function( _FormatsChanged value)?  formatsChanged,TResult? Function( _HighlightColorsChanged value)?  highlightColorsChanged,TResult? Function( _AnnotationsSyncChanged value)?  annotationsSyncChanged,TResult? Function( _AutoSaveAnnotationsChanged value)?  autoSaveAnnotationsChanged,TResult? Function( _ExportFormatChanged value)?  exportFormatChanged,TResult? Function( _ShowSidebarChanged value)?  showSidebarChanged,TResult? Function( _ToolbarPositionChanged value)?  toolbarPositionChanged,TResult? Function( _EnableAnimationsChanged value)?  enableAnimationsChanged,TResult? Function( _SoundFeedbackChanged value)?  soundFeedbackChanged,TResult? Function( _LanguageChanged value)?  languageChanged,TResult? Function( _RegionChanged value)?  regionChanged,TResult? Function( _DateFormatChanged value)?  dateFormatChanged,TResult? Function( _ResetToDefaults value)?  resetToDefaults,TResult? Function( _ExportSettings value)?  exportSettings,TResult? Function( _ImportSettings value)?  importSettings,}){
 final _that = this;
 switch (_that) {
 case _FontSizeChanged() when fontSizeChanged != null:
@@ -203,8 +195,7 @@ return readingDirectionChanged(_that);case _RememberLastPositionChanged() when r
 return rememberLastPositionChanged(_that);case _NavigationMethodChanged() when navigationMethodChanged != null:
 return navigationMethodChanged(_that);case _DyslexicFontChanged() when dyslexicFontChanged != null:
 return dyslexicFontChanged(_that);case _HighContrastChanged() when highContrastChanged != null:
-return highContrastChanged(_that);case _ImmersiveModeChanged() when immersiveModeChanged != null:
-return immersiveModeChanged(_that);case _TextToSpeechChanged() when textToSpeechChanged != null:
+return highContrastChanged(_that);case _TextToSpeechChanged() when textToSpeechChanged != null:
 return textToSpeechChanged(_that);case _SortByChanged() when sortByChanged != null:
 return sortByChanged(_that);case _ViewStyleChanged() when viewStyleChanged != null:
 return viewStyleChanged(_that);case _ShowCoversChanged() when showCoversChanged != null:
@@ -222,10 +213,7 @@ return enableAnimationsChanged(_that);case _SoundFeedbackChanged() when soundFee
 return soundFeedbackChanged(_that);case _LanguageChanged() when languageChanged != null:
 return languageChanged(_that);case _RegionChanged() when regionChanged != null:
 return regionChanged(_that);case _DateFormatChanged() when dateFormatChanged != null:
-return dateFormatChanged(_that);case _DebugLoggingChanged() when debugLoggingChanged != null:
-return debugLoggingChanged(_that);case _EnableDevToolsChanged() when enableDevToolsChanged != null:
-return enableDevToolsChanged(_that);case _CustomJSChanged() when customJSChanged != null:
-return customJSChanged(_that);case _ResetToDefaults() when resetToDefaults != null:
+return dateFormatChanged(_that);case _ResetToDefaults() when resetToDefaults != null:
 return resetToDefaults(_that);case _ExportSettings() when exportSettings != null:
 return exportSettings(_that);case _ImportSettings() when importSettings != null:
 return importSettings(_that);case _:
@@ -245,7 +233,7 @@ return importSettings(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( double fontSize)?  fontSizeChanged,TResult Function( FontFamily fontFamily)?  fontFamilyChanged,TResult Function( String fontWeight)?  fontWeightChanged,TResult Function( double lineHeight)?  lineHeightChanged,TResult Function( double letterSpacing)?  letterSpacingChanged,TResult Function( double paragraphSpacing)?  paragraphSpacingChanged,TResult Function( TextAlignOption textAlign)?  textAlignChanged,TResult Function( ThemeOption theme)?  themeChanged,TResult Function( double multiplier)?  headerFontSizeMultiplierChanged,TResult Function( double margin)?  headerMarginTopChanged,TResult Function( double margin)?  headerMarginBottomChanged,TResult Function( double margin)?  footerMarginTopChanged,TResult Function( double margin)?  footerMarginBottomChanged,TResult Function( ReadingDirection readingDirection)?  readingDirectionChanged,TResult Function( bool remember)?  rememberLastPositionChanged,TResult Function( NavigationMethod method)?  navigationMethodChanged,TResult Function( bool enabled)?  dyslexicFontChanged,TResult Function( bool enabled)?  highContrastChanged,TResult Function( bool enabled)?  immersiveModeChanged,TResult Function( TextToSpeech tts)?  textToSpeechChanged,TResult Function( SortBy sortBy)?  sortByChanged,TResult Function( ViewStyle viewStyle)?  viewStyleChanged,TResult Function( bool show)?  showCoversChanged,TResult Function( List<String> sources)?  metadataSourcesChanged,TResult Function( List<String> paths)?  scanPathsChanged,TResult Function( List<String> formats)?  formatsChanged,TResult Function( List<String> colors)?  highlightColorsChanged,TResult Function( bool sync)?  annotationsSyncChanged,TResult Function( bool autoSave)?  autoSaveAnnotationsChanged,TResult Function( AnnotationExportFormat format)?  exportFormatChanged,TResult Function( bool show)?  showSidebarChanged,TResult Function( ToolbarPosition position)?  toolbarPositionChanged,TResult Function( bool enabled)?  enableAnimationsChanged,TResult Function( bool enabled)?  soundFeedbackChanged,TResult Function( Language language)?  languageChanged,TResult Function( Region region)?  regionChanged,TResult Function( DateFormat format)?  dateFormatChanged,TResult Function( bool enabled)?  debugLoggingChanged,TResult Function( bool enabled)?  enableDevToolsChanged,TResult Function( String js)?  customJSChanged,TResult Function()?  resetToDefaults,TResult Function( ExportFormat format)?  exportSettings,TResult Function( String filePath)?  importSettings,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( double fontSize)?  fontSizeChanged,TResult Function( FontFamily fontFamily)?  fontFamilyChanged,TResult Function( String fontWeight)?  fontWeightChanged,TResult Function( double lineHeight)?  lineHeightChanged,TResult Function( double letterSpacing)?  letterSpacingChanged,TResult Function( double paragraphSpacing)?  paragraphSpacingChanged,TResult Function( TextAlignOption textAlign)?  textAlignChanged,TResult Function( ThemeOption theme)?  themeChanged,TResult Function( double multiplier)?  headerFontSizeMultiplierChanged,TResult Function( double margin)?  headerMarginTopChanged,TResult Function( double margin)?  headerMarginBottomChanged,TResult Function( double margin)?  footerMarginTopChanged,TResult Function( double margin)?  footerMarginBottomChanged,TResult Function( ReadingDirection readingDirection)?  readingDirectionChanged,TResult Function( bool remember)?  rememberLastPositionChanged,TResult Function( NavigationMethod method)?  navigationMethodChanged,TResult Function( bool enabled)?  dyslexicFontChanged,TResult Function( bool enabled)?  highContrastChanged,TResult Function( TextToSpeech tts)?  textToSpeechChanged,TResult Function( SortBy sortBy)?  sortByChanged,TResult Function( ViewStyle viewStyle)?  viewStyleChanged,TResult Function( bool show)?  showCoversChanged,TResult Function( List<String> sources)?  metadataSourcesChanged,TResult Function( List<String> paths)?  scanPathsChanged,TResult Function( List<String> formats)?  formatsChanged,TResult Function( List<String> colors)?  highlightColorsChanged,TResult Function( bool sync)?  annotationsSyncChanged,TResult Function( bool autoSave)?  autoSaveAnnotationsChanged,TResult Function( AnnotationExportFormat format)?  exportFormatChanged,TResult Function( bool show)?  showSidebarChanged,TResult Function( ToolbarPosition position)?  toolbarPositionChanged,TResult Function( bool enabled)?  enableAnimationsChanged,TResult Function( bool enabled)?  soundFeedbackChanged,TResult Function( Language language)?  languageChanged,TResult Function( Region region)?  regionChanged,TResult Function( DateFormat format)?  dateFormatChanged,TResult Function()?  resetToDefaults,TResult Function( ExportFormat format)?  exportSettings,TResult Function( String filePath)?  importSettings,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FontSizeChanged() when fontSizeChanged != null:
 return fontSizeChanged(_that.fontSize);case _FontFamilyChanged() when fontFamilyChanged != null:
@@ -265,8 +253,7 @@ return readingDirectionChanged(_that.readingDirection);case _RememberLastPositio
 return rememberLastPositionChanged(_that.remember);case _NavigationMethodChanged() when navigationMethodChanged != null:
 return navigationMethodChanged(_that.method);case _DyslexicFontChanged() when dyslexicFontChanged != null:
 return dyslexicFontChanged(_that.enabled);case _HighContrastChanged() when highContrastChanged != null:
-return highContrastChanged(_that.enabled);case _ImmersiveModeChanged() when immersiveModeChanged != null:
-return immersiveModeChanged(_that.enabled);case _TextToSpeechChanged() when textToSpeechChanged != null:
+return highContrastChanged(_that.enabled);case _TextToSpeechChanged() when textToSpeechChanged != null:
 return textToSpeechChanged(_that.tts);case _SortByChanged() when sortByChanged != null:
 return sortByChanged(_that.sortBy);case _ViewStyleChanged() when viewStyleChanged != null:
 return viewStyleChanged(_that.viewStyle);case _ShowCoversChanged() when showCoversChanged != null:
@@ -284,10 +271,7 @@ return enableAnimationsChanged(_that.enabled);case _SoundFeedbackChanged() when 
 return soundFeedbackChanged(_that.enabled);case _LanguageChanged() when languageChanged != null:
 return languageChanged(_that.language);case _RegionChanged() when regionChanged != null:
 return regionChanged(_that.region);case _DateFormatChanged() when dateFormatChanged != null:
-return dateFormatChanged(_that.format);case _DebugLoggingChanged() when debugLoggingChanged != null:
-return debugLoggingChanged(_that.enabled);case _EnableDevToolsChanged() when enableDevToolsChanged != null:
-return enableDevToolsChanged(_that.enabled);case _CustomJSChanged() when customJSChanged != null:
-return customJSChanged(_that.js);case _ResetToDefaults() when resetToDefaults != null:
+return dateFormatChanged(_that.format);case _ResetToDefaults() when resetToDefaults != null:
 return resetToDefaults();case _ExportSettings() when exportSettings != null:
 return exportSettings(_that.format);case _ImportSettings() when importSettings != null:
 return importSettings(_that.filePath);case _:
@@ -308,7 +292,7 @@ return importSettings(_that.filePath);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( double fontSize)  fontSizeChanged,required TResult Function( FontFamily fontFamily)  fontFamilyChanged,required TResult Function( String fontWeight)  fontWeightChanged,required TResult Function( double lineHeight)  lineHeightChanged,required TResult Function( double letterSpacing)  letterSpacingChanged,required TResult Function( double paragraphSpacing)  paragraphSpacingChanged,required TResult Function( TextAlignOption textAlign)  textAlignChanged,required TResult Function( ThemeOption theme)  themeChanged,required TResult Function( double multiplier)  headerFontSizeMultiplierChanged,required TResult Function( double margin)  headerMarginTopChanged,required TResult Function( double margin)  headerMarginBottomChanged,required TResult Function( double margin)  footerMarginTopChanged,required TResult Function( double margin)  footerMarginBottomChanged,required TResult Function( ReadingDirection readingDirection)  readingDirectionChanged,required TResult Function( bool remember)  rememberLastPositionChanged,required TResult Function( NavigationMethod method)  navigationMethodChanged,required TResult Function( bool enabled)  dyslexicFontChanged,required TResult Function( bool enabled)  highContrastChanged,required TResult Function( bool enabled)  immersiveModeChanged,required TResult Function( TextToSpeech tts)  textToSpeechChanged,required TResult Function( SortBy sortBy)  sortByChanged,required TResult Function( ViewStyle viewStyle)  viewStyleChanged,required TResult Function( bool show)  showCoversChanged,required TResult Function( List<String> sources)  metadataSourcesChanged,required TResult Function( List<String> paths)  scanPathsChanged,required TResult Function( List<String> formats)  formatsChanged,required TResult Function( List<String> colors)  highlightColorsChanged,required TResult Function( bool sync)  annotationsSyncChanged,required TResult Function( bool autoSave)  autoSaveAnnotationsChanged,required TResult Function( AnnotationExportFormat format)  exportFormatChanged,required TResult Function( bool show)  showSidebarChanged,required TResult Function( ToolbarPosition position)  toolbarPositionChanged,required TResult Function( bool enabled)  enableAnimationsChanged,required TResult Function( bool enabled)  soundFeedbackChanged,required TResult Function( Language language)  languageChanged,required TResult Function( Region region)  regionChanged,required TResult Function( DateFormat format)  dateFormatChanged,required TResult Function( bool enabled)  debugLoggingChanged,required TResult Function( bool enabled)  enableDevToolsChanged,required TResult Function( String js)  customJSChanged,required TResult Function()  resetToDefaults,required TResult Function( ExportFormat format)  exportSettings,required TResult Function( String filePath)  importSettings,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( double fontSize)  fontSizeChanged,required TResult Function( FontFamily fontFamily)  fontFamilyChanged,required TResult Function( String fontWeight)  fontWeightChanged,required TResult Function( double lineHeight)  lineHeightChanged,required TResult Function( double letterSpacing)  letterSpacingChanged,required TResult Function( double paragraphSpacing)  paragraphSpacingChanged,required TResult Function( TextAlignOption textAlign)  textAlignChanged,required TResult Function( ThemeOption theme)  themeChanged,required TResult Function( double multiplier)  headerFontSizeMultiplierChanged,required TResult Function( double margin)  headerMarginTopChanged,required TResult Function( double margin)  headerMarginBottomChanged,required TResult Function( double margin)  footerMarginTopChanged,required TResult Function( double margin)  footerMarginBottomChanged,required TResult Function( ReadingDirection readingDirection)  readingDirectionChanged,required TResult Function( bool remember)  rememberLastPositionChanged,required TResult Function( NavigationMethod method)  navigationMethodChanged,required TResult Function( bool enabled)  dyslexicFontChanged,required TResult Function( bool enabled)  highContrastChanged,required TResult Function( TextToSpeech tts)  textToSpeechChanged,required TResult Function( SortBy sortBy)  sortByChanged,required TResult Function( ViewStyle viewStyle)  viewStyleChanged,required TResult Function( bool show)  showCoversChanged,required TResult Function( List<String> sources)  metadataSourcesChanged,required TResult Function( List<String> paths)  scanPathsChanged,required TResult Function( List<String> formats)  formatsChanged,required TResult Function( List<String> colors)  highlightColorsChanged,required TResult Function( bool sync)  annotationsSyncChanged,required TResult Function( bool autoSave)  autoSaveAnnotationsChanged,required TResult Function( AnnotationExportFormat format)  exportFormatChanged,required TResult Function( bool show)  showSidebarChanged,required TResult Function( ToolbarPosition position)  toolbarPositionChanged,required TResult Function( bool enabled)  enableAnimationsChanged,required TResult Function( bool enabled)  soundFeedbackChanged,required TResult Function( Language language)  languageChanged,required TResult Function( Region region)  regionChanged,required TResult Function( DateFormat format)  dateFormatChanged,required TResult Function()  resetToDefaults,required TResult Function( ExportFormat format)  exportSettings,required TResult Function( String filePath)  importSettings,}) {final _that = this;
 switch (_that) {
 case _FontSizeChanged():
 return fontSizeChanged(_that.fontSize);case _FontFamilyChanged():
@@ -328,8 +312,7 @@ return readingDirectionChanged(_that.readingDirection);case _RememberLastPositio
 return rememberLastPositionChanged(_that.remember);case _NavigationMethodChanged():
 return navigationMethodChanged(_that.method);case _DyslexicFontChanged():
 return dyslexicFontChanged(_that.enabled);case _HighContrastChanged():
-return highContrastChanged(_that.enabled);case _ImmersiveModeChanged():
-return immersiveModeChanged(_that.enabled);case _TextToSpeechChanged():
+return highContrastChanged(_that.enabled);case _TextToSpeechChanged():
 return textToSpeechChanged(_that.tts);case _SortByChanged():
 return sortByChanged(_that.sortBy);case _ViewStyleChanged():
 return viewStyleChanged(_that.viewStyle);case _ShowCoversChanged():
@@ -347,10 +330,7 @@ return enableAnimationsChanged(_that.enabled);case _SoundFeedbackChanged():
 return soundFeedbackChanged(_that.enabled);case _LanguageChanged():
 return languageChanged(_that.language);case _RegionChanged():
 return regionChanged(_that.region);case _DateFormatChanged():
-return dateFormatChanged(_that.format);case _DebugLoggingChanged():
-return debugLoggingChanged(_that.enabled);case _EnableDevToolsChanged():
-return enableDevToolsChanged(_that.enabled);case _CustomJSChanged():
-return customJSChanged(_that.js);case _ResetToDefaults():
+return dateFormatChanged(_that.format);case _ResetToDefaults():
 return resetToDefaults();case _ExportSettings():
 return exportSettings(_that.format);case _ImportSettings():
 return importSettings(_that.filePath);case _:
@@ -370,7 +350,7 @@ return importSettings(_that.filePath);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( double fontSize)?  fontSizeChanged,TResult? Function( FontFamily fontFamily)?  fontFamilyChanged,TResult? Function( String fontWeight)?  fontWeightChanged,TResult? Function( double lineHeight)?  lineHeightChanged,TResult? Function( double letterSpacing)?  letterSpacingChanged,TResult? Function( double paragraphSpacing)?  paragraphSpacingChanged,TResult? Function( TextAlignOption textAlign)?  textAlignChanged,TResult? Function( ThemeOption theme)?  themeChanged,TResult? Function( double multiplier)?  headerFontSizeMultiplierChanged,TResult? Function( double margin)?  headerMarginTopChanged,TResult? Function( double margin)?  headerMarginBottomChanged,TResult? Function( double margin)?  footerMarginTopChanged,TResult? Function( double margin)?  footerMarginBottomChanged,TResult? Function( ReadingDirection readingDirection)?  readingDirectionChanged,TResult? Function( bool remember)?  rememberLastPositionChanged,TResult? Function( NavigationMethod method)?  navigationMethodChanged,TResult? Function( bool enabled)?  dyslexicFontChanged,TResult? Function( bool enabled)?  highContrastChanged,TResult? Function( bool enabled)?  immersiveModeChanged,TResult? Function( TextToSpeech tts)?  textToSpeechChanged,TResult? Function( SortBy sortBy)?  sortByChanged,TResult? Function( ViewStyle viewStyle)?  viewStyleChanged,TResult? Function( bool show)?  showCoversChanged,TResult? Function( List<String> sources)?  metadataSourcesChanged,TResult? Function( List<String> paths)?  scanPathsChanged,TResult? Function( List<String> formats)?  formatsChanged,TResult? Function( List<String> colors)?  highlightColorsChanged,TResult? Function( bool sync)?  annotationsSyncChanged,TResult? Function( bool autoSave)?  autoSaveAnnotationsChanged,TResult? Function( AnnotationExportFormat format)?  exportFormatChanged,TResult? Function( bool show)?  showSidebarChanged,TResult? Function( ToolbarPosition position)?  toolbarPositionChanged,TResult? Function( bool enabled)?  enableAnimationsChanged,TResult? Function( bool enabled)?  soundFeedbackChanged,TResult? Function( Language language)?  languageChanged,TResult? Function( Region region)?  regionChanged,TResult? Function( DateFormat format)?  dateFormatChanged,TResult? Function( bool enabled)?  debugLoggingChanged,TResult? Function( bool enabled)?  enableDevToolsChanged,TResult? Function( String js)?  customJSChanged,TResult? Function()?  resetToDefaults,TResult? Function( ExportFormat format)?  exportSettings,TResult? Function( String filePath)?  importSettings,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( double fontSize)?  fontSizeChanged,TResult? Function( FontFamily fontFamily)?  fontFamilyChanged,TResult? Function( String fontWeight)?  fontWeightChanged,TResult? Function( double lineHeight)?  lineHeightChanged,TResult? Function( double letterSpacing)?  letterSpacingChanged,TResult? Function( double paragraphSpacing)?  paragraphSpacingChanged,TResult? Function( TextAlignOption textAlign)?  textAlignChanged,TResult? Function( ThemeOption theme)?  themeChanged,TResult? Function( double multiplier)?  headerFontSizeMultiplierChanged,TResult? Function( double margin)?  headerMarginTopChanged,TResult? Function( double margin)?  headerMarginBottomChanged,TResult? Function( double margin)?  footerMarginTopChanged,TResult? Function( double margin)?  footerMarginBottomChanged,TResult? Function( ReadingDirection readingDirection)?  readingDirectionChanged,TResult? Function( bool remember)?  rememberLastPositionChanged,TResult? Function( NavigationMethod method)?  navigationMethodChanged,TResult? Function( bool enabled)?  dyslexicFontChanged,TResult? Function( bool enabled)?  highContrastChanged,TResult? Function( TextToSpeech tts)?  textToSpeechChanged,TResult? Function( SortBy sortBy)?  sortByChanged,TResult? Function( ViewStyle viewStyle)?  viewStyleChanged,TResult? Function( bool show)?  showCoversChanged,TResult? Function( List<String> sources)?  metadataSourcesChanged,TResult? Function( List<String> paths)?  scanPathsChanged,TResult? Function( List<String> formats)?  formatsChanged,TResult? Function( List<String> colors)?  highlightColorsChanged,TResult? Function( bool sync)?  annotationsSyncChanged,TResult? Function( bool autoSave)?  autoSaveAnnotationsChanged,TResult? Function( AnnotationExportFormat format)?  exportFormatChanged,TResult? Function( bool show)?  showSidebarChanged,TResult? Function( ToolbarPosition position)?  toolbarPositionChanged,TResult? Function( bool enabled)?  enableAnimationsChanged,TResult? Function( bool enabled)?  soundFeedbackChanged,TResult? Function( Language language)?  languageChanged,TResult? Function( Region region)?  regionChanged,TResult? Function( DateFormat format)?  dateFormatChanged,TResult? Function()?  resetToDefaults,TResult? Function( ExportFormat format)?  exportSettings,TResult? Function( String filePath)?  importSettings,}) {final _that = this;
 switch (_that) {
 case _FontSizeChanged() when fontSizeChanged != null:
 return fontSizeChanged(_that.fontSize);case _FontFamilyChanged() when fontFamilyChanged != null:
@@ -390,8 +370,7 @@ return readingDirectionChanged(_that.readingDirection);case _RememberLastPositio
 return rememberLastPositionChanged(_that.remember);case _NavigationMethodChanged() when navigationMethodChanged != null:
 return navigationMethodChanged(_that.method);case _DyslexicFontChanged() when dyslexicFontChanged != null:
 return dyslexicFontChanged(_that.enabled);case _HighContrastChanged() when highContrastChanged != null:
-return highContrastChanged(_that.enabled);case _ImmersiveModeChanged() when immersiveModeChanged != null:
-return immersiveModeChanged(_that.enabled);case _TextToSpeechChanged() when textToSpeechChanged != null:
+return highContrastChanged(_that.enabled);case _TextToSpeechChanged() when textToSpeechChanged != null:
 return textToSpeechChanged(_that.tts);case _SortByChanged() when sortByChanged != null:
 return sortByChanged(_that.sortBy);case _ViewStyleChanged() when viewStyleChanged != null:
 return viewStyleChanged(_that.viewStyle);case _ShowCoversChanged() when showCoversChanged != null:
@@ -409,10 +388,7 @@ return enableAnimationsChanged(_that.enabled);case _SoundFeedbackChanged() when 
 return soundFeedbackChanged(_that.enabled);case _LanguageChanged() when languageChanged != null:
 return languageChanged(_that.language);case _RegionChanged() when regionChanged != null:
 return regionChanged(_that.region);case _DateFormatChanged() when dateFormatChanged != null:
-return dateFormatChanged(_that.format);case _DebugLoggingChanged() when debugLoggingChanged != null:
-return debugLoggingChanged(_that.enabled);case _EnableDevToolsChanged() when enableDevToolsChanged != null:
-return enableDevToolsChanged(_that.enabled);case _CustomJSChanged() when customJSChanged != null:
-return customJSChanged(_that.js);case _ResetToDefaults() when resetToDefaults != null:
+return dateFormatChanged(_that.format);case _ResetToDefaults() when resetToDefaults != null:
 return resetToDefaults();case _ExportSettings() when exportSettings != null:
 return exportSettings(_that.format);case _ImportSettings() when importSettings != null:
 return importSettings(_that.filePath);case _:
@@ -1603,72 +1579,6 @@ class __$HighContrastChangedCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? enabled = null,}) {
   return _then(_HighContrastChanged(
-null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
-as bool,
-  ));
-}
-
-
-}
-
-/// @nodoc
-
-
-class _ImmersiveModeChanged implements SettingsEvent {
-  const _ImmersiveModeChanged(this.enabled);
-  
-
- final  bool enabled;
-
-/// Create a copy of SettingsEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$ImmersiveModeChangedCopyWith<_ImmersiveModeChanged> get copyWith => __$ImmersiveModeChangedCopyWithImpl<_ImmersiveModeChanged>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ImmersiveModeChanged&&(identical(other.enabled, enabled) || other.enabled == enabled));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,enabled);
-
-@override
-String toString() {
-  return 'SettingsEvent.immersiveModeChanged(enabled: $enabled)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$ImmersiveModeChangedCopyWith<$Res> implements $SettingsEventCopyWith<$Res> {
-  factory _$ImmersiveModeChangedCopyWith(_ImmersiveModeChanged value, $Res Function(_ImmersiveModeChanged) _then) = __$ImmersiveModeChangedCopyWithImpl;
-@useResult
-$Res call({
- bool enabled
-});
-
-
-
-
-}
-/// @nodoc
-class __$ImmersiveModeChangedCopyWithImpl<$Res>
-    implements _$ImmersiveModeChangedCopyWith<$Res> {
-  __$ImmersiveModeChangedCopyWithImpl(this._self, this._then);
-
-  final _ImmersiveModeChanged _self;
-  final $Res Function(_ImmersiveModeChanged) _then;
-
-/// Create a copy of SettingsEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? enabled = null,}) {
-  return _then(_ImmersiveModeChanged(
 null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
@@ -2892,204 +2802,6 @@ class __$DateFormatChangedCopyWithImpl<$Res>
   return _then(_DateFormatChanged(
 null == format ? _self.format : format // ignore: cast_nullable_to_non_nullable
 as DateFormat,
-  ));
-}
-
-
-}
-
-/// @nodoc
-
-
-class _DebugLoggingChanged implements SettingsEvent {
-  const _DebugLoggingChanged(this.enabled);
-  
-
- final  bool enabled;
-
-/// Create a copy of SettingsEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$DebugLoggingChangedCopyWith<_DebugLoggingChanged> get copyWith => __$DebugLoggingChangedCopyWithImpl<_DebugLoggingChanged>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DebugLoggingChanged&&(identical(other.enabled, enabled) || other.enabled == enabled));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,enabled);
-
-@override
-String toString() {
-  return 'SettingsEvent.debugLoggingChanged(enabled: $enabled)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$DebugLoggingChangedCopyWith<$Res> implements $SettingsEventCopyWith<$Res> {
-  factory _$DebugLoggingChangedCopyWith(_DebugLoggingChanged value, $Res Function(_DebugLoggingChanged) _then) = __$DebugLoggingChangedCopyWithImpl;
-@useResult
-$Res call({
- bool enabled
-});
-
-
-
-
-}
-/// @nodoc
-class __$DebugLoggingChangedCopyWithImpl<$Res>
-    implements _$DebugLoggingChangedCopyWith<$Res> {
-  __$DebugLoggingChangedCopyWithImpl(this._self, this._then);
-
-  final _DebugLoggingChanged _self;
-  final $Res Function(_DebugLoggingChanged) _then;
-
-/// Create a copy of SettingsEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? enabled = null,}) {
-  return _then(_DebugLoggingChanged(
-null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
-as bool,
-  ));
-}
-
-
-}
-
-/// @nodoc
-
-
-class _EnableDevToolsChanged implements SettingsEvent {
-  const _EnableDevToolsChanged(this.enabled);
-  
-
- final  bool enabled;
-
-/// Create a copy of SettingsEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$EnableDevToolsChangedCopyWith<_EnableDevToolsChanged> get copyWith => __$EnableDevToolsChangedCopyWithImpl<_EnableDevToolsChanged>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _EnableDevToolsChanged&&(identical(other.enabled, enabled) || other.enabled == enabled));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,enabled);
-
-@override
-String toString() {
-  return 'SettingsEvent.enableDevToolsChanged(enabled: $enabled)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$EnableDevToolsChangedCopyWith<$Res> implements $SettingsEventCopyWith<$Res> {
-  factory _$EnableDevToolsChangedCopyWith(_EnableDevToolsChanged value, $Res Function(_EnableDevToolsChanged) _then) = __$EnableDevToolsChangedCopyWithImpl;
-@useResult
-$Res call({
- bool enabled
-});
-
-
-
-
-}
-/// @nodoc
-class __$EnableDevToolsChangedCopyWithImpl<$Res>
-    implements _$EnableDevToolsChangedCopyWith<$Res> {
-  __$EnableDevToolsChangedCopyWithImpl(this._self, this._then);
-
-  final _EnableDevToolsChanged _self;
-  final $Res Function(_EnableDevToolsChanged) _then;
-
-/// Create a copy of SettingsEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? enabled = null,}) {
-  return _then(_EnableDevToolsChanged(
-null == enabled ? _self.enabled : enabled // ignore: cast_nullable_to_non_nullable
-as bool,
-  ));
-}
-
-
-}
-
-/// @nodoc
-
-
-class _CustomJSChanged implements SettingsEvent {
-  const _CustomJSChanged(this.js);
-  
-
- final  String js;
-
-/// Create a copy of SettingsEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$CustomJSChangedCopyWith<_CustomJSChanged> get copyWith => __$CustomJSChangedCopyWithImpl<_CustomJSChanged>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CustomJSChanged&&(identical(other.js, js) || other.js == js));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,js);
-
-@override
-String toString() {
-  return 'SettingsEvent.customJSChanged(js: $js)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$CustomJSChangedCopyWith<$Res> implements $SettingsEventCopyWith<$Res> {
-  factory _$CustomJSChangedCopyWith(_CustomJSChanged value, $Res Function(_CustomJSChanged) _then) = __$CustomJSChangedCopyWithImpl;
-@useResult
-$Res call({
- String js
-});
-
-
-
-
-}
-/// @nodoc
-class __$CustomJSChangedCopyWithImpl<$Res>
-    implements _$CustomJSChangedCopyWith<$Res> {
-  __$CustomJSChangedCopyWithImpl(this._self, this._then);
-
-  final _CustomJSChanged _self;
-  final $Res Function(_CustomJSChanged) _then;
-
-/// Create a copy of SettingsEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? js = null,}) {
-  return _then(_CustomJSChanged(
-null == js ? _self.js : js // ignore: cast_nullable_to_non_nullable
-as String,
   ));
 }
 
