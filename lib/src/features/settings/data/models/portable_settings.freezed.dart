@@ -730,7 +730,7 @@ $DeveloperSettingsCopyWith<$Res> get developer {
 /// @nodoc
 mixin _$DisplaySettings {
 
- FontFamily get fontFamily; double get fontSize; String get fontWeight; double get lineHeight; double get letterSpacing; double get paragraphSpacing; ThemeOption get theme; CustomTheme get customTheme; PageLayout get pageLayout; String get orientation; String get textAlign; String get pageTurnAnimation; Margins get margins;
+ FontFamily get fontFamily; double get fontSize; String get fontWeight; double get lineHeight; double get letterSpacing; double get paragraphSpacing; ThemeOption get theme; CustomTheme get customTheme; String get orientation; String get textAlign; String get pageTurnAnimation; Margins get margins;
 /// Create a copy of DisplaySettings
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -743,16 +743,16 @@ $DisplaySettingsCopyWith<DisplaySettings> get copyWith => _$DisplaySettingsCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DisplaySettings&&(identical(other.fontFamily, fontFamily) || other.fontFamily == fontFamily)&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize)&&(identical(other.fontWeight, fontWeight) || other.fontWeight == fontWeight)&&(identical(other.lineHeight, lineHeight) || other.lineHeight == lineHeight)&&(identical(other.letterSpacing, letterSpacing) || other.letterSpacing == letterSpacing)&&(identical(other.paragraphSpacing, paragraphSpacing) || other.paragraphSpacing == paragraphSpacing)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.customTheme, customTheme) || other.customTheme == customTheme)&&(identical(other.pageLayout, pageLayout) || other.pageLayout == pageLayout)&&(identical(other.orientation, orientation) || other.orientation == orientation)&&(identical(other.textAlign, textAlign) || other.textAlign == textAlign)&&(identical(other.pageTurnAnimation, pageTurnAnimation) || other.pageTurnAnimation == pageTurnAnimation)&&(identical(other.margins, margins) || other.margins == margins));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DisplaySettings&&(identical(other.fontFamily, fontFamily) || other.fontFamily == fontFamily)&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize)&&(identical(other.fontWeight, fontWeight) || other.fontWeight == fontWeight)&&(identical(other.lineHeight, lineHeight) || other.lineHeight == lineHeight)&&(identical(other.letterSpacing, letterSpacing) || other.letterSpacing == letterSpacing)&&(identical(other.paragraphSpacing, paragraphSpacing) || other.paragraphSpacing == paragraphSpacing)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.customTheme, customTheme) || other.customTheme == customTheme)&&(identical(other.orientation, orientation) || other.orientation == orientation)&&(identical(other.textAlign, textAlign) || other.textAlign == textAlign)&&(identical(other.pageTurnAnimation, pageTurnAnimation) || other.pageTurnAnimation == pageTurnAnimation)&&(identical(other.margins, margins) || other.margins == margins));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,fontFamily,fontSize,fontWeight,lineHeight,letterSpacing,paragraphSpacing,theme,customTheme,pageLayout,orientation,textAlign,pageTurnAnimation,margins);
+int get hashCode => Object.hash(runtimeType,fontFamily,fontSize,fontWeight,lineHeight,letterSpacing,paragraphSpacing,theme,customTheme,orientation,textAlign,pageTurnAnimation,margins);
 
 @override
 String toString() {
-  return 'DisplaySettings(fontFamily: $fontFamily, fontSize: $fontSize, fontWeight: $fontWeight, lineHeight: $lineHeight, letterSpacing: $letterSpacing, paragraphSpacing: $paragraphSpacing, theme: $theme, customTheme: $customTheme, pageLayout: $pageLayout, orientation: $orientation, textAlign: $textAlign, pageTurnAnimation: $pageTurnAnimation, margins: $margins)';
+  return 'DisplaySettings(fontFamily: $fontFamily, fontSize: $fontSize, fontWeight: $fontWeight, lineHeight: $lineHeight, letterSpacing: $letterSpacing, paragraphSpacing: $paragraphSpacing, theme: $theme, customTheme: $customTheme, orientation: $orientation, textAlign: $textAlign, pageTurnAnimation: $pageTurnAnimation, margins: $margins)';
 }
 
 
@@ -763,7 +763,7 @@ abstract mixin class $DisplaySettingsCopyWith<$Res>  {
   factory $DisplaySettingsCopyWith(DisplaySettings value, $Res Function(DisplaySettings) _then) = _$DisplaySettingsCopyWithImpl;
 @useResult
 $Res call({
- FontFamily fontFamily, double fontSize, String fontWeight, double lineHeight, double letterSpacing, double paragraphSpacing, ThemeOption theme, CustomTheme customTheme, PageLayout pageLayout, String orientation, String textAlign, String pageTurnAnimation, Margins margins
+ FontFamily fontFamily, double fontSize, String fontWeight, double lineHeight, double letterSpacing, double paragraphSpacing, ThemeOption theme, CustomTheme customTheme, String orientation, String textAlign, String pageTurnAnimation, Margins margins
 });
 
 
@@ -780,7 +780,7 @@ class _$DisplaySettingsCopyWithImpl<$Res>
 
 /// Create a copy of DisplaySettings
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? fontFamily = null,Object? fontSize = null,Object? fontWeight = null,Object? lineHeight = null,Object? letterSpacing = null,Object? paragraphSpacing = null,Object? theme = null,Object? customTheme = null,Object? pageLayout = null,Object? orientation = null,Object? textAlign = null,Object? pageTurnAnimation = null,Object? margins = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? fontFamily = null,Object? fontSize = null,Object? fontWeight = null,Object? lineHeight = null,Object? letterSpacing = null,Object? paragraphSpacing = null,Object? theme = null,Object? customTheme = null,Object? orientation = null,Object? textAlign = null,Object? pageTurnAnimation = null,Object? margins = null,}) {
   return _then(_self.copyWith(
 fontFamily: null == fontFamily ? _self.fontFamily : fontFamily // ignore: cast_nullable_to_non_nullable
 as FontFamily,fontSize: null == fontSize ? _self.fontSize : fontSize // ignore: cast_nullable_to_non_nullable
@@ -790,8 +790,7 @@ as double,letterSpacing: null == letterSpacing ? _self.letterSpacing : letterSpa
 as double,paragraphSpacing: null == paragraphSpacing ? _self.paragraphSpacing : paragraphSpacing // ignore: cast_nullable_to_non_nullable
 as double,theme: null == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
 as ThemeOption,customTheme: null == customTheme ? _self.customTheme : customTheme // ignore: cast_nullable_to_non_nullable
-as CustomTheme,pageLayout: null == pageLayout ? _self.pageLayout : pageLayout // ignore: cast_nullable_to_non_nullable
-as PageLayout,orientation: null == orientation ? _self.orientation : orientation // ignore: cast_nullable_to_non_nullable
+as CustomTheme,orientation: null == orientation ? _self.orientation : orientation // ignore: cast_nullable_to_non_nullable
 as String,textAlign: null == textAlign ? _self.textAlign : textAlign // ignore: cast_nullable_to_non_nullable
 as String,pageTurnAnimation: null == pageTurnAnimation ? _self.pageTurnAnimation : pageTurnAnimation // ignore: cast_nullable_to_non_nullable
 as String,margins: null == margins ? _self.margins : margins // ignore: cast_nullable_to_non_nullable
@@ -898,10 +897,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  CustomTheme customTheme,  PageLayout pageLayout,  String orientation,  String textAlign,  String pageTurnAnimation,  Margins margins)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  CustomTheme customTheme,  String orientation,  String textAlign,  String pageTurnAnimation,  Margins margins)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DisplaySettings() when $default != null:
-return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.customTheme,_that.pageLayout,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins);case _:
+return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.customTheme,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins);case _:
   return orElse();
 
 }
@@ -919,10 +918,10 @@ return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeigh
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  CustomTheme customTheme,  PageLayout pageLayout,  String orientation,  String textAlign,  String pageTurnAnimation,  Margins margins)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  CustomTheme customTheme,  String orientation,  String textAlign,  String pageTurnAnimation,  Margins margins)  $default,) {final _that = this;
 switch (_that) {
 case _DisplaySettings():
-return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.customTheme,_that.pageLayout,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins);case _:
+return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.customTheme,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -939,10 +938,10 @@ return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeigh
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  CustomTheme customTheme,  PageLayout pageLayout,  String orientation,  String textAlign,  String pageTurnAnimation,  Margins margins)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  CustomTheme customTheme,  String orientation,  String textAlign,  String pageTurnAnimation,  Margins margins)?  $default,) {final _that = this;
 switch (_that) {
 case _DisplaySettings() when $default != null:
-return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.customTheme,_that.pageLayout,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins);case _:
+return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.customTheme,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins);case _:
   return null;
 
 }
@@ -954,7 +953,7 @@ return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeigh
 @JsonSerializable()
 
 class _DisplaySettings implements DisplaySettings {
-  const _DisplaySettings({this.fontFamily = FontFamily.openSans, this.fontSize = 18.0, this.fontWeight = 'normal', this.lineHeight = 1.5, this.letterSpacing = 0.2, this.paragraphSpacing = 1.2, this.theme = ThemeOption.dark, this.customTheme = const CustomTheme(), this.pageLayout = PageLayout.paged, this.orientation = 'auto', this.textAlign = 'justify', this.pageTurnAnimation = 'slide', this.margins = const Margins()});
+  const _DisplaySettings({this.fontFamily = FontFamily.openSans, this.fontSize = 18.0, this.fontWeight = 'normal', this.lineHeight = 1.5, this.letterSpacing = 0.2, this.paragraphSpacing = 1.2, this.theme = ThemeOption.dark, this.customTheme = const CustomTheme(), this.orientation = 'auto', this.textAlign = 'justify', this.pageTurnAnimation = 'slide', this.margins = const Margins()});
   factory _DisplaySettings.fromJson(Map<String, dynamic> json) => _$DisplaySettingsFromJson(json);
 
 @override@JsonKey() final  FontFamily fontFamily;
@@ -965,7 +964,6 @@ class _DisplaySettings implements DisplaySettings {
 @override@JsonKey() final  double paragraphSpacing;
 @override@JsonKey() final  ThemeOption theme;
 @override@JsonKey() final  CustomTheme customTheme;
-@override@JsonKey() final  PageLayout pageLayout;
 @override@JsonKey() final  String orientation;
 @override@JsonKey() final  String textAlign;
 @override@JsonKey() final  String pageTurnAnimation;
@@ -984,16 +982,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DisplaySettings&&(identical(other.fontFamily, fontFamily) || other.fontFamily == fontFamily)&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize)&&(identical(other.fontWeight, fontWeight) || other.fontWeight == fontWeight)&&(identical(other.lineHeight, lineHeight) || other.lineHeight == lineHeight)&&(identical(other.letterSpacing, letterSpacing) || other.letterSpacing == letterSpacing)&&(identical(other.paragraphSpacing, paragraphSpacing) || other.paragraphSpacing == paragraphSpacing)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.customTheme, customTheme) || other.customTheme == customTheme)&&(identical(other.pageLayout, pageLayout) || other.pageLayout == pageLayout)&&(identical(other.orientation, orientation) || other.orientation == orientation)&&(identical(other.textAlign, textAlign) || other.textAlign == textAlign)&&(identical(other.pageTurnAnimation, pageTurnAnimation) || other.pageTurnAnimation == pageTurnAnimation)&&(identical(other.margins, margins) || other.margins == margins));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DisplaySettings&&(identical(other.fontFamily, fontFamily) || other.fontFamily == fontFamily)&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize)&&(identical(other.fontWeight, fontWeight) || other.fontWeight == fontWeight)&&(identical(other.lineHeight, lineHeight) || other.lineHeight == lineHeight)&&(identical(other.letterSpacing, letterSpacing) || other.letterSpacing == letterSpacing)&&(identical(other.paragraphSpacing, paragraphSpacing) || other.paragraphSpacing == paragraphSpacing)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.customTheme, customTheme) || other.customTheme == customTheme)&&(identical(other.orientation, orientation) || other.orientation == orientation)&&(identical(other.textAlign, textAlign) || other.textAlign == textAlign)&&(identical(other.pageTurnAnimation, pageTurnAnimation) || other.pageTurnAnimation == pageTurnAnimation)&&(identical(other.margins, margins) || other.margins == margins));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,fontFamily,fontSize,fontWeight,lineHeight,letterSpacing,paragraphSpacing,theme,customTheme,pageLayout,orientation,textAlign,pageTurnAnimation,margins);
+int get hashCode => Object.hash(runtimeType,fontFamily,fontSize,fontWeight,lineHeight,letterSpacing,paragraphSpacing,theme,customTheme,orientation,textAlign,pageTurnAnimation,margins);
 
 @override
 String toString() {
-  return 'DisplaySettings(fontFamily: $fontFamily, fontSize: $fontSize, fontWeight: $fontWeight, lineHeight: $lineHeight, letterSpacing: $letterSpacing, paragraphSpacing: $paragraphSpacing, theme: $theme, customTheme: $customTheme, pageLayout: $pageLayout, orientation: $orientation, textAlign: $textAlign, pageTurnAnimation: $pageTurnAnimation, margins: $margins)';
+  return 'DisplaySettings(fontFamily: $fontFamily, fontSize: $fontSize, fontWeight: $fontWeight, lineHeight: $lineHeight, letterSpacing: $letterSpacing, paragraphSpacing: $paragraphSpacing, theme: $theme, customTheme: $customTheme, orientation: $orientation, textAlign: $textAlign, pageTurnAnimation: $pageTurnAnimation, margins: $margins)';
 }
 
 
@@ -1004,7 +1002,7 @@ abstract mixin class _$DisplaySettingsCopyWith<$Res> implements $DisplaySettings
   factory _$DisplaySettingsCopyWith(_DisplaySettings value, $Res Function(_DisplaySettings) _then) = __$DisplaySettingsCopyWithImpl;
 @override @useResult
 $Res call({
- FontFamily fontFamily, double fontSize, String fontWeight, double lineHeight, double letterSpacing, double paragraphSpacing, ThemeOption theme, CustomTheme customTheme, PageLayout pageLayout, String orientation, String textAlign, String pageTurnAnimation, Margins margins
+ FontFamily fontFamily, double fontSize, String fontWeight, double lineHeight, double letterSpacing, double paragraphSpacing, ThemeOption theme, CustomTheme customTheme, String orientation, String textAlign, String pageTurnAnimation, Margins margins
 });
 
 
@@ -1021,7 +1019,7 @@ class __$DisplaySettingsCopyWithImpl<$Res>
 
 /// Create a copy of DisplaySettings
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? fontFamily = null,Object? fontSize = null,Object? fontWeight = null,Object? lineHeight = null,Object? letterSpacing = null,Object? paragraphSpacing = null,Object? theme = null,Object? customTheme = null,Object? pageLayout = null,Object? orientation = null,Object? textAlign = null,Object? pageTurnAnimation = null,Object? margins = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? fontFamily = null,Object? fontSize = null,Object? fontWeight = null,Object? lineHeight = null,Object? letterSpacing = null,Object? paragraphSpacing = null,Object? theme = null,Object? customTheme = null,Object? orientation = null,Object? textAlign = null,Object? pageTurnAnimation = null,Object? margins = null,}) {
   return _then(_DisplaySettings(
 fontFamily: null == fontFamily ? _self.fontFamily : fontFamily // ignore: cast_nullable_to_non_nullable
 as FontFamily,fontSize: null == fontSize ? _self.fontSize : fontSize // ignore: cast_nullable_to_non_nullable
@@ -1031,8 +1029,7 @@ as double,letterSpacing: null == letterSpacing ? _self.letterSpacing : letterSpa
 as double,paragraphSpacing: null == paragraphSpacing ? _self.paragraphSpacing : paragraphSpacing // ignore: cast_nullable_to_non_nullable
 as double,theme: null == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
 as ThemeOption,customTheme: null == customTheme ? _self.customTheme : customTheme // ignore: cast_nullable_to_non_nullable
-as CustomTheme,pageLayout: null == pageLayout ? _self.pageLayout : pageLayout // ignore: cast_nullable_to_non_nullable
-as PageLayout,orientation: null == orientation ? _self.orientation : orientation // ignore: cast_nullable_to_non_nullable
+as CustomTheme,orientation: null == orientation ? _self.orientation : orientation // ignore: cast_nullable_to_non_nullable
 as String,textAlign: null == textAlign ? _self.textAlign : textAlign // ignore: cast_nullable_to_non_nullable
 as String,pageTurnAnimation: null == pageTurnAnimation ? _self.pageTurnAnimation : pageTurnAnimation // ignore: cast_nullable_to_non_nullable
 as String,margins: null == margins ? _self.margins : margins // ignore: cast_nullable_to_non_nullable
@@ -1603,7 +1600,7 @@ as int,
 /// @nodoc
 mixin _$BehaviorSettings {
 
- TapZones get tapZones; ScrollMode get scrollMode; bool get rememberLastPosition; bool get syncProgress; AutoScroll get autoScroll; ReadingDirection get readingDirection;
+ TapZones get tapZones; bool get rememberLastPosition; bool get syncProgress; AutoScroll get autoScroll; ReadingDirection get readingDirection;
 /// Create a copy of BehaviorSettings
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1616,16 +1613,16 @@ $BehaviorSettingsCopyWith<BehaviorSettings> get copyWith => _$BehaviorSettingsCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is BehaviorSettings&&(identical(other.tapZones, tapZones) || other.tapZones == tapZones)&&(identical(other.scrollMode, scrollMode) || other.scrollMode == scrollMode)&&(identical(other.rememberLastPosition, rememberLastPosition) || other.rememberLastPosition == rememberLastPosition)&&(identical(other.syncProgress, syncProgress) || other.syncProgress == syncProgress)&&(identical(other.autoScroll, autoScroll) || other.autoScroll == autoScroll)&&(identical(other.readingDirection, readingDirection) || other.readingDirection == readingDirection));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BehaviorSettings&&(identical(other.tapZones, tapZones) || other.tapZones == tapZones)&&(identical(other.rememberLastPosition, rememberLastPosition) || other.rememberLastPosition == rememberLastPosition)&&(identical(other.syncProgress, syncProgress) || other.syncProgress == syncProgress)&&(identical(other.autoScroll, autoScroll) || other.autoScroll == autoScroll)&&(identical(other.readingDirection, readingDirection) || other.readingDirection == readingDirection));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,tapZones,scrollMode,rememberLastPosition,syncProgress,autoScroll,readingDirection);
+int get hashCode => Object.hash(runtimeType,tapZones,rememberLastPosition,syncProgress,autoScroll,readingDirection);
 
 @override
 String toString() {
-  return 'BehaviorSettings(tapZones: $tapZones, scrollMode: $scrollMode, rememberLastPosition: $rememberLastPosition, syncProgress: $syncProgress, autoScroll: $autoScroll, readingDirection: $readingDirection)';
+  return 'BehaviorSettings(tapZones: $tapZones, rememberLastPosition: $rememberLastPosition, syncProgress: $syncProgress, autoScroll: $autoScroll, readingDirection: $readingDirection)';
 }
 
 
@@ -1636,7 +1633,7 @@ abstract mixin class $BehaviorSettingsCopyWith<$Res>  {
   factory $BehaviorSettingsCopyWith(BehaviorSettings value, $Res Function(BehaviorSettings) _then) = _$BehaviorSettingsCopyWithImpl;
 @useResult
 $Res call({
- TapZones tapZones, ScrollMode scrollMode, bool rememberLastPosition, bool syncProgress, AutoScroll autoScroll, ReadingDirection readingDirection
+ TapZones tapZones, bool rememberLastPosition, bool syncProgress, AutoScroll autoScroll, ReadingDirection readingDirection
 });
 
 
@@ -1653,11 +1650,10 @@ class _$BehaviorSettingsCopyWithImpl<$Res>
 
 /// Create a copy of BehaviorSettings
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? tapZones = null,Object? scrollMode = null,Object? rememberLastPosition = null,Object? syncProgress = null,Object? autoScroll = null,Object? readingDirection = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? tapZones = null,Object? rememberLastPosition = null,Object? syncProgress = null,Object? autoScroll = null,Object? readingDirection = null,}) {
   return _then(_self.copyWith(
 tapZones: null == tapZones ? _self.tapZones : tapZones // ignore: cast_nullable_to_non_nullable
-as TapZones,scrollMode: null == scrollMode ? _self.scrollMode : scrollMode // ignore: cast_nullable_to_non_nullable
-as ScrollMode,rememberLastPosition: null == rememberLastPosition ? _self.rememberLastPosition : rememberLastPosition // ignore: cast_nullable_to_non_nullable
+as TapZones,rememberLastPosition: null == rememberLastPosition ? _self.rememberLastPosition : rememberLastPosition // ignore: cast_nullable_to_non_nullable
 as bool,syncProgress: null == syncProgress ? _self.syncProgress : syncProgress // ignore: cast_nullable_to_non_nullable
 as bool,autoScroll: null == autoScroll ? _self.autoScroll : autoScroll // ignore: cast_nullable_to_non_nullable
 as AutoScroll,readingDirection: null == readingDirection ? _self.readingDirection : readingDirection // ignore: cast_nullable_to_non_nullable
@@ -1764,10 +1760,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TapZones tapZones,  ScrollMode scrollMode,  bool rememberLastPosition,  bool syncProgress,  AutoScroll autoScroll,  ReadingDirection readingDirection)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TapZones tapZones,  bool rememberLastPosition,  bool syncProgress,  AutoScroll autoScroll,  ReadingDirection readingDirection)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _BehaviorSettings() when $default != null:
-return $default(_that.tapZones,_that.scrollMode,_that.rememberLastPosition,_that.syncProgress,_that.autoScroll,_that.readingDirection);case _:
+return $default(_that.tapZones,_that.rememberLastPosition,_that.syncProgress,_that.autoScroll,_that.readingDirection);case _:
   return orElse();
 
 }
@@ -1785,10 +1781,10 @@ return $default(_that.tapZones,_that.scrollMode,_that.rememberLastPosition,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TapZones tapZones,  ScrollMode scrollMode,  bool rememberLastPosition,  bool syncProgress,  AutoScroll autoScroll,  ReadingDirection readingDirection)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TapZones tapZones,  bool rememberLastPosition,  bool syncProgress,  AutoScroll autoScroll,  ReadingDirection readingDirection)  $default,) {final _that = this;
 switch (_that) {
 case _BehaviorSettings():
-return $default(_that.tapZones,_that.scrollMode,_that.rememberLastPosition,_that.syncProgress,_that.autoScroll,_that.readingDirection);case _:
+return $default(_that.tapZones,_that.rememberLastPosition,_that.syncProgress,_that.autoScroll,_that.readingDirection);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1805,10 +1801,10 @@ return $default(_that.tapZones,_that.scrollMode,_that.rememberLastPosition,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TapZones tapZones,  ScrollMode scrollMode,  bool rememberLastPosition,  bool syncProgress,  AutoScroll autoScroll,  ReadingDirection readingDirection)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TapZones tapZones,  bool rememberLastPosition,  bool syncProgress,  AutoScroll autoScroll,  ReadingDirection readingDirection)?  $default,) {final _that = this;
 switch (_that) {
 case _BehaviorSettings() when $default != null:
-return $default(_that.tapZones,_that.scrollMode,_that.rememberLastPosition,_that.syncProgress,_that.autoScroll,_that.readingDirection);case _:
+return $default(_that.tapZones,_that.rememberLastPosition,_that.syncProgress,_that.autoScroll,_that.readingDirection);case _:
   return null;
 
 }
@@ -1820,11 +1816,10 @@ return $default(_that.tapZones,_that.scrollMode,_that.rememberLastPosition,_that
 @JsonSerializable()
 
 class _BehaviorSettings implements BehaviorSettings {
-  const _BehaviorSettings({this.tapZones = const TapZones(), this.scrollMode = ScrollMode.paged, this.rememberLastPosition = true, this.syncProgress = true, this.autoScroll = const AutoScroll(), this.readingDirection = ReadingDirection.ltr});
+  const _BehaviorSettings({this.tapZones = const TapZones(), this.rememberLastPosition = true, this.syncProgress = true, this.autoScroll = const AutoScroll(), this.readingDirection = ReadingDirection.ltr});
   factory _BehaviorSettings.fromJson(Map<String, dynamic> json) => _$BehaviorSettingsFromJson(json);
 
 @override@JsonKey() final  TapZones tapZones;
-@override@JsonKey() final  ScrollMode scrollMode;
 @override@JsonKey() final  bool rememberLastPosition;
 @override@JsonKey() final  bool syncProgress;
 @override@JsonKey() final  AutoScroll autoScroll;
@@ -1843,16 +1838,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BehaviorSettings&&(identical(other.tapZones, tapZones) || other.tapZones == tapZones)&&(identical(other.scrollMode, scrollMode) || other.scrollMode == scrollMode)&&(identical(other.rememberLastPosition, rememberLastPosition) || other.rememberLastPosition == rememberLastPosition)&&(identical(other.syncProgress, syncProgress) || other.syncProgress == syncProgress)&&(identical(other.autoScroll, autoScroll) || other.autoScroll == autoScroll)&&(identical(other.readingDirection, readingDirection) || other.readingDirection == readingDirection));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BehaviorSettings&&(identical(other.tapZones, tapZones) || other.tapZones == tapZones)&&(identical(other.rememberLastPosition, rememberLastPosition) || other.rememberLastPosition == rememberLastPosition)&&(identical(other.syncProgress, syncProgress) || other.syncProgress == syncProgress)&&(identical(other.autoScroll, autoScroll) || other.autoScroll == autoScroll)&&(identical(other.readingDirection, readingDirection) || other.readingDirection == readingDirection));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,tapZones,scrollMode,rememberLastPosition,syncProgress,autoScroll,readingDirection);
+int get hashCode => Object.hash(runtimeType,tapZones,rememberLastPosition,syncProgress,autoScroll,readingDirection);
 
 @override
 String toString() {
-  return 'BehaviorSettings(tapZones: $tapZones, scrollMode: $scrollMode, rememberLastPosition: $rememberLastPosition, syncProgress: $syncProgress, autoScroll: $autoScroll, readingDirection: $readingDirection)';
+  return 'BehaviorSettings(tapZones: $tapZones, rememberLastPosition: $rememberLastPosition, syncProgress: $syncProgress, autoScroll: $autoScroll, readingDirection: $readingDirection)';
 }
 
 
@@ -1863,7 +1858,7 @@ abstract mixin class _$BehaviorSettingsCopyWith<$Res> implements $BehaviorSettin
   factory _$BehaviorSettingsCopyWith(_BehaviorSettings value, $Res Function(_BehaviorSettings) _then) = __$BehaviorSettingsCopyWithImpl;
 @override @useResult
 $Res call({
- TapZones tapZones, ScrollMode scrollMode, bool rememberLastPosition, bool syncProgress, AutoScroll autoScroll, ReadingDirection readingDirection
+ TapZones tapZones, bool rememberLastPosition, bool syncProgress, AutoScroll autoScroll, ReadingDirection readingDirection
 });
 
 
@@ -1880,11 +1875,10 @@ class __$BehaviorSettingsCopyWithImpl<$Res>
 
 /// Create a copy of BehaviorSettings
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? tapZones = null,Object? scrollMode = null,Object? rememberLastPosition = null,Object? syncProgress = null,Object? autoScroll = null,Object? readingDirection = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? tapZones = null,Object? rememberLastPosition = null,Object? syncProgress = null,Object? autoScroll = null,Object? readingDirection = null,}) {
   return _then(_BehaviorSettings(
 tapZones: null == tapZones ? _self.tapZones : tapZones // ignore: cast_nullable_to_non_nullable
-as TapZones,scrollMode: null == scrollMode ? _self.scrollMode : scrollMode // ignore: cast_nullable_to_non_nullable
-as ScrollMode,rememberLastPosition: null == rememberLastPosition ? _self.rememberLastPosition : rememberLastPosition // ignore: cast_nullable_to_non_nullable
+as TapZones,rememberLastPosition: null == rememberLastPosition ? _self.rememberLastPosition : rememberLastPosition // ignore: cast_nullable_to_non_nullable
 as bool,syncProgress: null == syncProgress ? _self.syncProgress : syncProgress // ignore: cast_nullable_to_non_nullable
 as bool,autoScroll: null == autoScroll ? _self.autoScroll : autoScroll // ignore: cast_nullable_to_non_nullable
 as AutoScroll,readingDirection: null == readingDirection ? _self.readingDirection : readingDirection // ignore: cast_nullable_to_non_nullable
@@ -2660,7 +2654,7 @@ return $default(_that.dyslexicFont,_that.highContrast,_that.fontSmoothing,_that.
 @JsonSerializable()
 
 class _AccessibilitySettings implements AccessibilitySettings {
-  const _AccessibilitySettings({this.dyslexicFont = false, this.highContrast = false, this.fontSmoothing = true, this.immersiveMode = true, this.textToSpeech = const TextToSpeech(), this.customCSS = ''});
+  const _AccessibilitySettings({this.dyslexicFont = false, this.highContrast = false, this.fontSmoothing = true, this.immersiveMode = false, this.textToSpeech = const TextToSpeech(), this.customCSS = ''});
   factory _AccessibilitySettings.fromJson(Map<String, dynamic> json) => _$AccessibilitySettingsFromJson(json);
 
 @override@JsonKey() final  bool dyslexicFont;

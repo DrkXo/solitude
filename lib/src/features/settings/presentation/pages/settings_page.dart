@@ -160,22 +160,6 @@ class SettingsPage extends StatelessWidget {
             },
           ),
         ),
-        ListTile(
-          title: const Text('Page Layout'),
-          trailing: DropdownButton<PageLayout>(
-            value: state.appSettings.display.pageLayout,
-            items: PageLayout.values
-                .map((layout) => DropdownMenuItem(value: layout, child: Text(layout.value)))
-                .toList(),
-            onChanged: (value) {
-              if (value != null) {
-                context.read<SettingsBloc>().add(
-                  SettingsEvent.pageLayoutChanged(value),
-                );
-              }
-            },
-          ),
-        ),
       ],
     );
   }
@@ -195,22 +179,6 @@ class SettingsPage extends StatelessWidget {
               if (value != null) {
                 context.read<SettingsBloc>().add(
                   SettingsEvent.readingDirectionChanged(value),
-                );
-              }
-            },
-          ),
-        ),
-        ListTile(
-          title: const Text('Scroll Mode'),
-          trailing: DropdownButton<ScrollMode>(
-            value: state.appSettings.behavior.scrollMode,
-            items: ScrollMode.values
-                .map((mode) => DropdownMenuItem(value: mode, child: Text(mode.value)))
-                .toList(),
-            onChanged: (value) {
-              if (value != null) {
-                context.read<SettingsBloc>().add(
-                  SettingsEvent.scrollModeChanged(value),
                 );
               }
             },

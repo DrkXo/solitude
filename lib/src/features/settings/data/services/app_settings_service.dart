@@ -108,18 +108,8 @@ class AppSettingsService extends BaseService {
     await updateDisplaySettings(displaySettings);
   }
 
-  Future<void> setPageLayout(PageLayout pageLayout) async {
-    final displaySettings = _appSettings.display.copyWith(pageLayout: pageLayout);
-    await updateDisplaySettings(displaySettings);
-  }
-
   Future<void> setReadingDirection(ReadingDirection readingDirection) async {
     final behaviorSettings = _appSettings.behavior.copyWith(readingDirection: readingDirection);
-    await updateBehaviorSettings(behaviorSettings);
-  }
-
-  Future<void> setScrollMode(ScrollMode scrollMode) async {
-    final behaviorSettings = _appSettings.behavior.copyWith(scrollMode: scrollMode);
     await updateBehaviorSettings(behaviorSettings);
   }
 

@@ -5,11 +5,9 @@ abstract class SettingsEvent with _$SettingsEvent {
   const factory SettingsEvent.fontSizeChanged(double fontSize) = _FontSizeChanged;
   const factory SettingsEvent.fontFamilyChanged(FontFamily fontFamily) = _FontFamilyChanged;
   const factory SettingsEvent.themeChanged(ThemeOption theme) = _ThemeChanged;
-  const factory SettingsEvent.pageLayoutChanged(PageLayout pageLayout) = _PageLayoutChanged;
 
   // Behavior settings
   const factory SettingsEvent.readingDirectionChanged(ReadingDirection readingDirection) = _ReadingDirectionChanged;
-  const factory SettingsEvent.scrollModeChanged(ScrollMode scrollMode) = _ScrollModeChanged;
   const factory SettingsEvent.rememberLastPositionChanged(bool remember) = _RememberLastPositionChanged;
   const factory SettingsEvent.syncProgressChanged(bool sync) = _SyncProgressChanged;
 

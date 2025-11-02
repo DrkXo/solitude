@@ -83,9 +83,6 @@ _DisplaySettings _$DisplaySettingsFromJson(Map<String, dynamic> json) =>
       customTheme: json['customTheme'] == null
           ? const CustomTheme()
           : CustomTheme.fromJson(json['customTheme'] as Map<String, dynamic>),
-      pageLayout:
-          $enumDecodeNullable(_$PageLayoutEnumMap, json['pageLayout']) ??
-          PageLayout.paged,
       orientation: json['orientation'] as String? ?? 'auto',
       textAlign: json['textAlign'] as String? ?? 'justify',
       pageTurnAnimation: json['pageTurnAnimation'] as String? ?? 'slide',
@@ -104,7 +101,6 @@ Map<String, dynamic> _$DisplaySettingsToJson(_DisplaySettings instance) =>
       'paragraphSpacing': instance.paragraphSpacing,
       'theme': _$ThemeOptionEnumMap[instance.theme]!,
       'customTheme': instance.customTheme,
-      'pageLayout': _$PageLayoutEnumMap[instance.pageLayout]!,
       'orientation': instance.orientation,
       'textAlign': instance.textAlign,
       'pageTurnAnimation': instance.pageTurnAnimation,
@@ -124,11 +120,6 @@ const _$ThemeOptionEnumMap = {
   ThemeOption.dark: 'dark',
   ThemeOption.custom: 'custom',
   ThemeOption.device: 'device',
-};
-
-const _$PageLayoutEnumMap = {
-  PageLayout.paged: 'paged',
-  PageLayout.scroll: 'scroll',
 };
 
 _CustomTheme _$CustomThemeFromJson(Map<String, dynamic> json) => _CustomTheme(
@@ -161,9 +152,6 @@ _BehaviorSettings _$BehaviorSettingsFromJson(Map<String, dynamic> json) =>
       tapZones: json['tapZones'] == null
           ? const TapZones()
           : TapZones.fromJson(json['tapZones'] as Map<String, dynamic>),
-      scrollMode:
-          $enumDecodeNullable(_$ScrollModeEnumMap, json['scrollMode']) ??
-          ScrollMode.paged,
       rememberLastPosition: json['rememberLastPosition'] as bool? ?? true,
       syncProgress: json['syncProgress'] as bool? ?? true,
       autoScroll: json['autoScroll'] == null
@@ -180,17 +168,11 @@ _BehaviorSettings _$BehaviorSettingsFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$BehaviorSettingsToJson(_BehaviorSettings instance) =>
     <String, dynamic>{
       'tapZones': instance.tapZones,
-      'scrollMode': _$ScrollModeEnumMap[instance.scrollMode]!,
       'rememberLastPosition': instance.rememberLastPosition,
       'syncProgress': instance.syncProgress,
       'autoScroll': instance.autoScroll,
       'readingDirection': _$ReadingDirectionEnumMap[instance.readingDirection]!,
     };
-
-const _$ScrollModeEnumMap = {
-  ScrollMode.paged: 'paged',
-  ScrollMode.continuous: 'continuous',
-};
 
 const _$ReadingDirectionEnumMap = {
   ReadingDirection.ltr: 'LTR',
@@ -223,7 +205,7 @@ _AccessibilitySettings _$AccessibilitySettingsFromJson(
   dyslexicFont: json['dyslexicFont'] as bool? ?? false,
   highContrast: json['highContrast'] as bool? ?? false,
   fontSmoothing: json['fontSmoothing'] as bool? ?? true,
-  immersiveMode: json['immersiveMode'] as bool? ?? true,
+  immersiveMode: json['immersiveMode'] as bool? ?? false,
   textToSpeech: json['textToSpeech'] == null
       ? const TextToSpeech()
       : TextToSpeech.fromJson(json['textToSpeech'] as Map<String, dynamic>),

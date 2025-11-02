@@ -45,7 +45,6 @@ abstract class DisplaySettings with _$DisplaySettings {
     @Default(1.2) double paragraphSpacing,
     @Default(ThemeOption.dark) ThemeOption theme,
     @Default(CustomTheme()) CustomTheme customTheme,
-    @Default(PageLayout.paged) PageLayout pageLayout,
     @Default('auto') String orientation,
     @Default('justify') String textAlign,
     @Default('slide') String pageTurnAnimation,
@@ -84,7 +83,6 @@ abstract class Margins with _$Margins {
 abstract class BehaviorSettings with _$BehaviorSettings {
   const factory BehaviorSettings({
     @Default(TapZones()) TapZones tapZones,
-    @Default(ScrollMode.paged) ScrollMode scrollMode,
     @Default(true) bool rememberLastPosition,
     @Default(true) bool syncProgress,
     @Default(AutoScroll()) AutoScroll autoScroll,
@@ -124,7 +122,7 @@ abstract class AccessibilitySettings with _$AccessibilitySettings {
     @Default(false) bool dyslexicFont,
     @Default(false) bool highContrast,
     @Default(true) bool fontSmoothing,
-    @Default(true) bool immersiveMode,
+    @Default(false) bool immersiveMode,
     @Default(TextToSpeech()) TextToSpeech textToSpeech,
     @Default('') String customCSS,
   }) = _AccessibilitySettings;
