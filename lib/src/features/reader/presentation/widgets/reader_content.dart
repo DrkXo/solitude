@@ -59,6 +59,12 @@ class ReaderContent extends StatelessWidget {
     final int fg = (footerColor.g * 255).round();
     final int fb = (footerColor.b * 255).round();
     final double fa = footerColor.a;
+    final textAlign = switch (settingsState.appSettings.display.textAlign) {
+      TextAlignOption.left => TextAlign.left,
+      TextAlignOption.right => TextAlign.right,
+      TextAlignOption.center => TextAlign.center,
+      TextAlignOption.justify => TextAlign.justify,
+    };
     Widget? customWidgetBuilder(dynamic element) {
       final text = element.text?.trim();
       if (text == null || text.isEmpty) return null;
@@ -77,13 +83,13 @@ class ReaderContent extends StatelessWidget {
       );
       switch (localName) {
         case 'body':
-          return Text(text, style: baseStyle);
+          return Text(text, style: baseStyle, textAlign: textAlign);
         case 'p':
           return Padding(
             padding: EdgeInsets.only(
               bottom: settingsState.appSettings.display.paragraphSpacing * 10,
             ),
-            child: Text(text, style: baseStyle),
+            child: Text(text, style: baseStyle, textAlign: textAlign),
           );
         case 'h1':
           final headerStyle = baseStyle.copyWith(
@@ -97,7 +103,7 @@ class ReaderContent extends StatelessWidget {
               top: settingsState.appSettings.display.headerMarginTop,
               bottom: settingsState.appSettings.display.headerMarginBottom,
             ),
-            child: Text(text, style: headerStyle),
+            child: Text(text, style: headerStyle, textAlign: textAlign),
           );
         case 'h2':
           final headerStyle = baseStyle.copyWith(
@@ -112,7 +118,7 @@ class ReaderContent extends StatelessWidget {
               top: settingsState.appSettings.display.headerMarginTop,
               bottom: settingsState.appSettings.display.headerMarginBottom,
             ),
-            child: Text(text, style: headerStyle),
+            child: Text(text, style: headerStyle, textAlign: textAlign),
           );
         case 'h3':
           final headerStyle = baseStyle.copyWith(
@@ -127,7 +133,7 @@ class ReaderContent extends StatelessWidget {
               top: settingsState.appSettings.display.headerMarginTop,
               bottom: settingsState.appSettings.display.headerMarginBottom,
             ),
-            child: Text(text, style: headerStyle),
+            child: Text(text, style: headerStyle, textAlign: textAlign),
           );
         case 'footer':
           final footerStyle = baseStyle.copyWith(
@@ -139,10 +145,10 @@ class ReaderContent extends StatelessWidget {
               top: settingsState.appSettings.display.footerMarginTop,
               bottom: settingsState.appSettings.display.footerMarginBottom,
             ),
-            child: Text(text, style: footerStyle),
+            child: Text(text, style: footerStyle, textAlign: textAlign),
           );
         default:
-          return Text(text, style: baseStyle);
+          return Text(text, style: baseStyle, textAlign: textAlign);
       }
     }
 
