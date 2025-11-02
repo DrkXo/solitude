@@ -5,5 +5,6 @@ abstract class SettingsState with _$SettingsState {
     required AppSettings appSettings,
     @Default(null) String? backupMessage,
     @Default(false) bool isBackupLoading,
+    @Default(null) String? errorMessage,
   }) = _SettingsState;
 }

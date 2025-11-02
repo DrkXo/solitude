@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'settings_constants.dart';
+
 part 'portable_settings.freezed.dart';
 part 'portable_settings.g.dart';
 
@@ -35,15 +37,15 @@ abstract class AppSettings with _$AppSettings {
 @freezed
 abstract class DisplaySettings with _$DisplaySettings {
   const factory DisplaySettings({
-    @Default('Merriweather') String fontFamily,
+    @Default(FontFamily.openSans) FontFamily fontFamily,
     @Default(18.0) double fontSize,
     @Default('normal') String fontWeight,
     @Default(1.5) double lineHeight,
     @Default(0.2) double letterSpacing,
     @Default(1.2) double paragraphSpacing,
-    @Default('sepia') String theme,
+    @Default(ThemeOption.dark) ThemeOption theme,
     @Default(CustomTheme()) CustomTheme customTheme,
-    @Default('paged') String pageLayout,
+    @Default(PageLayout.paged) PageLayout pageLayout,
     @Default('auto') String orientation,
     @Default('justify') String textAlign,
     @Default('slide') String pageTurnAnimation,
@@ -82,11 +84,11 @@ abstract class Margins with _$Margins {
 abstract class BehaviorSettings with _$BehaviorSettings {
   const factory BehaviorSettings({
     @Default(TapZones()) TapZones tapZones,
-    @Default('paged') String scrollMode,
+    @Default(ScrollMode.paged) ScrollMode scrollMode,
     @Default(true) bool rememberLastPosition,
     @Default(true) bool syncProgress,
     @Default(AutoScroll()) AutoScroll autoScroll,
-    @Default('LTR') String readingDirection,
+    @Default(ReadingDirection.ltr) ReadingDirection readingDirection,
   }) = _BehaviorSettings;
 
   factory BehaviorSettings.fromJson(Map<String, dynamic> json) =>
@@ -147,8 +149,8 @@ abstract class TextToSpeech with _$TextToSpeech {
 @freezed
 abstract class LibrarySettings with _$LibrarySettings {
   const factory LibrarySettings({
-    @Default('title') String sortBy,
-    @Default('grid') String viewStyle,
+    @Default(SortBy.title) SortBy sortBy,
+    @Default(ViewStyle.grid) ViewStyle viewStyle,
     @Default(true) bool showCovers,
     @Default(['OpenLibrary', 'GoogleBooks']) List<String> metadataSources,
     @Default(['/books', '/downloads/ebooks']) List<String> scanPaths,
@@ -165,7 +167,7 @@ abstract class AnnotationsSettings with _$AnnotationsSettings {
     @Default(['#f4d03f', '#58d68d', '#5dade2']) List<String> highlightColors,
     @Default(true) bool sync,
     @Default(true) bool autoSave,
-    @Default('markdown') String exportFormat,
+    @Default(AnnotationExportFormat.markdown) AnnotationExportFormat exportFormat,
     @Default(true) bool showSidebar,
   }) = _AnnotationsSettings;
 
@@ -176,7 +178,7 @@ abstract class AnnotationsSettings with _$AnnotationsSettings {
 @freezed
 abstract class UISettings with _$UISettings {
   const factory UISettings({
-    @Default('bottom') String toolbarPosition,
+    @Default(ToolbarPosition.bottom) ToolbarPosition toolbarPosition,
     @Default(Gestures()) Gestures gestures,
     @Default(true) bool enableAnimations,
     @Default(false) bool soundFeedback,
@@ -201,9 +203,9 @@ abstract class Gestures with _$Gestures {
 @freezed
 abstract class LocalizationSettings with _$LocalizationSettings {
   const factory LocalizationSettings({
-    @Default('en') String language,
-    @Default('US') String region,
-    @Default('DD/MM/YYYY') String dateFormat,
+    @Default(Language.en) Language language,
+    @Default(Region.us) Region region,
+    @Default(DateFormat.ddMmYyyy) DateFormat dateFormat,
   }) = _LocalizationSettings;
 
   factory LocalizationSettings.fromJson(Map<String, dynamic> json) =>

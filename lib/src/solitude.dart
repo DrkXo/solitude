@@ -76,7 +76,7 @@ class Solitude extends StatelessWidget {
               theme: themeService.getLightThemeData(),
               darkTheme: themeService.getDarkThemeData(),
               themeMode: ThemeMode.values.firstWhere(
-                (mode) => mode.name == state.appSettings.display.theme,
+                (mode) => mode.name == state.appSettings.display.theme.value,
                 orElse: () => ThemeMode.system,
               ),
               localizationsDelegates: const [

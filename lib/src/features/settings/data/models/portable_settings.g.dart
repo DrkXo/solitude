@@ -69,17 +69,23 @@ Map<String, dynamic> _$AppSettingsToJson(_AppSettings instance) =>
 
 _DisplaySettings _$DisplaySettingsFromJson(Map<String, dynamic> json) =>
     _DisplaySettings(
-      fontFamily: json['fontFamily'] as String? ?? 'Merriweather',
+      fontFamily:
+          $enumDecodeNullable(_$FontFamilyEnumMap, json['fontFamily']) ??
+          FontFamily.openSans,
       fontSize: (json['fontSize'] as num?)?.toDouble() ?? 18.0,
       fontWeight: json['fontWeight'] as String? ?? 'normal',
       lineHeight: (json['lineHeight'] as num?)?.toDouble() ?? 1.5,
       letterSpacing: (json['letterSpacing'] as num?)?.toDouble() ?? 0.2,
       paragraphSpacing: (json['paragraphSpacing'] as num?)?.toDouble() ?? 1.2,
-      theme: json['theme'] as String? ?? 'sepia',
+      theme:
+          $enumDecodeNullable(_$ThemeOptionEnumMap, json['theme']) ??
+          ThemeOption.dark,
       customTheme: json['customTheme'] == null
           ? const CustomTheme()
           : CustomTheme.fromJson(json['customTheme'] as Map<String, dynamic>),
-      pageLayout: json['pageLayout'] as String? ?? 'paged',
+      pageLayout:
+          $enumDecodeNullable(_$PageLayoutEnumMap, json['pageLayout']) ??
+          PageLayout.paged,
       orientation: json['orientation'] as String? ?? 'auto',
       textAlign: json['textAlign'] as String? ?? 'justify',
       pageTurnAnimation: json['pageTurnAnimation'] as String? ?? 'slide',
@@ -90,20 +96,40 @@ _DisplaySettings _$DisplaySettingsFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$DisplaySettingsToJson(_DisplaySettings instance) =>
     <String, dynamic>{
-      'fontFamily': instance.fontFamily,
+      'fontFamily': _$FontFamilyEnumMap[instance.fontFamily]!,
       'fontSize': instance.fontSize,
       'fontWeight': instance.fontWeight,
       'lineHeight': instance.lineHeight,
       'letterSpacing': instance.letterSpacing,
       'paragraphSpacing': instance.paragraphSpacing,
-      'theme': instance.theme,
+      'theme': _$ThemeOptionEnumMap[instance.theme]!,
       'customTheme': instance.customTheme,
-      'pageLayout': instance.pageLayout,
+      'pageLayout': _$PageLayoutEnumMap[instance.pageLayout]!,
       'orientation': instance.orientation,
       'textAlign': instance.textAlign,
       'pageTurnAnimation': instance.pageTurnAnimation,
       'margins': instance.margins,
     };
+
+const _$FontFamilyEnumMap = {
+  FontFamily.merriweather: 'Merriweather',
+  FontFamily.arial: 'Arial',
+  FontFamily.timesNewRoman: 'Times New Roman',
+  FontFamily.georgia: 'Georgia',
+  FontFamily.openSans: 'Open Sans',
+};
+
+const _$ThemeOptionEnumMap = {
+  ThemeOption.light: 'light',
+  ThemeOption.dark: 'dark',
+  ThemeOption.custom: 'custom',
+  ThemeOption.device: 'device',
+};
+
+const _$PageLayoutEnumMap = {
+  PageLayout.paged: 'paged',
+  PageLayout.scroll: 'scroll',
+};
 
 _CustomTheme _$CustomThemeFromJson(Map<String, dynamic> json) => _CustomTheme(
   backgroundColor: json['backgroundColor'] as String? ?? '#f4ecd8',
@@ -135,24 +161,41 @@ _BehaviorSettings _$BehaviorSettingsFromJson(Map<String, dynamic> json) =>
       tapZones: json['tapZones'] == null
           ? const TapZones()
           : TapZones.fromJson(json['tapZones'] as Map<String, dynamic>),
-      scrollMode: json['scrollMode'] as String? ?? 'paged',
+      scrollMode:
+          $enumDecodeNullable(_$ScrollModeEnumMap, json['scrollMode']) ??
+          ScrollMode.paged,
       rememberLastPosition: json['rememberLastPosition'] as bool? ?? true,
       syncProgress: json['syncProgress'] as bool? ?? true,
       autoScroll: json['autoScroll'] == null
           ? const AutoScroll()
           : AutoScroll.fromJson(json['autoScroll'] as Map<String, dynamic>),
-      readingDirection: json['readingDirection'] as String? ?? 'LTR',
+      readingDirection:
+          $enumDecodeNullable(
+            _$ReadingDirectionEnumMap,
+            json['readingDirection'],
+          ) ??
+          ReadingDirection.ltr,
     );
 
 Map<String, dynamic> _$BehaviorSettingsToJson(_BehaviorSettings instance) =>
     <String, dynamic>{
       'tapZones': instance.tapZones,
-      'scrollMode': instance.scrollMode,
+      'scrollMode': _$ScrollModeEnumMap[instance.scrollMode]!,
       'rememberLastPosition': instance.rememberLastPosition,
       'syncProgress': instance.syncProgress,
       'autoScroll': instance.autoScroll,
-      'readingDirection': instance.readingDirection,
+      'readingDirection': _$ReadingDirectionEnumMap[instance.readingDirection]!,
     };
+
+const _$ScrollModeEnumMap = {
+  ScrollMode.paged: 'paged',
+  ScrollMode.continuous: 'continuous',
+};
+
+const _$ReadingDirectionEnumMap = {
+  ReadingDirection.ltr: 'LTR',
+  ReadingDirection.rtl: 'RTL',
+};
 
 _TapZones _$TapZonesFromJson(Map<String, dynamic> json) => _TapZones(
   left: json['left'] as String? ?? 'previousPage',
@@ -217,8 +260,10 @@ Map<String, dynamic> _$TextToSpeechToJson(_TextToSpeech instance) =>
 _LibrarySettings _$LibrarySettingsFromJson(
   Map<String, dynamic> json,
 ) => _LibrarySettings(
-  sortBy: json['sortBy'] as String? ?? 'title',
-  viewStyle: json['viewStyle'] as String? ?? 'grid',
+  sortBy: $enumDecodeNullable(_$SortByEnumMap, json['sortBy']) ?? SortBy.title,
+  viewStyle:
+      $enumDecodeNullable(_$ViewStyleEnumMap, json['viewStyle']) ??
+      ViewStyle.grid,
   showCovers: json['showCovers'] as bool? ?? true,
   metadataSources:
       (json['metadataSources'] as List<dynamic>?)
@@ -235,13 +280,22 @@ _LibrarySettings _$LibrarySettingsFromJson(
 
 Map<String, dynamic> _$LibrarySettingsToJson(_LibrarySettings instance) =>
     <String, dynamic>{
-      'sortBy': instance.sortBy,
-      'viewStyle': instance.viewStyle,
+      'sortBy': _$SortByEnumMap[instance.sortBy]!,
+      'viewStyle': _$ViewStyleEnumMap[instance.viewStyle]!,
       'showCovers': instance.showCovers,
       'metadataSources': instance.metadataSources,
       'scanPaths': instance.scanPaths,
       'formats': instance.formats,
     };
+
+const _$SortByEnumMap = {
+  SortBy.title: 'title',
+  SortBy.author: 'author',
+  SortBy.date: 'date',
+  SortBy.size: 'size',
+};
+
+const _$ViewStyleEnumMap = {ViewStyle.grid: 'grid', ViewStyle.list: 'list'};
 
 _AnnotationsSettings _$AnnotationsSettingsFromJson(Map<String, dynamic> json) =>
     _AnnotationsSettings(
@@ -252,7 +306,12 @@ _AnnotationsSettings _$AnnotationsSettingsFromJson(Map<String, dynamic> json) =>
           const ['#f4d03f', '#58d68d', '#5dade2'],
       sync: json['sync'] as bool? ?? true,
       autoSave: json['autoSave'] as bool? ?? true,
-      exportFormat: json['exportFormat'] as String? ?? 'markdown',
+      exportFormat:
+          $enumDecodeNullable(
+            _$AnnotationExportFormatEnumMap,
+            json['exportFormat'],
+          ) ??
+          AnnotationExportFormat.markdown,
       showSidebar: json['showSidebar'] as bool? ?? true,
     );
 
@@ -262,12 +321,20 @@ Map<String, dynamic> _$AnnotationsSettingsToJson(
   'highlightColors': instance.highlightColors,
   'sync': instance.sync,
   'autoSave': instance.autoSave,
-  'exportFormat': instance.exportFormat,
+  'exportFormat': _$AnnotationExportFormatEnumMap[instance.exportFormat]!,
   'showSidebar': instance.showSidebar,
 };
 
+const _$AnnotationExportFormatEnumMap = {
+  AnnotationExportFormat.markdown: 'markdown',
+  AnnotationExportFormat.html: 'html',
+  AnnotationExportFormat.json: 'json',
+};
+
 _UISettings _$UISettingsFromJson(Map<String, dynamic> json) => _UISettings(
-  toolbarPosition: json['toolbarPosition'] as String? ?? 'bottom',
+  toolbarPosition:
+      $enumDecodeNullable(_$ToolbarPositionEnumMap, json['toolbarPosition']) ??
+      ToolbarPosition.bottom,
   gestures: json['gestures'] == null
       ? const Gestures()
       : Gestures.fromJson(json['gestures'] as Map<String, dynamic>),
@@ -277,11 +344,16 @@ _UISettings _$UISettingsFromJson(Map<String, dynamic> json) => _UISettings(
 
 Map<String, dynamic> _$UISettingsToJson(_UISettings instance) =>
     <String, dynamic>{
-      'toolbarPosition': instance.toolbarPosition,
+      'toolbarPosition': _$ToolbarPositionEnumMap[instance.toolbarPosition]!,
       'gestures': instance.gestures,
       'enableAnimations': instance.enableAnimations,
       'soundFeedback': instance.soundFeedback,
     };
+
+const _$ToolbarPositionEnumMap = {
+  ToolbarPosition.bottom: 'bottom',
+  ToolbarPosition.top: 'top',
+};
 
 _Gestures _$GesturesFromJson(Map<String, dynamic> json) => _Gestures(
   swipeUp: json['swipeUp'] as String? ?? 'brightnessUp',
@@ -298,17 +370,41 @@ Map<String, dynamic> _$GesturesToJson(_Gestures instance) => <String, dynamic>{
 _LocalizationSettings _$LocalizationSettingsFromJson(
   Map<String, dynamic> json,
 ) => _LocalizationSettings(
-  language: json['language'] as String? ?? 'en',
-  region: json['region'] as String? ?? 'US',
-  dateFormat: json['dateFormat'] as String? ?? 'DD/MM/YYYY',
+  language:
+      $enumDecodeNullable(_$LanguageEnumMap, json['language']) ?? Language.en,
+  region: $enumDecodeNullable(_$RegionEnumMap, json['region']) ?? Region.us,
+  dateFormat:
+      $enumDecodeNullable(_$DateFormatEnumMap, json['dateFormat']) ??
+      DateFormat.ddMmYyyy,
 );
 
 Map<String, dynamic> _$LocalizationSettingsToJson(
   _LocalizationSettings instance,
 ) => <String, dynamic>{
-  'language': instance.language,
-  'region': instance.region,
-  'dateFormat': instance.dateFormat,
+  'language': _$LanguageEnumMap[instance.language]!,
+  'region': _$RegionEnumMap[instance.region]!,
+  'dateFormat': _$DateFormatEnumMap[instance.dateFormat]!,
+};
+
+const _$LanguageEnumMap = {
+  Language.en: 'en',
+  Language.es: 'es',
+  Language.fr: 'fr',
+  Language.de: 'de',
+};
+
+const _$RegionEnumMap = {
+  Region.us: 'US',
+  Region.uk: 'UK',
+  Region.es: 'ES',
+  Region.fr: 'FR',
+  Region.de: 'DE',
+};
+
+const _$DateFormatEnumMap = {
+  DateFormat.ddMmYyyy: 'ddMmYyyy',
+  DateFormat.mmDdYyyy: 'mmDdYyyy',
+  DateFormat.yyyyMmDd: 'yyyyMmDd',
 };
 
 _DeveloperSettings _$DeveloperSettingsFromJson(Map<String, dynamic> json) =>

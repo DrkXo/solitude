@@ -221,7 +221,7 @@ return importSettings(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( double fontSize)?  fontSizeChanged,TResult Function( String fontFamily)?  fontFamilyChanged,TResult Function( String theme)?  themeChanged,TResult Function( String pageLayout)?  pageLayoutChanged,TResult Function( String readingDirection)?  readingDirectionChanged,TResult Function( String scrollMode)?  scrollModeChanged,TResult Function( bool remember)?  rememberLastPositionChanged,TResult Function( bool sync)?  syncProgressChanged,TResult Function( bool enabled)?  dyslexicFontChanged,TResult Function( bool enabled)?  highContrastChanged,TResult Function( bool enabled)?  immersiveModeChanged,TResult Function( TextToSpeech tts)?  textToSpeechChanged,TResult Function( String sortBy)?  sortByChanged,TResult Function( String viewStyle)?  viewStyleChanged,TResult Function( bool show)?  showCoversChanged,TResult Function( List<String> sources)?  metadataSourcesChanged,TResult Function( List<String> paths)?  scanPathsChanged,TResult Function( List<String> formats)?  formatsChanged,TResult Function( List<String> colors)?  highlightColorsChanged,TResult Function( bool sync)?  annotationsSyncChanged,TResult Function( bool autoSave)?  autoSaveAnnotationsChanged,TResult Function( String format)?  exportFormatChanged,TResult Function( bool show)?  showSidebarChanged,TResult Function( String position)?  toolbarPositionChanged,TResult Function( bool enabled)?  enableAnimationsChanged,TResult Function( bool enabled)?  soundFeedbackChanged,TResult Function( String language)?  languageChanged,TResult Function( String region)?  regionChanged,TResult Function( String format)?  dateFormatChanged,TResult Function( bool enabled)?  debugLoggingChanged,TResult Function( bool enabled)?  enableDevToolsChanged,TResult Function( String js)?  customJSChanged,TResult Function()?  resetToDefaults,TResult Function( ExportFormat format)?  exportSettings,TResult Function( String filePath)?  importSettings,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( double fontSize)?  fontSizeChanged,TResult Function( FontFamily fontFamily)?  fontFamilyChanged,TResult Function( ThemeOption theme)?  themeChanged,TResult Function( PageLayout pageLayout)?  pageLayoutChanged,TResult Function( ReadingDirection readingDirection)?  readingDirectionChanged,TResult Function( ScrollMode scrollMode)?  scrollModeChanged,TResult Function( bool remember)?  rememberLastPositionChanged,TResult Function( bool sync)?  syncProgressChanged,TResult Function( bool enabled)?  dyslexicFontChanged,TResult Function( bool enabled)?  highContrastChanged,TResult Function( bool enabled)?  immersiveModeChanged,TResult Function( TextToSpeech tts)?  textToSpeechChanged,TResult Function( SortBy sortBy)?  sortByChanged,TResult Function( ViewStyle viewStyle)?  viewStyleChanged,TResult Function( bool show)?  showCoversChanged,TResult Function( List<String> sources)?  metadataSourcesChanged,TResult Function( List<String> paths)?  scanPathsChanged,TResult Function( List<String> formats)?  formatsChanged,TResult Function( List<String> colors)?  highlightColorsChanged,TResult Function( bool sync)?  annotationsSyncChanged,TResult Function( bool autoSave)?  autoSaveAnnotationsChanged,TResult Function( AnnotationExportFormat format)?  exportFormatChanged,TResult Function( bool show)?  showSidebarChanged,TResult Function( ToolbarPosition position)?  toolbarPositionChanged,TResult Function( bool enabled)?  enableAnimationsChanged,TResult Function( bool enabled)?  soundFeedbackChanged,TResult Function( Language language)?  languageChanged,TResult Function( Region region)?  regionChanged,TResult Function( DateFormat format)?  dateFormatChanged,TResult Function( bool enabled)?  debugLoggingChanged,TResult Function( bool enabled)?  enableDevToolsChanged,TResult Function( String js)?  customJSChanged,TResult Function()?  resetToDefaults,TResult Function( ExportFormat format)?  exportSettings,TResult Function( String filePath)?  importSettings,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FontSizeChanged() when fontSizeChanged != null:
 return fontSizeChanged(_that.fontSize);case _FontFamilyChanged() when fontFamilyChanged != null:
@@ -276,7 +276,7 @@ return importSettings(_that.filePath);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( double fontSize)  fontSizeChanged,required TResult Function( String fontFamily)  fontFamilyChanged,required TResult Function( String theme)  themeChanged,required TResult Function( String pageLayout)  pageLayoutChanged,required TResult Function( String readingDirection)  readingDirectionChanged,required TResult Function( String scrollMode)  scrollModeChanged,required TResult Function( bool remember)  rememberLastPositionChanged,required TResult Function( bool sync)  syncProgressChanged,required TResult Function( bool enabled)  dyslexicFontChanged,required TResult Function( bool enabled)  highContrastChanged,required TResult Function( bool enabled)  immersiveModeChanged,required TResult Function( TextToSpeech tts)  textToSpeechChanged,required TResult Function( String sortBy)  sortByChanged,required TResult Function( String viewStyle)  viewStyleChanged,required TResult Function( bool show)  showCoversChanged,required TResult Function( List<String> sources)  metadataSourcesChanged,required TResult Function( List<String> paths)  scanPathsChanged,required TResult Function( List<String> formats)  formatsChanged,required TResult Function( List<String> colors)  highlightColorsChanged,required TResult Function( bool sync)  annotationsSyncChanged,required TResult Function( bool autoSave)  autoSaveAnnotationsChanged,required TResult Function( String format)  exportFormatChanged,required TResult Function( bool show)  showSidebarChanged,required TResult Function( String position)  toolbarPositionChanged,required TResult Function( bool enabled)  enableAnimationsChanged,required TResult Function( bool enabled)  soundFeedbackChanged,required TResult Function( String language)  languageChanged,required TResult Function( String region)  regionChanged,required TResult Function( String format)  dateFormatChanged,required TResult Function( bool enabled)  debugLoggingChanged,required TResult Function( bool enabled)  enableDevToolsChanged,required TResult Function( String js)  customJSChanged,required TResult Function()  resetToDefaults,required TResult Function( ExportFormat format)  exportSettings,required TResult Function( String filePath)  importSettings,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( double fontSize)  fontSizeChanged,required TResult Function( FontFamily fontFamily)  fontFamilyChanged,required TResult Function( ThemeOption theme)  themeChanged,required TResult Function( PageLayout pageLayout)  pageLayoutChanged,required TResult Function( ReadingDirection readingDirection)  readingDirectionChanged,required TResult Function( ScrollMode scrollMode)  scrollModeChanged,required TResult Function( bool remember)  rememberLastPositionChanged,required TResult Function( bool sync)  syncProgressChanged,required TResult Function( bool enabled)  dyslexicFontChanged,required TResult Function( bool enabled)  highContrastChanged,required TResult Function( bool enabled)  immersiveModeChanged,required TResult Function( TextToSpeech tts)  textToSpeechChanged,required TResult Function( SortBy sortBy)  sortByChanged,required TResult Function( ViewStyle viewStyle)  viewStyleChanged,required TResult Function( bool show)  showCoversChanged,required TResult Function( List<String> sources)  metadataSourcesChanged,required TResult Function( List<String> paths)  scanPathsChanged,required TResult Function( List<String> formats)  formatsChanged,required TResult Function( List<String> colors)  highlightColorsChanged,required TResult Function( bool sync)  annotationsSyncChanged,required TResult Function( bool autoSave)  autoSaveAnnotationsChanged,required TResult Function( AnnotationExportFormat format)  exportFormatChanged,required TResult Function( bool show)  showSidebarChanged,required TResult Function( ToolbarPosition position)  toolbarPositionChanged,required TResult Function( bool enabled)  enableAnimationsChanged,required TResult Function( bool enabled)  soundFeedbackChanged,required TResult Function( Language language)  languageChanged,required TResult Function( Region region)  regionChanged,required TResult Function( DateFormat format)  dateFormatChanged,required TResult Function( bool enabled)  debugLoggingChanged,required TResult Function( bool enabled)  enableDevToolsChanged,required TResult Function( String js)  customJSChanged,required TResult Function()  resetToDefaults,required TResult Function( ExportFormat format)  exportSettings,required TResult Function( String filePath)  importSettings,}) {final _that = this;
 switch (_that) {
 case _FontSizeChanged():
 return fontSizeChanged(_that.fontSize);case _FontFamilyChanged():
@@ -330,7 +330,7 @@ return importSettings(_that.filePath);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( double fontSize)?  fontSizeChanged,TResult? Function( String fontFamily)?  fontFamilyChanged,TResult? Function( String theme)?  themeChanged,TResult? Function( String pageLayout)?  pageLayoutChanged,TResult? Function( String readingDirection)?  readingDirectionChanged,TResult? Function( String scrollMode)?  scrollModeChanged,TResult? Function( bool remember)?  rememberLastPositionChanged,TResult? Function( bool sync)?  syncProgressChanged,TResult? Function( bool enabled)?  dyslexicFontChanged,TResult? Function( bool enabled)?  highContrastChanged,TResult? Function( bool enabled)?  immersiveModeChanged,TResult? Function( TextToSpeech tts)?  textToSpeechChanged,TResult? Function( String sortBy)?  sortByChanged,TResult? Function( String viewStyle)?  viewStyleChanged,TResult? Function( bool show)?  showCoversChanged,TResult? Function( List<String> sources)?  metadataSourcesChanged,TResult? Function( List<String> paths)?  scanPathsChanged,TResult? Function( List<String> formats)?  formatsChanged,TResult? Function( List<String> colors)?  highlightColorsChanged,TResult? Function( bool sync)?  annotationsSyncChanged,TResult? Function( bool autoSave)?  autoSaveAnnotationsChanged,TResult? Function( String format)?  exportFormatChanged,TResult? Function( bool show)?  showSidebarChanged,TResult? Function( String position)?  toolbarPositionChanged,TResult? Function( bool enabled)?  enableAnimationsChanged,TResult? Function( bool enabled)?  soundFeedbackChanged,TResult? Function( String language)?  languageChanged,TResult? Function( String region)?  regionChanged,TResult? Function( String format)?  dateFormatChanged,TResult? Function( bool enabled)?  debugLoggingChanged,TResult? Function( bool enabled)?  enableDevToolsChanged,TResult? Function( String js)?  customJSChanged,TResult? Function()?  resetToDefaults,TResult? Function( ExportFormat format)?  exportSettings,TResult? Function( String filePath)?  importSettings,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( double fontSize)?  fontSizeChanged,TResult? Function( FontFamily fontFamily)?  fontFamilyChanged,TResult? Function( ThemeOption theme)?  themeChanged,TResult? Function( PageLayout pageLayout)?  pageLayoutChanged,TResult? Function( ReadingDirection readingDirection)?  readingDirectionChanged,TResult? Function( ScrollMode scrollMode)?  scrollModeChanged,TResult? Function( bool remember)?  rememberLastPositionChanged,TResult? Function( bool sync)?  syncProgressChanged,TResult? Function( bool enabled)?  dyslexicFontChanged,TResult? Function( bool enabled)?  highContrastChanged,TResult? Function( bool enabled)?  immersiveModeChanged,TResult? Function( TextToSpeech tts)?  textToSpeechChanged,TResult? Function( SortBy sortBy)?  sortByChanged,TResult? Function( ViewStyle viewStyle)?  viewStyleChanged,TResult? Function( bool show)?  showCoversChanged,TResult? Function( List<String> sources)?  metadataSourcesChanged,TResult? Function( List<String> paths)?  scanPathsChanged,TResult? Function( List<String> formats)?  formatsChanged,TResult? Function( List<String> colors)?  highlightColorsChanged,TResult? Function( bool sync)?  annotationsSyncChanged,TResult? Function( bool autoSave)?  autoSaveAnnotationsChanged,TResult? Function( AnnotationExportFormat format)?  exportFormatChanged,TResult? Function( bool show)?  showSidebarChanged,TResult? Function( ToolbarPosition position)?  toolbarPositionChanged,TResult? Function( bool enabled)?  enableAnimationsChanged,TResult? Function( bool enabled)?  soundFeedbackChanged,TResult? Function( Language language)?  languageChanged,TResult? Function( Region region)?  regionChanged,TResult? Function( DateFormat format)?  dateFormatChanged,TResult? Function( bool enabled)?  debugLoggingChanged,TResult? Function( bool enabled)?  enableDevToolsChanged,TResult? Function( String js)?  customJSChanged,TResult? Function()?  resetToDefaults,TResult? Function( ExportFormat format)?  exportSettings,TResult? Function( String filePath)?  importSettings,}) {final _that = this;
 switch (_that) {
 case _FontSizeChanged() when fontSizeChanged != null:
 return fontSizeChanged(_that.fontSize);case _FontFamilyChanged() when fontFamilyChanged != null:
@@ -448,7 +448,7 @@ class _FontFamilyChanged implements SettingsEvent {
   const _FontFamilyChanged(this.fontFamily);
   
 
- final  String fontFamily;
+ final  FontFamily fontFamily;
 
 /// Create a copy of SettingsEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -480,7 +480,7 @@ abstract mixin class _$FontFamilyChangedCopyWith<$Res> implements $SettingsEvent
   factory _$FontFamilyChangedCopyWith(_FontFamilyChanged value, $Res Function(_FontFamilyChanged) _then) = __$FontFamilyChangedCopyWithImpl;
 @useResult
 $Res call({
- String fontFamily
+ FontFamily fontFamily
 });
 
 
@@ -500,7 +500,7 @@ class __$FontFamilyChangedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? fontFamily = null,}) {
   return _then(_FontFamilyChanged(
 null == fontFamily ? _self.fontFamily : fontFamily // ignore: cast_nullable_to_non_nullable
-as String,
+as FontFamily,
   ));
 }
 
@@ -514,7 +514,7 @@ class _ThemeChanged implements SettingsEvent {
   const _ThemeChanged(this.theme);
   
 
- final  String theme;
+ final  ThemeOption theme;
 
 /// Create a copy of SettingsEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -546,7 +546,7 @@ abstract mixin class _$ThemeChangedCopyWith<$Res> implements $SettingsEventCopyW
   factory _$ThemeChangedCopyWith(_ThemeChanged value, $Res Function(_ThemeChanged) _then) = __$ThemeChangedCopyWithImpl;
 @useResult
 $Res call({
- String theme
+ ThemeOption theme
 });
 
 
@@ -566,7 +566,7 @@ class __$ThemeChangedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? theme = null,}) {
   return _then(_ThemeChanged(
 null == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
-as String,
+as ThemeOption,
   ));
 }
 
@@ -580,7 +580,7 @@ class _PageLayoutChanged implements SettingsEvent {
   const _PageLayoutChanged(this.pageLayout);
   
 
- final  String pageLayout;
+ final  PageLayout pageLayout;
 
 /// Create a copy of SettingsEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -612,7 +612,7 @@ abstract mixin class _$PageLayoutChangedCopyWith<$Res> implements $SettingsEvent
   factory _$PageLayoutChangedCopyWith(_PageLayoutChanged value, $Res Function(_PageLayoutChanged) _then) = __$PageLayoutChangedCopyWithImpl;
 @useResult
 $Res call({
- String pageLayout
+ PageLayout pageLayout
 });
 
 
@@ -632,7 +632,7 @@ class __$PageLayoutChangedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? pageLayout = null,}) {
   return _then(_PageLayoutChanged(
 null == pageLayout ? _self.pageLayout : pageLayout // ignore: cast_nullable_to_non_nullable
-as String,
+as PageLayout,
   ));
 }
 
@@ -646,7 +646,7 @@ class _ReadingDirectionChanged implements SettingsEvent {
   const _ReadingDirectionChanged(this.readingDirection);
   
 
- final  String readingDirection;
+ final  ReadingDirection readingDirection;
 
 /// Create a copy of SettingsEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -678,7 +678,7 @@ abstract mixin class _$ReadingDirectionChangedCopyWith<$Res> implements $Setting
   factory _$ReadingDirectionChangedCopyWith(_ReadingDirectionChanged value, $Res Function(_ReadingDirectionChanged) _then) = __$ReadingDirectionChangedCopyWithImpl;
 @useResult
 $Res call({
- String readingDirection
+ ReadingDirection readingDirection
 });
 
 
@@ -698,7 +698,7 @@ class __$ReadingDirectionChangedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? readingDirection = null,}) {
   return _then(_ReadingDirectionChanged(
 null == readingDirection ? _self.readingDirection : readingDirection // ignore: cast_nullable_to_non_nullable
-as String,
+as ReadingDirection,
   ));
 }
 
@@ -712,7 +712,7 @@ class _ScrollModeChanged implements SettingsEvent {
   const _ScrollModeChanged(this.scrollMode);
   
 
- final  String scrollMode;
+ final  ScrollMode scrollMode;
 
 /// Create a copy of SettingsEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -744,7 +744,7 @@ abstract mixin class _$ScrollModeChangedCopyWith<$Res> implements $SettingsEvent
   factory _$ScrollModeChangedCopyWith(_ScrollModeChanged value, $Res Function(_ScrollModeChanged) _then) = __$ScrollModeChangedCopyWithImpl;
 @useResult
 $Res call({
- String scrollMode
+ ScrollMode scrollMode
 });
 
 
@@ -764,7 +764,7 @@ class __$ScrollModeChangedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? scrollMode = null,}) {
   return _then(_ScrollModeChanged(
 null == scrollMode ? _self.scrollMode : scrollMode // ignore: cast_nullable_to_non_nullable
-as String,
+as ScrollMode,
   ));
 }
 
@@ -1183,7 +1183,7 @@ class _SortByChanged implements SettingsEvent {
   const _SortByChanged(this.sortBy);
   
 
- final  String sortBy;
+ final  SortBy sortBy;
 
 /// Create a copy of SettingsEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -1215,7 +1215,7 @@ abstract mixin class _$SortByChangedCopyWith<$Res> implements $SettingsEventCopy
   factory _$SortByChangedCopyWith(_SortByChanged value, $Res Function(_SortByChanged) _then) = __$SortByChangedCopyWithImpl;
 @useResult
 $Res call({
- String sortBy
+ SortBy sortBy
 });
 
 
@@ -1235,7 +1235,7 @@ class __$SortByChangedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? sortBy = null,}) {
   return _then(_SortByChanged(
 null == sortBy ? _self.sortBy : sortBy // ignore: cast_nullable_to_non_nullable
-as String,
+as SortBy,
   ));
 }
 
@@ -1249,7 +1249,7 @@ class _ViewStyleChanged implements SettingsEvent {
   const _ViewStyleChanged(this.viewStyle);
   
 
- final  String viewStyle;
+ final  ViewStyle viewStyle;
 
 /// Create a copy of SettingsEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -1281,7 +1281,7 @@ abstract mixin class _$ViewStyleChangedCopyWith<$Res> implements $SettingsEventC
   factory _$ViewStyleChangedCopyWith(_ViewStyleChanged value, $Res Function(_ViewStyleChanged) _then) = __$ViewStyleChangedCopyWithImpl;
 @useResult
 $Res call({
- String viewStyle
+ ViewStyle viewStyle
 });
 
 
@@ -1301,7 +1301,7 @@ class __$ViewStyleChangedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? viewStyle = null,}) {
   return _then(_ViewStyleChanged(
 null == viewStyle ? _self.viewStyle : viewStyle // ignore: cast_nullable_to_non_nullable
-as String,
+as ViewStyle,
   ));
 }
 
@@ -1801,7 +1801,7 @@ class _ExportFormatChanged implements SettingsEvent {
   const _ExportFormatChanged(this.format);
   
 
- final  String format;
+ final  AnnotationExportFormat format;
 
 /// Create a copy of SettingsEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -1833,7 +1833,7 @@ abstract mixin class _$ExportFormatChangedCopyWith<$Res> implements $SettingsEve
   factory _$ExportFormatChangedCopyWith(_ExportFormatChanged value, $Res Function(_ExportFormatChanged) _then) = __$ExportFormatChangedCopyWithImpl;
 @useResult
 $Res call({
- String format
+ AnnotationExportFormat format
 });
 
 
@@ -1853,7 +1853,7 @@ class __$ExportFormatChangedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? format = null,}) {
   return _then(_ExportFormatChanged(
 null == format ? _self.format : format // ignore: cast_nullable_to_non_nullable
-as String,
+as AnnotationExportFormat,
   ));
 }
 
@@ -1933,7 +1933,7 @@ class _ToolbarPositionChanged implements SettingsEvent {
   const _ToolbarPositionChanged(this.position);
   
 
- final  String position;
+ final  ToolbarPosition position;
 
 /// Create a copy of SettingsEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -1965,7 +1965,7 @@ abstract mixin class _$ToolbarPositionChangedCopyWith<$Res> implements $Settings
   factory _$ToolbarPositionChangedCopyWith(_ToolbarPositionChanged value, $Res Function(_ToolbarPositionChanged) _then) = __$ToolbarPositionChangedCopyWithImpl;
 @useResult
 $Res call({
- String position
+ ToolbarPosition position
 });
 
 
@@ -1985,7 +1985,7 @@ class __$ToolbarPositionChangedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? position = null,}) {
   return _then(_ToolbarPositionChanged(
 null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
-as String,
+as ToolbarPosition,
   ));
 }
 
@@ -2131,7 +2131,7 @@ class _LanguageChanged implements SettingsEvent {
   const _LanguageChanged(this.language);
   
 
- final  String language;
+ final  Language language;
 
 /// Create a copy of SettingsEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -2163,7 +2163,7 @@ abstract mixin class _$LanguageChangedCopyWith<$Res> implements $SettingsEventCo
   factory _$LanguageChangedCopyWith(_LanguageChanged value, $Res Function(_LanguageChanged) _then) = __$LanguageChangedCopyWithImpl;
 @useResult
 $Res call({
- String language
+ Language language
 });
 
 
@@ -2183,7 +2183,7 @@ class __$LanguageChangedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? language = null,}) {
   return _then(_LanguageChanged(
 null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
-as String,
+as Language,
   ));
 }
 
@@ -2197,7 +2197,7 @@ class _RegionChanged implements SettingsEvent {
   const _RegionChanged(this.region);
   
 
- final  String region;
+ final  Region region;
 
 /// Create a copy of SettingsEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -2229,7 +2229,7 @@ abstract mixin class _$RegionChangedCopyWith<$Res> implements $SettingsEventCopy
   factory _$RegionChangedCopyWith(_RegionChanged value, $Res Function(_RegionChanged) _then) = __$RegionChangedCopyWithImpl;
 @useResult
 $Res call({
- String region
+ Region region
 });
 
 
@@ -2249,7 +2249,7 @@ class __$RegionChangedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? region = null,}) {
   return _then(_RegionChanged(
 null == region ? _self.region : region // ignore: cast_nullable_to_non_nullable
-as String,
+as Region,
   ));
 }
 
@@ -2263,7 +2263,7 @@ class _DateFormatChanged implements SettingsEvent {
   const _DateFormatChanged(this.format);
   
 
- final  String format;
+ final  DateFormat format;
 
 /// Create a copy of SettingsEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -2295,7 +2295,7 @@ abstract mixin class _$DateFormatChangedCopyWith<$Res> implements $SettingsEvent
   factory _$DateFormatChangedCopyWith(_DateFormatChanged value, $Res Function(_DateFormatChanged) _then) = __$DateFormatChangedCopyWithImpl;
 @useResult
 $Res call({
- String format
+ DateFormat format
 });
 
 
@@ -2315,7 +2315,7 @@ class __$DateFormatChangedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? format = null,}) {
   return _then(_DateFormatChanged(
 null == format ? _self.format : format // ignore: cast_nullable_to_non_nullable
-as String,
+as DateFormat,
   ));
 }
 
@@ -2687,7 +2687,7 @@ as String,
 /// @nodoc
 mixin _$SettingsState {
 
- AppSettings get appSettings; String? get backupMessage; bool get isBackupLoading;
+ AppSettings get appSettings; String? get backupMessage; bool get isBackupLoading; String? get errorMessage;
 /// Create a copy of SettingsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2698,16 +2698,16 @@ $SettingsStateCopyWith<SettingsState> get copyWith => _$SettingsStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SettingsState&&(identical(other.appSettings, appSettings) || other.appSettings == appSettings)&&(identical(other.backupMessage, backupMessage) || other.backupMessage == backupMessage)&&(identical(other.isBackupLoading, isBackupLoading) || other.isBackupLoading == isBackupLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SettingsState&&(identical(other.appSettings, appSettings) || other.appSettings == appSettings)&&(identical(other.backupMessage, backupMessage) || other.backupMessage == backupMessage)&&(identical(other.isBackupLoading, isBackupLoading) || other.isBackupLoading == isBackupLoading)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,appSettings,backupMessage,isBackupLoading);
+int get hashCode => Object.hash(runtimeType,appSettings,backupMessage,isBackupLoading,errorMessage);
 
 @override
 String toString() {
-  return 'SettingsState(appSettings: $appSettings, backupMessage: $backupMessage, isBackupLoading: $isBackupLoading)';
+  return 'SettingsState(appSettings: $appSettings, backupMessage: $backupMessage, isBackupLoading: $isBackupLoading, errorMessage: $errorMessage)';
 }
 
 
@@ -2718,7 +2718,7 @@ abstract mixin class $SettingsStateCopyWith<$Res>  {
   factory $SettingsStateCopyWith(SettingsState value, $Res Function(SettingsState) _then) = _$SettingsStateCopyWithImpl;
 @useResult
 $Res call({
- AppSettings appSettings, String? backupMessage, bool isBackupLoading
+ AppSettings appSettings, String? backupMessage, bool isBackupLoading, String? errorMessage
 });
 
 
@@ -2735,12 +2735,13 @@ class _$SettingsStateCopyWithImpl<$Res>
 
 /// Create a copy of SettingsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? appSettings = null,Object? backupMessage = freezed,Object? isBackupLoading = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? appSettings = null,Object? backupMessage = freezed,Object? isBackupLoading = null,Object? errorMessage = freezed,}) {
   return _then(_self.copyWith(
 appSettings: null == appSettings ? _self.appSettings : appSettings // ignore: cast_nullable_to_non_nullable
 as AppSettings,backupMessage: freezed == backupMessage ? _self.backupMessage : backupMessage // ignore: cast_nullable_to_non_nullable
 as String?,isBackupLoading: null == isBackupLoading ? _self.isBackupLoading : isBackupLoading // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 /// Create a copy of SettingsState
@@ -2834,10 +2835,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AppSettings appSettings,  String? backupMessage,  bool isBackupLoading)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AppSettings appSettings,  String? backupMessage,  bool isBackupLoading,  String? errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SettingsState() when $default != null:
-return $default(_that.appSettings,_that.backupMessage,_that.isBackupLoading);case _:
+return $default(_that.appSettings,_that.backupMessage,_that.isBackupLoading,_that.errorMessage);case _:
   return orElse();
 
 }
@@ -2855,10 +2856,10 @@ return $default(_that.appSettings,_that.backupMessage,_that.isBackupLoading);cas
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AppSettings appSettings,  String? backupMessage,  bool isBackupLoading)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AppSettings appSettings,  String? backupMessage,  bool isBackupLoading,  String? errorMessage)  $default,) {final _that = this;
 switch (_that) {
 case _SettingsState():
-return $default(_that.appSettings,_that.backupMessage,_that.isBackupLoading);case _:
+return $default(_that.appSettings,_that.backupMessage,_that.isBackupLoading,_that.errorMessage);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -2875,10 +2876,10 @@ return $default(_that.appSettings,_that.backupMessage,_that.isBackupLoading);cas
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AppSettings appSettings,  String? backupMessage,  bool isBackupLoading)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AppSettings appSettings,  String? backupMessage,  bool isBackupLoading,  String? errorMessage)?  $default,) {final _that = this;
 switch (_that) {
 case _SettingsState() when $default != null:
-return $default(_that.appSettings,_that.backupMessage,_that.isBackupLoading);case _:
+return $default(_that.appSettings,_that.backupMessage,_that.isBackupLoading,_that.errorMessage);case _:
   return null;
 
 }
@@ -2890,12 +2891,13 @@ return $default(_that.appSettings,_that.backupMessage,_that.isBackupLoading);cas
 
 
 class _SettingsState implements SettingsState {
-  const _SettingsState({required this.appSettings, this.backupMessage = null, this.isBackupLoading = false});
+  const _SettingsState({required this.appSettings, this.backupMessage = null, this.isBackupLoading = false, this.errorMessage = null});
   
 
 @override final  AppSettings appSettings;
 @override@JsonKey() final  String? backupMessage;
 @override@JsonKey() final  bool isBackupLoading;
+@override@JsonKey() final  String? errorMessage;
 
 /// Create a copy of SettingsState
 /// with the given fields replaced by the non-null parameter values.
@@ -2907,16 +2909,16 @@ _$SettingsStateCopyWith<_SettingsState> get copyWith => __$SettingsStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SettingsState&&(identical(other.appSettings, appSettings) || other.appSettings == appSettings)&&(identical(other.backupMessage, backupMessage) || other.backupMessage == backupMessage)&&(identical(other.isBackupLoading, isBackupLoading) || other.isBackupLoading == isBackupLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SettingsState&&(identical(other.appSettings, appSettings) || other.appSettings == appSettings)&&(identical(other.backupMessage, backupMessage) || other.backupMessage == backupMessage)&&(identical(other.isBackupLoading, isBackupLoading) || other.isBackupLoading == isBackupLoading)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,appSettings,backupMessage,isBackupLoading);
+int get hashCode => Object.hash(runtimeType,appSettings,backupMessage,isBackupLoading,errorMessage);
 
 @override
 String toString() {
-  return 'SettingsState(appSettings: $appSettings, backupMessage: $backupMessage, isBackupLoading: $isBackupLoading)';
+  return 'SettingsState(appSettings: $appSettings, backupMessage: $backupMessage, isBackupLoading: $isBackupLoading, errorMessage: $errorMessage)';
 }
 
 
@@ -2927,7 +2929,7 @@ abstract mixin class _$SettingsStateCopyWith<$Res> implements $SettingsStateCopy
   factory _$SettingsStateCopyWith(_SettingsState value, $Res Function(_SettingsState) _then) = __$SettingsStateCopyWithImpl;
 @override @useResult
 $Res call({
- AppSettings appSettings, String? backupMessage, bool isBackupLoading
+ AppSettings appSettings, String? backupMessage, bool isBackupLoading, String? errorMessage
 });
 
 
@@ -2944,12 +2946,13 @@ class __$SettingsStateCopyWithImpl<$Res>
 
 /// Create a copy of SettingsState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? appSettings = null,Object? backupMessage = freezed,Object? isBackupLoading = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? appSettings = null,Object? backupMessage = freezed,Object? isBackupLoading = null,Object? errorMessage = freezed,}) {
   return _then(_SettingsState(
 appSettings: null == appSettings ? _self.appSettings : appSettings // ignore: cast_nullable_to_non_nullable
 as AppSettings,backupMessage: freezed == backupMessage ? _self.backupMessage : backupMessage // ignore: cast_nullable_to_non_nullable
 as String?,isBackupLoading: null == isBackupLoading ? _self.isBackupLoading : isBackupLoading // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

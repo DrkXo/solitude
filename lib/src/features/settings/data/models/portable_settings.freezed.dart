@@ -730,7 +730,7 @@ $DeveloperSettingsCopyWith<$Res> get developer {
 /// @nodoc
 mixin _$DisplaySettings {
 
- String get fontFamily; double get fontSize; String get fontWeight; double get lineHeight; double get letterSpacing; double get paragraphSpacing; String get theme; CustomTheme get customTheme; String get pageLayout; String get orientation; String get textAlign; String get pageTurnAnimation; Margins get margins;
+ FontFamily get fontFamily; double get fontSize; String get fontWeight; double get lineHeight; double get letterSpacing; double get paragraphSpacing; ThemeOption get theme; CustomTheme get customTheme; PageLayout get pageLayout; String get orientation; String get textAlign; String get pageTurnAnimation; Margins get margins;
 /// Create a copy of DisplaySettings
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -763,7 +763,7 @@ abstract mixin class $DisplaySettingsCopyWith<$Res>  {
   factory $DisplaySettingsCopyWith(DisplaySettings value, $Res Function(DisplaySettings) _then) = _$DisplaySettingsCopyWithImpl;
 @useResult
 $Res call({
- String fontFamily, double fontSize, String fontWeight, double lineHeight, double letterSpacing, double paragraphSpacing, String theme, CustomTheme customTheme, String pageLayout, String orientation, String textAlign, String pageTurnAnimation, Margins margins
+ FontFamily fontFamily, double fontSize, String fontWeight, double lineHeight, double letterSpacing, double paragraphSpacing, ThemeOption theme, CustomTheme customTheme, PageLayout pageLayout, String orientation, String textAlign, String pageTurnAnimation, Margins margins
 });
 
 
@@ -783,15 +783,15 @@ class _$DisplaySettingsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? fontFamily = null,Object? fontSize = null,Object? fontWeight = null,Object? lineHeight = null,Object? letterSpacing = null,Object? paragraphSpacing = null,Object? theme = null,Object? customTheme = null,Object? pageLayout = null,Object? orientation = null,Object? textAlign = null,Object? pageTurnAnimation = null,Object? margins = null,}) {
   return _then(_self.copyWith(
 fontFamily: null == fontFamily ? _self.fontFamily : fontFamily // ignore: cast_nullable_to_non_nullable
-as String,fontSize: null == fontSize ? _self.fontSize : fontSize // ignore: cast_nullable_to_non_nullable
+as FontFamily,fontSize: null == fontSize ? _self.fontSize : fontSize // ignore: cast_nullable_to_non_nullable
 as double,fontWeight: null == fontWeight ? _self.fontWeight : fontWeight // ignore: cast_nullable_to_non_nullable
 as String,lineHeight: null == lineHeight ? _self.lineHeight : lineHeight // ignore: cast_nullable_to_non_nullable
 as double,letterSpacing: null == letterSpacing ? _self.letterSpacing : letterSpacing // ignore: cast_nullable_to_non_nullable
 as double,paragraphSpacing: null == paragraphSpacing ? _self.paragraphSpacing : paragraphSpacing // ignore: cast_nullable_to_non_nullable
 as double,theme: null == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
-as String,customTheme: null == customTheme ? _self.customTheme : customTheme // ignore: cast_nullable_to_non_nullable
+as ThemeOption,customTheme: null == customTheme ? _self.customTheme : customTheme // ignore: cast_nullable_to_non_nullable
 as CustomTheme,pageLayout: null == pageLayout ? _self.pageLayout : pageLayout // ignore: cast_nullable_to_non_nullable
-as String,orientation: null == orientation ? _self.orientation : orientation // ignore: cast_nullable_to_non_nullable
+as PageLayout,orientation: null == orientation ? _self.orientation : orientation // ignore: cast_nullable_to_non_nullable
 as String,textAlign: null == textAlign ? _self.textAlign : textAlign // ignore: cast_nullable_to_non_nullable
 as String,pageTurnAnimation: null == pageTurnAnimation ? _self.pageTurnAnimation : pageTurnAnimation // ignore: cast_nullable_to_non_nullable
 as String,margins: null == margins ? _self.margins : margins // ignore: cast_nullable_to_non_nullable
@@ -898,7 +898,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  String theme,  CustomTheme customTheme,  String pageLayout,  String orientation,  String textAlign,  String pageTurnAnimation,  Margins margins)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  CustomTheme customTheme,  PageLayout pageLayout,  String orientation,  String textAlign,  String pageTurnAnimation,  Margins margins)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DisplaySettings() when $default != null:
 return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.customTheme,_that.pageLayout,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins);case _:
@@ -919,7 +919,7 @@ return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeigh
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  String theme,  CustomTheme customTheme,  String pageLayout,  String orientation,  String textAlign,  String pageTurnAnimation,  Margins margins)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  CustomTheme customTheme,  PageLayout pageLayout,  String orientation,  String textAlign,  String pageTurnAnimation,  Margins margins)  $default,) {final _that = this;
 switch (_that) {
 case _DisplaySettings():
 return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.customTheme,_that.pageLayout,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins);case _:
@@ -939,7 +939,7 @@ return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeigh
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  String theme,  CustomTheme customTheme,  String pageLayout,  String orientation,  String textAlign,  String pageTurnAnimation,  Margins margins)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  CustomTheme customTheme,  PageLayout pageLayout,  String orientation,  String textAlign,  String pageTurnAnimation,  Margins margins)?  $default,) {final _that = this;
 switch (_that) {
 case _DisplaySettings() when $default != null:
 return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.customTheme,_that.pageLayout,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins);case _:
@@ -954,18 +954,18 @@ return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeigh
 @JsonSerializable()
 
 class _DisplaySettings implements DisplaySettings {
-  const _DisplaySettings({this.fontFamily = 'Merriweather', this.fontSize = 18.0, this.fontWeight = 'normal', this.lineHeight = 1.5, this.letterSpacing = 0.2, this.paragraphSpacing = 1.2, this.theme = 'sepia', this.customTheme = const CustomTheme(), this.pageLayout = 'paged', this.orientation = 'auto', this.textAlign = 'justify', this.pageTurnAnimation = 'slide', this.margins = const Margins()});
+  const _DisplaySettings({this.fontFamily = FontFamily.openSans, this.fontSize = 18.0, this.fontWeight = 'normal', this.lineHeight = 1.5, this.letterSpacing = 0.2, this.paragraphSpacing = 1.2, this.theme = ThemeOption.dark, this.customTheme = const CustomTheme(), this.pageLayout = PageLayout.paged, this.orientation = 'auto', this.textAlign = 'justify', this.pageTurnAnimation = 'slide', this.margins = const Margins()});
   factory _DisplaySettings.fromJson(Map<String, dynamic> json) => _$DisplaySettingsFromJson(json);
 
-@override@JsonKey() final  String fontFamily;
+@override@JsonKey() final  FontFamily fontFamily;
 @override@JsonKey() final  double fontSize;
 @override@JsonKey() final  String fontWeight;
 @override@JsonKey() final  double lineHeight;
 @override@JsonKey() final  double letterSpacing;
 @override@JsonKey() final  double paragraphSpacing;
-@override@JsonKey() final  String theme;
+@override@JsonKey() final  ThemeOption theme;
 @override@JsonKey() final  CustomTheme customTheme;
-@override@JsonKey() final  String pageLayout;
+@override@JsonKey() final  PageLayout pageLayout;
 @override@JsonKey() final  String orientation;
 @override@JsonKey() final  String textAlign;
 @override@JsonKey() final  String pageTurnAnimation;
@@ -1004,7 +1004,7 @@ abstract mixin class _$DisplaySettingsCopyWith<$Res> implements $DisplaySettings
   factory _$DisplaySettingsCopyWith(_DisplaySettings value, $Res Function(_DisplaySettings) _then) = __$DisplaySettingsCopyWithImpl;
 @override @useResult
 $Res call({
- String fontFamily, double fontSize, String fontWeight, double lineHeight, double letterSpacing, double paragraphSpacing, String theme, CustomTheme customTheme, String pageLayout, String orientation, String textAlign, String pageTurnAnimation, Margins margins
+ FontFamily fontFamily, double fontSize, String fontWeight, double lineHeight, double letterSpacing, double paragraphSpacing, ThemeOption theme, CustomTheme customTheme, PageLayout pageLayout, String orientation, String textAlign, String pageTurnAnimation, Margins margins
 });
 
 
@@ -1024,15 +1024,15 @@ class __$DisplaySettingsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? fontFamily = null,Object? fontSize = null,Object? fontWeight = null,Object? lineHeight = null,Object? letterSpacing = null,Object? paragraphSpacing = null,Object? theme = null,Object? customTheme = null,Object? pageLayout = null,Object? orientation = null,Object? textAlign = null,Object? pageTurnAnimation = null,Object? margins = null,}) {
   return _then(_DisplaySettings(
 fontFamily: null == fontFamily ? _self.fontFamily : fontFamily // ignore: cast_nullable_to_non_nullable
-as String,fontSize: null == fontSize ? _self.fontSize : fontSize // ignore: cast_nullable_to_non_nullable
+as FontFamily,fontSize: null == fontSize ? _self.fontSize : fontSize // ignore: cast_nullable_to_non_nullable
 as double,fontWeight: null == fontWeight ? _self.fontWeight : fontWeight // ignore: cast_nullable_to_non_nullable
 as String,lineHeight: null == lineHeight ? _self.lineHeight : lineHeight // ignore: cast_nullable_to_non_nullable
 as double,letterSpacing: null == letterSpacing ? _self.letterSpacing : letterSpacing // ignore: cast_nullable_to_non_nullable
 as double,paragraphSpacing: null == paragraphSpacing ? _self.paragraphSpacing : paragraphSpacing // ignore: cast_nullable_to_non_nullable
 as double,theme: null == theme ? _self.theme : theme // ignore: cast_nullable_to_non_nullable
-as String,customTheme: null == customTheme ? _self.customTheme : customTheme // ignore: cast_nullable_to_non_nullable
+as ThemeOption,customTheme: null == customTheme ? _self.customTheme : customTheme // ignore: cast_nullable_to_non_nullable
 as CustomTheme,pageLayout: null == pageLayout ? _self.pageLayout : pageLayout // ignore: cast_nullable_to_non_nullable
-as String,orientation: null == orientation ? _self.orientation : orientation // ignore: cast_nullable_to_non_nullable
+as PageLayout,orientation: null == orientation ? _self.orientation : orientation // ignore: cast_nullable_to_non_nullable
 as String,textAlign: null == textAlign ? _self.textAlign : textAlign // ignore: cast_nullable_to_non_nullable
 as String,pageTurnAnimation: null == pageTurnAnimation ? _self.pageTurnAnimation : pageTurnAnimation // ignore: cast_nullable_to_non_nullable
 as String,margins: null == margins ? _self.margins : margins // ignore: cast_nullable_to_non_nullable
@@ -1603,7 +1603,7 @@ as int,
 /// @nodoc
 mixin _$BehaviorSettings {
 
- TapZones get tapZones; String get scrollMode; bool get rememberLastPosition; bool get syncProgress; AutoScroll get autoScroll; String get readingDirection;
+ TapZones get tapZones; ScrollMode get scrollMode; bool get rememberLastPosition; bool get syncProgress; AutoScroll get autoScroll; ReadingDirection get readingDirection;
 /// Create a copy of BehaviorSettings
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1636,7 +1636,7 @@ abstract mixin class $BehaviorSettingsCopyWith<$Res>  {
   factory $BehaviorSettingsCopyWith(BehaviorSettings value, $Res Function(BehaviorSettings) _then) = _$BehaviorSettingsCopyWithImpl;
 @useResult
 $Res call({
- TapZones tapZones, String scrollMode, bool rememberLastPosition, bool syncProgress, AutoScroll autoScroll, String readingDirection
+ TapZones tapZones, ScrollMode scrollMode, bool rememberLastPosition, bool syncProgress, AutoScroll autoScroll, ReadingDirection readingDirection
 });
 
 
@@ -1657,11 +1657,11 @@ class _$BehaviorSettingsCopyWithImpl<$Res>
   return _then(_self.copyWith(
 tapZones: null == tapZones ? _self.tapZones : tapZones // ignore: cast_nullable_to_non_nullable
 as TapZones,scrollMode: null == scrollMode ? _self.scrollMode : scrollMode // ignore: cast_nullable_to_non_nullable
-as String,rememberLastPosition: null == rememberLastPosition ? _self.rememberLastPosition : rememberLastPosition // ignore: cast_nullable_to_non_nullable
+as ScrollMode,rememberLastPosition: null == rememberLastPosition ? _self.rememberLastPosition : rememberLastPosition // ignore: cast_nullable_to_non_nullable
 as bool,syncProgress: null == syncProgress ? _self.syncProgress : syncProgress // ignore: cast_nullable_to_non_nullable
 as bool,autoScroll: null == autoScroll ? _self.autoScroll : autoScroll // ignore: cast_nullable_to_non_nullable
 as AutoScroll,readingDirection: null == readingDirection ? _self.readingDirection : readingDirection // ignore: cast_nullable_to_non_nullable
-as String,
+as ReadingDirection,
   ));
 }
 /// Create a copy of BehaviorSettings
@@ -1764,7 +1764,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TapZones tapZones,  String scrollMode,  bool rememberLastPosition,  bool syncProgress,  AutoScroll autoScroll,  String readingDirection)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TapZones tapZones,  ScrollMode scrollMode,  bool rememberLastPosition,  bool syncProgress,  AutoScroll autoScroll,  ReadingDirection readingDirection)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _BehaviorSettings() when $default != null:
 return $default(_that.tapZones,_that.scrollMode,_that.rememberLastPosition,_that.syncProgress,_that.autoScroll,_that.readingDirection);case _:
@@ -1785,7 +1785,7 @@ return $default(_that.tapZones,_that.scrollMode,_that.rememberLastPosition,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TapZones tapZones,  String scrollMode,  bool rememberLastPosition,  bool syncProgress,  AutoScroll autoScroll,  String readingDirection)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TapZones tapZones,  ScrollMode scrollMode,  bool rememberLastPosition,  bool syncProgress,  AutoScroll autoScroll,  ReadingDirection readingDirection)  $default,) {final _that = this;
 switch (_that) {
 case _BehaviorSettings():
 return $default(_that.tapZones,_that.scrollMode,_that.rememberLastPosition,_that.syncProgress,_that.autoScroll,_that.readingDirection);case _:
@@ -1805,7 +1805,7 @@ return $default(_that.tapZones,_that.scrollMode,_that.rememberLastPosition,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TapZones tapZones,  String scrollMode,  bool rememberLastPosition,  bool syncProgress,  AutoScroll autoScroll,  String readingDirection)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TapZones tapZones,  ScrollMode scrollMode,  bool rememberLastPosition,  bool syncProgress,  AutoScroll autoScroll,  ReadingDirection readingDirection)?  $default,) {final _that = this;
 switch (_that) {
 case _BehaviorSettings() when $default != null:
 return $default(_that.tapZones,_that.scrollMode,_that.rememberLastPosition,_that.syncProgress,_that.autoScroll,_that.readingDirection);case _:
@@ -1820,15 +1820,15 @@ return $default(_that.tapZones,_that.scrollMode,_that.rememberLastPosition,_that
 @JsonSerializable()
 
 class _BehaviorSettings implements BehaviorSettings {
-  const _BehaviorSettings({this.tapZones = const TapZones(), this.scrollMode = 'paged', this.rememberLastPosition = true, this.syncProgress = true, this.autoScroll = const AutoScroll(), this.readingDirection = 'LTR'});
+  const _BehaviorSettings({this.tapZones = const TapZones(), this.scrollMode = ScrollMode.paged, this.rememberLastPosition = true, this.syncProgress = true, this.autoScroll = const AutoScroll(), this.readingDirection = ReadingDirection.ltr});
   factory _BehaviorSettings.fromJson(Map<String, dynamic> json) => _$BehaviorSettingsFromJson(json);
 
 @override@JsonKey() final  TapZones tapZones;
-@override@JsonKey() final  String scrollMode;
+@override@JsonKey() final  ScrollMode scrollMode;
 @override@JsonKey() final  bool rememberLastPosition;
 @override@JsonKey() final  bool syncProgress;
 @override@JsonKey() final  AutoScroll autoScroll;
-@override@JsonKey() final  String readingDirection;
+@override@JsonKey() final  ReadingDirection readingDirection;
 
 /// Create a copy of BehaviorSettings
 /// with the given fields replaced by the non-null parameter values.
@@ -1863,7 +1863,7 @@ abstract mixin class _$BehaviorSettingsCopyWith<$Res> implements $BehaviorSettin
   factory _$BehaviorSettingsCopyWith(_BehaviorSettings value, $Res Function(_BehaviorSettings) _then) = __$BehaviorSettingsCopyWithImpl;
 @override @useResult
 $Res call({
- TapZones tapZones, String scrollMode, bool rememberLastPosition, bool syncProgress, AutoScroll autoScroll, String readingDirection
+ TapZones tapZones, ScrollMode scrollMode, bool rememberLastPosition, bool syncProgress, AutoScroll autoScroll, ReadingDirection readingDirection
 });
 
 
@@ -1884,11 +1884,11 @@ class __$BehaviorSettingsCopyWithImpl<$Res>
   return _then(_BehaviorSettings(
 tapZones: null == tapZones ? _self.tapZones : tapZones // ignore: cast_nullable_to_non_nullable
 as TapZones,scrollMode: null == scrollMode ? _self.scrollMode : scrollMode // ignore: cast_nullable_to_non_nullable
-as String,rememberLastPosition: null == rememberLastPosition ? _self.rememberLastPosition : rememberLastPosition // ignore: cast_nullable_to_non_nullable
+as ScrollMode,rememberLastPosition: null == rememberLastPosition ? _self.rememberLastPosition : rememberLastPosition // ignore: cast_nullable_to_non_nullable
 as bool,syncProgress: null == syncProgress ? _self.syncProgress : syncProgress // ignore: cast_nullable_to_non_nullable
 as bool,autoScroll: null == autoScroll ? _self.autoScroll : autoScroll // ignore: cast_nullable_to_non_nullable
 as AutoScroll,readingDirection: null == readingDirection ? _self.readingDirection : readingDirection // ignore: cast_nullable_to_non_nullable
-as String,
+as ReadingDirection,
   ));
 }
 
@@ -3020,7 +3020,7 @@ as double,
 /// @nodoc
 mixin _$LibrarySettings {
 
- String get sortBy; String get viewStyle; bool get showCovers; List<String> get metadataSources; List<String> get scanPaths; List<String> get formats;
+ SortBy get sortBy; ViewStyle get viewStyle; bool get showCovers; List<String> get metadataSources; List<String> get scanPaths; List<String> get formats;
 /// Create a copy of LibrarySettings
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3053,7 +3053,7 @@ abstract mixin class $LibrarySettingsCopyWith<$Res>  {
   factory $LibrarySettingsCopyWith(LibrarySettings value, $Res Function(LibrarySettings) _then) = _$LibrarySettingsCopyWithImpl;
 @useResult
 $Res call({
- String sortBy, String viewStyle, bool showCovers, List<String> metadataSources, List<String> scanPaths, List<String> formats
+ SortBy sortBy, ViewStyle viewStyle, bool showCovers, List<String> metadataSources, List<String> scanPaths, List<String> formats
 });
 
 
@@ -3073,8 +3073,8 @@ class _$LibrarySettingsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? sortBy = null,Object? viewStyle = null,Object? showCovers = null,Object? metadataSources = null,Object? scanPaths = null,Object? formats = null,}) {
   return _then(_self.copyWith(
 sortBy: null == sortBy ? _self.sortBy : sortBy // ignore: cast_nullable_to_non_nullable
-as String,viewStyle: null == viewStyle ? _self.viewStyle : viewStyle // ignore: cast_nullable_to_non_nullable
-as String,showCovers: null == showCovers ? _self.showCovers : showCovers // ignore: cast_nullable_to_non_nullable
+as SortBy,viewStyle: null == viewStyle ? _self.viewStyle : viewStyle // ignore: cast_nullable_to_non_nullable
+as ViewStyle,showCovers: null == showCovers ? _self.showCovers : showCovers // ignore: cast_nullable_to_non_nullable
 as bool,metadataSources: null == metadataSources ? _self.metadataSources : metadataSources // ignore: cast_nullable_to_non_nullable
 as List<String>,scanPaths: null == scanPaths ? _self.scanPaths : scanPaths // ignore: cast_nullable_to_non_nullable
 as List<String>,formats: null == formats ? _self.formats : formats // ignore: cast_nullable_to_non_nullable
@@ -3163,7 +3163,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String sortBy,  String viewStyle,  bool showCovers,  List<String> metadataSources,  List<String> scanPaths,  List<String> formats)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( SortBy sortBy,  ViewStyle viewStyle,  bool showCovers,  List<String> metadataSources,  List<String> scanPaths,  List<String> formats)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LibrarySettings() when $default != null:
 return $default(_that.sortBy,_that.viewStyle,_that.showCovers,_that.metadataSources,_that.scanPaths,_that.formats);case _:
@@ -3184,7 +3184,7 @@ return $default(_that.sortBy,_that.viewStyle,_that.showCovers,_that.metadataSour
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String sortBy,  String viewStyle,  bool showCovers,  List<String> metadataSources,  List<String> scanPaths,  List<String> formats)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( SortBy sortBy,  ViewStyle viewStyle,  bool showCovers,  List<String> metadataSources,  List<String> scanPaths,  List<String> formats)  $default,) {final _that = this;
 switch (_that) {
 case _LibrarySettings():
 return $default(_that.sortBy,_that.viewStyle,_that.showCovers,_that.metadataSources,_that.scanPaths,_that.formats);case _:
@@ -3204,7 +3204,7 @@ return $default(_that.sortBy,_that.viewStyle,_that.showCovers,_that.metadataSour
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String sortBy,  String viewStyle,  bool showCovers,  List<String> metadataSources,  List<String> scanPaths,  List<String> formats)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( SortBy sortBy,  ViewStyle viewStyle,  bool showCovers,  List<String> metadataSources,  List<String> scanPaths,  List<String> formats)?  $default,) {final _that = this;
 switch (_that) {
 case _LibrarySettings() when $default != null:
 return $default(_that.sortBy,_that.viewStyle,_that.showCovers,_that.metadataSources,_that.scanPaths,_that.formats);case _:
@@ -3219,11 +3219,11 @@ return $default(_that.sortBy,_that.viewStyle,_that.showCovers,_that.metadataSour
 @JsonSerializable()
 
 class _LibrarySettings implements LibrarySettings {
-  const _LibrarySettings({this.sortBy = 'title', this.viewStyle = 'grid', this.showCovers = true, final  List<String> metadataSources = const ['OpenLibrary', 'GoogleBooks'], final  List<String> scanPaths = const ['/books', '/downloads/ebooks'], final  List<String> formats = const ['epub', 'pdf', 'mobi', 'cbz']}): _metadataSources = metadataSources,_scanPaths = scanPaths,_formats = formats;
+  const _LibrarySettings({this.sortBy = SortBy.title, this.viewStyle = ViewStyle.grid, this.showCovers = true, final  List<String> metadataSources = const ['OpenLibrary', 'GoogleBooks'], final  List<String> scanPaths = const ['/books', '/downloads/ebooks'], final  List<String> formats = const ['epub', 'pdf', 'mobi', 'cbz']}): _metadataSources = metadataSources,_scanPaths = scanPaths,_formats = formats;
   factory _LibrarySettings.fromJson(Map<String, dynamic> json) => _$LibrarySettingsFromJson(json);
 
-@override@JsonKey() final  String sortBy;
-@override@JsonKey() final  String viewStyle;
+@override@JsonKey() final  SortBy sortBy;
+@override@JsonKey() final  ViewStyle viewStyle;
 @override@JsonKey() final  bool showCovers;
  final  List<String> _metadataSources;
 @override@JsonKey() List<String> get metadataSources {
@@ -3280,7 +3280,7 @@ abstract mixin class _$LibrarySettingsCopyWith<$Res> implements $LibrarySettings
   factory _$LibrarySettingsCopyWith(_LibrarySettings value, $Res Function(_LibrarySettings) _then) = __$LibrarySettingsCopyWithImpl;
 @override @useResult
 $Res call({
- String sortBy, String viewStyle, bool showCovers, List<String> metadataSources, List<String> scanPaths, List<String> formats
+ SortBy sortBy, ViewStyle viewStyle, bool showCovers, List<String> metadataSources, List<String> scanPaths, List<String> formats
 });
 
 
@@ -3300,8 +3300,8 @@ class __$LibrarySettingsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? sortBy = null,Object? viewStyle = null,Object? showCovers = null,Object? metadataSources = null,Object? scanPaths = null,Object? formats = null,}) {
   return _then(_LibrarySettings(
 sortBy: null == sortBy ? _self.sortBy : sortBy // ignore: cast_nullable_to_non_nullable
-as String,viewStyle: null == viewStyle ? _self.viewStyle : viewStyle // ignore: cast_nullable_to_non_nullable
-as String,showCovers: null == showCovers ? _self.showCovers : showCovers // ignore: cast_nullable_to_non_nullable
+as SortBy,viewStyle: null == viewStyle ? _self.viewStyle : viewStyle // ignore: cast_nullable_to_non_nullable
+as ViewStyle,showCovers: null == showCovers ? _self.showCovers : showCovers // ignore: cast_nullable_to_non_nullable
 as bool,metadataSources: null == metadataSources ? _self._metadataSources : metadataSources // ignore: cast_nullable_to_non_nullable
 as List<String>,scanPaths: null == scanPaths ? _self._scanPaths : scanPaths // ignore: cast_nullable_to_non_nullable
 as List<String>,formats: null == formats ? _self._formats : formats // ignore: cast_nullable_to_non_nullable
@@ -3316,7 +3316,7 @@ as List<String>,
 /// @nodoc
 mixin _$AnnotationsSettings {
 
- List<String> get highlightColors; bool get sync; bool get autoSave; String get exportFormat; bool get showSidebar;
+ List<String> get highlightColors; bool get sync; bool get autoSave; AnnotationExportFormat get exportFormat; bool get showSidebar;
 /// Create a copy of AnnotationsSettings
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3349,7 +3349,7 @@ abstract mixin class $AnnotationsSettingsCopyWith<$Res>  {
   factory $AnnotationsSettingsCopyWith(AnnotationsSettings value, $Res Function(AnnotationsSettings) _then) = _$AnnotationsSettingsCopyWithImpl;
 @useResult
 $Res call({
- List<String> highlightColors, bool sync, bool autoSave, String exportFormat, bool showSidebar
+ List<String> highlightColors, bool sync, bool autoSave, AnnotationExportFormat exportFormat, bool showSidebar
 });
 
 
@@ -3372,7 +3372,7 @@ highlightColors: null == highlightColors ? _self.highlightColors : highlightColo
 as List<String>,sync: null == sync ? _self.sync : sync // ignore: cast_nullable_to_non_nullable
 as bool,autoSave: null == autoSave ? _self.autoSave : autoSave // ignore: cast_nullable_to_non_nullable
 as bool,exportFormat: null == exportFormat ? _self.exportFormat : exportFormat // ignore: cast_nullable_to_non_nullable
-as String,showSidebar: null == showSidebar ? _self.showSidebar : showSidebar // ignore: cast_nullable_to_non_nullable
+as AnnotationExportFormat,showSidebar: null == showSidebar ? _self.showSidebar : showSidebar // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -3458,7 +3458,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String> highlightColors,  bool sync,  bool autoSave,  String exportFormat,  bool showSidebar)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String> highlightColors,  bool sync,  bool autoSave,  AnnotationExportFormat exportFormat,  bool showSidebar)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AnnotationsSettings() when $default != null:
 return $default(_that.highlightColors,_that.sync,_that.autoSave,_that.exportFormat,_that.showSidebar);case _:
@@ -3479,7 +3479,7 @@ return $default(_that.highlightColors,_that.sync,_that.autoSave,_that.exportForm
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String> highlightColors,  bool sync,  bool autoSave,  String exportFormat,  bool showSidebar)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String> highlightColors,  bool sync,  bool autoSave,  AnnotationExportFormat exportFormat,  bool showSidebar)  $default,) {final _that = this;
 switch (_that) {
 case _AnnotationsSettings():
 return $default(_that.highlightColors,_that.sync,_that.autoSave,_that.exportFormat,_that.showSidebar);case _:
@@ -3499,7 +3499,7 @@ return $default(_that.highlightColors,_that.sync,_that.autoSave,_that.exportForm
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String> highlightColors,  bool sync,  bool autoSave,  String exportFormat,  bool showSidebar)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String> highlightColors,  bool sync,  bool autoSave,  AnnotationExportFormat exportFormat,  bool showSidebar)?  $default,) {final _that = this;
 switch (_that) {
 case _AnnotationsSettings() when $default != null:
 return $default(_that.highlightColors,_that.sync,_that.autoSave,_that.exportFormat,_that.showSidebar);case _:
@@ -3514,7 +3514,7 @@ return $default(_that.highlightColors,_that.sync,_that.autoSave,_that.exportForm
 @JsonSerializable()
 
 class _AnnotationsSettings implements AnnotationsSettings {
-  const _AnnotationsSettings({final  List<String> highlightColors = const ['#f4d03f', '#58d68d', '#5dade2'], this.sync = true, this.autoSave = true, this.exportFormat = 'markdown', this.showSidebar = true}): _highlightColors = highlightColors;
+  const _AnnotationsSettings({final  List<String> highlightColors = const ['#f4d03f', '#58d68d', '#5dade2'], this.sync = true, this.autoSave = true, this.exportFormat = AnnotationExportFormat.markdown, this.showSidebar = true}): _highlightColors = highlightColors;
   factory _AnnotationsSettings.fromJson(Map<String, dynamic> json) => _$AnnotationsSettingsFromJson(json);
 
  final  List<String> _highlightColors;
@@ -3526,7 +3526,7 @@ class _AnnotationsSettings implements AnnotationsSettings {
 
 @override@JsonKey() final  bool sync;
 @override@JsonKey() final  bool autoSave;
-@override@JsonKey() final  String exportFormat;
+@override@JsonKey() final  AnnotationExportFormat exportFormat;
 @override@JsonKey() final  bool showSidebar;
 
 /// Create a copy of AnnotationsSettings
@@ -3562,7 +3562,7 @@ abstract mixin class _$AnnotationsSettingsCopyWith<$Res> implements $Annotations
   factory _$AnnotationsSettingsCopyWith(_AnnotationsSettings value, $Res Function(_AnnotationsSettings) _then) = __$AnnotationsSettingsCopyWithImpl;
 @override @useResult
 $Res call({
- List<String> highlightColors, bool sync, bool autoSave, String exportFormat, bool showSidebar
+ List<String> highlightColors, bool sync, bool autoSave, AnnotationExportFormat exportFormat, bool showSidebar
 });
 
 
@@ -3585,7 +3585,7 @@ highlightColors: null == highlightColors ? _self._highlightColors : highlightCol
 as List<String>,sync: null == sync ? _self.sync : sync // ignore: cast_nullable_to_non_nullable
 as bool,autoSave: null == autoSave ? _self.autoSave : autoSave // ignore: cast_nullable_to_non_nullable
 as bool,exportFormat: null == exportFormat ? _self.exportFormat : exportFormat // ignore: cast_nullable_to_non_nullable
-as String,showSidebar: null == showSidebar ? _self.showSidebar : showSidebar // ignore: cast_nullable_to_non_nullable
+as AnnotationExportFormat,showSidebar: null == showSidebar ? _self.showSidebar : showSidebar // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -3597,7 +3597,7 @@ as bool,
 /// @nodoc
 mixin _$UISettings {
 
- String get toolbarPosition; Gestures get gestures; bool get enableAnimations; bool get soundFeedback;
+ ToolbarPosition get toolbarPosition; Gestures get gestures; bool get enableAnimations; bool get soundFeedback;
 /// Create a copy of UISettings
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -3630,7 +3630,7 @@ abstract mixin class $UISettingsCopyWith<$Res>  {
   factory $UISettingsCopyWith(UISettings value, $Res Function(UISettings) _then) = _$UISettingsCopyWithImpl;
 @useResult
 $Res call({
- String toolbarPosition, Gestures gestures, bool enableAnimations, bool soundFeedback
+ ToolbarPosition toolbarPosition, Gestures gestures, bool enableAnimations, bool soundFeedback
 });
 
 
@@ -3650,7 +3650,7 @@ class _$UISettingsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? toolbarPosition = null,Object? gestures = null,Object? enableAnimations = null,Object? soundFeedback = null,}) {
   return _then(_self.copyWith(
 toolbarPosition: null == toolbarPosition ? _self.toolbarPosition : toolbarPosition // ignore: cast_nullable_to_non_nullable
-as String,gestures: null == gestures ? _self.gestures : gestures // ignore: cast_nullable_to_non_nullable
+as ToolbarPosition,gestures: null == gestures ? _self.gestures : gestures // ignore: cast_nullable_to_non_nullable
 as Gestures,enableAnimations: null == enableAnimations ? _self.enableAnimations : enableAnimations // ignore: cast_nullable_to_non_nullable
 as bool,soundFeedback: null == soundFeedback ? _self.soundFeedback : soundFeedback // ignore: cast_nullable_to_non_nullable
 as bool,
@@ -3747,7 +3747,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String toolbarPosition,  Gestures gestures,  bool enableAnimations,  bool soundFeedback)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ToolbarPosition toolbarPosition,  Gestures gestures,  bool enableAnimations,  bool soundFeedback)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UISettings() when $default != null:
 return $default(_that.toolbarPosition,_that.gestures,_that.enableAnimations,_that.soundFeedback);case _:
@@ -3768,7 +3768,7 @@ return $default(_that.toolbarPosition,_that.gestures,_that.enableAnimations,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String toolbarPosition,  Gestures gestures,  bool enableAnimations,  bool soundFeedback)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ToolbarPosition toolbarPosition,  Gestures gestures,  bool enableAnimations,  bool soundFeedback)  $default,) {final _that = this;
 switch (_that) {
 case _UISettings():
 return $default(_that.toolbarPosition,_that.gestures,_that.enableAnimations,_that.soundFeedback);case _:
@@ -3788,7 +3788,7 @@ return $default(_that.toolbarPosition,_that.gestures,_that.enableAnimations,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String toolbarPosition,  Gestures gestures,  bool enableAnimations,  bool soundFeedback)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ToolbarPosition toolbarPosition,  Gestures gestures,  bool enableAnimations,  bool soundFeedback)?  $default,) {final _that = this;
 switch (_that) {
 case _UISettings() when $default != null:
 return $default(_that.toolbarPosition,_that.gestures,_that.enableAnimations,_that.soundFeedback);case _:
@@ -3803,10 +3803,10 @@ return $default(_that.toolbarPosition,_that.gestures,_that.enableAnimations,_tha
 @JsonSerializable()
 
 class _UISettings implements UISettings {
-  const _UISettings({this.toolbarPosition = 'bottom', this.gestures = const Gestures(), this.enableAnimations = true, this.soundFeedback = false});
+  const _UISettings({this.toolbarPosition = ToolbarPosition.bottom, this.gestures = const Gestures(), this.enableAnimations = true, this.soundFeedback = false});
   factory _UISettings.fromJson(Map<String, dynamic> json) => _$UISettingsFromJson(json);
 
-@override@JsonKey() final  String toolbarPosition;
+@override@JsonKey() final  ToolbarPosition toolbarPosition;
 @override@JsonKey() final  Gestures gestures;
 @override@JsonKey() final  bool enableAnimations;
 @override@JsonKey() final  bool soundFeedback;
@@ -3844,7 +3844,7 @@ abstract mixin class _$UISettingsCopyWith<$Res> implements $UISettingsCopyWith<$
   factory _$UISettingsCopyWith(_UISettings value, $Res Function(_UISettings) _then) = __$UISettingsCopyWithImpl;
 @override @useResult
 $Res call({
- String toolbarPosition, Gestures gestures, bool enableAnimations, bool soundFeedback
+ ToolbarPosition toolbarPosition, Gestures gestures, bool enableAnimations, bool soundFeedback
 });
 
 
@@ -3864,7 +3864,7 @@ class __$UISettingsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? toolbarPosition = null,Object? gestures = null,Object? enableAnimations = null,Object? soundFeedback = null,}) {
   return _then(_UISettings(
 toolbarPosition: null == toolbarPosition ? _self.toolbarPosition : toolbarPosition // ignore: cast_nullable_to_non_nullable
-as String,gestures: null == gestures ? _self.gestures : gestures // ignore: cast_nullable_to_non_nullable
+as ToolbarPosition,gestures: null == gestures ? _self.gestures : gestures // ignore: cast_nullable_to_non_nullable
 as Gestures,enableAnimations: null == enableAnimations ? _self.enableAnimations : enableAnimations // ignore: cast_nullable_to_non_nullable
 as bool,soundFeedback: null == soundFeedback ? _self.soundFeedback : soundFeedback // ignore: cast_nullable_to_non_nullable
 as bool,
@@ -4156,7 +4156,7 @@ as String,
 /// @nodoc
 mixin _$LocalizationSettings {
 
- String get language; String get region; String get dateFormat;
+ Language get language; Region get region; DateFormat get dateFormat;
 /// Create a copy of LocalizationSettings
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -4189,7 +4189,7 @@ abstract mixin class $LocalizationSettingsCopyWith<$Res>  {
   factory $LocalizationSettingsCopyWith(LocalizationSettings value, $Res Function(LocalizationSettings) _then) = _$LocalizationSettingsCopyWithImpl;
 @useResult
 $Res call({
- String language, String region, String dateFormat
+ Language language, Region region, DateFormat dateFormat
 });
 
 
@@ -4209,9 +4209,9 @@ class _$LocalizationSettingsCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? language = null,Object? region = null,Object? dateFormat = null,}) {
   return _then(_self.copyWith(
 language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
-as String,region: null == region ? _self.region : region // ignore: cast_nullable_to_non_nullable
-as String,dateFormat: null == dateFormat ? _self.dateFormat : dateFormat // ignore: cast_nullable_to_non_nullable
-as String,
+as Language,region: null == region ? _self.region : region // ignore: cast_nullable_to_non_nullable
+as Region,dateFormat: null == dateFormat ? _self.dateFormat : dateFormat // ignore: cast_nullable_to_non_nullable
+as DateFormat,
   ));
 }
 
@@ -4296,7 +4296,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String language,  String region,  String dateFormat)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Language language,  Region region,  DateFormat dateFormat)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LocalizationSettings() when $default != null:
 return $default(_that.language,_that.region,_that.dateFormat);case _:
@@ -4317,7 +4317,7 @@ return $default(_that.language,_that.region,_that.dateFormat);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String language,  String region,  String dateFormat)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Language language,  Region region,  DateFormat dateFormat)  $default,) {final _that = this;
 switch (_that) {
 case _LocalizationSettings():
 return $default(_that.language,_that.region,_that.dateFormat);case _:
@@ -4337,7 +4337,7 @@ return $default(_that.language,_that.region,_that.dateFormat);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String language,  String region,  String dateFormat)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Language language,  Region region,  DateFormat dateFormat)?  $default,) {final _that = this;
 switch (_that) {
 case _LocalizationSettings() when $default != null:
 return $default(_that.language,_that.region,_that.dateFormat);case _:
@@ -4352,12 +4352,12 @@ return $default(_that.language,_that.region,_that.dateFormat);case _:
 @JsonSerializable()
 
 class _LocalizationSettings implements LocalizationSettings {
-  const _LocalizationSettings({this.language = 'en', this.region = 'US', this.dateFormat = 'DD/MM/YYYY'});
+  const _LocalizationSettings({this.language = Language.en, this.region = Region.us, this.dateFormat = DateFormat.ddMmYyyy});
   factory _LocalizationSettings.fromJson(Map<String, dynamic> json) => _$LocalizationSettingsFromJson(json);
 
-@override@JsonKey() final  String language;
-@override@JsonKey() final  String region;
-@override@JsonKey() final  String dateFormat;
+@override@JsonKey() final  Language language;
+@override@JsonKey() final  Region region;
+@override@JsonKey() final  DateFormat dateFormat;
 
 /// Create a copy of LocalizationSettings
 /// with the given fields replaced by the non-null parameter values.
@@ -4392,7 +4392,7 @@ abstract mixin class _$LocalizationSettingsCopyWith<$Res> implements $Localizati
   factory _$LocalizationSettingsCopyWith(_LocalizationSettings value, $Res Function(_LocalizationSettings) _then) = __$LocalizationSettingsCopyWithImpl;
 @override @useResult
 $Res call({
- String language, String region, String dateFormat
+ Language language, Region region, DateFormat dateFormat
 });
 
 
@@ -4412,9 +4412,9 @@ class __$LocalizationSettingsCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? language = null,Object? region = null,Object? dateFormat = null,}) {
   return _then(_LocalizationSettings(
 language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
-as String,region: null == region ? _self.region : region // ignore: cast_nullable_to_non_nullable
-as String,dateFormat: null == dateFormat ? _self.dateFormat : dateFormat // ignore: cast_nullable_to_non_nullable
-as String,
+as Language,region: null == region ? _self.region : region // ignore: cast_nullable_to_non_nullable
+as Region,dateFormat: null == dateFormat ? _self.dateFormat : dateFormat // ignore: cast_nullable_to_non_nullable
+as DateFormat,
   ));
 }
 

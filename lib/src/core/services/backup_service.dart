@@ -8,6 +8,7 @@ import 'package:yaml/yaml.dart';
 import 'package:yaml_writer/yaml_writer.dart';
 
 import '../../features/settings/data/models/portable_settings.dart';
+import '../../features/settings/data/models/settings_constants.dart';
 import '../abstracts/base_service.dart';
 import 'ebook_library_service.dart';
 import 'reader_settings_service.dart';
@@ -98,8 +99,14 @@ class BackupService extends BaseService {
     final appSettings = AppSettings(
       display: DisplaySettings(
         fontSize: _readerSettingsService.fontSize,
-        pageLayout: _readerSettingsService.readingMode,
-        theme: _themeService.currentThemeMode.name,
+        pageLayout: PageLayout.values.firstWhere(
+          (layout) => layout.value == _readerSettingsService.readingMode,
+          orElse: () => PageLayout.paged,
+        ),
+        theme: ThemeOption.values.firstWhere(
+          (theme) => theme.value == _themeService.currentThemeMode.name,
+          orElse: () => ThemeOption.light,
+        ),
       ),
     );
 
@@ -115,11 +122,11 @@ class BackupService extends BaseService {
     // Apply app settings
     await _readerSettingsService.setFontSize(settings.appSettings.display.fontSize);
     await _readerSettingsService.setReadingMode(
-      settings.appSettings.display.pageLayout,
+      settings.appSettings.display.pageLayout.value,
     );
 
     final themeMode = ThemeMode.values.firstWhere(
-      (mode) => mode.name == settings.appSettings.display.theme,
+      (mode) => mode.name == settings.appSettings.display.theme.value,
       orElse: () => ThemeMode.system,
     );
     await _themeService.setThemeMode(themeMode);

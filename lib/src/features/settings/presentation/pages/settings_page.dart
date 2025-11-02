@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/services/backup_service.dart';
+import '../../data/models/settings_constants.dart';
 import '../bloc/settings_bloc.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -28,9 +29,18 @@ class SettingsPage extends StatelessWidget {
               ),
             ],
           ),
-          body: Stack(
-            children: [
-              ListView(
+           body: Stack(
+             children: [
+               if (state.errorMessage != null)
+                 Container(
+                   color: Colors.red,
+                   padding: const EdgeInsets.all(16),
+                   child: Text(
+                     'Error: ${state.errorMessage}',
+                     style: const TextStyle(color: Colors.white),
+                   ),
+                 ),
+               ListView(
                 children: [
                   // Display Settings
                   _buildDisplaySettings(context, state),
@@ -106,9 +116,9 @@ class SettingsPage extends StatelessWidget {
             width: 120,
             child: Slider(
               value: state.appSettings.display.fontSize,
-              min: 8,
-              max: 32,
-              divisions: 24,
+              min: minFontSize,
+              max: maxFontSize,
+              divisions: (maxFontSize - minFontSize).round(),
               label: state.appSettings.display.fontSize.round().toString(),
               onChanged: (value) {
                 context.read<SettingsBloc>().add(
@@ -120,10 +130,10 @@ class SettingsPage extends StatelessWidget {
         ),
         ListTile(
           title: const Text('Font Family'),
-          trailing: DropdownButton<String>(
+          trailing: DropdownButton<FontFamily>(
             value: state.appSettings.display.fontFamily,
-            items: ['Merriweather', 'Arial', 'Times New Roman', 'Georgia']
-                .map((font) => DropdownMenuItem(value: font, child: Text(font)))
+            items: FontFamily.values
+                .map((font) => DropdownMenuItem(value: font, child: Text(font.displayName)))
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -136,10 +146,10 @@ class SettingsPage extends StatelessWidget {
         ),
         ListTile(
           title: const Text('Theme'),
-          trailing: DropdownButton<String>(
+          trailing: DropdownButton<ThemeOption>(
             value: state.appSettings.display.theme,
-            items: ['sepia', 'light', 'dark', 'custom']
-                .map((theme) => DropdownMenuItem(value: theme, child: Text(theme)))
+            items: ThemeOption.values
+                .map((theme) => DropdownMenuItem(value: theme, child: Text(theme == ThemeOption.device ? 'Device' : theme.value)))
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -152,10 +162,10 @@ class SettingsPage extends StatelessWidget {
         ),
         ListTile(
           title: const Text('Page Layout'),
-          trailing: DropdownButton<String>(
+          trailing: DropdownButton<PageLayout>(
             value: state.appSettings.display.pageLayout,
-            items: ['paged', 'scroll']
-                .map((layout) => DropdownMenuItem(value: layout, child: Text(layout)))
+            items: PageLayout.values
+                .map((layout) => DropdownMenuItem(value: layout, child: Text(layout.value)))
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -176,10 +186,10 @@ class SettingsPage extends StatelessWidget {
       children: [
         ListTile(
           title: const Text('Reading Direction'),
-          trailing: DropdownButton<String>(
+          trailing: DropdownButton<ReadingDirection>(
             value: state.appSettings.behavior.readingDirection,
-            items: ['LTR', 'RTL']
-                .map((dir) => DropdownMenuItem(value: dir, child: Text(dir)))
+            items: ReadingDirection.values
+                .map((dir) => DropdownMenuItem(value: dir, child: Text(dir.value)))
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -192,10 +202,10 @@ class SettingsPage extends StatelessWidget {
         ),
         ListTile(
           title: const Text('Scroll Mode'),
-          trailing: DropdownButton<String>(
+          trailing: DropdownButton<ScrollMode>(
             value: state.appSettings.behavior.scrollMode,
-            items: ['paged', 'continuous']
-                .map((mode) => DropdownMenuItem(value: mode, child: Text(mode)))
+            items: ScrollMode.values
+                .map((mode) => DropdownMenuItem(value: mode, child: Text(mode.value)))
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -269,10 +279,10 @@ class SettingsPage extends StatelessWidget {
       children: [
         ListTile(
           title: const Text('Sort By'),
-          trailing: DropdownButton<String>(
+          trailing: DropdownButton<SortBy>(
             value: state.appSettings.library.sortBy,
-            items: ['title', 'author', 'date', 'size']
-                .map((sort) => DropdownMenuItem(value: sort, child: Text(sort)))
+            items: SortBy.values
+                .map((sort) => DropdownMenuItem(value: sort, child: Text(sort.value)))
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -285,10 +295,10 @@ class SettingsPage extends StatelessWidget {
         ),
         ListTile(
           title: const Text('View Style'),
-          trailing: DropdownButton<String>(
+          trailing: DropdownButton<ViewStyle>(
             value: state.appSettings.library.viewStyle,
-            items: ['grid', 'list']
-                .map((style) => DropdownMenuItem(value: style, child: Text(style)))
+            items: ViewStyle.values
+                .map((style) => DropdownMenuItem(value: style, child: Text(style.value)))
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -336,10 +346,10 @@ class SettingsPage extends StatelessWidget {
         ),
         ListTile(
           title: const Text('Export Format'),
-          trailing: DropdownButton<String>(
+          trailing: DropdownButton<AnnotationExportFormat>(
             value: state.appSettings.annotations.exportFormat,
-            items: ['markdown', 'html', 'json']
-                .map((format) => DropdownMenuItem(value: format, child: Text(format)))
+            items: AnnotationExportFormat.values
+                .map((format) => DropdownMenuItem(value: format, child: Text(format.value)))
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -369,10 +379,10 @@ class SettingsPage extends StatelessWidget {
       children: [
         ListTile(
           title: const Text('Toolbar Position'),
-          trailing: DropdownButton<String>(
+          trailing: DropdownButton<ToolbarPosition>(
             value: state.appSettings.ui.toolbarPosition,
-            items: ['bottom', 'top']
-                .map((pos) => DropdownMenuItem(value: pos, child: Text(pos)))
+            items: ToolbarPosition.values
+                .map((pos) => DropdownMenuItem(value: pos, child: Text(pos.value)))
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -411,10 +421,10 @@ class SettingsPage extends StatelessWidget {
       children: [
         ListTile(
           title: const Text('Language'),
-          trailing: DropdownButton<String>(
+          trailing: DropdownButton<Language>(
             value: state.appSettings.localization.language,
-            items: ['en', 'es', 'fr', 'de']
-                .map((lang) => DropdownMenuItem(value: lang, child: Text(lang)))
+            items: Language.values
+                .map((lang) => DropdownMenuItem(value: lang, child: Text(lang.value)))
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -427,10 +437,10 @@ class SettingsPage extends StatelessWidget {
         ),
         ListTile(
           title: const Text('Region'),
-          trailing: DropdownButton<String>(
+          trailing: DropdownButton<Region>(
             value: state.appSettings.localization.region,
-            items: ['US', 'UK', 'ES', 'FR', 'DE']
-                .map((region) => DropdownMenuItem(value: region, child: Text(region)))
+            items: Region.values
+                .map((region) => DropdownMenuItem(value: region, child: Text(region.value)))
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -443,10 +453,10 @@ class SettingsPage extends StatelessWidget {
         ),
         ListTile(
           title: const Text('Date Format'),
-          trailing: DropdownButton<String>(
+          trailing: DropdownButton<DateFormat>(
             value: state.appSettings.localization.dateFormat,
-            items: ['DD/MM/YYYY', 'MM/DD/YYYY', 'YYYY-MM-DD']
-                .map((format) => DropdownMenuItem(value: format, child: Text(format)))
+            items: DateFormat.values
+                .map((format) => DropdownMenuItem(value: format, child: Text(format.value)))
                 .toList(),
             onChanged: (value) {
               if (value != null) {

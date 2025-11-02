@@ -6,6 +6,10 @@ import '../../../../core/abstracts/base_service.dart';
 import '../../../../core/services/db/local_db_service.dart';
 import '../../../../core/utils/utils.dart';
 import '../models/portable_settings.dart';
+import '../models/settings_constants.dart';
+
+const double minFontSize = 8.0;
+const double maxFontSize = 32.0;
 
 @injectable
 class AppSettingsService extends BaseService {
@@ -87,31 +91,34 @@ class AppSettingsService extends BaseService {
 
   // Convenience methods for common settings
   Future<void> setFontSize(double fontSize) async {
+    if (fontSize < minFontSize || fontSize > maxFontSize) {
+      throw ArgumentError('Font size must be between $minFontSize and $maxFontSize');
+    }
     final displaySettings = _appSettings.display.copyWith(fontSize: fontSize);
     await updateDisplaySettings(displaySettings);
   }
 
-  Future<void> setFontFamily(String fontFamily) async {
+  Future<void> setFontFamily(FontFamily fontFamily) async {
     final displaySettings = _appSettings.display.copyWith(fontFamily: fontFamily);
     await updateDisplaySettings(displaySettings);
   }
 
-  Future<void> setTheme(String theme) async {
+  Future<void> setTheme(ThemeOption theme) async {
     final displaySettings = _appSettings.display.copyWith(theme: theme);
     await updateDisplaySettings(displaySettings);
   }
 
-  Future<void> setPageLayout(String pageLayout) async {
+  Future<void> setPageLayout(PageLayout pageLayout) async {
     final displaySettings = _appSettings.display.copyWith(pageLayout: pageLayout);
     await updateDisplaySettings(displaySettings);
   }
 
-  Future<void> setReadingDirection(String readingDirection) async {
+  Future<void> setReadingDirection(ReadingDirection readingDirection) async {
     final behaviorSettings = _appSettings.behavior.copyWith(readingDirection: readingDirection);
     await updateBehaviorSettings(behaviorSettings);
   }
 
-  Future<void> setScrollMode(String scrollMode) async {
+  Future<void> setScrollMode(ScrollMode scrollMode) async {
     final behaviorSettings = _appSettings.behavior.copyWith(scrollMode: scrollMode);
     await updateBehaviorSettings(behaviorSettings);
   }
@@ -146,12 +153,12 @@ class AppSettingsService extends BaseService {
     await updateAccessibilitySettings(accessibilitySettings);
   }
 
-  Future<void> setSortBy(String sortBy) async {
+  Future<void> setSortBy(SortBy sortBy) async {
     final librarySettings = _appSettings.library.copyWith(sortBy: sortBy);
     await updateLibrarySettings(librarySettings);
   }
 
-  Future<void> setViewStyle(String viewStyle) async {
+  Future<void> setViewStyle(ViewStyle viewStyle) async {
     final librarySettings = _appSettings.library.copyWith(viewStyle: viewStyle);
     await updateLibrarySettings(librarySettings);
   }
@@ -162,21 +169,33 @@ class AppSettingsService extends BaseService {
   }
 
   Future<void> setMetadataSources(List<String> sources) async {
+    if (sources.isEmpty) {
+      throw ArgumentError('Metadata sources cannot be empty');
+    }
     final librarySettings = _appSettings.library.copyWith(metadataSources: sources);
     await updateLibrarySettings(librarySettings);
   }
 
   Future<void> setScanPaths(List<String> paths) async {
+    if (paths.isEmpty) {
+      throw ArgumentError('Scan paths cannot be empty');
+    }
     final librarySettings = _appSettings.library.copyWith(scanPaths: paths);
     await updateLibrarySettings(librarySettings);
   }
 
   Future<void> setFormats(List<String> formats) async {
+    if (formats.isEmpty) {
+      throw ArgumentError('Formats cannot be empty');
+    }
     final librarySettings = _appSettings.library.copyWith(formats: formats);
     await updateLibrarySettings(librarySettings);
   }
 
   Future<void> setHighlightColors(List<String> colors) async {
+    if (colors.isEmpty) {
+      throw ArgumentError('Highlight colors cannot be empty');
+    }
     final annotationsSettings = _appSettings.annotations.copyWith(highlightColors: colors);
     await updateAnnotationsSettings(annotationsSettings);
   }
@@ -191,7 +210,7 @@ class AppSettingsService extends BaseService {
     await updateAnnotationsSettings(annotationsSettings);
   }
 
-  Future<void> setExportFormat(String format) async {
+  Future<void> setExportFormat(AnnotationExportFormat format) async {
     final annotationsSettings = _appSettings.annotations.copyWith(exportFormat: format);
     await updateAnnotationsSettings(annotationsSettings);
   }
@@ -201,7 +220,7 @@ class AppSettingsService extends BaseService {
     await updateAnnotationsSettings(annotationsSettings);
   }
 
-  Future<void> setToolbarPosition(String position) async {
+  Future<void> setToolbarPosition(ToolbarPosition position) async {
     final uiSettings = _appSettings.ui.copyWith(toolbarPosition: position);
     await updateUISettings(uiSettings);
   }
@@ -221,17 +240,17 @@ class AppSettingsService extends BaseService {
     await updateUISettings(uiSettings);
   }
 
-  Future<void> setLanguage(String language) async {
+  Future<void> setLanguage(Language language) async {
     final localizationSettings = _appSettings.localization.copyWith(language: language);
     await updateLocalizationSettings(localizationSettings);
   }
 
-  Future<void> setRegion(String region) async {
+  Future<void> setRegion(Region region) async {
     final localizationSettings = _appSettings.localization.copyWith(region: region);
     await updateLocalizationSettings(localizationSettings);
   }
 
-  Future<void> setDateFormat(String format) async {
+  Future<void> setDateFormat(DateFormat format) async {
     final localizationSettings = _appSettings.localization.copyWith(dateFormat: format);
     await updateLocalizationSettings(localizationSettings);
   }

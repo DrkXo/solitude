@@ -6,6 +6,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../../core/localization/app_localizations.dart';
+import '../../../settings/data/models/settings_constants.dart';
 import '../../../settings/presentation/bloc/settings_bloc.dart';
 import '../bloc/reader_bloc.dart';
 
@@ -23,44 +24,42 @@ class _ReaderPageState extends State<ReaderPage> {
   late StreamController<double> _scrollStreamController;
   late StreamSubscription<double> _scrollSubscription;
 
-  Color _getBackgroundColor(String theme) {
+  Color _getBackgroundColor(ThemeOption theme) {
     switch (theme) {
-      case 'light':
+      case ThemeOption.light:
         return Colors.white;
-      case 'dark':
+      case ThemeOption.dark:
         return Colors.black;
-      case 'sepia':
-        return const Color(0xFFFBF0D9);
-      case 'custom':
-        // For now, use sepia as fallback
-        return const Color(0xFFFBF0D9);
-      default:
-        return const Color(0xFFFBF0D9);
+      case ThemeOption.custom:
+        // For now, use light as fallback
+        return Colors.white;
+      case ThemeOption.device:
+        // Use light as default for device
+        return Colors.white;
     }
   }
 
-  Color _getTextColor(String theme, bool highContrast) {
+  Color _getTextColor(ThemeOption theme, bool highContrast) {
     Color baseColor;
     switch (theme) {
-      case 'light':
+      case ThemeOption.light:
         baseColor = Colors.black;
         break;
-      case 'dark':
+      case ThemeOption.dark:
         baseColor = Colors.white;
         break;
-      case 'sepia':
-        baseColor = const Color(0xFF5F4B32);
+      case ThemeOption.custom:
+        // For now, use black text color as fallback
+        baseColor = Colors.black;
         break;
-      case 'custom':
-        // For now, use sepia text color as fallback
-        baseColor = const Color(0xFF5F4B32);
+      case ThemeOption.device:
+        // Use black as default for device
+        baseColor = Colors.black;
         break;
-      default:
-        baseColor = const Color(0xFF5F4B32);
     }
 
     if (highContrast) {
-      return theme == 'dark' ? Colors.white : Colors.black;
+      return theme == ThemeOption.dark ? Colors.white : Colors.black;
     }
     return baseColor;
   }
@@ -162,15 +161,15 @@ class _ReaderPageState extends State<ReaderPage> {
                             color: _getBackgroundColor(
                               settingsState.appSettings.display.theme,
                             ),
-                            child: Directionality(
-                              textDirection:
-                                  settingsState
-                                          .appSettings
-                                          .behavior
-                                          .readingDirection ==
-                                      'RTL'
-                                  ? TextDirection.rtl
-                                  : TextDirection.ltr,
+                             child: Directionality(
+                               textDirection:
+                                   settingsState
+                                           .appSettings
+                                           .behavior
+                                           .readingDirection ==
+                                       ReadingDirection.rtl
+                                   ? TextDirection.rtl
+                                   : TextDirection.ltr,
                                child: ListView(
                                  controller: _scrollController,
                                  physics: const AlwaysScrollableScrollPhysics(),
@@ -183,16 +182,16 @@ class _ReaderPageState extends State<ReaderPage> {
                                      data: controller.getFullChapterContent(),
                                      style: {
                                     'body': Style(
-                                      fontFamily:
-                                          settingsState
-                                              .appSettings
-                                              .accessibility
-                                              .dyslexicFont
-                                          ? 'OpenDyslexic' // Assuming this font is available, or fallback to current
-                                          : settingsState
-                                                .appSettings
-                                                .display
-                                                .fontFamily,
+                                       fontFamily:
+                                           settingsState
+                                               .appSettings
+                                               .accessibility
+                                               .dyslexicFont
+                                           ? 'OpenDyslexic' // Assuming this font is available, or fallback to current
+                                           : settingsState
+                                                 .appSettings
+                                                 .display
+                                                 .fontFamily.displayName,
                                       fontSize: FontSize(
                                         settingsState
                                             .appSettings
