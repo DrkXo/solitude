@@ -1,22 +1,22 @@
 plugins {
     id("com.android.application")
-    id("kotlin-android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id("org.jetbrains.kotlin.android")  //  Changed from "kotlin-android"
     id("dev.flutter.flutter-gradle-plugin")
 }
 
 android {
     namespace = "com.solitude.app"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
-
+    compileSdk = 36  //  Changed from flutter.compileSdkVersion
+    buildToolsVersion = "36.0.0"  //  Added
+    ndkVersion = "28.0.12433566"  //  Changed from flutter.ndkVersion
+    
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_21  //  Changed from VERSION_11
+        targetCompatibility = JavaVersion.VERSION_21  //  Changed from VERSION_11
     }
-
+    
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_21.toString()  //  Changed from VERSION_11
     }
 
     defaultConfig {
