@@ -1,0 +1,117 @@
+{
+    "display": {
+        "fontFamily": "Merriweather",
+        "fontSize": 18,
+        "fontWeight": "normal",
+        "lineHeight": 1.5,
+        "letterSpacing": 0.2,
+        "paragraphSpacing": 1.2,
+        "theme": "sepia",
+        "customTheme": {
+            "backgroundColor": "#f4ecd8",
+            "textColor": "#3b2f2f"
+        },
+        "pageLayout": "paged",
+        "orientation": "auto",
+        "textAlign": "justify",
+        "pageTurnAnimation": "slide",
+        "margins": {
+            "top": 20,
+            "bottom": 20,
+            "left": 15,
+            "right": 15
+        }
+    },
+    "behavior": {
+        "tapZones": {
+            "left": "previousPage",
+            "right": "nextPage",
+            "center": "menuToggle"
+        },
+        "scrollMode": "paged",
+        "rememberLastPosition": true,
+        "syncProgress": true,
+        "autoScroll": {
+            "enabled": false,
+            "speed": 1.0
+        },
+        "readingDirection": "LTR"
+    },
+    "accessibility": {
+        "dyslexicFont": false,
+        "highContrast": false,
+        "fontSmoothing": true,
+        "immersiveMode": true,
+        "textToSpeech": {
+            "enabled": false,
+            "voice": "default",
+            "rate": 1.0,
+            "pitch": 1.0
+        },
+        "customCSS": ""
+    },
+    "library": {
+        "sortBy": "title",
+        "viewStyle": "grid",
+        "showCovers": true,
+        "metadataSources": [
+            "OpenLibrary",
+            "GoogleBooks"
+        ],
+        "scanPaths": [
+            "/books",
+            "/downloads/ebooks"
+        ],
+        "formats": [
+            "epub",
+            "pdf",
+            "mobi",
+            "cbz"
+        ]
+    },
+    "annotations": {
+        "highlightColors": [
+            "#f4d03f",
+            "#58d68d",
+            "#5dade2"
+        ],
+        "sync": true,
+        "autoSave": true,
+        "exportFormat": "markdown",
+        "showSidebar": true
+    },
+    "ui": {
+        "toolbarPosition": "bottom",
+        "gestures": {
+            "swipeUp": "brightnessUp",
+            "swipeDown": "brightnessDown",
+            "longPress": "highlight"
+        },
+        "enableAnimations": true,
+        "soundFeedback": false
+    },
+    "performance": {
+        "gpuAcceleration": true,
+        "cacheLimitMB": 256,
+        "preloadNextChapter": true,
+        "reduceMotion": false,
+        "hardwareDecoding": true
+    },
+    "sync": {
+        "cloudProvider": "dropbox",
+        "autoSyncOnOpen": true,
+        "autoSyncOnClose": true,
+        "backupFrequency": "weekly",
+        "backupPath": "/backups/ebook_reader"
+    },
+    "localization": {
+        "language": "en",
+        "region": "US",
+        "dateFormat": "DD/MM/YYYY"
+    },
+    "developer": {
+        "debugLogging": false,
+        "enableDevTools": false,
+        "customJS": ""
+    }
+}

@@ -3,12 +3,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'portable_settings.freezed.dart';
 part 'portable_settings.g.dart';
 
+
+
+
 @freezed
 abstract class PortableSettings with _$PortableSettings {
   const factory PortableSettings({
     required int version,
     required AppSettings appSettings,
-
     required DateTime exportDate,
   }) = _PortableSettings;
 
