@@ -193,7 +193,7 @@ class ReaderContent extends StatelessWidget {
               children: [
                 HtmlWidget(
                   enableCaching: true,
-                  buildAsync: true,
+                  buildAsync: false,
                   rebuildTriggers: [
                     settingsState.appSettings,
                   ],
