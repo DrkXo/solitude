@@ -18,6 +18,7 @@ class SettingsPage extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             title: Text('Settings'),
             actions: [
               TextButton(
@@ -30,18 +31,18 @@ class SettingsPage extends StatelessWidget {
               ),
             ],
           ),
-           body: Stack(
-             children: [
-               if (state.errorMessage != null)
-                 Container(
-                   color: Colors.red,
-                   padding: const EdgeInsets.all(16),
-                   child: Text(
-                     'Error: ${state.errorMessage}',
-                     style: const TextStyle(color: Colors.white),
-                   ),
-                 ),
-               ListView(
+          body: Stack(
+            children: [
+              if (state.errorMessage != null)
+                Container(
+                  color: Colors.red,
+                  padding: const EdgeInsets.all(16),
+                  child: Text(
+                    'Error: ${state.errorMessage}',
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
+              ListView(
                 children: [
                   // Display Settings
                   _buildDisplaySettings(context, state),
@@ -135,7 +136,12 @@ class SettingsPage extends StatelessWidget {
           trailing: DropdownButton<FontFamily>(
             value: state.appSettings.display.fontFamily,
             items: FontFamily.values
-                .map((font) => DropdownMenuItem(value: font, child: Text(font.displayName)))
+                .map(
+                  (font) => DropdownMenuItem(
+                    value: font,
+                    child: Text(font.displayName),
+                  ),
+                )
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -151,7 +157,10 @@ class SettingsPage extends StatelessWidget {
           trailing: DropdownButton<String>(
             value: state.appSettings.display.fontWeight,
             items: ['normal', 'bold']
-                .map((weight) => DropdownMenuItem(value: weight, child: Text(weight)))
+                .map(
+                  (weight) =>
+                      DropdownMenuItem(value: weight, child: Text(weight)),
+                )
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -207,7 +216,9 @@ class SettingsPage extends StatelessWidget {
               min: 0.5,
               max: 3.0,
               divisions: 25,
-              label: state.appSettings.display.paragraphSpacing.toStringAsFixed(1),
+              label: state.appSettings.display.paragraphSpacing.toStringAsFixed(
+                1,
+              ),
               onChanged: (value) {
                 context.read<SettingsBloc>().add(
                   SettingsEvent.paragraphSpacingChanged(value),
@@ -221,7 +232,12 @@ class SettingsPage extends StatelessWidget {
           trailing: DropdownButton<TextAlignOption>(
             value: state.appSettings.display.textAlign,
             items: TextAlignOption.values
-                .map((align) => DropdownMenuItem(value: align, child: Text(align.displayName)))
+                .map(
+                  (align) => DropdownMenuItem(
+                    value: align,
+                    child: Text(align.displayName),
+                  ),
+                )
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -237,7 +253,14 @@ class SettingsPage extends StatelessWidget {
           trailing: DropdownButton<ThemeOption>(
             value: state.appSettings.display.theme,
             items: ThemeOption.values
-                .map((theme) => DropdownMenuItem(value: theme, child: Text(theme == ThemeOption.device ? 'Device' : theme.value)))
+                .map(
+                  (theme) => DropdownMenuItem(
+                    value: theme,
+                    child: Text(
+                      theme == ThemeOption.device ? 'Device' : theme.value,
+                    ),
+                  ),
+                )
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -257,7 +280,8 @@ class SettingsPage extends StatelessWidget {
               min: 0.8,
               max: 2.0,
               divisions: 12,
-              label: state.appSettings.display.headerFontSizeMultiplier.toStringAsFixed(1),
+              label: state.appSettings.display.headerFontSizeMultiplier
+                  .toStringAsFixed(1),
               onChanged: (value) {
                 context.read<SettingsBloc>().add(
                   SettingsEvent.headerFontSizeMultiplierChanged(value),
@@ -275,7 +299,9 @@ class SettingsPage extends StatelessWidget {
               min: 0.0,
               max: 50.0,
               divisions: 50,
-              label: state.appSettings.display.headerMarginTop.round().toString(),
+              label: state.appSettings.display.headerMarginTop
+                  .round()
+                  .toString(),
               onChanged: (value) {
                 context.read<SettingsBloc>().add(
                   SettingsEvent.headerMarginTopChanged(value),
@@ -293,7 +319,9 @@ class SettingsPage extends StatelessWidget {
               min: 0.0,
               max: 50.0,
               divisions: 50,
-              label: state.appSettings.display.headerMarginBottom.round().toString(),
+              label: state.appSettings.display.headerMarginBottom
+                  .round()
+                  .toString(),
               onChanged: (value) {
                 context.read<SettingsBloc>().add(
                   SettingsEvent.headerMarginBottomChanged(value),
@@ -311,7 +339,9 @@ class SettingsPage extends StatelessWidget {
               min: 0.0,
               max: 50.0,
               divisions: 50,
-              label: state.appSettings.display.footerMarginTop.round().toString(),
+              label: state.appSettings.display.footerMarginTop
+                  .round()
+                  .toString(),
               onChanged: (value) {
                 context.read<SettingsBloc>().add(
                   SettingsEvent.footerMarginTopChanged(value),
@@ -329,7 +359,9 @@ class SettingsPage extends StatelessWidget {
               min: 0.0,
               max: 50.0,
               divisions: 50,
-              label: state.appSettings.display.footerMarginBottom.round().toString(),
+              label: state.appSettings.display.footerMarginBottom
+                  .round()
+                  .toString(),
               onChanged: (value) {
                 context.read<SettingsBloc>().add(
                   SettingsEvent.footerMarginBottomChanged(value),
@@ -352,7 +384,9 @@ class SettingsPage extends StatelessWidget {
           trailing: DropdownButton<ReadingDirection>(
             value: state.appSettings.behavior.readingDirection,
             items: ReadingDirection.values
-                .map((dir) => DropdownMenuItem(value: dir, child: Text(dir.value)))
+                .map(
+                  (dir) => DropdownMenuItem(value: dir, child: Text(dir.value)),
+                )
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -368,7 +402,12 @@ class SettingsPage extends StatelessWidget {
           trailing: DropdownButton<NavigationMethod>(
             value: state.appSettings.behavior.navigationMethod,
             items: NavigationMethod.values
-                .map((method) => DropdownMenuItem(value: method, child: Text(method.value)))
+                .map(
+                  (method) => DropdownMenuItem(
+                    value: method,
+                    child: Text(method.value),
+                  ),
+                )
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -392,7 +431,10 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  Widget _buildAccessibilitySettings(BuildContext context, SettingsState state) {
+  Widget _buildAccessibilitySettings(
+    BuildContext context,
+    SettingsState state,
+  ) {
     return ExpansionTile(
       leading: const Icon(LucideIcons.eye),
       title: const Text('Accessibility'),
@@ -438,7 +480,10 @@ class SettingsPage extends StatelessWidget {
           trailing: DropdownButton<SortBy>(
             value: state.appSettings.library.sortBy,
             items: SortBy.values
-                .map((sort) => DropdownMenuItem(value: sort, child: Text(sort.value)))
+                .map(
+                  (sort) =>
+                      DropdownMenuItem(value: sort, child: Text(sort.value)),
+                )
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -454,7 +499,10 @@ class SettingsPage extends StatelessWidget {
           trailing: DropdownButton<ViewStyle>(
             value: state.appSettings.library.viewStyle,
             items: ViewStyle.values
-                .map((style) => DropdownMenuItem(value: style, child: Text(style.value)))
+                .map(
+                  (style) =>
+                      DropdownMenuItem(value: style, child: Text(style.value)),
+                )
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -506,7 +554,12 @@ class SettingsPage extends StatelessWidget {
           trailing: DropdownButton<AnnotationExportFormat>(
             value: state.appSettings.annotations.exportFormat,
             items: AnnotationExportFormat.values
-                .map((format) => DropdownMenuItem(value: format, child: Text(format.value)))
+                .map(
+                  (format) => DropdownMenuItem(
+                    value: format,
+                    child: Text(format.value),
+                  ),
+                )
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -540,7 +593,9 @@ class SettingsPage extends StatelessWidget {
           trailing: DropdownButton<ToolbarPosition>(
             value: state.appSettings.ui.toolbarPosition,
             items: ToolbarPosition.values
-                .map((pos) => DropdownMenuItem(value: pos, child: Text(pos.value)))
+                .map(
+                  (pos) => DropdownMenuItem(value: pos, child: Text(pos.value)),
+                )
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -583,7 +638,10 @@ class SettingsPage extends StatelessWidget {
           trailing: DropdownButton<Language>(
             value: state.appSettings.localization.language,
             items: Language.values
-                .map((lang) => DropdownMenuItem(value: lang, child: Text(lang.value)))
+                .map(
+                  (lang) =>
+                      DropdownMenuItem(value: lang, child: Text(lang.value)),
+                )
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -599,7 +657,12 @@ class SettingsPage extends StatelessWidget {
           trailing: DropdownButton<Region>(
             value: state.appSettings.localization.region,
             items: Region.values
-                .map((region) => DropdownMenuItem(value: region, child: Text(region.value)))
+                .map(
+                  (region) => DropdownMenuItem(
+                    value: region,
+                    child: Text(region.value),
+                  ),
+                )
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -615,7 +678,12 @@ class SettingsPage extends StatelessWidget {
           trailing: DropdownButton<DateFormat>(
             value: state.appSettings.localization.dateFormat,
             items: DateFormat.values
-                .map((format) => DropdownMenuItem(value: format, child: Text(format.value)))
+                .map(
+                  (format) => DropdownMenuItem(
+                    value: format,
+                    child: Text(format.value),
+                  ),
+                )
                 .toList(),
             onChanged: (value) {
               if (value != null) {
@@ -661,7 +729,9 @@ class SettingsPage extends StatelessWidget {
     return ExpansionTile(
       leading: const Icon(LucideIcons.save),
       title: const Text('Backup & Restore'),
-      subtitle: const Text('Export or import your settings and reading progress'),
+      subtitle: const Text(
+        'Export or import your settings and reading progress',
+      ),
       children: [
         ListTile(
           title: const Text('Export Settings'),

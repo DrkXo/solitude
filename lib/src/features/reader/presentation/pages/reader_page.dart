@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart' as html;
+import 'package:go_router/go_router.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../../core/localization/app_localizations.dart';
+import '../../../../router/app_router.dart';
 import '../../../settings/data/models/settings_constants.dart';
 import '../../../settings/presentation/bloc/settings_bloc.dart';
 import '../bloc/reader_bloc.dart';
@@ -122,92 +124,133 @@ class _ReaderPageState extends State<ReaderPage> {
                                   .immersiveMode
                           ? AppBar(
                               title: Text(controller.currentChapter.title),
+                              actions: [
+                                IconButton(
+                                  icon: const Icon(LucideIcons.settings),
+                                  onPressed: () {
+                                    context.pushNamed(AppRoutes.settings.name);
+                                  },
+                                ),
+                              ],
                             )
                           : null,
-                       body: SizedBox.expand(
-                         child: GestureDetector(
-                           behavior: HitTestBehavior.translucent,
-                           onTap: () {
-                             if (settingsState.appSettings.behavior.navigationMethod == NavigationMethod.tap) {
-                               // For tap navigation, don't toggle app bar on tap
-                               // Handle tap zones instead
-                             } else {
-                               setState(() => _showAppBar = !_showAppBar);
-                             }
-                           },
-                           onTapDown: (details) {
-                             if (settingsState.appSettings.behavior.navigationMethod == NavigationMethod.tap) {
-                               final screenWidth = MediaQuery.of(context).size.width;
-                               final tapX = details.localPosition.dx;
+                      body: SizedBox.expand(
+                        child: GestureDetector(
+                          behavior: HitTestBehavior.translucent,
+                          onTap: () {
+                            if (settingsState
+                                    .appSettings
+                                    .behavior
+                                    .navigationMethod ==
+                                NavigationMethod.tap) {
+                              // For tap navigation, don't toggle app bar on tap
+                              // Handle tap zones instead
+                            } else {
+                              setState(() => _showAppBar = !_showAppBar);
+                            }
+                          },
+                          onTapDown: (details) {
+                            if (settingsState
+                                    .appSettings
+                                    .behavior
+                                    .navigationMethod ==
+                                NavigationMethod.tap) {
+                              final screenWidth = MediaQuery.of(
+                                context,
+                              ).size.width;
+                              final tapX = details.localPosition.dx;
 
-                               if (tapX < screenWidth * 0.3) {
-                                 // Left zone
-                                 final action = settingsState.appSettings.behavior.tapZones.left;
-                                 if (action == 'previousPage' && currentChapterIndex > 0) {
-                                   context.read<ReaderBloc>().add(
-                                     const ReaderEvent.previousChapter(),
-                                   );
-                                 }
-                               } else if (tapX > screenWidth * 0.7) {
-                                 // Right zone
-                                 final action = settingsState.appSettings.behavior.tapZones.right;
-                                 if (action == 'nextPage' && currentChapterIndex < controller.totalChapters - 1) {
-                                   context.read<ReaderBloc>().add(
-                                     const ReaderEvent.nextChapter(),
-                                   );
-                                 }
-                               } else {
-                                 // Center zone
-                                 final action = settingsState.appSettings.behavior.tapZones.center;
-                                 if (action == 'menuToggle') {
-                                   setState(() => _showAppBar = !_showAppBar);
-                                 }
-                               }
-                             }
-                           },
-                           onHorizontalDragEnd: (details) {
-                             if (settingsState.appSettings.behavior.navigationMethod == NavigationMethod.swipeHorizontal) {
-                               if (details.velocity.pixelsPerSecond.dx > 0) {
-                                 // Swipe right: previous chapter
-                                 if (currentChapterIndex > 0) {
-                                   context.read<ReaderBloc>().add(
-                                     const ReaderEvent.previousChapter(),
-                                   );
-                                 }
-                               } else if (details.velocity.pixelsPerSecond.dx <
-                                   0) {
-                                 // Swipe left: next chapter
-                                 if (currentChapterIndex <
-                                     controller.totalChapters - 1) {
-                                   context.read<ReaderBloc>().add(
-                                     const ReaderEvent.nextChapter(),
-                                   );
-                                 }
-                               }
-                             }
-                           },
-                           onVerticalDragEnd: (details) {
-                             if (settingsState.appSettings.behavior.navigationMethod == NavigationMethod.swipeVertical) {
-                               if (details.velocity.pixelsPerSecond.dy < 0) {
-                                 // Swipe up: next chapter
-                                 if (currentChapterIndex <
-                                     controller.totalChapters - 1) {
-                                   context.read<ReaderBloc>().add(
-                                     const ReaderEvent.nextChapter(),
-                                   );
-                                 }
-                               } else if (details.velocity.pixelsPerSecond.dy >
-                                   0) {
-                                 // Swipe down: previous chapter
-                                 if (currentChapterIndex > 0) {
-                                   context.read<ReaderBloc>().add(
-                                     const ReaderEvent.previousChapter(),
-                                   );
-                                 }
-                               }
-                             }
-                           },
-                           child: Container(
+                              if (tapX < screenWidth * 0.3) {
+                                // Left zone
+                                final action = settingsState
+                                    .appSettings
+                                    .behavior
+                                    .tapZones
+                                    .left;
+                                if (action == 'previousPage' &&
+                                    currentChapterIndex > 0) {
+                                  context.read<ReaderBloc>().add(
+                                    const ReaderEvent.previousChapter(),
+                                  );
+                                }
+                              } else if (tapX > screenWidth * 0.7) {
+                                // Right zone
+                                final action = settingsState
+                                    .appSettings
+                                    .behavior
+                                    .tapZones
+                                    .right;
+                                if (action == 'nextPage' &&
+                                    currentChapterIndex <
+                                        controller.totalChapters - 1) {
+                                  context.read<ReaderBloc>().add(
+                                    const ReaderEvent.nextChapter(),
+                                  );
+                                }
+                              } else {
+                                // Center zone
+                                final action = settingsState
+                                    .appSettings
+                                    .behavior
+                                    .tapZones
+                                    .center;
+                                if (action == 'menuToggle') {
+                                  setState(() => _showAppBar = !_showAppBar);
+                                }
+                              }
+                            }
+                          },
+                          onHorizontalDragEnd: (details) {
+                            if (settingsState
+                                    .appSettings
+                                    .behavior
+                                    .navigationMethod ==
+                                NavigationMethod.swipeHorizontal) {
+                              if (details.velocity.pixelsPerSecond.dx > 0) {
+                                // Swipe right: previous chapter
+                                if (currentChapterIndex > 0) {
+                                  context.read<ReaderBloc>().add(
+                                    const ReaderEvent.previousChapter(),
+                                  );
+                                }
+                              } else if (details.velocity.pixelsPerSecond.dx <
+                                  0) {
+                                // Swipe left: next chapter
+                                if (currentChapterIndex <
+                                    controller.totalChapters - 1) {
+                                  context.read<ReaderBloc>().add(
+                                    const ReaderEvent.nextChapter(),
+                                  );
+                                }
+                              }
+                            }
+                          },
+                          onVerticalDragEnd: (details) {
+                            if (settingsState
+                                    .appSettings
+                                    .behavior
+                                    .navigationMethod ==
+                                NavigationMethod.swipeVertical) {
+                              if (details.velocity.pixelsPerSecond.dy < 0) {
+                                // Swipe up: next chapter
+                                if (currentChapterIndex <
+                                    controller.totalChapters - 1) {
+                                  context.read<ReaderBloc>().add(
+                                    const ReaderEvent.nextChapter(),
+                                  );
+                                }
+                              } else if (details.velocity.pixelsPerSecond.dy >
+                                  0) {
+                                // Swipe down: previous chapter
+                                if (currentChapterIndex > 0) {
+                                  context.read<ReaderBloc>().add(
+                                    const ReaderEvent.previousChapter(),
+                                  );
+                                }
+                              }
+                            }
+                          },
+                          child: Container(
                             color: Theme.of(context).scaffoldBackgroundColor,
                             child: Directionality(
                               textDirection:
@@ -225,214 +268,221 @@ class _ReaderPageState extends State<ReaderPage> {
                                   horizontal: 24.0,
                                   vertical: 16.0,
                                 ),
-                                 children: [
-                                   html.Html(
-                                     data: controller.getFullChapterContent(),
-                                     style: {
-                                       'body': html.Style(
-                                         fontFamily:
-                                             settingsState
-                                                 .appSettings
-                                                 .accessibility
-                                                 .dyslexicFont
-                                             ? 'OpenDyslexic' // Assuming this font is available, or fallback to current
-                                             : settingsState
-                                                   .appSettings
-                                                   .display
-                                                   .fontFamily
-                                                   .displayName,
-                                         fontSize: html.FontSize(
-                                           settingsState
-                                               .appSettings
-                                               .display
-                                               .fontSize,
-                                         ),
-                                         fontWeight:
-                                             settingsState
-                                                     .appSettings
-                                                     .display
-                                                     .fontWeight ==
-                                                 'bold'
-                                             ? FontWeight.bold
-                                             : FontWeight.normal,
-                                         lineHeight: html.LineHeight(
-                                           settingsState
-                                               .appSettings
-                                               .display
-                                               .lineHeight,
-                                         ),
-                                         letterSpacing: settingsState
-                                             .appSettings
-                                             .display
-                                             .letterSpacing,
-                                         textAlign: switch (settingsState.appSettings.display.textAlign) {
-                                           TextAlignOption.left => TextAlign.left,
-                                           TextAlignOption.right => TextAlign.right,
-                                           TextAlignOption.center => TextAlign.center,
-                                           TextAlignOption.justify => TextAlign.justify,
-                                         },
-                                         color: _getTextColor(
-                                           settingsState
-                                               .appSettings
-                                               .display
-                                               .theme,
-                                           settingsState
-                                               .appSettings
-                                               .accessibility
-                                               .highContrast,
-                                         ),
-                                         backgroundColor: Colors.transparent,
-                                       ),
-                                       'p': html.Style(
-                                         margin: html.Margins.only(
-                                           bottom:
-                                               settingsState
-                                                   .appSettings
-                                                   .display
-                                                   .paragraphSpacing *
-                                               10,
-                                         ),
-                                       ),
-                                       'h1': html.Style(
-                                         fontSize: html.FontSize(
-                                           settingsState
-                                               .appSettings
-                                               .display
-                                               .fontSize *
-                                           settingsState
-                                               .appSettings
-                                               .display
-                                               .headerFontSizeMultiplier,
-                                         ),
-                                         fontWeight: FontWeight.bold,
-                                         margin: html.Margins.only(
-                                           top: settingsState
-                                               .appSettings
-                                               .display
-                                               .headerMarginTop,
-                                           bottom: settingsState
-                                               .appSettings
-                                               .display
-                                               .headerMarginBottom,
-                                         ),
-                                         color: _getTextColor(
-                                           settingsState
-                                               .appSettings
-                                               .display
-                                               .theme,
-                                           settingsState
-                                               .appSettings
-                                               .accessibility
-                                               .highContrast,
-                                         ),
-                                       ),
-                                       'h2': html.Style(
-                                         fontSize: html.FontSize(
-                                           settingsState
-                                               .appSettings
-                                               .display
-                                               .fontSize *
-                                           (settingsState
-                                               .appSettings
-                                               .display
-                                               .headerFontSizeMultiplier -
-                                               0.1),
-                                         ),
-                                         fontWeight: FontWeight.bold,
-                                         margin: html.Margins.only(
-                                           top: settingsState
-                                               .appSettings
-                                               .display
-                                               .headerMarginTop,
-                                           bottom: settingsState
-                                               .appSettings
-                                               .display
-                                               .headerMarginBottom,
-                                         ),
-                                         color: _getTextColor(
-                                           settingsState
-                                               .appSettings
-                                               .display
-                                               .theme,
-                                           settingsState
-                                               .appSettings
-                                               .accessibility
-                                               .highContrast,
-                                         ),
-                                       ),
-                                       'h3': html.Style(
-                                         fontSize: html.FontSize(
-                                           settingsState
-                                               .appSettings
-                                               .display
-                                               .fontSize *
-                                           (settingsState
-                                               .appSettings
-                                               .display
-                                               .headerFontSizeMultiplier -
-                                               0.2),
-                                         ),
-                                         fontWeight: FontWeight.bold,
-                                         margin: html.Margins.only(
-                                           top: settingsState
-                                               .appSettings
-                                               .display
-                                               .headerMarginTop,
-                                           bottom: settingsState
-                                               .appSettings
-                                               .display
-                                               .headerMarginBottom,
-                                         ),
-                                         color: _getTextColor(
-                                           settingsState
-                                               .appSettings
-                                               .display
-                                               .theme,
-                                           settingsState
-                                               .appSettings
-                                               .accessibility
-                                               .highContrast,
-                                         ),
-                                       ),
-                                       'footer': html.Style(
-                                         margin: html.Margins.only(
-                                           top: settingsState
-                                               .appSettings
-                                               .display
-                                               .footerMarginTop,
-                                           bottom: settingsState
-                                               .appSettings
-                                               .display
-                                               .footerMarginBottom,
-                                         ),
-                                         fontSize: html.FontSize(
-                                           settingsState
-                                               .appSettings
-                                               .display
-                                               .fontSize *
-                                           0.9,
-                                         ),
-                                         color: _getTextColor(
-                                           settingsState
-                                               .appSettings
-                                               .display
-                                               .theme,
-                                           settingsState
-                                               .appSettings
-                                               .accessibility
-                                               .highContrast,
-                                         ).withValues(alpha: 0.7),
-                                       ),
-                                     },
-                                   ),
+                                children: [
+                                  html.Html(
+                                    data: controller.getFullChapterContent(),
+                                    style: {
+                                      'body': html.Style(
+                                        fontFamily:
+                                            settingsState
+                                                .appSettings
+                                                .accessibility
+                                                .dyslexicFont
+                                            ? 'OpenDyslexic' // Assuming this font is available, or fallback to current
+                                            : settingsState
+                                                  .appSettings
+                                                  .display
+                                                  .fontFamily
+                                                  .displayName,
+                                        fontSize: html.FontSize(
+                                          settingsState
+                                              .appSettings
+                                              .display
+                                              .fontSize,
+                                        ),
+                                        fontWeight:
+                                            settingsState
+                                                    .appSettings
+                                                    .display
+                                                    .fontWeight ==
+                                                'bold'
+                                            ? FontWeight.bold
+                                            : FontWeight.normal,
+                                        lineHeight: html.LineHeight(
+                                          settingsState
+                                              .appSettings
+                                              .display
+                                              .lineHeight,
+                                        ),
+                                        letterSpacing: settingsState
+                                            .appSettings
+                                            .display
+                                            .letterSpacing,
+                                        textAlign: switch (settingsState
+                                            .appSettings
+                                            .display
+                                            .textAlign) {
+                                          TextAlignOption.left =>
+                                            TextAlign.left,
+                                          TextAlignOption.right =>
+                                            TextAlign.right,
+                                          TextAlignOption.center =>
+                                            TextAlign.center,
+                                          TextAlignOption.justify =>
+                                            TextAlign.justify,
+                                        },
+                                        color: _getTextColor(
+                                          settingsState
+                                              .appSettings
+                                              .display
+                                              .theme,
+                                          settingsState
+                                              .appSettings
+                                              .accessibility
+                                              .highContrast,
+                                        ),
+                                        backgroundColor: Colors.transparent,
+                                      ),
+                                      'p': html.Style(
+                                        margin: html.Margins.only(
+                                          bottom:
+                                              settingsState
+                                                  .appSettings
+                                                  .display
+                                                  .paragraphSpacing *
+                                              10,
+                                        ),
+                                      ),
+                                      'h1': html.Style(
+                                        fontSize: html.FontSize(
+                                          settingsState
+                                                  .appSettings
+                                                  .display
+                                                  .fontSize *
+                                              settingsState
+                                                  .appSettings
+                                                  .display
+                                                  .headerFontSizeMultiplier,
+                                        ),
+                                        fontWeight: FontWeight.bold,
+                                        margin: html.Margins.only(
+                                          top: settingsState
+                                              .appSettings
+                                              .display
+                                              .headerMarginTop,
+                                          bottom: settingsState
+                                              .appSettings
+                                              .display
+                                              .headerMarginBottom,
+                                        ),
+                                        color: _getTextColor(
+                                          settingsState
+                                              .appSettings
+                                              .display
+                                              .theme,
+                                          settingsState
+                                              .appSettings
+                                              .accessibility
+                                              .highContrast,
+                                        ),
+                                      ),
+                                      'h2': html.Style(
+                                        fontSize: html.FontSize(
+                                          settingsState
+                                                  .appSettings
+                                                  .display
+                                                  .fontSize *
+                                              (settingsState
+                                                      .appSettings
+                                                      .display
+                                                      .headerFontSizeMultiplier -
+                                                  0.1),
+                                        ),
+                                        fontWeight: FontWeight.bold,
+                                        margin: html.Margins.only(
+                                          top: settingsState
+                                              .appSettings
+                                              .display
+                                              .headerMarginTop,
+                                          bottom: settingsState
+                                              .appSettings
+                                              .display
+                                              .headerMarginBottom,
+                                        ),
+                                        color: _getTextColor(
+                                          settingsState
+                                              .appSettings
+                                              .display
+                                              .theme,
+                                          settingsState
+                                              .appSettings
+                                              .accessibility
+                                              .highContrast,
+                                        ),
+                                      ),
+                                      'h3': html.Style(
+                                        fontSize: html.FontSize(
+                                          settingsState
+                                                  .appSettings
+                                                  .display
+                                                  .fontSize *
+                                              (settingsState
+                                                      .appSettings
+                                                      .display
+                                                      .headerFontSizeMultiplier -
+                                                  0.2),
+                                        ),
+                                        fontWeight: FontWeight.bold,
+                                        margin: html.Margins.only(
+                                          top: settingsState
+                                              .appSettings
+                                              .display
+                                              .headerMarginTop,
+                                          bottom: settingsState
+                                              .appSettings
+                                              .display
+                                              .headerMarginBottom,
+                                        ),
+                                        color: _getTextColor(
+                                          settingsState
+                                              .appSettings
+                                              .display
+                                              .theme,
+                                          settingsState
+                                              .appSettings
+                                              .accessibility
+                                              .highContrast,
+                                        ),
+                                      ),
+                                      'footer': html.Style(
+                                        margin: html.Margins.only(
+                                          top: settingsState
+                                              .appSettings
+                                              .display
+                                              .footerMarginTop,
+                                          bottom: settingsState
+                                              .appSettings
+                                              .display
+                                              .footerMarginBottom,
+                                        ),
+                                        fontSize: html.FontSize(
+                                          settingsState
+                                                  .appSettings
+                                                  .display
+                                                  .fontSize *
+                                              0.9,
+                                        ),
+                                        color: _getTextColor(
+                                          settingsState
+                                              .appSettings
+                                              .display
+                                              .theme,
+                                          settingsState
+                                              .appSettings
+                                              .accessibility
+                                              .highContrast,
+                                        ).withValues(alpha: 0.7),
+                                      ),
+                                    },
+                                  ),
                                 ],
-                             ),
+                              ),
+                            ),
+                          ),
                         ),
-                       ),
                       ),
-                    ),
-                  );
-                 },
+                    );
+                  },
               error: (message) {
                 return Scaffold(
                   appBar: AppBar(
@@ -442,7 +492,7 @@ class _ReaderPageState extends State<ReaderPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                         const Icon(LucideIcons.x, size: 64),
+                        const Icon(LucideIcons.x, size: 64),
                         const SizedBox(height: 16),
                         Text(message, textAlign: TextAlign.center),
                         const SizedBox(height: 16),

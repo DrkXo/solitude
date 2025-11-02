@@ -24,12 +24,12 @@ class AppRouter {
               builder: (context, state) {
                 final ebookId = state.pathParameters['ebookId']!;
                 return BlocProvider<ReaderBloc>(
-                   create: (context) {
-                     final bloc = ReaderBloc(
-                       readerService: GetIt.I<ReaderService>(),
-                       libraryService: _ebookLibraryService,
-                       appSettingsService: _appSettingsService,
-                     );
+                  create: (context) {
+                    final bloc = ReaderBloc(
+                      readerService: GetIt.I<ReaderService>(),
+                      libraryService: _ebookLibraryService,
+                      appSettingsService: _appSettingsService,
+                    );
                     bloc.add(ReaderEvent.loadEbook(ebookId));
                     return bloc;
                   },
@@ -43,9 +43,14 @@ class AppRouter {
           path: AppRoutes.settings.path,
           name: AppRoutes.settings.name,
           pageBuilder: (context, state) => ModalPage(
-            builder: (context) => const SettingsPage(),
+            builder: (context) => Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: const SettingsPage(),
+            ),
             isScrollControlled: true,
-            constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.8),
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * 0.8,
+            ),
           ),
         ),
       ],
