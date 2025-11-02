@@ -21,6 +21,7 @@ class _ReaderPageState extends State<ReaderPage> {
   late bool _showAppBar;
   late ScrollController _scrollController;
   bool _hasJumped = false;
+  int _previousChapterIndex = -1;
   late StreamController<double> _scrollStreamController;
   late StreamSubscription<double> _scrollSubscription;
 
@@ -96,6 +97,10 @@ class _ReaderPageState extends State<ReaderPage> {
                     pageOffset,
                     bookmarks,
                   ) {
+                    if (currentChapterIndex != _previousChapterIndex) {
+                      _hasJumped = false;
+                      _previousChapterIndex = currentChapterIndex;
+                    }
                     if (!_hasJumped) {
                       _hasJumped = true;
                       WidgetsBinding.instance.addPostFrameCallback((_) {
