@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -10,6 +11,7 @@ import '../features/library/presentation/pages/library_page.dart';
 import '../features/reader/presentation/bloc/reader_bloc.dart';
 import '../features/reader/presentation/pages/reader_page.dart';
 import '../features/settings/presentation/pages/settings_page.dart';
+import 'utils/router_custom_pages.dart';
 
 part 'router.dart';
 part 'routes.dart';

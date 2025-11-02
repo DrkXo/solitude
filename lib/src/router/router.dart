@@ -42,7 +42,11 @@ class AppRouter {
         GoRoute(
           path: AppRoutes.settings.path,
           name: AppRoutes.settings.name,
-          builder: (context, state) => const SettingsPage(),
+          pageBuilder: (context, state) => ModalPage(
+            builder: (context) => const SettingsPage(),
+            isScrollControlled: true,
+            constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.8),
+          ),
         ),
       ],
     );
