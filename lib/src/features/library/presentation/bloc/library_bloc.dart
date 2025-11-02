@@ -4,8 +4,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../data/models/ebook_entry.dart';
 import '../../../../core/services/ebook_library_service.dart';
+import '../../data/models/ebook_entry.dart';
 
 part 'library_bloc.freezed.dart';
 part 'library_event.dart';
@@ -78,12 +78,17 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
     }
   }
 
-  Future<void> _onRemoveEbook(_RemoveEbook event, Emitter<LibraryState> emit) async {
+  Future<void> _onRemoveEbook(
+    _RemoveEbook event,
+    Emitter<LibraryState> emit,
+  ) async {
     try {
       await _service.removeEbook(event.id);
       // EbooksChanged will emit loaded
     } catch (e) {
-      emit(LibraryState.error('Failed to remove ebook: $e', _service.getEbooks()));
+      emit(
+        LibraryState.error('Failed to remove ebook: $e', _service.getEbooks()),
+      );
     }
   }
 
@@ -95,18 +100,28 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
     });
   }
 
-  Future<void> _onUpdateEbook(_UpdateEbook event, Emitter<LibraryState> emit) async {
+  Future<void> _onUpdateEbook(
+    _UpdateEbook event,
+    Emitter<LibraryState> emit,
+  ) async {
     try {
       await _service.updateEbook(event.entry);
       // EbooksChanged will emit loaded
     } catch (e) {
-      emit(LibraryState.error('Failed to update ebook: $e', _service.getEbooks()));
+      emit(
+        LibraryState.error('Failed to update ebook: $e', _service.getEbooks()),
+      );
     }
   }
 
   void _onEbooksChanged(_EbooksChanged event, Emitter<LibraryState> emit) {
     if (state is _Loaded) {
-      emit(LibraryState.loaded(event.ebooks, isAdding: (state as _Loaded).isAdding));
+      emit(
+        LibraryState.loaded(
+          event.ebooks,
+          isAdding: (state as _Loaded).isAdding,
+        ),
+      );
     } else if (state is _Error) {
       emit(LibraryState.error((state as _Error).message, event.ebooks));
     } else if (state is _Initial) {

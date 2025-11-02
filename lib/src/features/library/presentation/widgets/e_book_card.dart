@@ -8,10 +8,12 @@ import 'package:solitude/src/router/app_router.dart';
 
 class EBookCard extends StatelessWidget {
   final EbookEntry entry;
+  final bool showCover;
 
   const EBookCard({
     super.key,
     required this.entry,
+    this.showCover = true,
   });
 
   @override
@@ -63,33 +65,33 @@ class EBookCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                flex: 3,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primaryContainer,
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(12),
-                    ),
-                  ),
-                  child: entry.coverImageHtml != null
-                      ? ClipRRect(
-                          borderRadius: const BorderRadius.vertical(
-                            top: Radius.circular(12),
-                          ),
-                          child: Html(
-                            data: '<img src="${entry.coverImageHtml!}"/>',
-                          ),
-                        )
-                      : Center(
-                          child: Icon(
-                            Icons.auto_stories,
-                            size: 64,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                        ),
-                ),
-              ),
+               Expanded(
+                 flex: 3,
+                 child: Container(
+                   decoration: BoxDecoration(
+                     color: Theme.of(context).colorScheme.primaryContainer,
+                     borderRadius: const BorderRadius.vertical(
+                       top: Radius.circular(12),
+                     ),
+                   ),
+                   child: showCover && entry.coverImageHtml != null
+                       ? ClipRRect(
+                           borderRadius: const BorderRadius.vertical(
+                             top: Radius.circular(12),
+                           ),
+                           child: Html(
+                             data: '<img src="${entry.coverImageHtml!}"/>',
+                           ),
+                         )
+                       : Center(
+                           child: Icon(
+                             Icons.auto_stories,
+                             size: 64,
+                             color: Theme.of(context).colorScheme.primary,
+                           ),
+                         ),
+                 ),
+               ),
               Expanded(
                 flex: 2,
                 child: Padding(

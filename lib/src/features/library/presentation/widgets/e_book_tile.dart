@@ -8,10 +8,12 @@ import 'package:solitude/src/router/app_router.dart';
 
 class EBookTile extends StatelessWidget {
   final EbookEntry entry;
+  final bool showCover;
 
   const EBookTile({
     super.key,
     required this.entry,
+    this.showCover = true,
   });
 
   @override
@@ -54,28 +56,30 @@ class EBookTile extends StatelessWidget {
             },
           );
         },
-        leading: Container(
-          width: 50,
-          height: 70,
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.primaryContainer,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: entry.coverImageHtml != null
-              ? ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Html(
-                    data: '<img src="${entry.coverImageHtml!}"/>',
-                  ),
-                )
-              : Center(
-                  child: Icon(
-                    Icons.auto_stories,
-                    size: 24,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-        ),
+         leading: showCover
+             ? Container(
+                 width: 50,
+                 height: 70,
+                 decoration: BoxDecoration(
+                   color: Theme.of(context).colorScheme.primaryContainer,
+                   borderRadius: BorderRadius.circular(8),
+                 ),
+                 child: entry.coverImageHtml != null
+                     ? ClipRRect(
+                         borderRadius: BorderRadius.circular(8),
+                         child: Html(
+                           data: '<img src="${entry.coverImageHtml!}"/>',
+                         ),
+                       )
+                     : Center(
+                         child: Icon(
+                           Icons.auto_stories,
+                           size: 24,
+                           color: Theme.of(context).colorScheme.primary,
+                         ),
+                       ),
+               )
+             : null,
         title: Text(
           entry.ebook.metadata.title,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
