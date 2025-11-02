@@ -19,8 +19,22 @@ enum FontFamily {
   georgia('Georgia'),
   @JsonValue('Open Sans')
   openSans('Open Sans');
-
   const FontFamily(this.displayName);
+  final String displayName;
+}
+
+/// Text alignment options
+enum TextAlignOption {
+  @JsonValue('left')
+  left('Left'),
+  @JsonValue('center')
+  center('Center'),
+  @JsonValue('right')
+  right('Right'),
+  @JsonValue('justify')
+  justify('Justify');
+
+  const TextAlignOption(this.displayName);
   final String displayName;
 }
 

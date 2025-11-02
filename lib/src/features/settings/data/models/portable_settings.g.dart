@@ -67,29 +67,38 @@ Map<String, dynamic> _$AppSettingsToJson(_AppSettings instance) =>
       'developer': instance.developer,
     };
 
-_DisplaySettings _$DisplaySettingsFromJson(Map<String, dynamic> json) =>
-    _DisplaySettings(
-      fontFamily:
-          $enumDecodeNullable(_$FontFamilyEnumMap, json['fontFamily']) ??
-          FontFamily.openSans,
-      fontSize: (json['fontSize'] as num?)?.toDouble() ?? 18.0,
-      fontWeight: json['fontWeight'] as String? ?? 'normal',
-      lineHeight: (json['lineHeight'] as num?)?.toDouble() ?? 1.5,
-      letterSpacing: (json['letterSpacing'] as num?)?.toDouble() ?? 0.2,
-      paragraphSpacing: (json['paragraphSpacing'] as num?)?.toDouble() ?? 1.2,
-      theme:
-          $enumDecodeNullable(_$ThemeOptionEnumMap, json['theme']) ??
-          ThemeOption.dark,
-      customTheme: json['customTheme'] == null
-          ? const CustomTheme()
-          : CustomTheme.fromJson(json['customTheme'] as Map<String, dynamic>),
-      orientation: json['orientation'] as String? ?? 'auto',
-      textAlign: json['textAlign'] as String? ?? 'justify',
-      pageTurnAnimation: json['pageTurnAnimation'] as String? ?? 'slide',
-      margins: json['margins'] == null
-          ? const Margins()
-          : Margins.fromJson(json['margins'] as Map<String, dynamic>),
-    );
+_DisplaySettings _$DisplaySettingsFromJson(
+  Map<String, dynamic> json,
+) => _DisplaySettings(
+  fontFamily:
+      $enumDecodeNullable(_$FontFamilyEnumMap, json['fontFamily']) ??
+      FontFamily.openSans,
+  fontSize: (json['fontSize'] as num?)?.toDouble() ?? 18.0,
+  fontWeight: json['fontWeight'] as String? ?? 'normal',
+  lineHeight: (json['lineHeight'] as num?)?.toDouble() ?? 1.5,
+  letterSpacing: (json['letterSpacing'] as num?)?.toDouble() ?? 0.2,
+  paragraphSpacing: (json['paragraphSpacing'] as num?)?.toDouble() ?? 1.2,
+  theme:
+      $enumDecodeNullable(_$ThemeOptionEnumMap, json['theme']) ??
+      ThemeOption.dark,
+  customTheme: json['customTheme'] == null
+      ? const CustomTheme()
+      : CustomTheme.fromJson(json['customTheme'] as Map<String, dynamic>),
+  orientation: json['orientation'] as String? ?? 'auto',
+  textAlign:
+      $enumDecodeNullable(_$TextAlignOptionEnumMap, json['textAlign']) ??
+      TextAlignOption.justify,
+  pageTurnAnimation: json['pageTurnAnimation'] as String? ?? 'slide',
+  margins: json['margins'] == null
+      ? const Margins()
+      : Margins.fromJson(json['margins'] as Map<String, dynamic>),
+  headerFontSizeMultiplier:
+      (json['headerFontSizeMultiplier'] as num?)?.toDouble() ?? 1.2,
+  headerMarginTop: (json['headerMarginTop'] as num?)?.toDouble() ?? 10.0,
+  headerMarginBottom: (json['headerMarginBottom'] as num?)?.toDouble() ?? 10.0,
+  footerMarginTop: (json['footerMarginTop'] as num?)?.toDouble() ?? 10.0,
+  footerMarginBottom: (json['footerMarginBottom'] as num?)?.toDouble() ?? 10.0,
+);
 
 Map<String, dynamic> _$DisplaySettingsToJson(_DisplaySettings instance) =>
     <String, dynamic>{
@@ -102,9 +111,14 @@ Map<String, dynamic> _$DisplaySettingsToJson(_DisplaySettings instance) =>
       'theme': _$ThemeOptionEnumMap[instance.theme]!,
       'customTheme': instance.customTheme,
       'orientation': instance.orientation,
-      'textAlign': instance.textAlign,
+      'textAlign': _$TextAlignOptionEnumMap[instance.textAlign]!,
       'pageTurnAnimation': instance.pageTurnAnimation,
       'margins': instance.margins,
+      'headerFontSizeMultiplier': instance.headerFontSizeMultiplier,
+      'headerMarginTop': instance.headerMarginTop,
+      'headerMarginBottom': instance.headerMarginBottom,
+      'footerMarginTop': instance.footerMarginTop,
+      'footerMarginBottom': instance.footerMarginBottom,
     };
 
 const _$FontFamilyEnumMap = {
@@ -120,6 +134,13 @@ const _$ThemeOptionEnumMap = {
   ThemeOption.dark: 'dark',
   ThemeOption.custom: 'custom',
   ThemeOption.device: 'device',
+};
+
+const _$TextAlignOptionEnumMap = {
+  TextAlignOption.left: 'left',
+  TextAlignOption.center: 'center',
+  TextAlignOption.right: 'right',
+  TextAlignOption.justify: 'justify',
 };
 
 _CustomTheme _$CustomThemeFromJson(Map<String, dynamic> json) => _CustomTheme(

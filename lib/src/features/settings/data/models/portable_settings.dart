@@ -46,9 +46,14 @@ abstract class DisplaySettings with _$DisplaySettings {
     @Default(ThemeOption.dark) ThemeOption theme,
     @Default(CustomTheme()) CustomTheme customTheme,
     @Default('auto') String orientation,
-    @Default('justify') String textAlign,
+    @Default(TextAlignOption.justify) TextAlignOption textAlign,
     @Default('slide') String pageTurnAnimation,
     @Default(Margins()) Margins margins,
+    @Default(1.2) double headerFontSizeMultiplier,
+    @Default(10.0) double headerMarginTop,
+    @Default(10.0) double headerMarginBottom,
+    @Default(10.0) double footerMarginTop,
+    @Default(10.0) double footerMarginBottom,
   }) = _DisplaySettings;
 
   factory DisplaySettings.fromJson(Map<String, dynamic> json) =>

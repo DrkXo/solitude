@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_html/flutter_html.dart' as html;
 import 'package:rxdart/rxdart.dart';
 
 import '../../../../core/localization/app_localizations.dart';
@@ -224,90 +224,206 @@ class _ReaderPageState extends State<ReaderPage> {
                                   horizontal: 24.0,
                                   vertical: 16.0,
                                 ),
-                                children: [
-                                  Html(
-                                    data: controller.getFullChapterContent(),
-                                    style: {
-                                      'body': Style(
-                                        fontFamily:
-                                            settingsState
-                                                .appSettings
-                                                .accessibility
-                                                .dyslexicFont
-                                            ? 'OpenDyslexic' // Assuming this font is available, or fallback to current
-                                            : settingsState
-                                                  .appSettings
-                                                  .display
-                                                  .fontFamily
-                                                  .displayName,
-                                        fontSize: FontSize(
-                                          settingsState
-                                              .appSettings
-                                              .display
-                                              .fontSize,
-                                        ),
-                                        fontWeight:
-                                            settingsState
-                                                    .appSettings
-                                                    .display
-                                                    .fontWeight ==
-                                                'bold'
-                                            ? FontWeight.bold
-                                            : FontWeight.normal,
-                                        lineHeight: LineHeight(
-                                          settingsState
-                                              .appSettings
-                                              .display
-                                              .lineHeight,
-                                        ),
-                                        letterSpacing: settingsState
-                                            .appSettings
-                                            .display
-                                            .letterSpacing,
-                                        textAlign:
-                                            settingsState
-                                                    .appSettings
-                                                    .display
-                                                    .textAlign ==
-                                                'left'
-                                            ? TextAlign.left
-                                            : settingsState
-                                                      .appSettings
-                                                      .display
-                                                      .textAlign ==
-                                                  'right'
-                                            ? TextAlign.right
-                                            : settingsState
-                                                      .appSettings
-                                                      .display
-                                                      .textAlign ==
-                                                  'center'
-                                            ? TextAlign.center
-                                            : TextAlign.justify,
-                                        color: _getTextColor(
-                                          settingsState
-                                              .appSettings
-                                              .display
-                                              .theme,
-                                          settingsState
-                                              .appSettings
-                                              .accessibility
-                                              .highContrast,
-                                        ),
-                                        backgroundColor: Colors.transparent,
-                                      ),
-                                      'p': Style(
-                                        margin: Margins.only(
-                                          bottom:
-                                              settingsState
-                                                  .appSettings
-                                                  .display
-                                                  .paragraphSpacing *
-                                              10,
-                                        ),
-                                      ),
-                                    },
-                                  ),
+                                 children: [
+                                   html.Html(
+                                     data: controller.getFullChapterContent(),
+                                     style: {
+                                       'body': html.Style(
+                                         fontFamily:
+                                             settingsState
+                                                 .appSettings
+                                                 .accessibility
+                                                 .dyslexicFont
+                                             ? 'OpenDyslexic' // Assuming this font is available, or fallback to current
+                                             : settingsState
+                                                   .appSettings
+                                                   .display
+                                                   .fontFamily
+                                                   .displayName,
+                                         fontSize: html.FontSize(
+                                           settingsState
+                                               .appSettings
+                                               .display
+                                               .fontSize,
+                                         ),
+                                         fontWeight:
+                                             settingsState
+                                                     .appSettings
+                                                     .display
+                                                     .fontWeight ==
+                                                 'bold'
+                                             ? FontWeight.bold
+                                             : FontWeight.normal,
+                                         lineHeight: html.LineHeight(
+                                           settingsState
+                                               .appSettings
+                                               .display
+                                               .lineHeight,
+                                         ),
+                                         letterSpacing: settingsState
+                                             .appSettings
+                                             .display
+                                             .letterSpacing,
+                                         textAlign: switch (settingsState.appSettings.display.textAlign) {
+                                           TextAlignOption.left => TextAlign.left,
+                                           TextAlignOption.right => TextAlign.right,
+                                           TextAlignOption.center => TextAlign.center,
+                                           TextAlignOption.justify => TextAlign.justify,
+                                         },
+                                         color: _getTextColor(
+                                           settingsState
+                                               .appSettings
+                                               .display
+                                               .theme,
+                                           settingsState
+                                               .appSettings
+                                               .accessibility
+                                               .highContrast,
+                                         ),
+                                         backgroundColor: Colors.transparent,
+                                       ),
+                                       'p': html.Style(
+                                         margin: html.Margins.only(
+                                           bottom:
+                                               settingsState
+                                                   .appSettings
+                                                   .display
+                                                   .paragraphSpacing *
+                                               10,
+                                         ),
+                                       ),
+                                       'h1': html.Style(
+                                         fontSize: html.FontSize(
+                                           settingsState
+                                               .appSettings
+                                               .display
+                                               .fontSize *
+                                           settingsState
+                                               .appSettings
+                                               .display
+                                               .headerFontSizeMultiplier,
+                                         ),
+                                         fontWeight: FontWeight.bold,
+                                         margin: html.Margins.only(
+                                           top: settingsState
+                                               .appSettings
+                                               .display
+                                               .headerMarginTop,
+                                           bottom: settingsState
+                                               .appSettings
+                                               .display
+                                               .headerMarginBottom,
+                                         ),
+                                         color: _getTextColor(
+                                           settingsState
+                                               .appSettings
+                                               .display
+                                               .theme,
+                                           settingsState
+                                               .appSettings
+                                               .accessibility
+                                               .highContrast,
+                                         ),
+                                       ),
+                                       'h2': html.Style(
+                                         fontSize: html.FontSize(
+                                           settingsState
+                                               .appSettings
+                                               .display
+                                               .fontSize *
+                                           (settingsState
+                                               .appSettings
+                                               .display
+                                               .headerFontSizeMultiplier -
+                                               0.1),
+                                         ),
+                                         fontWeight: FontWeight.bold,
+                                         margin: html.Margins.only(
+                                           top: settingsState
+                                               .appSettings
+                                               .display
+                                               .headerMarginTop,
+                                           bottom: settingsState
+                                               .appSettings
+                                               .display
+                                               .headerMarginBottom,
+                                         ),
+                                         color: _getTextColor(
+                                           settingsState
+                                               .appSettings
+                                               .display
+                                               .theme,
+                                           settingsState
+                                               .appSettings
+                                               .accessibility
+                                               .highContrast,
+                                         ),
+                                       ),
+                                       'h3': html.Style(
+                                         fontSize: html.FontSize(
+                                           settingsState
+                                               .appSettings
+                                               .display
+                                               .fontSize *
+                                           (settingsState
+                                               .appSettings
+                                               .display
+                                               .headerFontSizeMultiplier -
+                                               0.2),
+                                         ),
+                                         fontWeight: FontWeight.bold,
+                                         margin: html.Margins.only(
+                                           top: settingsState
+                                               .appSettings
+                                               .display
+                                               .headerMarginTop,
+                                           bottom: settingsState
+                                               .appSettings
+                                               .display
+                                               .headerMarginBottom,
+                                         ),
+                                         color: _getTextColor(
+                                           settingsState
+                                               .appSettings
+                                               .display
+                                               .theme,
+                                           settingsState
+                                               .appSettings
+                                               .accessibility
+                                               .highContrast,
+                                         ),
+                                       ),
+                                       'footer': html.Style(
+                                         margin: html.Margins.only(
+                                           top: settingsState
+                                               .appSettings
+                                               .display
+                                               .footerMarginTop,
+                                           bottom: settingsState
+                                               .appSettings
+                                               .display
+                                               .footerMarginBottom,
+                                         ),
+                                         fontSize: html.FontSize(
+                                           settingsState
+                                               .appSettings
+                                               .display
+                                               .fontSize *
+                                           0.9,
+                                         ),
+                                         color: _getTextColor(
+                                           settingsState
+                                               .appSettings
+                                               .display
+                                               .theme,
+                                           settingsState
+                                               .appSettings
+                                               .accessibility
+                                               .highContrast,
+                                         ).withValues(alpha: 0.7),
+                                       ),
+                                     },
+                                   ),
                                 ],
                              ),
                         ),

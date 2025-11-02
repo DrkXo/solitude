@@ -145,6 +145,92 @@ class SettingsPage extends StatelessWidget {
           ),
         ),
         ListTile(
+          title: const Text('Font Weight'),
+          trailing: DropdownButton<String>(
+            value: state.appSettings.display.fontWeight,
+            items: ['normal', 'bold']
+                .map((weight) => DropdownMenuItem(value: weight, child: Text(weight)))
+                .toList(),
+            onChanged: (value) {
+              if (value != null) {
+                context.read<SettingsBloc>().add(
+                  SettingsEvent.fontWeightChanged(value),
+                );
+              }
+            },
+          ),
+        ),
+        ListTile(
+          title: const Text('Line Height'),
+          trailing: SizedBox(
+            width: 120,
+            child: Slider(
+              value: state.appSettings.display.lineHeight,
+              min: 1.0,
+              max: 3.0,
+              divisions: 20,
+              label: state.appSettings.display.lineHeight.toStringAsFixed(1),
+              onChanged: (value) {
+                context.read<SettingsBloc>().add(
+                  SettingsEvent.lineHeightChanged(value),
+                );
+              },
+            ),
+          ),
+        ),
+        ListTile(
+          title: const Text('Letter Spacing'),
+          trailing: SizedBox(
+            width: 120,
+            child: Slider(
+              value: state.appSettings.display.letterSpacing,
+              min: -0.5,
+              max: 1.0,
+              divisions: 15,
+              label: state.appSettings.display.letterSpacing.toStringAsFixed(1),
+              onChanged: (value) {
+                context.read<SettingsBloc>().add(
+                  SettingsEvent.letterSpacingChanged(value),
+                );
+              },
+            ),
+          ),
+        ),
+        ListTile(
+          title: const Text('Paragraph Spacing'),
+          trailing: SizedBox(
+            width: 120,
+            child: Slider(
+              value: state.appSettings.display.paragraphSpacing,
+              min: 0.5,
+              max: 3.0,
+              divisions: 25,
+              label: state.appSettings.display.paragraphSpacing.toStringAsFixed(1),
+              onChanged: (value) {
+                context.read<SettingsBloc>().add(
+                  SettingsEvent.paragraphSpacingChanged(value),
+                );
+              },
+            ),
+          ),
+        ),
+        ListTile(
+          title: const Text('Text Alignment'),
+          trailing: DropdownButton<TextAlignOption>(
+            value: state.appSettings.display.textAlign,
+            items: TextAlignOption.values
+                .map((align) => DropdownMenuItem(value: align, child: Text(align.displayName)))
+                .toList(),
+            onChanged: (value) {
+              if (value != null) {
+                context.read<SettingsBloc>().add(
+                  SettingsEvent.textAlignChanged(value),
+                );
+              }
+            },
+          ),
+        ),
+        ListTile(
           title: const Text('Theme'),
           trailing: DropdownButton<ThemeOption>(
             value: state.appSettings.display.theme,
@@ -158,6 +244,96 @@ class SettingsPage extends StatelessWidget {
                 );
               }
             },
+          ),
+        ),
+        ListTile(
+          title: const Text('Header Font Size Multiplier'),
+          trailing: SizedBox(
+            width: 120,
+            child: Slider(
+              value: state.appSettings.display.headerFontSizeMultiplier,
+              min: 0.8,
+              max: 2.0,
+              divisions: 12,
+              label: state.appSettings.display.headerFontSizeMultiplier.toStringAsFixed(1),
+              onChanged: (value) {
+                context.read<SettingsBloc>().add(
+                  SettingsEvent.headerFontSizeMultiplierChanged(value),
+                );
+              },
+            ),
+          ),
+        ),
+        ListTile(
+          title: const Text('Header Top Margin'),
+          trailing: SizedBox(
+            width: 120,
+            child: Slider(
+              value: state.appSettings.display.headerMarginTop,
+              min: 0.0,
+              max: 50.0,
+              divisions: 50,
+              label: state.appSettings.display.headerMarginTop.round().toString(),
+              onChanged: (value) {
+                context.read<SettingsBloc>().add(
+                  SettingsEvent.headerMarginTopChanged(value),
+                );
+              },
+            ),
+          ),
+        ),
+        ListTile(
+          title: const Text('Header Bottom Margin'),
+          trailing: SizedBox(
+            width: 120,
+            child: Slider(
+              value: state.appSettings.display.headerMarginBottom,
+              min: 0.0,
+              max: 50.0,
+              divisions: 50,
+              label: state.appSettings.display.headerMarginBottom.round().toString(),
+              onChanged: (value) {
+                context.read<SettingsBloc>().add(
+                  SettingsEvent.headerMarginBottomChanged(value),
+                );
+              },
+            ),
+          ),
+        ),
+        ListTile(
+          title: const Text('Footer Top Margin'),
+          trailing: SizedBox(
+            width: 120,
+            child: Slider(
+              value: state.appSettings.display.footerMarginTop,
+              min: 0.0,
+              max: 50.0,
+              divisions: 50,
+              label: state.appSettings.display.footerMarginTop.round().toString(),
+              onChanged: (value) {
+                context.read<SettingsBloc>().add(
+                  SettingsEvent.footerMarginTopChanged(value),
+                );
+              },
+            ),
+          ),
+        ),
+        ListTile(
+          title: const Text('Footer Bottom Margin'),
+          trailing: SizedBox(
+            width: 120,
+            child: Slider(
+              value: state.appSettings.display.footerMarginBottom,
+              min: 0.0,
+              max: 50.0,
+              divisions: 50,
+              label: state.appSettings.display.footerMarginBottom.round().toString(),
+              onChanged: (value) {
+                context.read<SettingsBloc>().add(
+                  SettingsEvent.footerMarginBottomChanged(value),
+                );
+              },
+            ),
           ),
         ),
       ],

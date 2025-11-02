@@ -4,7 +4,17 @@ abstract class SettingsEvent with _$SettingsEvent {
   // Display settings
   const factory SettingsEvent.fontSizeChanged(double fontSize) = _FontSizeChanged;
   const factory SettingsEvent.fontFamilyChanged(FontFamily fontFamily) = _FontFamilyChanged;
+  const factory SettingsEvent.fontWeightChanged(String fontWeight) = _FontWeightChanged;
+  const factory SettingsEvent.lineHeightChanged(double lineHeight) = _LineHeightChanged;
+  const factory SettingsEvent.letterSpacingChanged(double letterSpacing) = _LetterSpacingChanged;
+  const factory SettingsEvent.paragraphSpacingChanged(double paragraphSpacing) = _ParagraphSpacingChanged;
+  const factory SettingsEvent.textAlignChanged(TextAlignOption textAlign) = _TextAlignChanged;
   const factory SettingsEvent.themeChanged(ThemeOption theme) = _ThemeChanged;
+  const factory SettingsEvent.headerFontSizeMultiplierChanged(double multiplier) = _HeaderFontSizeMultiplierChanged;
+  const factory SettingsEvent.headerMarginTopChanged(double margin) = _HeaderMarginTopChanged;
+  const factory SettingsEvent.headerMarginBottomChanged(double margin) = _HeaderMarginBottomChanged;
+  const factory SettingsEvent.footerMarginTopChanged(double margin) = _FooterMarginTopChanged;
+  const factory SettingsEvent.footerMarginBottomChanged(double margin) = _FooterMarginBottomChanged;
 
   // Behavior settings
   const factory SettingsEvent.readingDirectionChanged(ReadingDirection readingDirection) = _ReadingDirectionChanged;

@@ -20,7 +20,12 @@
             "bottom": 20,
             "left": 15,
             "right": 15
-        }
+        },
+        "headerFontSizeMultiplier": 1.2,
+        "headerMarginTop": 10.0,
+        "headerMarginBottom": 10.0,
+        "footerMarginTop": 10.0,
+        "footerMarginBottom": 10.0
     },
     "behavior": {
         "tapZones": {

@@ -103,8 +103,58 @@ class AppSettingsService extends BaseService {
     await updateDisplaySettings(displaySettings);
   }
 
+  Future<void> setFontWeight(String fontWeight) async {
+    final displaySettings = _appSettings.display.copyWith(fontWeight: fontWeight);
+    await updateDisplaySettings(displaySettings);
+  }
+
+  Future<void> setLineHeight(double lineHeight) async {
+    final displaySettings = _appSettings.display.copyWith(lineHeight: lineHeight);
+    await updateDisplaySettings(displaySettings);
+  }
+
+  Future<void> setLetterSpacing(double letterSpacing) async {
+    final displaySettings = _appSettings.display.copyWith(letterSpacing: letterSpacing);
+    await updateDisplaySettings(displaySettings);
+  }
+
+  Future<void> setParagraphSpacing(double paragraphSpacing) async {
+    final displaySettings = _appSettings.display.copyWith(paragraphSpacing: paragraphSpacing);
+    await updateDisplaySettings(displaySettings);
+  }
+
+  Future<void> setTextAlign(TextAlignOption textAlign) async {
+    final displaySettings = _appSettings.display.copyWith(textAlign: textAlign);
+    await updateDisplaySettings(displaySettings);
+  }
+
   Future<void> setTheme(ThemeOption theme) async {
     final displaySettings = _appSettings.display.copyWith(theme: theme);
+    await updateDisplaySettings(displaySettings);
+  }
+
+  Future<void> setHeaderFontSizeMultiplier(double multiplier) async {
+    final displaySettings = _appSettings.display.copyWith(headerFontSizeMultiplier: multiplier);
+    await updateDisplaySettings(displaySettings);
+  }
+
+  Future<void> setHeaderMarginTop(double margin) async {
+    final displaySettings = _appSettings.display.copyWith(headerMarginTop: margin);
+    await updateDisplaySettings(displaySettings);
+  }
+
+  Future<void> setHeaderMarginBottom(double margin) async {
+    final displaySettings = _appSettings.display.copyWith(headerMarginBottom: margin);
+    await updateDisplaySettings(displaySettings);
+  }
+
+  Future<void> setFooterMarginTop(double margin) async {
+    final displaySettings = _appSettings.display.copyWith(footerMarginTop: margin);
+    await updateDisplaySettings(displaySettings);
+  }
+
+  Future<void> setFooterMarginBottom(double margin) async {
+    final displaySettings = _appSettings.display.copyWith(footerMarginBottom: margin);
     await updateDisplaySettings(displaySettings);
   }
 
