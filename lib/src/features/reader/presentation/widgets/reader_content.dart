@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart' as html;
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 
 import '../../../settings/data/models/settings_constants.dart';
 import '../../../settings/presentation/bloc/settings_bloc.dart';
@@ -46,6 +46,98 @@ class ReaderContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Color textColor = _getTextColor(
+      settingsState.appSettings.display.theme,
+      settingsState.appSettings.accessibility.highContrast,
+    );
+    final int r = (textColor.r * 255).round();
+    final int g = (textColor.g * 255).round();
+    final int b = (textColor.b * 255).round();
+    final double a = textColor.a;
+    final Color footerColor = textColor.withValues(alpha: 0.7);
+    final int fr = (footerColor.r * 255).round();
+    final int fg = (footerColor.g * 255).round();
+    final int fb = (footerColor.b * 255).round();
+    final double fa = footerColor.a;
+    final textAlign = switch (settingsState.appSettings.display.textAlign) {
+      TextAlignOption.left => 'left',
+      TextAlignOption.right => 'right',
+      TextAlignOption.center => 'center',
+      TextAlignOption.justify => 'justify',
+    };
+    Map<String, String>? customStylesBuilder(dynamic element) {
+      final localName = element.localName as String?;
+      switch (localName) {
+        case 'body':
+          return {
+            'font-family': settingsState.appSettings.accessibility.dyslexicFont
+                ? 'OpenDyslexic'
+                : settingsState.appSettings.display.fontFamily.displayName,
+            'font-size': '${settingsState.appSettings.display.fontSize}px',
+            'font-weight':
+                settingsState.appSettings.display.fontWeight == 'bold'
+                ? 'bold'
+                : 'normal',
+            'line-height': '${settingsState.appSettings.display.lineHeight}',
+            'letter-spacing':
+                '${settingsState.appSettings.display.letterSpacing}px',
+            'text-align': textAlign,
+            'color': 'rgba($r, $g, $b, $a)',
+            'background-color': 'transparent',
+          };
+        case 'p':
+          return {
+            'margin-bottom':
+                '${settingsState.appSettings.display.paragraphSpacing * 10}px',
+          };
+        case 'h1':
+          return {
+            'font-size':
+                '${settingsState.appSettings.display.fontSize * settingsState.appSettings.display.headerFontSizeMultiplier}px',
+            'font-weight': 'bold',
+            'margin-top':
+                '${settingsState.appSettings.display.headerMarginTop}px',
+            'margin-bottom':
+                '${settingsState.appSettings.display.headerMarginBottom}px',
+            'color': 'rgba($r, $g, $b, $a)',
+          };
+        case 'h2':
+          return {
+            'font-size':
+                '${settingsState.appSettings.display.fontSize * (settingsState.appSettings.display.headerFontSizeMultiplier - 0.1)}px',
+            'font-weight': 'bold',
+            'margin-top':
+                '${settingsState.appSettings.display.headerMarginTop}px',
+            'margin-bottom':
+                '${settingsState.appSettings.display.headerMarginBottom}px',
+            'color': 'rgba($r, $g, $b, $a)',
+          };
+        case 'h3':
+          return {
+            'font-size':
+                '${settingsState.appSettings.display.fontSize * (settingsState.appSettings.display.headerFontSizeMultiplier - 0.2)}px',
+            'font-weight': 'bold',
+            'margin-top':
+                '${settingsState.appSettings.display.headerMarginTop}px',
+            'margin-bottom':
+                '${settingsState.appSettings.display.headerMarginBottom}px',
+            'color': 'rgba($r, $g, $b, $a)',
+          };
+        case 'footer':
+          return {
+            'margin-top':
+                '${settingsState.appSettings.display.footerMarginTop}px',
+            'margin-bottom':
+                '${settingsState.appSettings.display.footerMarginBottom}px',
+            'font-size':
+                '${settingsState.appSettings.display.fontSize * 0.9}px',
+            'color': 'rgba($fr, $fg, $fb, $fa)',
+          };
+        default:
+          return null;
+      }
+    }
+
     return SizedBox.expand(
       child: GestureDetector(
         behavior: HitTestBehavior.translucent,
@@ -76,132 +168,14 @@ class ReaderContent extends StatelessWidget {
                 vertical: 16.0,
               ),
               children: [
-                html.Html(
-                  data: controller.getFullChapterContent(),
-                  style: {
-                    'body': html.Style(
-                      fontFamily:
-                          settingsState.appSettings.accessibility.dyslexicFont
-                          ? 'OpenDyslexic'
-                          : settingsState
-                                .appSettings
-                                .display
-                                .fontFamily
-                                .displayName,
-                      fontSize: html.FontSize(
-                        settingsState.appSettings.display.fontSize,
-                      ),
-                      fontWeight:
-                          settingsState.appSettings.display.fontWeight == 'bold'
-                          ? FontWeight.bold
-                          : FontWeight.normal,
-                      lineHeight: html.LineHeight(
-                        settingsState.appSettings.display.lineHeight,
-                      ),
-                      letterSpacing:
-                          settingsState.appSettings.display.letterSpacing,
-                      textAlign:
-                          switch (settingsState.appSettings.display.textAlign) {
-                            TextAlignOption.left => TextAlign.left,
-                            TextAlignOption.right => TextAlign.right,
-                            TextAlignOption.center => TextAlign.center,
-                            TextAlignOption.justify => TextAlign.justify,
-                          },
-                      color: _getTextColor(
-                        settingsState.appSettings.display.theme,
-                        settingsState.appSettings.accessibility.highContrast,
-                      ),
-                      backgroundColor: Colors.transparent,
-                    ),
-                    'p': html.Style(
-                      margin: html.Margins.only(
-                        bottom:
-                            settingsState.appSettings.display.paragraphSpacing *
-                            10,
-                      ),
-                    ),
-                    'h1': html.Style(
-                      fontSize: html.FontSize(
-                        settingsState.appSettings.display.fontSize *
-                            settingsState
-                                .appSettings
-                                .display
-                                .headerFontSizeMultiplier,
-                      ),
-                      fontWeight: FontWeight.bold,
-                      margin: html.Margins.only(
-                        top: settingsState.appSettings.display.headerMarginTop,
-                        bottom: settingsState
-                            .appSettings
-                            .display
-                            .headerMarginBottom,
-                      ),
-                      color: _getTextColor(
-                        settingsState.appSettings.display.theme,
-                        settingsState.appSettings.accessibility.highContrast,
-                      ),
-                    ),
-                    'h2': html.Style(
-                      fontSize: html.FontSize(
-                        settingsState.appSettings.display.fontSize *
-                            (settingsState
-                                    .appSettings
-                                    .display
-                                    .headerFontSizeMultiplier -
-                                0.1),
-                      ),
-                      fontWeight: FontWeight.bold,
-                      margin: html.Margins.only(
-                        top: settingsState.appSettings.display.headerMarginTop,
-                        bottom: settingsState
-                            .appSettings
-                            .display
-                            .headerMarginBottom,
-                      ),
-                      color: _getTextColor(
-                        settingsState.appSettings.display.theme,
-                        settingsState.appSettings.accessibility.highContrast,
-                      ),
-                    ),
-                    'h3': html.Style(
-                      fontSize: html.FontSize(
-                        settingsState.appSettings.display.fontSize *
-                            (settingsState
-                                    .appSettings
-                                    .display
-                                    .headerFontSizeMultiplier -
-                                0.2),
-                      ),
-                      fontWeight: FontWeight.bold,
-                      margin: html.Margins.only(
-                        top: settingsState.appSettings.display.headerMarginTop,
-                        bottom: settingsState
-                            .appSettings
-                            .display
-                            .headerMarginBottom,
-                      ),
-                      color: _getTextColor(
-                        settingsState.appSettings.display.theme,
-                        settingsState.appSettings.accessibility.highContrast,
-                      ),
-                    ),
-                    'footer': html.Style(
-                      margin: html.Margins.only(
-                        top: settingsState.appSettings.display.footerMarginTop,
-                        bottom: settingsState
-                            .appSettings
-                            .display
-                            .footerMarginBottom,
-                      ),
-                      fontSize: html.FontSize(
-                        settingsState.appSettings.display.fontSize * 0.9,
-                      ),
-                      color: _getTextColor(
-                        settingsState.appSettings.display.theme,
-                        settingsState.appSettings.accessibility.highContrast,
-                      ).withValues(alpha: 0.7),
-                    ),
-                  },
+                HtmlWidget(
+                  buildAsync: true,
+                  rebuildTriggers: [
+                    settingsState.appSettings,
+                  ],
+                  enableCaching: false,
+                  controller.getFullChapterContent(),
+                  customStylesBuilder: customStylesBuilder,
                 ),
               ],
             ),
