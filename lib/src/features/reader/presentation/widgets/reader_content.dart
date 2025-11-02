@@ -183,22 +183,21 @@ class ReaderContent extends StatelessWidget {
                     ReadingDirection.rtl
                 ? TextDirection.rtl
                 : TextDirection.ltr,
-            child: ListView(
+            child: CustomScrollView(
               controller: scrollController,
-              physics: const AlwaysScrollableScrollPhysics(),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24.0,
-                vertical: 16.0,
-              ),
-              children: [
-                HtmlWidget(
-                  enableCaching: true,
-                  buildAsync: false,
-                  rebuildTriggers: [
-                    settingsState.appSettings,
-                  ],
-                  _stripStyles(controller.getFullChapterContent()),
-                  customWidgetBuilder: customWidgetBuilder,
+              slivers: [
+                SliverPadding(
+                  padding: EdgeInsets.all(16.0),
+                  sliver: HtmlWidget(
+                    enableCaching: true,
+                    buildAsync: false,
+                    renderMode: RenderMode.sliverList,
+                    rebuildTriggers: [
+                      settingsState.appSettings,
+                    ],
+                    _stripStyles(controller.getFullChapterContent()),
+                    customWidgetBuilder: customWidgetBuilder,
+                  ),
                 ),
               ],
             ),
