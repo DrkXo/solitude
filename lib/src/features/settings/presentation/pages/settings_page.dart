@@ -385,15 +385,6 @@ class SettingsPage extends StatelessWidget {
             );
           },
         ),
-        SwitchListTile(
-          title: const Text('Sync Progress'),
-          value: state.appSettings.behavior.syncProgress,
-          onChanged: (value) {
-            context.read<SettingsBloc>().add(
-              SettingsEvent.syncProgressChanged(value),
-            );
-          },
-        ),
       ],
     );
   }

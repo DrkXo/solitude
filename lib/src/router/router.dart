@@ -5,8 +5,9 @@ class AppRouter {
   late final GoRouter router;
 
   final EbookLibraryService _ebookLibraryService;
+  final AppSettingsService _appSettingsService;
 
-  AppRouter(this._ebookLibraryService) {
+  AppRouter(this._ebookLibraryService, this._appSettingsService) {
     router = GoRouter(
       initialLocation: AppRoutes.library.path,
       debugLogDiagnostics: true,
@@ -23,11 +24,12 @@ class AppRouter {
               builder: (context, state) {
                 final ebookId = state.pathParameters['ebookId']!;
                 return BlocProvider<ReaderBloc>(
-                  create: (context) {
-                    final bloc = ReaderBloc(
-                      readerService: GetIt.I<ReaderService>(),
-                      libraryService: _ebookLibraryService,
-                    );
+                   create: (context) {
+                     final bloc = ReaderBloc(
+                       readerService: GetIt.I<ReaderService>(),
+                       libraryService: _ebookLibraryService,
+                       appSettingsService: _appSettingsService,
+                     );
                     bloc.add(ReaderEvent.loadEbook(ebookId));
                     return bloc;
                   },

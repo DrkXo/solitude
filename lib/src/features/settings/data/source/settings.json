@@ -35,7 +35,6 @@
         },
         "scrollMode": "paged",
         "rememberLastPosition": true,
-        "syncProgress": true,
         "autoScroll": {
             "enabled": false,
             "speed": 1.0

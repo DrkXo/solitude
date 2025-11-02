@@ -89,7 +89,6 @@ abstract class BehaviorSettings with _$BehaviorSettings {
   const factory BehaviorSettings({
     @Default(TapZones()) TapZones tapZones,
     @Default(true) bool rememberLastPosition,
-    @Default(true) bool syncProgress,
     @Default(AutoScroll()) AutoScroll autoScroll,
     @Default(ReadingDirection.ltr) ReadingDirection readingDirection,
     @Default(NavigationMethod.swipeHorizontal) NavigationMethod navigationMethod,

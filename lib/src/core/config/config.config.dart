@@ -44,26 +44,22 @@ extension GetItInjectableX on _i174.GetIt {
       );
       return i.init().then((_) => i);
     }, preResolve: true);
-
     await gh.factoryAsync<_i327.AppSettingsService>(() {
       final i = _i327.AppSettingsService(
         localDbService: gh<_i1058.LocalDbService>(),
       );
       return i.init().then((_) => i);
     }, preResolve: true);
+    gh.singleton<_i630.AppRouter>(
+      () => _i630.AppRouter(
+        gh<_i222.EbookLibraryService>(),
+        gh<_i327.AppSettingsService>(),
+      ),
+    );
     gh.factory<_i534.ReaderService>(
       () => _i534.ReaderService(
         ebookLibraryService: gh<_i222.EbookLibraryService>(),
       ),
-    );
-    gh.factory<_i523.ReaderBloc>(
-      () => _i523.ReaderBloc(
-        readerService: gh<_i534.ReaderService>(),
-        libraryService: gh<_i222.EbookLibraryService>(),
-      ),
-    );
-    gh.factory<_i395.LibraryBloc>(
-      () => _i395.LibraryBloc(gh<_i222.EbookLibraryService>()),
     );
     gh.factory<_i832.BackupService>(
       () => _i832.BackupService(
@@ -71,14 +67,21 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i222.EbookLibraryService>(),
       ),
     );
-    gh.singleton<_i630.AppRouter>(
-      () => _i630.AppRouter(gh<_i222.EbookLibraryService>()),
-    );
     gh.lazySingleton<_i585.SettingsBloc>(
       () => _i585.SettingsBloc(
         gh<_i327.AppSettingsService>(),
         gh<_i832.BackupService>(),
       ),
+    );
+    gh.factory<_i523.ReaderBloc>(
+      () => _i523.ReaderBloc(
+        readerService: gh<_i534.ReaderService>(),
+        libraryService: gh<_i222.EbookLibraryService>(),
+        appSettingsService: gh<_i327.AppSettingsService>(),
+      ),
+    );
+    gh.factory<_i395.LibraryBloc>(
+      () => _i395.LibraryBloc(gh<_i222.EbookLibraryService>()),
     );
     return this;
   }

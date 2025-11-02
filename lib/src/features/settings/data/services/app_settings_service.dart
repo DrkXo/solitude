@@ -168,11 +168,6 @@ class AppSettingsService extends BaseService {
     await updateBehaviorSettings(behaviorSettings);
   }
 
-  Future<void> setSyncProgress(bool sync) async {
-    final behaviorSettings = _appSettings.behavior.copyWith(syncProgress: sync);
-    await updateBehaviorSettings(behaviorSettings);
-  }
-
   Future<void> setNavigationMethod(NavigationMethod method) async {
     final behaviorSettings = _appSettings.behavior.copyWith(navigationMethod: method);
     await updateBehaviorSettings(behaviorSettings);

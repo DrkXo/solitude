@@ -19,7 +19,6 @@ abstract class SettingsEvent with _$SettingsEvent {
   // Behavior settings
   const factory SettingsEvent.readingDirectionChanged(ReadingDirection readingDirection) = _ReadingDirectionChanged;
   const factory SettingsEvent.rememberLastPositionChanged(bool remember) = _RememberLastPositionChanged;
-  const factory SettingsEvent.syncProgressChanged(bool sync) = _SyncProgressChanged;
   const factory SettingsEvent.navigationMethodChanged(NavigationMethod method) = _NavigationMethodChanged;
 
   // Accessibility settings

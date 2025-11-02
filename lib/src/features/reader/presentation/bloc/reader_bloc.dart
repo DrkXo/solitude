@@ -8,6 +8,7 @@ import 'package:ebook_x/models/bookmark.dart';
 
 import '../../../../core/services/ebook_library_service.dart';
 import '../../../../core/services/reader_service.dart';
+import '../../../settings/data/services/app_settings_service.dart';
 
 part 'reader_bloc.freezed.dart';
 
@@ -45,8 +46,10 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
   ReaderBloc({
     required ReaderService readerService,
     required EbookLibraryService libraryService,
+    required AppSettingsService appSettingsService,
   }) : _readerService = readerService,
         _libraryService = libraryService,
+        _appSettingsService = appSettingsService,
         super(_Initial()) {
     on<_Started>(_onStarted);
     on<_LoadEbook>(_onLoadEbook);
@@ -65,6 +68,7 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
 
   final ReaderService _readerService;
   final EbookLibraryService _libraryService;
+  final AppSettingsService _appSettingsService;
 
   EbookXController? _controller;
   String? _currentEbookId;
@@ -88,8 +92,10 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
         ebook,
       );
 
-      // Load saved reading progress
-      final progress = _readerService.getReadingProgress(event.ebookId);
+      // Load saved reading progress if rememberLastPosition is enabled
+      final progress = _appSettingsService.appSettings.behavior.rememberLastPosition
+          ? _readerService.getReadingProgress(event.ebookId)
+          : null;
       if (progress != null) {
         if (progress.currentChapter > 0) {
           _controller!.goToChapter(progress.currentChapter);

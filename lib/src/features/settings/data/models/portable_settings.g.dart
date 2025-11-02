@@ -174,7 +174,6 @@ _BehaviorSettings _$BehaviorSettingsFromJson(Map<String, dynamic> json) =>
           ? const TapZones()
           : TapZones.fromJson(json['tapZones'] as Map<String, dynamic>),
       rememberLastPosition: json['rememberLastPosition'] as bool? ?? true,
-      syncProgress: json['syncProgress'] as bool? ?? true,
       autoScroll: json['autoScroll'] == null
           ? const AutoScroll()
           : AutoScroll.fromJson(json['autoScroll'] as Map<String, dynamic>),
@@ -196,7 +195,6 @@ Map<String, dynamic> _$BehaviorSettingsToJson(_BehaviorSettings instance) =>
     <String, dynamic>{
       'tapZones': instance.tapZones,
       'rememberLastPosition': instance.rememberLastPosition,
-      'syncProgress': instance.syncProgress,
       'autoScroll': instance.autoScroll,
       'readingDirection': _$ReadingDirectionEnumMap[instance.readingDirection]!,
       'navigationMethod': _$NavigationMethodEnumMap[instance.navigationMethod]!,
