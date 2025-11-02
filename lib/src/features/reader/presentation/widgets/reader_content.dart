@@ -26,7 +26,10 @@ class ReaderContent extends StatelessWidget {
 
   String _stripStyles(String html) {
     // Remove <style> tags and their content
-    final styleRegex = RegExp(r'<style[^>]*>[\s\S]*?</style>', caseSensitive: false);
+    final styleRegex = RegExp(
+      r'<style[^>]*>[\s\S]*?</style>',
+      caseSensitive: false,
+    );
     return html.replaceAll(styleRegex, '');
   }
 
@@ -188,17 +191,15 @@ class ReaderContent extends StatelessWidget {
                 vertical: 16.0,
               ),
               children: [
-                 SelectionArea(
-                   child: HtmlWidget(
-                     enableCaching: true,
-                     buildAsync: true,
-                     rebuildTriggers: [
-                       settingsState.appSettings,
-                     ],
-                     _stripStyles(controller.getFullChapterContent()),
-                     customWidgetBuilder: customWidgetBuilder,
-                   ),
-                 ),
+                HtmlWidget(
+                  enableCaching: true,
+                  buildAsync: true,
+                  rebuildTriggers: [
+                    settingsState.appSettings,
+                  ],
+                  _stripStyles(controller.getFullChapterContent()),
+                  customWidgetBuilder: customWidgetBuilder,
+                ),
               ],
             ),
           ),
