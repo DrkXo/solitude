@@ -24,6 +24,12 @@ class ReaderContent extends StatelessWidget {
     required this.onVerticalDragEnd,
   });
 
+  String _stripStyles(String html) {
+    // Remove <style> tags and their content
+    final styleRegex = RegExp(r'<style[^>]*>[\s\S]*?</style>', caseSensitive: false);
+    return html.replaceAll(styleRegex, '');
+  }
+
   Color _getTextColor(ThemeOption theme, bool highContrast) {
     Color baseColor;
     switch (theme) {
@@ -182,15 +188,17 @@ class ReaderContent extends StatelessWidget {
                 vertical: 16.0,
               ),
               children: [
-                HtmlWidget(
-                  enableCaching: false,
-                  buildAsync: true,
-                  rebuildTriggers: [
-                    settingsState.appSettings,
-                  ],
-                  controller.getFullChapterContent(),
-                  customWidgetBuilder: customWidgetBuilder,
-                ),
+                 SelectionArea(
+                   child: HtmlWidget(
+                     enableCaching: true,
+                     buildAsync: true,
+                     rebuildTriggers: [
+                       settingsState.appSettings,
+                     ],
+                     _stripStyles(controller.getFullChapterContent()),
+                     customWidgetBuilder: customWidgetBuilder,
+                   ),
+                 ),
               ],
             ),
           ),
