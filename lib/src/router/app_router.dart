@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 
 import '../core/services/ebook_library_service.dart';
 import '../core/services/reader_service.dart';
-import '../features/settings/data/services/app_settings_service.dart';
+import '../core/services/app_settings_service.dart';
 import '../features/library/presentation/pages/library_page.dart';
 import '../features/reader/presentation/bloc/reader_bloc.dart';
 import '../features/reader/presentation/pages/reader_page.dart';

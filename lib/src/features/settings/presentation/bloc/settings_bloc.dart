@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:solitude/src/features/settings/data/services/app_settings_service.dart';
+import 'package:solitude/src/core/services/app_settings_service.dart';
 import 'package:solitude/src/features/settings/data/models/portable_settings.dart';
 import 'package:solitude/src/features/settings/data/models/settings_constants.dart';
 import '../../../../core/services/backup_service.dart';

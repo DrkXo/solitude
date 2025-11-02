@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/abstracts/base_service.dart';
-import '../../../../core/services/db/local_db_service.dart';
-import '../../../../core/utils/utils.dart';
-import '../models/portable_settings.dart';
-import '../models/settings_constants.dart';
+import '../abstracts/base_service.dart';
+import 'db/local_db_service.dart';
+import '../utils/utils.dart';
+import '../../features/settings/data/models/portable_settings.dart';
+import '../../features/settings/data/models/settings_constants.dart';
 
 const double minFontSize = 8.0;
 const double maxFontSize = 32.0;

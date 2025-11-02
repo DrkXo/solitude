@@ -7,7 +7,7 @@ import 'package:yaml/yaml.dart';
 import 'package:yaml_writer/yaml_writer.dart';
 
 import '../../features/settings/data/models/portable_settings.dart';
-import '../../features/settings/data/services/app_settings_service.dart';
+import 'app_settings_service.dart';
 import '../abstracts/base_service.dart';
 import 'ebook_library_service.dart';
 

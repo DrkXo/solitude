@@ -8,7 +8,7 @@ import 'package:ebook_x/models/bookmark.dart';
 
 import '../../../../core/services/ebook_library_service.dart';
 import '../../../../core/services/reader_service.dart';
-import '../../../settings/data/services/app_settings_service.dart';
+import '../../../../core/services/app_settings_service.dart';
 
 part 'reader_bloc.freezed.dart';
 

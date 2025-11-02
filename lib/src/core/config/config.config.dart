@@ -15,7 +15,7 @@ import 'package:talker_flutter/talker_flutter.dart' as _i207;
 
 import '../../features/library/presentation/bloc/library_bloc.dart' as _i395;
 import '../../features/reader/presentation/bloc/reader_bloc.dart' as _i523;
-import '../../features/settings/data/services/app_settings_service.dart'
+import '../services/app_settings_service.dart'
     as _i327;
 import '../../features/settings/presentation/bloc/settings_bloc.dart' as _i585;
 import '../../router/app_router.dart' as _i630;
