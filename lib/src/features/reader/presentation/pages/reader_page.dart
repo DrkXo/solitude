@@ -24,21 +24,6 @@ class _ReaderPageState extends State<ReaderPage> {
   late StreamController<double> _scrollStreamController;
   late StreamSubscription<double> _scrollSubscription;
 
-  Color _getBackgroundColor(ThemeOption theme) {
-    switch (theme) {
-      case ThemeOption.light:
-        return Colors.white;
-      case ThemeOption.dark:
-        return Colors.black;
-      case ThemeOption.custom:
-        // For now, use light as fallback
-        return Colors.white;
-      case ThemeOption.device:
-        // Use light as default for device
-        return Colors.white;
-    }
-  }
-
   Color _getTextColor(ThemeOption theme, bool highContrast) {
     Color baseColor;
     switch (theme) {
@@ -158,107 +143,109 @@ class _ReaderPageState extends State<ReaderPage> {
                             }
                           },
                           child: Container(
-                            color: _getBackgroundColor(
-                              settingsState.appSettings.display.theme,
-                            ),
-                             child: Directionality(
-                               textDirection:
-                                   settingsState
-                                           .appSettings
-                                           .behavior
-                                           .readingDirection ==
-                                       ReadingDirection.rtl
-                                   ? TextDirection.rtl
-                                   : TextDirection.ltr,
-                               child: ListView(
-                                 controller: _scrollController,
-                                 physics: const AlwaysScrollableScrollPhysics(),
-                                 padding: const EdgeInsets.symmetric(
-                                   horizontal: 24.0,
-                                   vertical: 16.0,
-                                 ),
-                                 children: [
-                                   Html(
-                                     data: controller.getFullChapterContent(),
-                                     style: {
-                                    'body': Style(
-                                       fontFamily:
-                                           settingsState
-                                               .appSettings
-                                               .accessibility
-                                               .dyslexicFont
-                                           ? 'OpenDyslexic' // Assuming this font is available, or fallback to current
-                                           : settingsState
-                                                 .appSettings
-                                                 .display
-                                                 .fontFamily.displayName,
-                                      fontSize: FontSize(
-                                        settingsState
-                                            .appSettings
-                                            .display
-                                            .fontSize,
-                                      ),
-                                      fontWeight:
-                                          settingsState
-                                                  .appSettings
-                                                  .display
-                                                  .fontWeight ==
-                                              'bold'
-                                          ? FontWeight.bold
-                                          : FontWeight.normal,
-                                      lineHeight: LineHeight(
-                                        settingsState
-                                            .appSettings
-                                            .display
-                                            .lineHeight,
-                                      ),
-                                      letterSpacing: settingsState
+                            color: Theme.of(context).scaffoldBackgroundColor,
+                            child: Directionality(
+                              textDirection:
+                                  settingsState
                                           .appSettings
-                                          .display
-                                          .letterSpacing,
-                                      textAlign:
-                                          settingsState
-                                                  .appSettings
-                                                  .display
-                                                  .textAlign ==
-                                              'left'
-                                          ? TextAlign.left
-                                          : settingsState
-                                                    .appSettings
-                                                    .display
-                                                    .textAlign ==
-                                                'right'
-                                          ? TextAlign.right
-                                          : settingsState
-                                                    .appSettings
-                                                    .display
-                                                    .textAlign ==
-                                                'center'
-                                          ? TextAlign.center
-                                          : TextAlign.justify,
-                                      color: _getTextColor(
-                                        settingsState.appSettings.display.theme,
-                                        settingsState
-                                            .appSettings
-                                            .accessibility
-                                            .highContrast,
-                                      ),
-                                      backgroundColor: Colors.transparent,
-                                    ),
-                                    'p': Style(
-                                      margin: Margins.only(
-                                        bottom:
+                                          .behavior
+                                          .readingDirection ==
+                                      ReadingDirection.rtl
+                                  ? TextDirection.rtl
+                                  : TextDirection.ltr,
+                              child: ListView(
+                                controller: _scrollController,
+                                physics: const AlwaysScrollableScrollPhysics(),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 24.0,
+                                  vertical: 16.0,
+                                ),
+                                children: [
+                                  Html(
+                                    data: controller.getFullChapterContent(),
+                                    style: {
+                                      'body': Style(
+                                        fontFamily:
                                             settingsState
                                                 .appSettings
-                                                .display
-                                                .paragraphSpacing *
-                                            10,
+                                                .accessibility
+                                                .dyslexicFont
+                                            ? 'OpenDyslexic' // Assuming this font is available, or fallback to current
+                                            : settingsState
+                                                  .appSettings
+                                                  .display
+                                                  .fontFamily
+                                                  .displayName,
+                                        fontSize: FontSize(
+                                          settingsState
+                                              .appSettings
+                                              .display
+                                              .fontSize,
+                                        ),
+                                        fontWeight:
+                                            settingsState
+                                                    .appSettings
+                                                    .display
+                                                    .fontWeight ==
+                                                'bold'
+                                            ? FontWeight.bold
+                                            : FontWeight.normal,
+                                        lineHeight: LineHeight(
+                                          settingsState
+                                              .appSettings
+                                              .display
+                                              .lineHeight,
+                                        ),
+                                        letterSpacing: settingsState
+                                            .appSettings
+                                            .display
+                                            .letterSpacing,
+                                        textAlign:
+                                            settingsState
+                                                    .appSettings
+                                                    .display
+                                                    .textAlign ==
+                                                'left'
+                                            ? TextAlign.left
+                                            : settingsState
+                                                      .appSettings
+                                                      .display
+                                                      .textAlign ==
+                                                  'right'
+                                            ? TextAlign.right
+                                            : settingsState
+                                                      .appSettings
+                                                      .display
+                                                      .textAlign ==
+                                                  'center'
+                                            ? TextAlign.center
+                                            : TextAlign.justify,
+                                        color: _getTextColor(
+                                          settingsState
+                                              .appSettings
+                                              .display
+                                              .theme,
+                                          settingsState
+                                              .appSettings
+                                              .accessibility
+                                              .highContrast,
+                                        ),
+                                        backgroundColor: Colors.transparent,
                                       ),
-                                       ),
-                                     },
-                                   ),
-                                 ],
-                               ),
+                                      'p': Style(
+                                        margin: Margins.only(
+                                          bottom:
+                                              settingsState
+                                                  .appSettings
+                                                  .display
+                                                  .paragraphSpacing *
+                                              10,
+                                        ),
+                                      ),
+                                    },
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

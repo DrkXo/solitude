@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:solitude/src/core/services/theme_service.dart';
 
 import 'core/config/config.dart';
 import 'core/localization/app_localizations.dart';
+import 'core/theme/theme.dart';
 import 'core/utils/utils.dart';
 import 'features/library/presentation/bloc/library_bloc.dart';
 import 'features/reader/presentation/bloc/reader_bloc.dart';
@@ -54,8 +54,6 @@ class Solitude extends StatelessWidget {
   Widget build(BuildContext context) {
     final appRouter = sl<AppRouter>().router;
 
-    final themeService = sl<ThemeService>();
-
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -71,10 +69,24 @@ class Solitude extends StatelessWidget {
       child: DismissKeyboard(
         child: BlocBuilder<SettingsBloc, SettingsState>(
           builder: (context, state) {
+            final pageTransitionsTheme = PageTransitionsTheme(
+              builders: {
+                TargetPlatform.android: PredictiveBackPageTransitionsBuilder(),
+                TargetPlatform.iOS: PredictiveBackPageTransitionsBuilder(),
+                TargetPlatform.linux: PredictiveBackPageTransitionsBuilder(),
+                TargetPlatform.macOS: PredictiveBackPageTransitionsBuilder(),
+                TargetPlatform.windows: PredictiveBackPageTransitionsBuilder(),
+                TargetPlatform.fuchsia: PredictiveBackPageTransitionsBuilder(),
+              },
+            );
             return MaterialApp.router(
               debugShowCheckedModeBanner: false,
-              theme: themeService.getLightThemeData(),
-              darkTheme: themeService.getDarkThemeData(),
+              theme: AppTheme.light.copyWith(
+                pageTransitionsTheme: pageTransitionsTheme,
+              ),
+              darkTheme: AppTheme.dark.copyWith(
+                pageTransitionsTheme: pageTransitionsTheme,
+              ),
               themeMode: ThemeMode.values.firstWhere(
                 (mode) => mode.name == state.appSettings.display.theme.value,
                 orElse: () => ThemeMode.system,

@@ -23,8 +23,6 @@ import '../services/backup_service.dart' as _i832;
 import '../services/db/local_db_service.dart' as _i1058;
 import '../services/ebook_library_service.dart' as _i222;
 import '../services/reader_service.dart' as _i534;
-import '../services/reader_settings_service.dart' as _i974;
-import '../services/theme_service.dart' as _i982;
 import '../utils/utils.dart' as _i1021;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -46,16 +44,7 @@ extension GetItInjectableX on _i174.GetIt {
       );
       return i.init().then((_) => i);
     }, preResolve: true);
-    await gh.factoryAsync<_i974.ReaderSettingsService>(() {
-      final i = _i974.ReaderSettingsService(
-        localDbService: gh<_i1058.LocalDbService>(),
-      );
-      return i.init().then((_) => i);
-    }, preResolve: true);
-    await gh.factoryAsync<_i982.ThemeService>(() {
-      final i = _i982.ThemeService(localDbService: gh<_i1058.LocalDbService>());
-      return i.init().then((_) => i);
-    }, preResolve: true);
+
     await gh.factoryAsync<_i327.AppSettingsService>(() {
       final i = _i327.AppSettingsService(
         localDbService: gh<_i1058.LocalDbService>(),
@@ -78,8 +67,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i832.BackupService>(
       () => _i832.BackupService(
-        gh<_i974.ReaderSettingsService>(),
-        gh<_i982.ThemeService>(),
+        gh<_i327.AppSettingsService>(),
         gh<_i222.EbookLibraryService>(),
       ),
     );

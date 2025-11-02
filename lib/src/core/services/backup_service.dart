@@ -1,18 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:yaml/yaml.dart';
 import 'package:yaml_writer/yaml_writer.dart';
 
 import '../../features/settings/data/models/portable_settings.dart';
-import '../../features/settings/data/models/settings_constants.dart';
+import '../../features/settings/data/services/app_settings_service.dart';
 import '../abstracts/base_service.dart';
 import 'ebook_library_service.dart';
-import 'reader_settings_service.dart';
-import 'theme_service.dart';
 
 enum ExportFormat {
   json(mimeType: 'application/json', name: 'JSON'),
@@ -28,20 +25,20 @@ enum ExportFormat {
 
 @injectable
 class BackupService extends BaseService {
-  final ReaderSettingsService _readerSettingsService;
-  final ThemeService _themeService;
+  final AppSettingsService _appSettingsService;
   // ignore: unused_field
   final EbookLibraryService _ebookLibraryService;
 
   BackupService(
-    this._readerSettingsService,
-    this._themeService,
+    this._appSettingsService,
     this._ebookLibraryService,
   );
 
   dynamic _yamlToMap(dynamic yaml) {
     if (yaml is YamlMap) {
-      return yaml.map((key, value) => MapEntry(key.toString(), _yamlToMap(value)));
+      return yaml.map(
+        (key, value) => MapEntry(key.toString(), _yamlToMap(value)),
+      );
     } else if (yaml is YamlList) {
       return yaml.map(_yamlToMap).toList();
     } else {
@@ -80,7 +77,9 @@ class BackupService extends BaseService {
 
     final content = await file.readAsString();
     final isYaml = filePath.endsWith('.yaml') || filePath.endsWith('.yml');
-    final data = isYaml ? _yamlToMap(loadYaml(content)) as Map<String, dynamic> : jsonDecode(content);
+    final data = isYaml
+        ? _yamlToMap(loadYaml(content)) as Map<String, dynamic>
+        : jsonDecode(content);
 
     final settings = PortableSettings.fromJson(data);
 
@@ -95,42 +94,14 @@ class BackupService extends BaseService {
   }
 
   Future<PortableSettings> _collectSettings() async {
-    // Collect app settings
-    final appSettings = AppSettings(
-      display: DisplaySettings(
-        fontSize: _readerSettingsService.fontSize,
-        pageLayout: PageLayout.values.firstWhere(
-          (layout) => layout.value == _readerSettingsService.readingMode,
-          orElse: () => PageLayout.paged,
-        ),
-        theme: ThemeOption.values.firstWhere(
-          (theme) => theme.value == _themeService.currentThemeMode.name,
-          orElse: () => ThemeOption.light,
-        ),
-      ),
-    );
-
     return PortableSettings(
       version: 1,
-      appSettings: appSettings,
-
+      appSettings: _appSettingsService.appSettings,
       exportDate: DateTime.now(),
     );
   }
 
   Future<void> _applySettings(PortableSettings settings) async {
-    // Apply app settings
-    await _readerSettingsService.setFontSize(settings.appSettings.display.fontSize);
-    await _readerSettingsService.setReadingMode(
-      settings.appSettings.display.pageLayout.value,
-    );
-
-    final themeMode = ThemeMode.values.firstWhere(
-      (mode) => mode.name == settings.appSettings.display.theme.value,
-      orElse: () => ThemeMode.system,
-    );
-    await _themeService.setThemeMode(themeMode);
-
-    // Library stats are read-only, no need to apply
+    await _appSettingsService.updateSettings(settings.appSettings);
   }
 }
