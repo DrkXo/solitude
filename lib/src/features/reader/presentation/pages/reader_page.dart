@@ -165,7 +165,7 @@ class _ReaderPageState extends State<ReaderPage> {
                              }
                            },
                            onHorizontalDragEnd: (details) {
-                             if (settingsState.appSettings.behavior.navigationMethod == NavigationMethod.swipe) {
+                             if (settingsState.appSettings.behavior.navigationMethod == NavigationMethod.swipeHorizontal) {
                                if (details.velocity.pixelsPerSecond.dx > 0) {
                                  // Swipe right: previous chapter
                                  if (currentChapterIndex > 0) {
@@ -186,9 +186,9 @@ class _ReaderPageState extends State<ReaderPage> {
                              }
                            },
                            onVerticalDragEnd: (details) {
-                             if (settingsState.appSettings.behavior.navigationMethod == NavigationMethod.scroll) {
+                             if (settingsState.appSettings.behavior.navigationMethod == NavigationMethod.swipeVertical) {
                                if (details.velocity.pixelsPerSecond.dy < 0) {
-                                 // Scroll up: next chapter
+                                 // Swipe up: next chapter
                                  if (currentChapterIndex <
                                      controller.totalChapters - 1) {
                                    context.read<ReaderBloc>().add(
@@ -197,7 +197,7 @@ class _ReaderPageState extends State<ReaderPage> {
                                  }
                                } else if (details.velocity.pixelsPerSecond.dy >
                                    0) {
-                                 // Scroll down: previous chapter
+                                 // Swipe down: previous chapter
                                  if (currentChapterIndex > 0) {
                                    context.read<ReaderBloc>().add(
                                      const ReaderEvent.previousChapter(),
@@ -206,7 +206,7 @@ class _ReaderPageState extends State<ReaderPage> {
                                }
                              }
                            },
-                          child: Container(
+                           child: Container(
                             color: Theme.of(context).scaffoldBackgroundColor,
                             child: Directionality(
                               textDirection:
@@ -309,13 +309,13 @@ class _ReaderPageState extends State<ReaderPage> {
                                     },
                                   ),
                                 ],
-                              ),
-                            ),
-                          ),
+                             ),
                         ),
+                       ),
                       ),
-                    );
-                  },
+                    ),
+                  );
+                 },
               error: (message) {
                 return Scaffold(
                   appBar: AppBar(

@@ -87,7 +87,7 @@ abstract class BehaviorSettings with _$BehaviorSettings {
     @Default(true) bool syncProgress,
     @Default(AutoScroll()) AutoScroll autoScroll,
     @Default(ReadingDirection.ltr) ReadingDirection readingDirection,
-    @Default(NavigationMethod.swipe) NavigationMethod navigationMethod,
+    @Default(NavigationMethod.swipeHorizontal) NavigationMethod navigationMethod,
   }) = _BehaviorSettings;
 
   factory BehaviorSettings.fromJson(Map<String, dynamic> json) =>

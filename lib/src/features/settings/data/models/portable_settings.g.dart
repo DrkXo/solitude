@@ -168,7 +168,7 @@ _BehaviorSettings _$BehaviorSettingsFromJson(Map<String, dynamic> json) =>
             _$NavigationMethodEnumMap,
             json['navigationMethod'],
           ) ??
-          NavigationMethod.swipe,
+          NavigationMethod.swipeHorizontal,
     );
 
 Map<String, dynamic> _$BehaviorSettingsToJson(_BehaviorSettings instance) =>
@@ -187,9 +187,9 @@ const _$ReadingDirectionEnumMap = {
 };
 
 const _$NavigationMethodEnumMap = {
-  NavigationMethod.scroll: 'scroll',
+  NavigationMethod.swipeVertical: 'swipeVertical',
+  NavigationMethod.swipeHorizontal: 'swipeHorizontal',
   NavigationMethod.tap: 'tap',
-  NavigationMethod.swipe: 'swipe',
 };
 
 _TapZones _$TapZonesFromJson(Map<String, dynamic> json) => _TapZones(

@@ -1817,7 +1817,7 @@ return $default(_that.tapZones,_that.rememberLastPosition,_that.syncProgress,_th
 @JsonSerializable()
 
 class _BehaviorSettings implements BehaviorSettings {
-  const _BehaviorSettings({this.tapZones = const TapZones(), this.rememberLastPosition = true, this.syncProgress = true, this.autoScroll = const AutoScroll(), this.readingDirection = ReadingDirection.ltr, this.navigationMethod = NavigationMethod.swipe});
+  const _BehaviorSettings({this.tapZones = const TapZones(), this.rememberLastPosition = true, this.syncProgress = true, this.autoScroll = const AutoScroll(), this.readingDirection = ReadingDirection.ltr, this.navigationMethod = NavigationMethod.swipeHorizontal});
   factory _BehaviorSettings.fromJson(Map<String, dynamic> json) => _$BehaviorSettingsFromJson(json);
 
 @override@JsonKey() final  TapZones tapZones;

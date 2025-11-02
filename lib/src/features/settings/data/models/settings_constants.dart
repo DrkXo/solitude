@@ -66,9 +66,9 @@ enum ScrollMode {
 
 /// Navigation methods for reader
 enum NavigationMethod {
-  scroll('scroll'),
-  tap('tap'),
-  swipe('swipe');
+  swipeVertical('Swipe Vertical'),
+  swipeHorizontal('Swipe Horizontal'),
+  tap('Tap (Left and Right)');
 
   const NavigationMethod(this.value);
   final String value;
