@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../../../../core/localization/app_localizations.dart';
 import '../../../../router/app_router.dart';
@@ -39,15 +40,15 @@ class _LibraryPageState extends State<LibraryPage> {
           AppLocalizations.of(context)!.appTitle,
         ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {},
+           IconButton(
+             icon: const Icon(LucideIcons.search),
+             onPressed: () {},
           ),
-          IconButton(
-            icon: const Icon(Icons.settings_outlined),
-            onPressed: () {
-              context.pushNamed(AppRoutes.settings.name);
-            },
+           IconButton(
+             icon: const Icon(LucideIcons.settings),
+             onPressed: () {
+               context.pushNamed(AppRoutes.settings.name);
+             },
           ),
         ],
       ),
@@ -87,11 +88,11 @@ class _LibraryPageState extends State<LibraryPage> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () =>
-            context.read<LibraryBloc>().add(const LibraryEvent.pickEbook()),
-        icon: const Icon(Icons.add),
-        label: const Text('Add Book'),
+       floatingActionButton: FloatingActionButton.extended(
+         onPressed: () =>
+             context.read<LibraryBloc>().add(const LibraryEvent.pickEbook()),
+         icon: const Icon(LucideIcons.plus),
+         label: const Text('Add Book'),
       ),
     );
   }

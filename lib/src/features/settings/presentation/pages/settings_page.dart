@@ -1,6 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 import '../../../../core/services/backup_service.dart';
 import '../../data/models/settings_constants.dart';
@@ -108,6 +109,7 @@ class SettingsPage extends StatelessWidget {
 
   Widget _buildDisplaySettings(BuildContext context, SettingsState state) {
     return ExpansionTile(
+      leading: const Icon(LucideIcons.monitor),
       title: const Text('Display'),
       children: [
         ListTile(
@@ -342,6 +344,7 @@ class SettingsPage extends StatelessWidget {
 
   Widget _buildBehaviorSettings(BuildContext context, SettingsState state) {
     return ExpansionTile(
+      leading: const Icon(LucideIcons.settings),
       title: const Text('Behavior'),
       children: [
         ListTile(
@@ -391,6 +394,7 @@ class SettingsPage extends StatelessWidget {
 
   Widget _buildAccessibilitySettings(BuildContext context, SettingsState state) {
     return ExpansionTile(
+      leading: const Icon(LucideIcons.eye),
       title: const Text('Accessibility'),
       children: [
         SwitchListTile(
@@ -426,6 +430,7 @@ class SettingsPage extends StatelessWidget {
 
   Widget _buildLibrarySettings(BuildContext context, SettingsState state) {
     return ExpansionTile(
+      leading: const Icon(LucideIcons.library),
       title: const Text('Library'),
       children: [
         ListTile(
@@ -475,6 +480,7 @@ class SettingsPage extends StatelessWidget {
 
   Widget _buildAnnotationsSettings(BuildContext context, SettingsState state) {
     return ExpansionTile(
+      leading: const Icon(LucideIcons.pencil),
       title: const Text('Annotations'),
       children: [
         SwitchListTile(
@@ -526,6 +532,7 @@ class SettingsPage extends StatelessWidget {
 
   Widget _buildUISettings(BuildContext context, SettingsState state) {
     return ExpansionTile(
+      leading: const Icon(LucideIcons.menu),
       title: const Text('UI'),
       children: [
         ListTile(
@@ -568,6 +575,7 @@ class SettingsPage extends StatelessWidget {
 
   Widget _buildLocalizationSettings(BuildContext context, SettingsState state) {
     return ExpansionTile(
+      leading: const Icon(LucideIcons.globe),
       title: const Text('Localization'),
       children: [
         ListTile(
@@ -624,6 +632,7 @@ class SettingsPage extends StatelessWidget {
 
   Widget _buildDeveloperSettings(BuildContext context, SettingsState state) {
     return ExpansionTile(
+      leading: const Icon(LucideIcons.code),
       title: const Text('Developer'),
       children: [
         SwitchListTile(
@@ -650,6 +659,7 @@ class SettingsPage extends StatelessWidget {
 
   Widget _buildBackupSettings(BuildContext context, SettingsState state) {
     return ExpansionTile(
+      leading: const Icon(LucideIcons.save),
       title: const Text('Backup & Restore'),
       subtitle: const Text('Export or import your settings and reading progress'),
       children: [

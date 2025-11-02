@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:solitude/src/features/library/data/models/ebook_entry.dart';
 import 'package:solitude/src/features/library/presentation/bloc/library_bloc.dart';
 import 'package:solitude/src/router/app_router.dart';
@@ -35,7 +36,7 @@ class EBookCard extends StatelessWidget {
         child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.delete_outline, color: Colors.white, size: 32),
+             Icon(LucideIcons.trash2, color: Colors.white, size: 32),
             SizedBox(height: 4),
             Text(
               'Delete',
@@ -84,11 +85,11 @@ class EBookCard extends StatelessWidget {
                            ),
                          )
                        : Center(
-                           child: Icon(
-                             Icons.auto_stories,
-                             size: 64,
-                             color: Theme.of(context).colorScheme.primary,
-                           ),
+                            child: Icon(
+                              LucideIcons.bookOpen,
+                              size: 64,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
                          ),
                  ),
                ),
@@ -121,13 +122,13 @@ class EBookCard extends StatelessWidget {
                       const Spacer(),
                       Row(
                         children: [
-                          Icon(
-                            Icons.menu_book,
-                            size: 14,
-                            color: Theme.of(
-                              context,
-                            ).colorScheme.onSurface.withValues(alpha: 0.5),
-                          ),
+                           Icon(
+                             LucideIcons.book,
+                             size: 14,
+                             color: Theme.of(
+                               context,
+                             ).colorScheme.onSurface.withValues(alpha: 0.5),
+                           ),
                           const SizedBox(width: 4),
                           Text(
                             '${entry.ebook.chapters.length} chapters',

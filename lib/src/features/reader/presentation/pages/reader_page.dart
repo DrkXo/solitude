@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart' as html;
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../../core/localization/app_localizations.dart';
@@ -441,7 +442,7 @@ class _ReaderPageState extends State<ReaderPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.error_outline, size: 64),
+                         const Icon(LucideIcons.x, size: 64),
                         const SizedBox(height: 16),
                         Text(message, textAlign: TextAlign.center),
                         const SizedBox(height: 16),
