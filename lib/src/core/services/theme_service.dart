@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+// ignore: unused_import
+import 'package:page_transition/page_transition.dart';
 import 'package:solitude/src/core/theme/theme.dart';
 
 import '../abstracts/base_service.dart';
@@ -10,6 +12,17 @@ class ThemeService extends BaseService {
   final LocalDbService _localDbService;
 
   ThemeMode _currentThemeMode = ThemeMode.dark;
+
+  PageTransitionsTheme get defaultPageTransitionsTheme => PageTransitionsTheme(
+    builders: {
+      TargetPlatform.android: PredictiveBackPageTransitionsBuilder(),
+      TargetPlatform.iOS: PredictiveBackPageTransitionsBuilder(),
+      TargetPlatform.linux: PredictiveBackPageTransitionsBuilder(),
+      TargetPlatform.macOS: PredictiveBackPageTransitionsBuilder(),
+      TargetPlatform.windows: PredictiveBackPageTransitionsBuilder(),
+      TargetPlatform.fuchsia: PredictiveBackPageTransitionsBuilder(),
+    },
+  );
 
   ThemeService({
     required LocalDbService localDbService,
@@ -53,10 +66,14 @@ class ThemeService extends BaseService {
   }
 
   ThemeData getLightThemeData() {
-    return AppTheme.light;
+    return AppTheme.light.copyWith(
+      pageTransitionsTheme: defaultPageTransitionsTheme,
+    );
   }
 
   ThemeData getDarkThemeData() {
-    return AppTheme.dark;
+    return AppTheme.dark.copyWith(
+      pageTransitionsTheme: defaultPageTransitionsTheme,
+    );
   }
 }
