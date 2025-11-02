@@ -59,82 +59,90 @@ class ReaderContent extends StatelessWidget {
     final int fg = (footerColor.g * 255).round();
     final int fb = (footerColor.b * 255).round();
     final double fa = footerColor.a;
-    final textAlign = switch (settingsState.appSettings.display.textAlign) {
-      TextAlignOption.left => 'left',
-      TextAlignOption.right => 'right',
-      TextAlignOption.center => 'center',
-      TextAlignOption.justify => 'justify',
-    };
-    Map<String, String>? customStylesBuilder(dynamic element) {
+    Widget? customWidgetBuilder(dynamic element) {
+      final text = element.text?.trim();
+      if (text == null || text.isEmpty) return null;
       final localName = element.localName as String?;
+      TextStyle baseStyle = TextStyle(
+        fontFamily: settingsState.appSettings.accessibility.dyslexicFont
+            ? 'OpenDyslexic'
+            : settingsState.appSettings.display.fontFamily.displayName,
+        fontSize: settingsState.appSettings.display.fontSize,
+        fontWeight: settingsState.appSettings.display.fontWeight == 'bold'
+            ? FontWeight.bold
+            : FontWeight.normal,
+        height: settingsState.appSettings.display.lineHeight,
+        letterSpacing: settingsState.appSettings.display.letterSpacing,
+        color: Color.fromARGB((a * 255).round(), r, g, b),
+      );
       switch (localName) {
         case 'body':
-          return {
-            'font-family': settingsState.appSettings.accessibility.dyslexicFont
-                ? 'OpenDyslexic'
-                : settingsState.appSettings.display.fontFamily.displayName,
-            'font-size': '${settingsState.appSettings.display.fontSize}px',
-            'font-weight':
-                settingsState.appSettings.display.fontWeight == 'bold'
-                ? 'bold'
-                : 'normal',
-            'line-height': '${settingsState.appSettings.display.lineHeight}',
-            'letter-spacing':
-                '${settingsState.appSettings.display.letterSpacing}px',
-            'text-align': textAlign,
-            'color': 'rgba($r, $g, $b, $a)',
-            'background-color': 'transparent',
-          };
+          return Text(text, style: baseStyle);
         case 'p':
-          return {
-            'margin-bottom':
-                '${settingsState.appSettings.display.paragraphSpacing * 10}px',
-          };
+          return Padding(
+            padding: EdgeInsets.only(
+              bottom: settingsState.appSettings.display.paragraphSpacing * 10,
+            ),
+            child: Text(text, style: baseStyle),
+          );
         case 'h1':
-          return {
-            'font-size':
-                '${settingsState.appSettings.display.fontSize * settingsState.appSettings.display.headerFontSizeMultiplier}px',
-            'font-weight': 'bold',
-            'margin-top':
-                '${settingsState.appSettings.display.headerMarginTop}px',
-            'margin-bottom':
-                '${settingsState.appSettings.display.headerMarginBottom}px',
-            'color': 'rgba($r, $g, $b, $a)',
-          };
+          final headerStyle = baseStyle.copyWith(
+            fontSize:
+                settingsState.appSettings.display.fontSize *
+                settingsState.appSettings.display.headerFontSizeMultiplier,
+            fontWeight: FontWeight.bold,
+          );
+          return Padding(
+            padding: EdgeInsets.only(
+              top: settingsState.appSettings.display.headerMarginTop,
+              bottom: settingsState.appSettings.display.headerMarginBottom,
+            ),
+            child: Text(text, style: headerStyle),
+          );
         case 'h2':
-          return {
-            'font-size':
-                '${settingsState.appSettings.display.fontSize * (settingsState.appSettings.display.headerFontSizeMultiplier - 0.1)}px',
-            'font-weight': 'bold',
-            'margin-top':
-                '${settingsState.appSettings.display.headerMarginTop}px',
-            'margin-bottom':
-                '${settingsState.appSettings.display.headerMarginBottom}px',
-            'color': 'rgba($r, $g, $b, $a)',
-          };
+          final headerStyle = baseStyle.copyWith(
+            fontSize:
+                settingsState.appSettings.display.fontSize *
+                (settingsState.appSettings.display.headerFontSizeMultiplier -
+                    0.1),
+            fontWeight: FontWeight.bold,
+          );
+          return Padding(
+            padding: EdgeInsets.only(
+              top: settingsState.appSettings.display.headerMarginTop,
+              bottom: settingsState.appSettings.display.headerMarginBottom,
+            ),
+            child: Text(text, style: headerStyle),
+          );
         case 'h3':
-          return {
-            'font-size':
-                '${settingsState.appSettings.display.fontSize * (settingsState.appSettings.display.headerFontSizeMultiplier - 0.2)}px',
-            'font-weight': 'bold',
-            'margin-top':
-                '${settingsState.appSettings.display.headerMarginTop}px',
-            'margin-bottom':
-                '${settingsState.appSettings.display.headerMarginBottom}px',
-            'color': 'rgba($r, $g, $b, $a)',
-          };
+          final headerStyle = baseStyle.copyWith(
+            fontSize:
+                settingsState.appSettings.display.fontSize *
+                (settingsState.appSettings.display.headerFontSizeMultiplier -
+                    0.2),
+            fontWeight: FontWeight.bold,
+          );
+          return Padding(
+            padding: EdgeInsets.only(
+              top: settingsState.appSettings.display.headerMarginTop,
+              bottom: settingsState.appSettings.display.headerMarginBottom,
+            ),
+            child: Text(text, style: headerStyle),
+          );
         case 'footer':
-          return {
-            'margin-top':
-                '${settingsState.appSettings.display.footerMarginTop}px',
-            'margin-bottom':
-                '${settingsState.appSettings.display.footerMarginBottom}px',
-            'font-size':
-                '${settingsState.appSettings.display.fontSize * 0.9}px',
-            'color': 'rgba($fr, $fg, $fb, $fa)',
-          };
+          final footerStyle = baseStyle.copyWith(
+            fontSize: settingsState.appSettings.display.fontSize * 0.9,
+            color: Color.fromARGB((fa * 255).round(), fr, fg, fb),
+          );
+          return Padding(
+            padding: EdgeInsets.only(
+              top: settingsState.appSettings.display.footerMarginTop,
+              bottom: settingsState.appSettings.display.footerMarginBottom,
+            ),
+            child: Text(text, style: footerStyle),
+          );
         default:
-          return null;
+          return Text(text, style: baseStyle);
       }
     }
 
@@ -169,13 +177,13 @@ class ReaderContent extends StatelessWidget {
               ),
               children: [
                 HtmlWidget(
+                  enableCaching: false,
                   buildAsync: true,
                   rebuildTriggers: [
                     settingsState.appSettings,
                   ],
-                  enableCaching: false,
                   controller.getFullChapterContent(),
-                  customStylesBuilder: customStylesBuilder,
+                  customWidgetBuilder: customWidgetBuilder,
                 ),
               ],
             ),
