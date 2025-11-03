@@ -8,12 +8,14 @@ class ReaderBottomBar extends StatelessWidget {
   final bool showBars;
   final int currentChapterIndex;
   final int totalChapters;
+  final void Function(BuildContext)? onChapterJump;
 
   const ReaderBottomBar({
     super.key,
     required this.showBars,
     required this.currentChapterIndex,
     required this.totalChapters,
+    this.onChapterJump,
   });
 
   @override
@@ -35,7 +37,7 @@ class ReaderBottomBar extends StatelessWidget {
             children: [
               // Chapter jump button on the left
               TextButton(
-                onPressed: () => _showChapterDialog(context),
+                onPressed: () => onChapterJump?.call(context),
                 child: Text(
                   'Chapter ${currentChapterIndex + 1} of $totalChapters',
                 ),
@@ -70,39 +72,5 @@ class ReaderBottomBar extends StatelessWidget {
     );
   }
 
-  void _showChapterDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Jump to Chapter'),
-          content: SizedBox(
-            width: double.maxFinite,
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: totalChapters,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text('Chapter ${index + 1}'),
-                  selected: index == currentChapterIndex,
-                  onTap: () {
-                    context.read<ReaderBloc>().add(
-                      ReaderEvent.updateReadingProgress(index),
-                    );
-                    Navigator.of(context).pop();
-                  },
-                );
-              },
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Cancel'),
-            ),
-          ],
-        );
-      },
-    );
-  }
+
 }

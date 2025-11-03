@@ -34,6 +34,40 @@ class _ReaderPageState extends State<ReaderPage> {
     super.dispose();
   }
 
+  void _showChapterDialog(BuildContext context, int totalChapters, int currentChapterIndex, PageController pageController) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Jump to Chapter'),
+          content: SizedBox(
+            width: double.maxFinite,
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: totalChapters,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text('Chapter ${index + 1}'),
+                  selected: index == currentChapterIndex,
+                  onTap: () {
+                    pageController.jumpToPage(index);
+                    Navigator.of(context).pop();
+                  },
+                );
+              },
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsBloc, SettingsState>(
@@ -215,11 +249,12 @@ class _ReaderPageState extends State<ReaderPage> {
                             ReaderTopBar(
                               showBars: _showBars,
                             ),
-                            ReaderBottomBar(
-                              showBars: _showBars,
-                              currentChapterIndex: currentChapterIndex,
-                              totalChapters: controller.totalChapters,
-                            ),
+                             ReaderBottomBar(
+                               showBars: _showBars,
+                               currentChapterIndex: currentChapterIndex,
+                               totalChapters: controller.totalChapters,
+                               onChapterJump: (context) => _showChapterDialog(context, controller.totalChapters, currentChapterIndex, _pageController),
+                             ),
                           ],
                         ),
                       ),
