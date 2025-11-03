@@ -21,19 +21,21 @@ class AppRouter {
             GoRoute(
               path: AppRoutes.reader.path,
               name: AppRoutes.reader.name,
-              builder: (context, state) {
+              pageBuilder: (context, state) {
                 final ebookId = state.pathParameters['ebookId']!;
-                return BlocProvider<ReaderBloc>(
-                  create: (context) {
-                    final bloc = ReaderBloc(
-                      readerService: GetIt.I<ReaderService>(),
-                      libraryService: _ebookLibraryService,
-                      appSettingsService: _appSettingsService,
-                    );
-                    bloc.add(ReaderEvent.loadEbook(ebookId));
-                    return bloc;
-                  },
-                  child: const ReaderPage(),
+                return NoTransitionPage(
+                  child: BlocProvider<ReaderBloc>(
+                    create: (context) {
+                      final bloc = ReaderBloc(
+                        readerService: GetIt.I<ReaderService>(),
+                        libraryService: _ebookLibraryService,
+                        appSettingsService: _appSettingsService,
+                      );
+                      bloc.add(ReaderEvent.loadEbook(ebookId));
+                      return bloc;
+                    },
+                    child: const ReaderPage(),
+                  ),
                 );
               },
             ),
