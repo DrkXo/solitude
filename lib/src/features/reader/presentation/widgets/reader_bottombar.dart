@@ -32,8 +32,17 @@ class ReaderBottomBar extends StatelessWidget {
               Theme.of(context).appBarTheme.backgroundColor ??
               Theme.of(context).primaryColor,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              // Chapter jump button on the left
+              TextButton(
+                onPressed: () => _showChapterDialog(context),
+                child: Text(
+                  'Chapter ${currentChapterIndex + 1} of $totalChapters',
+                ),
+              ),
+              // Spacer
+              const Spacer(),
+              // Previous and Next buttons
               IconButton(
                 icon: const Icon(LucideIcons.chevronLeft),
                 onPressed: currentChapterIndex > 0
@@ -58,6 +67,42 @@ class ReaderBottomBar extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  void _showChapterDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Jump to Chapter'),
+          content: SizedBox(
+            width: double.maxFinite,
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: totalChapters,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text('Chapter ${index + 1}'),
+                  selected: index == currentChapterIndex,
+                  onTap: () {
+                    context.read<ReaderBloc>().add(
+                      ReaderEvent.updateReadingProgress(index),
+                    );
+                    Navigator.of(context).pop();
+                  },
+                );
+              },
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Cancel'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
