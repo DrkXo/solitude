@@ -55,7 +55,7 @@ extension ReaderEventPatterns on ReaderEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _LoadEbook value)?  loadEbook,TResult Function( _NextChapter value)?  nextChapter,TResult Function( _PreviousChapter value)?  previousChapter,TResult Function( _NextPage value)?  nextPage,TResult Function( _PreviousPage value)?  previousPage,TResult Function( _GoToPage value)?  goToPage,TResult Function( _AddBookmark value)?  addBookmark,TResult Function( _RemoveBookmark value)?  removeBookmark,TResult Function( _GoToBookmark value)?  goToBookmark,TResult Function( _StartReading value)?  startReading,TResult Function( _UpdateReadingProgress value)?  updateReadingProgress,TResult Function( _UpdatePageOffset value)?  updatePageOffset,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _LoadEbook value)?  loadEbook,TResult Function( _NextChapter value)?  nextChapter,TResult Function( _PreviousChapter value)?  previousChapter,TResult Function( _NextPage value)?  nextPage,TResult Function( _PreviousPage value)?  previousPage,TResult Function( _GoToPage value)?  goToPage,TResult Function( _AddBookmark value)?  addBookmark,TResult Function( _RemoveBookmark value)?  removeBookmark,TResult Function( _GoToBookmark value)?  goToBookmark,TResult Function( _StartReading value)?  startReading,TResult Function( _UpdateReadingProgress value)?  updateReadingProgress,TResult Function( _UpdateChapterOffset value)?  updateChapterOffset,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
@@ -70,8 +70,8 @@ return addBookmark(_that);case _RemoveBookmark() when removeBookmark != null:
 return removeBookmark(_that);case _GoToBookmark() when goToBookmark != null:
 return goToBookmark(_that);case _StartReading() when startReading != null:
 return startReading(_that);case _UpdateReadingProgress() when updateReadingProgress != null:
-return updateReadingProgress(_that);case _UpdatePageOffset() when updatePageOffset != null:
-return updatePageOffset(_that);case _:
+return updateReadingProgress(_that);case _UpdateChapterOffset() when updateChapterOffset != null:
+return updateChapterOffset(_that);case _:
   return orElse();
 
 }
@@ -89,7 +89,7 @@ return updatePageOffset(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _LoadEbook value)  loadEbook,required TResult Function( _NextChapter value)  nextChapter,required TResult Function( _PreviousChapter value)  previousChapter,required TResult Function( _NextPage value)  nextPage,required TResult Function( _PreviousPage value)  previousPage,required TResult Function( _GoToPage value)  goToPage,required TResult Function( _AddBookmark value)  addBookmark,required TResult Function( _RemoveBookmark value)  removeBookmark,required TResult Function( _GoToBookmark value)  goToBookmark,required TResult Function( _StartReading value)  startReading,required TResult Function( _UpdateReadingProgress value)  updateReadingProgress,required TResult Function( _UpdatePageOffset value)  updatePageOffset,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _LoadEbook value)  loadEbook,required TResult Function( _NextChapter value)  nextChapter,required TResult Function( _PreviousChapter value)  previousChapter,required TResult Function( _NextPage value)  nextPage,required TResult Function( _PreviousPage value)  previousPage,required TResult Function( _GoToPage value)  goToPage,required TResult Function( _AddBookmark value)  addBookmark,required TResult Function( _RemoveBookmark value)  removeBookmark,required TResult Function( _GoToBookmark value)  goToBookmark,required TResult Function( _StartReading value)  startReading,required TResult Function( _UpdateReadingProgress value)  updateReadingProgress,required TResult Function( _UpdateChapterOffset value)  updateChapterOffset,}){
 final _that = this;
 switch (_that) {
 case _Started():
@@ -104,8 +104,8 @@ return addBookmark(_that);case _RemoveBookmark():
 return removeBookmark(_that);case _GoToBookmark():
 return goToBookmark(_that);case _StartReading():
 return startReading(_that);case _UpdateReadingProgress():
-return updateReadingProgress(_that);case _UpdatePageOffset():
-return updatePageOffset(_that);case _:
+return updateReadingProgress(_that);case _UpdateChapterOffset():
+return updateChapterOffset(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -122,7 +122,7 @@ return updatePageOffset(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _LoadEbook value)?  loadEbook,TResult? Function( _NextChapter value)?  nextChapter,TResult? Function( _PreviousChapter value)?  previousChapter,TResult? Function( _NextPage value)?  nextPage,TResult? Function( _PreviousPage value)?  previousPage,TResult? Function( _GoToPage value)?  goToPage,TResult? Function( _AddBookmark value)?  addBookmark,TResult? Function( _RemoveBookmark value)?  removeBookmark,TResult? Function( _GoToBookmark value)?  goToBookmark,TResult? Function( _StartReading value)?  startReading,TResult? Function( _UpdateReadingProgress value)?  updateReadingProgress,TResult? Function( _UpdatePageOffset value)?  updatePageOffset,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _LoadEbook value)?  loadEbook,TResult? Function( _NextChapter value)?  nextChapter,TResult? Function( _PreviousChapter value)?  previousChapter,TResult? Function( _NextPage value)?  nextPage,TResult? Function( _PreviousPage value)?  previousPage,TResult? Function( _GoToPage value)?  goToPage,TResult? Function( _AddBookmark value)?  addBookmark,TResult? Function( _RemoveBookmark value)?  removeBookmark,TResult? Function( _GoToBookmark value)?  goToBookmark,TResult? Function( _StartReading value)?  startReading,TResult? Function( _UpdateReadingProgress value)?  updateReadingProgress,TResult? Function( _UpdateChapterOffset value)?  updateChapterOffset,}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
@@ -137,8 +137,8 @@ return addBookmark(_that);case _RemoveBookmark() when removeBookmark != null:
 return removeBookmark(_that);case _GoToBookmark() when goToBookmark != null:
 return goToBookmark(_that);case _StartReading() when startReading != null:
 return startReading(_that);case _UpdateReadingProgress() when updateReadingProgress != null:
-return updateReadingProgress(_that);case _UpdatePageOffset() when updatePageOffset != null:
-return updatePageOffset(_that);case _:
+return updateReadingProgress(_that);case _UpdateChapterOffset() when updateChapterOffset != null:
+return updateChapterOffset(_that);case _:
   return null;
 
 }
@@ -155,7 +155,7 @@ return updatePageOffset(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( String ebookId)?  loadEbook,TResult Function()?  nextChapter,TResult Function()?  previousChapter,TResult Function()?  nextPage,TResult Function()?  previousPage,TResult Function( int pageIndex)?  goToPage,TResult Function( String title)?  addBookmark,TResult Function( int index)?  removeBookmark,TResult Function( int index)?  goToBookmark,TResult Function()?  startReading,TResult Function( int chapterIndex)?  updateReadingProgress,TResult Function( double offset)?  updatePageOffset,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( String ebookId)?  loadEbook,TResult Function()?  nextChapter,TResult Function()?  previousChapter,TResult Function()?  nextPage,TResult Function()?  previousPage,TResult Function( int pageIndex)?  goToPage,TResult Function( String title)?  addBookmark,TResult Function( int index)?  removeBookmark,TResult Function( int index)?  goToBookmark,TResult Function()?  startReading,TResult Function( int chapterIndex)?  updateReadingProgress,TResult Function( int chapterIndex,  double offset)?  updateChapterOffset,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _LoadEbook() when loadEbook != null:
@@ -169,8 +169,8 @@ return addBookmark(_that.title);case _RemoveBookmark() when removeBookmark != nu
 return removeBookmark(_that.index);case _GoToBookmark() when goToBookmark != null:
 return goToBookmark(_that.index);case _StartReading() when startReading != null:
 return startReading();case _UpdateReadingProgress() when updateReadingProgress != null:
-return updateReadingProgress(_that.chapterIndex);case _UpdatePageOffset() when updatePageOffset != null:
-return updatePageOffset(_that.offset);case _:
+return updateReadingProgress(_that.chapterIndex);case _UpdateChapterOffset() when updateChapterOffset != null:
+return updateChapterOffset(_that.chapterIndex,_that.offset);case _:
   return orElse();
 
 }
@@ -188,7 +188,7 @@ return updatePageOffset(_that.offset);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( String ebookId)  loadEbook,required TResult Function()  nextChapter,required TResult Function()  previousChapter,required TResult Function()  nextPage,required TResult Function()  previousPage,required TResult Function( int pageIndex)  goToPage,required TResult Function( String title)  addBookmark,required TResult Function( int index)  removeBookmark,required TResult Function( int index)  goToBookmark,required TResult Function()  startReading,required TResult Function( int chapterIndex)  updateReadingProgress,required TResult Function( double offset)  updatePageOffset,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( String ebookId)  loadEbook,required TResult Function()  nextChapter,required TResult Function()  previousChapter,required TResult Function()  nextPage,required TResult Function()  previousPage,required TResult Function( int pageIndex)  goToPage,required TResult Function( String title)  addBookmark,required TResult Function( int index)  removeBookmark,required TResult Function( int index)  goToBookmark,required TResult Function()  startReading,required TResult Function( int chapterIndex)  updateReadingProgress,required TResult Function( int chapterIndex,  double offset)  updateChapterOffset,}) {final _that = this;
 switch (_that) {
 case _Started():
 return started();case _LoadEbook():
@@ -202,8 +202,8 @@ return addBookmark(_that.title);case _RemoveBookmark():
 return removeBookmark(_that.index);case _GoToBookmark():
 return goToBookmark(_that.index);case _StartReading():
 return startReading();case _UpdateReadingProgress():
-return updateReadingProgress(_that.chapterIndex);case _UpdatePageOffset():
-return updatePageOffset(_that.offset);case _:
+return updateReadingProgress(_that.chapterIndex);case _UpdateChapterOffset():
+return updateChapterOffset(_that.chapterIndex,_that.offset);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -220,7 +220,7 @@ return updatePageOffset(_that.offset);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( String ebookId)?  loadEbook,TResult? Function()?  nextChapter,TResult? Function()?  previousChapter,TResult? Function()?  nextPage,TResult? Function()?  previousPage,TResult? Function( int pageIndex)?  goToPage,TResult? Function( String title)?  addBookmark,TResult? Function( int index)?  removeBookmark,TResult? Function( int index)?  goToBookmark,TResult? Function()?  startReading,TResult? Function( int chapterIndex)?  updateReadingProgress,TResult? Function( double offset)?  updatePageOffset,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( String ebookId)?  loadEbook,TResult? Function()?  nextChapter,TResult? Function()?  previousChapter,TResult? Function()?  nextPage,TResult? Function()?  previousPage,TResult? Function( int pageIndex)?  goToPage,TResult? Function( String title)?  addBookmark,TResult? Function( int index)?  removeBookmark,TResult? Function( int index)?  goToBookmark,TResult? Function()?  startReading,TResult? Function( int chapterIndex)?  updateReadingProgress,TResult? Function( int chapterIndex,  double offset)?  updateChapterOffset,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _LoadEbook() when loadEbook != null:
@@ -234,8 +234,8 @@ return addBookmark(_that.title);case _RemoveBookmark() when removeBookmark != nu
 return removeBookmark(_that.index);case _GoToBookmark() when goToBookmark != null:
 return goToBookmark(_that.index);case _StartReading() when startReading != null:
 return startReading();case _UpdateReadingProgress() when updateReadingProgress != null:
-return updateReadingProgress(_that.chapterIndex);case _UpdatePageOffset() when updatePageOffset != null:
-return updatePageOffset(_that.offset);case _:
+return updateReadingProgress(_that.chapterIndex);case _UpdateChapterOffset() when updateChapterOffset != null:
+return updateChapterOffset(_that.chapterIndex,_that.offset);case _:
   return null;
 
 }
@@ -834,43 +834,44 @@ as int,
 /// @nodoc
 
 
-class _UpdatePageOffset implements ReaderEvent {
-  const _UpdatePageOffset(this.offset);
+class _UpdateChapterOffset implements ReaderEvent {
+  const _UpdateChapterOffset(this.chapterIndex, this.offset);
   
 
+ final  int chapterIndex;
  final  double offset;
 
 /// Create a copy of ReaderEvent
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$UpdatePageOffsetCopyWith<_UpdatePageOffset> get copyWith => __$UpdatePageOffsetCopyWithImpl<_UpdatePageOffset>(this, _$identity);
+_$UpdateChapterOffsetCopyWith<_UpdateChapterOffset> get copyWith => __$UpdateChapterOffsetCopyWithImpl<_UpdateChapterOffset>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdatePageOffset&&(identical(other.offset, offset) || other.offset == offset));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateChapterOffset&&(identical(other.chapterIndex, chapterIndex) || other.chapterIndex == chapterIndex)&&(identical(other.offset, offset) || other.offset == offset));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,offset);
+int get hashCode => Object.hash(runtimeType,chapterIndex,offset);
 
 @override
 String toString() {
-  return 'ReaderEvent.updatePageOffset(offset: $offset)';
+  return 'ReaderEvent.updateChapterOffset(chapterIndex: $chapterIndex, offset: $offset)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$UpdatePageOffsetCopyWith<$Res> implements $ReaderEventCopyWith<$Res> {
-  factory _$UpdatePageOffsetCopyWith(_UpdatePageOffset value, $Res Function(_UpdatePageOffset) _then) = __$UpdatePageOffsetCopyWithImpl;
+abstract mixin class _$UpdateChapterOffsetCopyWith<$Res> implements $ReaderEventCopyWith<$Res> {
+  factory _$UpdateChapterOffsetCopyWith(_UpdateChapterOffset value, $Res Function(_UpdateChapterOffset) _then) = __$UpdateChapterOffsetCopyWithImpl;
 @useResult
 $Res call({
- double offset
+ int chapterIndex, double offset
 });
 
 
@@ -878,18 +879,19 @@ $Res call({
 
 }
 /// @nodoc
-class __$UpdatePageOffsetCopyWithImpl<$Res>
-    implements _$UpdatePageOffsetCopyWith<$Res> {
-  __$UpdatePageOffsetCopyWithImpl(this._self, this._then);
+class __$UpdateChapterOffsetCopyWithImpl<$Res>
+    implements _$UpdateChapterOffsetCopyWith<$Res> {
+  __$UpdateChapterOffsetCopyWithImpl(this._self, this._then);
 
-  final _UpdatePageOffset _self;
-  final $Res Function(_UpdatePageOffset) _then;
+  final _UpdateChapterOffset _self;
+  final $Res Function(_UpdateChapterOffset) _then;
 
 /// Create a copy of ReaderEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? offset = null,}) {
-  return _then(_UpdatePageOffset(
-null == offset ? _self.offset : offset // ignore: cast_nullable_to_non_nullable
+@pragma('vm:prefer-inline') $Res call({Object? chapterIndex = null,Object? offset = null,}) {
+  return _then(_UpdateChapterOffset(
+null == chapterIndex ? _self.chapterIndex : chapterIndex // ignore: cast_nullable_to_non_nullable
+as int,null == offset ? _self.offset : offset // ignore: cast_nullable_to_non_nullable
 as double,
   ));
 }
@@ -1011,11 +1013,11 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( EbookXController controller,  int currentChapterIndex,  int currentPageIndex,  double pageOffset,  List<Bookmark> bookmarks)?  loaded,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( EbookXController controller,  int currentChapterIndex,  int currentPageIndex,  Map<int, double> chapterOffsets,  List<Bookmark> bookmarks)?  loaded,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loaded() when loaded != null:
-return loaded(_that.controller,_that.currentChapterIndex,_that.currentPageIndex,_that.pageOffset,_that.bookmarks);case _Error() when error != null:
+return loaded(_that.controller,_that.currentChapterIndex,_that.currentPageIndex,_that.chapterOffsets,_that.bookmarks);case _Error() when error != null:
 return error(_that.message);case _:
   return orElse();
 
@@ -1034,11 +1036,11 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( EbookXController controller,  int currentChapterIndex,  int currentPageIndex,  double pageOffset,  List<Bookmark> bookmarks)  loaded,required TResult Function( String message)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( EbookXController controller,  int currentChapterIndex,  int currentPageIndex,  Map<int, double> chapterOffsets,  List<Bookmark> bookmarks)  loaded,required TResult Function( String message)  error,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loaded():
-return loaded(_that.controller,_that.currentChapterIndex,_that.currentPageIndex,_that.pageOffset,_that.bookmarks);case _Error():
+return loaded(_that.controller,_that.currentChapterIndex,_that.currentPageIndex,_that.chapterOffsets,_that.bookmarks);case _Error():
 return error(_that.message);case _:
   throw StateError('Unexpected subclass');
 
@@ -1056,11 +1058,11 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( EbookXController controller,  int currentChapterIndex,  int currentPageIndex,  double pageOffset,  List<Bookmark> bookmarks)?  loaded,TResult? Function( String message)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( EbookXController controller,  int currentChapterIndex,  int currentPageIndex,  Map<int, double> chapterOffsets,  List<Bookmark> bookmarks)?  loaded,TResult? Function( String message)?  error,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loaded() when loaded != null:
-return loaded(_that.controller,_that.currentChapterIndex,_that.currentPageIndex,_that.pageOffset,_that.bookmarks);case _Error() when error != null:
+return loaded(_that.controller,_that.currentChapterIndex,_that.currentPageIndex,_that.chapterOffsets,_that.bookmarks);case _Error() when error != null:
 return error(_that.message);case _:
   return null;
 
@@ -1105,13 +1107,19 @@ String toString() {
 
 
 class _Loaded implements ReaderState {
-  const _Loaded(this.controller, this.currentChapterIndex, this.currentPageIndex, this.pageOffset, final  List<Bookmark> bookmarks): _bookmarks = bookmarks;
+  const _Loaded(this.controller, this.currentChapterIndex, this.currentPageIndex, final  Map<int, double> chapterOffsets, final  List<Bookmark> bookmarks): _chapterOffsets = chapterOffsets,_bookmarks = bookmarks;
   
 
  final  EbookXController controller;
  final  int currentChapterIndex;
  final  int currentPageIndex;
- final  double pageOffset;
+ final  Map<int, double> _chapterOffsets;
+ Map<int, double> get chapterOffsets {
+  if (_chapterOffsets is EqualUnmodifiableMapView) return _chapterOffsets;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_chapterOffsets);
+}
+
  final  List<Bookmark> _bookmarks;
  List<Bookmark> get bookmarks {
   if (_bookmarks is EqualUnmodifiableListView) return _bookmarks;
@@ -1130,16 +1138,16 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.controller, controller) || other.controller == controller)&&(identical(other.currentChapterIndex, currentChapterIndex) || other.currentChapterIndex == currentChapterIndex)&&(identical(other.currentPageIndex, currentPageIndex) || other.currentPageIndex == currentPageIndex)&&(identical(other.pageOffset, pageOffset) || other.pageOffset == pageOffset)&&const DeepCollectionEquality().equals(other._bookmarks, _bookmarks));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.controller, controller) || other.controller == controller)&&(identical(other.currentChapterIndex, currentChapterIndex) || other.currentChapterIndex == currentChapterIndex)&&(identical(other.currentPageIndex, currentPageIndex) || other.currentPageIndex == currentPageIndex)&&const DeepCollectionEquality().equals(other._chapterOffsets, _chapterOffsets)&&const DeepCollectionEquality().equals(other._bookmarks, _bookmarks));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,controller,currentChapterIndex,currentPageIndex,pageOffset,const DeepCollectionEquality().hash(_bookmarks));
+int get hashCode => Object.hash(runtimeType,controller,currentChapterIndex,currentPageIndex,const DeepCollectionEquality().hash(_chapterOffsets),const DeepCollectionEquality().hash(_bookmarks));
 
 @override
 String toString() {
-  return 'ReaderState.loaded(controller: $controller, currentChapterIndex: $currentChapterIndex, currentPageIndex: $currentPageIndex, pageOffset: $pageOffset, bookmarks: $bookmarks)';
+  return 'ReaderState.loaded(controller: $controller, currentChapterIndex: $currentChapterIndex, currentPageIndex: $currentPageIndex, chapterOffsets: $chapterOffsets, bookmarks: $bookmarks)';
 }
 
 
@@ -1150,7 +1158,7 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $ReaderStateCopyWith<$Res
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- EbookXController controller, int currentChapterIndex, int currentPageIndex, double pageOffset, List<Bookmark> bookmarks
+ EbookXController controller, int currentChapterIndex, int currentPageIndex, Map<int, double> chapterOffsets, List<Bookmark> bookmarks
 });
 
 
@@ -1167,13 +1175,13 @@ class __$LoadedCopyWithImpl<$Res>
 
 /// Create a copy of ReaderState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? controller = null,Object? currentChapterIndex = null,Object? currentPageIndex = null,Object? pageOffset = null,Object? bookmarks = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? controller = null,Object? currentChapterIndex = null,Object? currentPageIndex = null,Object? chapterOffsets = null,Object? bookmarks = null,}) {
   return _then(_Loaded(
 null == controller ? _self.controller : controller // ignore: cast_nullable_to_non_nullable
 as EbookXController,null == currentChapterIndex ? _self.currentChapterIndex : currentChapterIndex // ignore: cast_nullable_to_non_nullable
 as int,null == currentPageIndex ? _self.currentPageIndex : currentPageIndex // ignore: cast_nullable_to_non_nullable
-as int,null == pageOffset ? _self.pageOffset : pageOffset // ignore: cast_nullable_to_non_nullable
-as double,null == bookmarks ? _self._bookmarks : bookmarks // ignore: cast_nullable_to_non_nullable
+as int,null == chapterOffsets ? _self._chapterOffsets : chapterOffsets // ignore: cast_nullable_to_non_nullable
+as Map<int, double>,null == bookmarks ? _self._bookmarks : bookmarks // ignore: cast_nullable_to_non_nullable
 as List<Bookmark>,
   ));
 }
