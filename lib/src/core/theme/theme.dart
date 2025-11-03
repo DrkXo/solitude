@@ -23,7 +23,6 @@ abstract final class AppTheme {
   // The FlexColorScheme defined light mode ThemeData.
   static ThemeData light = FlexThemeData.light(
     fontFamily: fontFamily,
-
     // Using FlexColorScheme built-in FlexScheme enum based colors
     scheme: FlexScheme.shadStone,
     // Input color modifiers.
@@ -50,8 +49,7 @@ abstract final class AppTheme {
       segmentedButtonSchemeColor: SchemeColor.primary,
       segmentedButtonBorderSchemeColor: SchemeColor.outlineVariant,
       switchThumbSchemeColor: SchemeColor.onPrimaryContainer,
-      switchAdaptiveCupertinoLike: FlexAdaptive.all(),
-      unselectedToggleIsColored: true,
+      switchThumbFixedSize: true,
       sliderValueTinted: true,
       sliderTrackHeight: 8,
       inputDecoratorIsDense: true,
@@ -67,7 +65,7 @@ abstract final class AppTheme {
       inputDecoratorBorderWidth: 0.5,
       inputDecoratorFocusedBorderWidth: 2.0,
       fabUseShape: true,
-      fabAlwaysCircular: true,
+      fabRadius: 6.0,
       chipSchemeColor: SchemeColor.secondaryContainer,
       chipSelectedSchemeColor: SchemeColor.primaryContainer,
       chipFontSize: 12,
@@ -116,6 +114,7 @@ abstract final class AppTheme {
       menuIndicatorRadius: 6.0,
       searchBarElevation: 0.0,
       searchViewElevation: 0.0,
+      searchUseGlobalShape: true,
       navigationBarIndicatorSchemeColor: SchemeColor.secondaryContainer,
       navigationBarBackgroundSchemeColor: SchemeColor.surfaceContainer,
       navigationBarElevation: 0.0,
@@ -148,18 +147,19 @@ abstract final class AppTheme {
   // The FlexColorScheme defined dark mode ThemeData.
   static ThemeData dark = FlexThemeData.dark(
     fontFamily: fontFamily,
-
     // Using FlexColorScheme built-in FlexScheme enum based colors.
     scheme: FlexScheme.shadStone,
     // Input color modifiers.
     swapLegacyOnMaterial3: true,
     // Convenience direct styling properties.
+    appBarStyle: FlexAppBarStyle.scaffoldBackground,
     bottomAppBarElevation: 0.5,
     // Component theme configurations for dark mode.
     subThemesData: const FlexSubThemesData(
       interactionEffects: true,
       blendOnLevel: 20,
       blendOnColors: true,
+      scaffoldBackgroundBaseColor: FlexScaffoldBaseColor.surfaceContainerLow,
       useM2StyleDividerInM3: true,
       splashType: FlexSplashType.instantSplash,
       splashTypeAdaptive: FlexSplashType.instantSplash,
@@ -174,8 +174,7 @@ abstract final class AppTheme {
       segmentedButtonSchemeColor: SchemeColor.primary,
       segmentedButtonBorderSchemeColor: SchemeColor.outlineVariant,
       switchThumbSchemeColor: SchemeColor.onPrimaryContainer,
-      switchAdaptiveCupertinoLike: FlexAdaptive.all(),
-      unselectedToggleIsColored: true,
+      switchThumbFixedSize: true,
       sliderValueTinted: true,
       sliderTrackHeight: 8,
       inputDecoratorIsDense: true,
@@ -191,7 +190,7 @@ abstract final class AppTheme {
       inputDecoratorBorderWidth: 0.5,
       inputDecoratorFocusedBorderWidth: 2.0,
       fabUseShape: true,
-      fabAlwaysCircular: true,
+      fabRadius: 6.0,
       chipSchemeColor: SchemeColor.secondaryContainer,
       chipSelectedSchemeColor: SchemeColor.primaryContainer,
       chipFontSize: 12,
@@ -209,7 +208,7 @@ abstract final class AppTheme {
       snackBarRadius: 6,
       snackBarElevation: 6,
       snackBarBackgroundSchemeColor: SchemeColor.surfaceContainerLow,
-      appBarBackgroundSchemeColor: SchemeColor.surfaceContainerLowest,
+      appBarIconSchemeColor: SchemeColor.onPrimaryFixedVariant,
       appBarScrolledUnderElevation: 2.5,
       bottomAppBarHeight: 60,
       tabBarIndicatorWeight: 4,
@@ -240,6 +239,7 @@ abstract final class AppTheme {
       menuIndicatorRadius: 6.0,
       searchBarElevation: 0.0,
       searchViewElevation: 0.0,
+      searchUseGlobalShape: true,
       navigationBarIndicatorSchemeColor: SchemeColor.secondaryContainer,
       navigationBarBackgroundSchemeColor: SchemeColor.surfaceContainer,
       navigationBarElevation: 0.0,
