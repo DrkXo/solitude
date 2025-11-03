@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:solitude/src/features/library/data/models/ebook_entry.dart';
@@ -36,7 +36,7 @@ class EBookTile extends StatelessWidget {
         child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-             Icon(LucideIcons.trash2, color: Colors.white, size: 32),
+            Icon(LucideIcons.trash2, color: Colors.white, size: 32),
             SizedBox(height: 4),
             Text(
               'Delete',
@@ -57,30 +57,31 @@ class EBookTile extends StatelessWidget {
             },
           );
         },
-         leading: showCover
-             ? Container(
-                 width: 50,
-                 height: 70,
-                 decoration: BoxDecoration(
-                   color: Theme.of(context).colorScheme.primaryContainer,
-                   borderRadius: BorderRadius.circular(8),
-                 ),
-                 child: entry.coverImageHtml != null
-                     ? ClipRRect(
-                         borderRadius: BorderRadius.circular(8),
-                         child: Html(
-                           data: '<img src="${entry.coverImageHtml!}"/>',
-                         ),
-                       )
-                     : Center(
-                          child: Icon(
-                            LucideIcons.bookOpen,
-                            size: 24,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                       ),
-               )
-             : null,
+        leading: showCover
+            ? Container(
+                width: 50,
+                height: 70,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: entry.coverImageHtml != null
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: HtmlWidget(
+                          '<img src="${entry.coverImageHtml!}"/>',
+                          rebuildTriggers: [showCover],
+                        ),
+                      )
+                    : Center(
+                        child: Icon(
+                          LucideIcons.bookOpen,
+                          size: 24,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+              )
+            : null,
         title: Text(
           entry.ebook.metadata.title,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -95,23 +96,29 @@ class EBookTile extends StatelessWidget {
             Text(
               entry.ebook.metadata.author,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+                color: Theme.of(
+                  context,
+                ).colorScheme.onSurface.withValues(alpha: 0.6),
               ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
             Row(
               children: [
-                 Icon(
-                   LucideIcons.book,
-                   size: 14,
-                   color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5),
-                 ),
+                Icon(
+                  LucideIcons.book,
+                  size: 14,
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onSurface.withValues(alpha: 0.5),
+                ),
                 const SizedBox(width: 4),
                 Text(
                   '${entry.ebook.chapters.length} chapters',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.5),
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.onSurface.withValues(alpha: 0.5),
                   ),
                 ),
               ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:solitude/src/features/library/data/models/ebook_entry.dart';
@@ -36,7 +36,7 @@ class EBookCard extends StatelessWidget {
         child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-             Icon(LucideIcons.trash2, color: Colors.white, size: 32),
+            Icon(LucideIcons.trash2, color: Colors.white, size: 32),
             SizedBox(height: 4),
             Text(
               'Delete',
@@ -66,33 +66,34 @@ class EBookCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               Expanded(
-                 flex: 3,
-                 child: Container(
-                   decoration: BoxDecoration(
-                     color: Theme.of(context).colorScheme.primaryContainer,
-                     borderRadius: const BorderRadius.vertical(
-                       top: Radius.circular(12),
-                     ),
-                   ),
-                   child: showCover && entry.coverImageHtml != null
-                       ? ClipRRect(
-                           borderRadius: const BorderRadius.vertical(
-                             top: Radius.circular(12),
-                           ),
-                           child: Html(
-                             data: '<img src="${entry.coverImageHtml!}"/>',
-                           ),
-                         )
-                       : Center(
-                            child: Icon(
-                              LucideIcons.bookOpen,
-                              size: 64,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                         ),
-                 ),
-               ),
+              Expanded(
+                flex: 3,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(12),
+                    ),
+                  ),
+                  child: showCover && entry.coverImageHtml != null
+                      ? ClipRRect(
+                          borderRadius: const BorderRadius.vertical(
+                            top: Radius.circular(12),
+                          ),
+                          child: HtmlWidget(
+                            '<img src="${entry.coverImageHtml!}"/>',
+                            rebuildTriggers: [showCover],
+                          ),
+                        )
+                      : Center(
+                          child: Icon(
+                            LucideIcons.bookOpen,
+                            size: 64,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                ),
+              ),
               Expanded(
                 flex: 2,
                 child: Padding(
@@ -122,13 +123,13 @@ class EBookCard extends StatelessWidget {
                       const Spacer(),
                       Row(
                         children: [
-                           Icon(
-                             LucideIcons.book,
-                             size: 14,
-                             color: Theme.of(
-                               context,
-                             ).colorScheme.onSurface.withValues(alpha: 0.5),
-                           ),
+                          Icon(
+                            LucideIcons.book,
+                            size: 14,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurface.withValues(alpha: 0.5),
+                          ),
                           const SizedBox(width: 4),
                           Text(
                             '${entry.ebook.chapters.length} chapters',
