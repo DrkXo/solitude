@@ -1,8 +1,11 @@
+import 'dart:typed_data';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/utils.dart';
 
-class CoverImage extends StatelessWidget {
+class CoverImage extends StatefulWidget {
   final String? imagePath;
   final BoxFit fit;
   final double? width;
@@ -17,35 +20,65 @@ class CoverImage extends StatelessWidget {
   });
 
   @override
+  State<CoverImage> createState() => _CoverImageState();
+}
+
+class _CoverImageState extends State<CoverImage> {
+  Uint8List? _bytes;
+
+  @override
+  void initState() {
+    super.initState();
+    _decodeImage();
+  }
+
+  @override
+  void didUpdateWidget(CoverImage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.imagePath != widget.imagePath) {
+      _decodeImage();
+    }
+  }
+
+  void _decodeImage() {
+    if (widget.imagePath != null) {
+      _bytes = decodeDataUrl(widget.imagePath!);
+    } else {
+      _bytes = null;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (imagePath == null) {
+    if (widget.imagePath == null) {
       return const SizedBox.shrink();
     }
 
-    final bytes = decodeDataUrl(imagePath!);
-    if (bytes != null) {
+    if (_bytes != null) {
       return Image.memory(
-        bytes,
-        fit: fit,
-        width: width,
-        height: height,
+        _bytes!,
+        fit: widget.fit,
+        width: widget.width,
+        height: widget.height,
       );
     }
 
     // Fallback to network or asset if not data URL
-    if (imagePath!.startsWith('http')) {
-      return Image.network(
-        imagePath!,
-        fit: fit,
-        width: width,
-        height: height,
+    if (widget.imagePath!.startsWith('http')) {
+      return CachedNetworkImage(
+        imageUrl: widget.imagePath!,
+        fit: widget.fit,
+        width: widget.width,
+        height: widget.height,
+        placeholder: (context, url) => const SizedBox.shrink(),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
       );
     } else {
       return Image.asset(
-        imagePath!,
-        fit: fit,
-        width: width,
-        height: height,
+        widget.imagePath!,
+        fit: widget.fit,
+        width: widget.width,
+        height: widget.height,
       );
     }
   }
