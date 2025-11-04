@@ -35,7 +35,7 @@ class _ReaderPageState extends State<ReaderPage> {
     super.dispose();
   }
 
-  void _showChapterDialog(
+  void showChapterDialog(
     BuildContext context,
     int totalChapters,
     int currentChapterIndex,
@@ -130,157 +130,165 @@ class _ReaderPageState extends State<ReaderPage> {
                       body: SafeArea(
                         child: Stack(
                           children: [
-                            PageView.builder(
-                              controller: _pageController,
-                              scrollDirection:
-                                  settingsState
-                                          .appSettings
-                                          .behavior
-                                          .navigationMethod ==
-                                      NavigationMethod.swipeVertical
-                                  ? Axis.vertical
-                                  : Axis.horizontal,
-                              physics:
-                                  (settingsState
-                                              .appSettings
-                                              .behavior
-                                              .navigationMethod ==
-                                          NavigationMethod.swipeHorizontal ||
-                                      settingsState
-                                              .appSettings
-                                              .behavior
-                                              .navigationMethod ==
-                                          NavigationMethod.swipeVertical)
-                                  ? null
-                                  : NeverScrollableScrollPhysics(),
-                              itemCount: controller.totalChapters,
-                              itemBuilder: (context, index) => ReaderContent(
-                                controller: controller,
-                                settingsState: settingsState,
-                                chapterIndex: index,
-                                offset: chapterOffsets[index] ?? 0.0,
-                                onToggleBars: () =>
-                                    setState(() => _showBars = !_showBars),
-                                onTapDown: (details) {
-                                  if (settingsState
-                                          .appSettings
-                                          .behavior
-                                          .navigationMethod ==
-                                      NavigationMethod.tap) {
-                                    final screenWidth = MediaQuery.of(
-                                      context,
-                                    ).size.width;
-                                    final tapX = details.localPosition.dx;
+                             NotificationListener<ScrollNotification>(
+                               onNotification: (notification) {
+                                 if (notification is ScrollStartNotification) {
+                                   setState(() => _showBars = false);
+                                 }
+                                 return false;
+                               },
+                               child: PageView.builder(
+                                 controller: _pageController,
+                                 scrollDirection:
+                                     settingsState
+                                             .appSettings
+                                             .behavior
+                                             .navigationMethod ==
+                                         NavigationMethod.swipeVertical
+                                     ? Axis.vertical
+                                     : Axis.horizontal,
+                                 physics:
+                                     (settingsState
+                                                 .appSettings
+                                                 .behavior
+                                                 .navigationMethod ==
+                                             NavigationMethod.swipeHorizontal ||
+                                         settingsState
+                                                 .appSettings
+                                                 .behavior
+                                                 .navigationMethod ==
+                                             NavigationMethod.swipeVertical)
+                                     ? null
+                                     : NeverScrollableScrollPhysics(),
+                                 itemCount: controller.totalChapters,
+                                 itemBuilder: (context, index) => ReaderContent(
+                                   controller: controller,
+                                   settingsState: settingsState,
+                                   chapterIndex: index,
+                                   offset: chapterOffsets[index] ?? 0.0,
+                                   onToggleBars: () =>
+                                       setState(() => _showBars = !_showBars),
+                                   onTapDown: (details) {
+                                     if (settingsState
+                                             .appSettings
+                                             .behavior
+                                             .navigationMethod ==
+                                         NavigationMethod.tap) {
+                                       final screenWidth = MediaQuery.of(
+                                         context,
+                                       ).size.width;
+                                       final tapX = details.localPosition.dx;
 
-                                    if (tapX < screenWidth * 0.3) {
-                                      // Left zone
-                                      final action = settingsState
-                                          .appSettings
-                                          .behavior
-                                          .tapZones
-                                          .left;
-                                      if (action == 'previousPage' &&
-                                          index > 0) {
-                                        context.read<ReaderBloc>().add(
-                                          const ReaderEvent.previousChapter(),
-                                        );
-                                      }
-                                    } else if (tapX > screenWidth * 0.7) {
-                                      // Right zone
-                                      final action = settingsState
-                                          .appSettings
-                                          .behavior
-                                          .tapZones
-                                          .right;
-                                      if (action == 'nextPage' &&
-                                          index <
-                                              controller.totalChapters - 1) {
-                                        context.read<ReaderBloc>().add(
-                                          const ReaderEvent.nextChapter(),
-                                        );
-                                      }
-                                    } else {
-                                      // Center zone
-                                      final action = settingsState
-                                          .appSettings
-                                          .behavior
-                                          .tapZones
-                                          .center;
-                                      if (action == 'menuToggle') {
-                                        setState(() => _showBars = !_showBars);
-                                      }
-                                    }
-                                  }
-                                },
-                                onHorizontalDragEnd:
-                                    settingsState
-                                            .appSettings
-                                            .behavior
-                                            .navigationMethod ==
-                                        NavigationMethod.swipeHorizontal
-                                    ? (details) {
-                                        if (details
-                                                .velocity
-                                                .pixelsPerSecond
-                                                .dx >
-                                            0) {
-                                          if (index > 0) {
-                                            context.read<ReaderBloc>().add(
-                                              const ReaderEvent.previousChapter(),
-                                            );
-                                          }
-                                        } else if (details
-                                                .velocity
-                                                .pixelsPerSecond
-                                                .dx <
-                                            0) {
-                                          if (index <
-                                              controller.totalChapters - 1) {
-                                            context.read<ReaderBloc>().add(
-                                              const ReaderEvent.nextChapter(),
-                                            );
-                                          }
-                                        }
-                                      }
-                                    : null,
-                                onVerticalDragEnd:
-                                    settingsState
-                                            .appSettings
-                                            .behavior
-                                            .navigationMethod ==
-                                        NavigationMethod.swipeVertical
-                                    ? (details) {
-                                        if (details
-                                                .velocity
-                                                .pixelsPerSecond
-                                                .dy <
-                                            0) {
-                                          if (index <
-                                              controller.totalChapters - 1) {
-                                            context.read<ReaderBloc>().add(
-                                              const ReaderEvent.nextChapter(),
-                                            );
-                                          }
-                                        } else if (details
-                                                .velocity
-                                                .pixelsPerSecond
-                                                .dy >
-                                            0) {
-                                          if (index > 0) {
-                                            context.read<ReaderBloc>().add(
-                                              const ReaderEvent.previousChapter(),
-                                            );
-                                          }
-                                        }
-                                      }
-                                    : null,
-                              ),
-                              onPageChanged: (page) {
-                                context.read<ReaderBloc>().add(
-                                  ReaderEvent.updateReadingProgress(page),
-                                );
-                              },
-                            ),
+                                       if (tapX < screenWidth * 0.3) {
+                                         // Left zone
+                                         final action = settingsState
+                                             .appSettings
+                                             .behavior
+                                             .tapZones
+                                             .left;
+                                         if (action == 'previousPage' &&
+                                             index > 0) {
+                                           context.read<ReaderBloc>().add(
+                                             const ReaderEvent.previousChapter(),
+                                           );
+                                         }
+                                       } else if (tapX > screenWidth * 0.7) {
+                                         // Right zone
+                                         final action = settingsState
+                                             .appSettings
+                                             .behavior
+                                             .tapZones
+                                             .right;
+                                         if (action == 'nextPage' &&
+                                             index <
+                                                 controller.totalChapters - 1) {
+                                           context.read<ReaderBloc>().add(
+                                             const ReaderEvent.nextChapter(),
+                                           );
+                                         }
+                                       } else {
+                                         // Center zone
+                                         final action = settingsState
+                                             .appSettings
+                                             .behavior
+                                             .tapZones
+                                             .center;
+                                         if (action == 'menuToggle') {
+                                           setState(() => _showBars = !_showBars);
+                                         }
+                                       }
+                                     }
+                                   },
+                                   onHorizontalDragEnd:
+                                       settingsState
+                                               .appSettings
+                                               .behavior
+                                               .navigationMethod ==
+                                           NavigationMethod.swipeHorizontal
+                                       ? (details) {
+                                           if (details
+                                                   .velocity
+                                                   .pixelsPerSecond
+                                                   .dx >
+                                               0) {
+                                             if (index > 0) {
+                                               context.read<ReaderBloc>().add(
+                                                 const ReaderEvent.previousChapter(),
+                                               );
+                                             }
+                                           } else if (details
+                                                   .velocity
+                                                   .pixelsPerSecond
+                                                   .dx <
+                                               0) {
+                                             if (index <
+                                                 controller.totalChapters - 1) {
+                                               context.read<ReaderBloc>().add(
+                                                 const ReaderEvent.nextChapter(),
+                                               );
+                                             }
+                                           }
+                                         }
+                                       : null,
+                                   onVerticalDragEnd:
+                                       settingsState
+                                               .appSettings
+                                               .behavior
+                                               .navigationMethod ==
+                                           NavigationMethod.swipeVertical
+                                       ? (details) {
+                                           if (details
+                                                   .velocity
+                                                   .pixelsPerSecond
+                                                   .dy <
+                                               0) {
+                                             if (index <
+                                                 controller.totalChapters - 1) {
+                                               context.read<ReaderBloc>().add(
+                                                 const ReaderEvent.nextChapter(),
+                                               );
+                                             }
+                                           } else if (details
+                                                   .velocity
+                                                   .pixelsPerSecond
+                                                   .dy >
+                                               0) {
+                                             if (index > 0) {
+                                               context.read<ReaderBloc>().add(
+                                                 const ReaderEvent.previousChapter(),
+                                               );
+                                             }
+                                           }
+                                         }
+                                       : null,
+                                 ),
+                                 onPageChanged: (page) {
+                                   context.read<ReaderBloc>().add(
+                                     ReaderEvent.updateReadingProgress(page),
+                                   );
+                                 },
+                               ),
+                             ),
                             ReaderTopBar(
                               showBars: _showBars,
                             ),
@@ -288,7 +296,7 @@ class _ReaderPageState extends State<ReaderPage> {
                               showBars: _showBars,
                               currentChapterIndex: currentChapterIndex,
                               totalChapters: controller.totalChapters,
-                              onChapterJump: (context) => _showChapterDialog(
+                              onChapterJump: (context) => showChapterDialog(
                                 context,
                                 controller.totalChapters,
                                 currentChapterIndex,
