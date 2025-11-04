@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:solitude/src/core/widgets/widgets.dart';
 import 'package:solitude/src/features/library/data/models/ebook_entry.dart';
 import 'package:solitude/src/features/library/presentation/bloc/library_bloc.dart';
 import 'package:solitude/src/router/app_router.dart';
@@ -65,14 +65,16 @@ class EBookTile extends StatelessWidget {
                   color: Theme.of(context).colorScheme.primaryContainer,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: entry.coverImagePath != null
-                    ? ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: HtmlWidget(
-                          '<img src="${entry.coverImagePath!}"/>',
-                          rebuildTriggers: [showCover],
-                        ),
-                      )
+                 child: entry.coverImagePath != null
+                     ? ClipRRect(
+                         borderRadius: BorderRadius.circular(8),
+                         child: SizedBox.expand(
+                           child: CoverImage(
+                             imagePath: entry.coverImagePath,
+                             fit: BoxFit.cover,
+                           ),
+                         ),
+                       )
                     : Center(
                         child: Icon(
                           LucideIcons.bookOpen,
