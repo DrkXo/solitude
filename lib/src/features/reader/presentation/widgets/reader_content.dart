@@ -97,7 +97,7 @@ class _ReaderContentState extends State<ReaderContent> {
                     ],
                     widget.controller.getFullChapterContent().stripStyles(),
                     customWidgetBuilder: (element) => element.toCustomWidget(
-                      settingsState: widget.settingsState,
+                      appSettings: widget.settingsState.appSettings,
                     ),
                   ),
                 ),

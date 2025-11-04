@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:solitude/src/features/settings/data/models/portable_settings.dart';
 import 'package:solitude/src/features/settings/data/models/settings_constants.dart';
-import 'package:solitude/src/features/settings/presentation/bloc/settings_bloc.dart';
 
 extension StringExtensions on String {
   String stripStyles() {
@@ -22,14 +22,14 @@ extension StringExtensions on String {
 
 extension ElementWidgetExtension on dynamic {
   Widget? toCustomWidget({
-    required SettingsState settingsState,
+    required AppSettings appSettings,
   }) {
     final text = this.text?.trim();
     if (text == null || text.isEmpty) return null;
     final localName = this.localName as String?;
 
     // Compute textAlign
-    final textAlign = switch (settingsState.appSettings.display.textAlign) {
+    final textAlign = switch (appSettings.display.textAlign) {
       TextAlignOption.left => TextAlign.left,
       TextAlignOption.right => TextAlign.right,
       TextAlignOption.center => TextAlign.center,
@@ -38,7 +38,7 @@ extension ElementWidgetExtension on dynamic {
 
     // Compute textColor
     Color baseColor;
-    switch (settingsState.appSettings.display.theme) {
+    switch (appSettings.display.theme) {
       case ThemeOption.light:
         baseColor = Colors.black;
         break;
@@ -49,8 +49,8 @@ extension ElementWidgetExtension on dynamic {
         baseColor = Colors.black;
         break;
     }
-    final textColor = settingsState.appSettings.accessibility.highContrast
-        ? (settingsState.appSettings.display.theme == ThemeOption.dark
+    final textColor = appSettings.accessibility.highContrast
+        ? (appSettings.display.theme == ThemeOption.dark
               ? Colors.white
               : Colors.black)
         : baseColor;
@@ -58,15 +58,15 @@ extension ElementWidgetExtension on dynamic {
     // Compute footerColor
     final footerColor = textColor.withValues(alpha: 0.7);
     TextStyle baseStyle = TextStyle(
-      fontFamily: settingsState.appSettings.accessibility.dyslexicFont
+      fontFamily: appSettings.accessibility.dyslexicFont
           ? 'OpenDyslexic'
-          : settingsState.appSettings.display.fontFamily.displayName,
-      fontSize: settingsState.appSettings.display.fontSize,
-      fontWeight: settingsState.appSettings.display.fontWeight == 'bold'
+          : appSettings.display.fontFamily.displayName,
+      fontSize: appSettings.display.fontSize,
+      fontWeight: appSettings.display.fontWeight == 'bold'
           ? FontWeight.bold
           : FontWeight.normal,
-      height: settingsState.appSettings.display.lineHeight,
-      letterSpacing: settingsState.appSettings.display.letterSpacing,
+      height: appSettings.display.lineHeight,
+      letterSpacing: appSettings.display.letterSpacing,
       color: textColor,
     );
     switch (localName) {
@@ -75,96 +75,96 @@ extension ElementWidgetExtension on dynamic {
       case 'p':
         return Padding(
           padding: EdgeInsets.only(
-            bottom: settingsState.appSettings.display.paragraphSpacing * 10,
+            bottom: appSettings.display.paragraphSpacing * 10,
           ),
           child: Text(text, style: baseStyle, textAlign: textAlign),
         );
       case 'h1':
         final headerStyle = baseStyle.copyWith(
           fontSize:
-              settingsState.appSettings.display.fontSize *
-              settingsState.appSettings.display.headerFontSizeMultiplier,
+              appSettings.display.fontSize *
+              appSettings.display.headerFontSizeMultiplier,
           fontWeight: FontWeight.bold,
         );
         return Padding(
           padding: EdgeInsets.only(
-            top: settingsState.appSettings.display.headerMarginTop,
-            bottom: settingsState.appSettings.display.headerMarginBottom,
+            top: appSettings.display.headerMarginTop,
+            bottom: appSettings.display.headerMarginBottom,
           ),
           child: Text(text, style: headerStyle, textAlign: textAlign),
         );
       case 'h2':
         final headerStyle = baseStyle.copyWith(
           fontSize:
-              settingsState.appSettings.display.fontSize *
-              (settingsState.appSettings.display.headerFontSizeMultiplier -
+              appSettings.display.fontSize *
+              (appSettings.display.headerFontSizeMultiplier -
                   0.1),
           fontWeight: FontWeight.bold,
         );
         return Padding(
           padding: EdgeInsets.only(
-            top: settingsState.appSettings.display.headerMarginTop,
-            bottom: settingsState.appSettings.display.headerMarginBottom,
+            top: appSettings.display.headerMarginTop,
+            bottom: appSettings.display.headerMarginBottom,
           ),
           child: Text(text, style: headerStyle, textAlign: textAlign),
         );
       case 'h3':
         final headerStyle = baseStyle.copyWith(
           fontSize:
-              settingsState.appSettings.display.fontSize *
-              (settingsState.appSettings.display.headerFontSizeMultiplier -
+              appSettings.display.fontSize *
+              (appSettings.display.headerFontSizeMultiplier -
                   0.2),
           fontWeight: FontWeight.bold,
         );
         return Padding(
           padding: EdgeInsets.only(
-            top: settingsState.appSettings.display.headerMarginTop,
-            bottom: settingsState.appSettings.display.headerMarginBottom,
+            top: appSettings.display.headerMarginTop,
+            bottom: appSettings.display.headerMarginBottom,
           ),
           child: Text(text, style: headerStyle, textAlign: textAlign),
         );
       case 'h4':
         final headerStyle = baseStyle.copyWith(
           fontSize:
-              settingsState.appSettings.display.fontSize *
-              (settingsState.appSettings.display.headerFontSizeMultiplier -
+              appSettings.display.fontSize *
+              (appSettings.display.headerFontSizeMultiplier -
                   0.3),
           fontWeight: FontWeight.bold,
         );
         return Padding(
           padding: EdgeInsets.only(
-            top: settingsState.appSettings.display.headerMarginTop,
-            bottom: settingsState.appSettings.display.headerMarginBottom,
+            top: appSettings.display.headerMarginTop,
+            bottom: appSettings.display.headerMarginBottom,
           ),
           child: Text(text, style: headerStyle, textAlign: textAlign),
         );
       case 'h5':
         final headerStyle = baseStyle.copyWith(
           fontSize:
-              settingsState.appSettings.display.fontSize *
-              (settingsState.appSettings.display.headerFontSizeMultiplier -
+              appSettings.display.fontSize *
+              (appSettings.display.headerFontSizeMultiplier -
                   0.4),
           fontWeight: FontWeight.bold,
         );
         return Padding(
           padding: EdgeInsets.only(
-            top: settingsState.appSettings.display.headerMarginTop,
-            bottom: settingsState.appSettings.display.headerMarginBottom,
+            top: appSettings.display.headerMarginTop,
+            bottom: appSettings.display.headerMarginBottom,
           ),
           child: Text(text, style: headerStyle, textAlign: textAlign),
         );
       case 'h6':
         final headerStyle = baseStyle.copyWith(
           fontSize:
-              settingsState.appSettings.display.fontSize *
-              (settingsState.appSettings.display.headerFontSizeMultiplier -
+              appSettings.display.fontSize *
+              (appSettings.display.headerFontSizeMultiplier -
                   0.5),
           fontWeight: FontWeight.bold,
         );
         return Padding(
           padding: EdgeInsets.only(
-            top: settingsState.appSettings.display.headerMarginTop,
-            bottom: settingsState.appSettings.display.headerMarginBottom,
+            top: appSettings.display.headerMarginTop,
+            bottom: appSettings.display.headerMarginBottom,
           ),
           child: Text(text, style: headerStyle, textAlign: textAlign),
         );
@@ -198,7 +198,7 @@ extension ElementWidgetExtension on dynamic {
             text,
             style: baseStyle.copyWith(
               fontFamily: 'monospace',
-              fontSize: settingsState.appSettings.display.fontSize * 0.9,
+              fontSize: appSettings.display.fontSize * 0.9,
             ),
             textAlign: TextAlign.left,
           ),
@@ -208,7 +208,7 @@ extension ElementWidgetExtension on dynamic {
           text,
           style: baseStyle.copyWith(
             fontFamily: 'monospace',
-            fontSize: settingsState.appSettings.display.fontSize * 0.9,
+            fontSize: appSettings.display.fontSize * 0.9,
             backgroundColor: textColor.withValues(alpha: 0.1),
           ),
           textAlign: textAlign,
@@ -256,25 +256,25 @@ extension ElementWidgetExtension on dynamic {
           ),
         );
       case 'br':
-        return SizedBox(height: settingsState.appSettings.display.fontSize * 0.5);
+        return SizedBox(height: appSettings.display.fontSize * 0.5);
       case 'sup':
         return Transform.translate(
-          offset: Offset(0, -settingsState.appSettings.display.fontSize * 0.3),
+          offset: Offset(0, -appSettings.display.fontSize * 0.3),
           child: Text(
             text,
             style: baseStyle.copyWith(
-              fontSize: settingsState.appSettings.display.fontSize * 0.8,
+              fontSize: appSettings.display.fontSize * 0.8,
             ),
             textAlign: textAlign,
           ),
         );
       case 'sub':
         return Transform.translate(
-          offset: Offset(0, settingsState.appSettings.display.fontSize * 0.2),
+          offset: Offset(0, appSettings.display.fontSize * 0.2),
           child: Text(
             text,
             style: baseStyle.copyWith(
-              fontSize: settingsState.appSettings.display.fontSize * 0.8,
+              fontSize: appSettings.display.fontSize * 0.8,
             ),
             textAlign: textAlign,
           ),
@@ -291,7 +291,7 @@ extension ElementWidgetExtension on dynamic {
         return Text(
           text,
           style: baseStyle.copyWith(
-            fontSize: settingsState.appSettings.display.fontSize * 0.9,
+            fontSize: appSettings.display.fontSize * 0.9,
           ),
           textAlign: textAlign,
         );
@@ -305,13 +305,13 @@ extension ElementWidgetExtension on dynamic {
         );
       case 'footer':
         final footerStyle = baseStyle.copyWith(
-          fontSize: settingsState.appSettings.display.fontSize * 0.9,
+          fontSize: appSettings.display.fontSize * 0.9,
           color: footerColor,
         );
         return Padding(
           padding: EdgeInsets.only(
-            top: settingsState.appSettings.display.footerMarginTop,
-            bottom: settingsState.appSettings.display.footerMarginBottom,
+            top: appSettings.display.footerMarginTop,
+            bottom: appSettings.display.footerMarginBottom,
           ),
           child: Text(text, style: footerStyle, textAlign: textAlign),
         );
