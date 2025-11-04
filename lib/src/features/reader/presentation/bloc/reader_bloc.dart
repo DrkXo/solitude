@@ -14,7 +14,10 @@ part 'reader_bloc.freezed.dart';
 @freezed
 abstract class ReaderEvent with _$ReaderEvent {
   const factory ReaderEvent.started() = _Started;
-  const factory ReaderEvent.loadEbook(String ebookId) = _LoadEbook;
+  const factory ReaderEvent.loadEbook(
+    String ebookId, {
+    String? coverImage,
+  }) = _LoadEbook;
   const factory ReaderEvent.nextChapter() = _NextChapter;
   const factory ReaderEvent.previousChapter() = _PreviousChapter;
   const factory ReaderEvent.nextPage() = _NextPage;
@@ -34,7 +37,7 @@ abstract class ReaderEvent with _$ReaderEvent {
 @freezed
 abstract class ReaderState with _$ReaderState {
   const factory ReaderState.initial() = _Initial;
-  const factory ReaderState.loading() = _Loading;
+  const factory ReaderState.loading(String? coverImagePath) = _Loading;
   const factory ReaderState.loaded(
     EbookXController controller,
     int currentChapterIndex,
@@ -53,7 +56,7 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
   }) : _readerService = readerService,
        _libraryService = libraryService,
        _appSettingsService = appSettingsService,
-       super(_Initial()) {
+       super(ReaderState.initial()) {
     on<_Started>(_onStarted);
     on<_LoadEbook>(_onLoadEbook);
     on<_NextChapter>(_onNextChapter);
@@ -81,49 +84,51 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
   }
 
   void _onLoadEbook(_LoadEbook event, Emitter<ReaderState> emit) async {
-    emit(ReaderState.loading());
-
+    if (event.coverImage != null) {
+      emit(ReaderState.loading(event.coverImage));
+    }
     try {
       final entry = _libraryService.getEbook(event.ebookId);
       if (entry == null) {
         emit(ReaderState.error('Ebook not found'));
         return;
       }
-      final ebook = entry.ebook;
+      emit(ReaderState.loading(entry.coverImagePath));
+
       _currentEbookId = event.ebookId;
 
       _controller = EbookXController(
-        ebook,
+        entry.ebook,
       );
 
-       // Load saved reading progress if rememberLastPosition is enabled
-       final progress =
-           _appSettingsService.appSettings.behavior.rememberLastPosition
-           ? _readerService.getReadingProgress(event.ebookId)
-           : null;
-       Map<int, double> chapterOffsets = {};
-       if (progress != null) {
-         if (progress.currentChapter > 0) {
-           _controller!.goToChapter(progress.currentChapter);
-         }
-         if (progress.currentPage > 0) {
-           _controller!.goToPage(progress.currentPage);
-         }
-         // Load bookmarks
-         for (final bookmark in progress.bookmarks) {
-           _controller!.goToChapter(bookmark.chapterIndex);
-           _controller!.goToPage(bookmark.pageIndex);
-           _controller!.addBookmark(bookmark.title);
-         }
-         // Go back to current position
-         if (progress.currentChapter > 0) {
-           _controller!.goToChapter(progress.currentChapter);
-         }
-         if (progress.currentPage > 0) {
-           _controller!.goToPage(progress.currentPage);
-         }
-         chapterOffsets[progress.currentChapter] = progress.pageOffset;
-       }
+      // Load saved reading progress if rememberLastPosition is enabled
+      final progress =
+          _appSettingsService.appSettings.behavior.rememberLastPosition
+          ? _readerService.getReadingProgress(event.ebookId)
+          : null;
+      Map<int, double> chapterOffsets = {};
+      if (progress != null) {
+        if (progress.currentChapter > 0) {
+          _controller!.goToChapter(progress.currentChapter);
+        }
+        if (progress.currentPage > 0) {
+          _controller!.goToPage(progress.currentPage);
+        }
+        // Load bookmarks
+        for (final bookmark in progress.bookmarks) {
+          _controller!.goToChapter(bookmark.chapterIndex);
+          _controller!.goToPage(bookmark.pageIndex);
+          _controller!.addBookmark(bookmark.title);
+        }
+        // Go back to current position
+        if (progress.currentChapter > 0) {
+          _controller!.goToChapter(progress.currentChapter);
+        }
+        if (progress.currentPage > 0) {
+          _controller!.goToPage(progress.currentPage);
+        }
+        chapterOffsets[progress.currentChapter] = progress.pageOffset;
+      }
 
       _emitLoadedState(emit, chapterOffsets: chapterOffsets);
     } catch (e) {
@@ -215,19 +220,17 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
     }
   }
 
-
-
   void _onAddBookmark(_AddBookmark event, Emitter<ReaderState> emit) async {
     if (_controller != null && state is _Loaded && _currentEbookId != null) {
       _controller!.addBookmark(event.title);
       final offsets = (state as _Loaded).chapterOffsets;
-       await _readerService.updateReadingProgress(
-         _currentEbookId!,
-         _controller!.currentChapterIndex,
-         currentPage: _controller!.currentPageIndex,
-         pageOffset: offsets[_controller!.currentChapterIndex] ?? 0.0,
-         bookmarks: _controller!.bookmarks,
-       );
+      await _readerService.updateReadingProgress(
+        _currentEbookId!,
+        _controller!.currentChapterIndex,
+        currentPage: _controller!.currentPageIndex,
+        pageOffset: offsets[_controller!.currentChapterIndex] ?? 0.0,
+        bookmarks: _controller!.bookmarks,
+      );
       _emitLoadedState(emit);
     }
   }
@@ -239,13 +242,13 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
     if (_controller != null && state is _Loaded && _currentEbookId != null) {
       _controller!.removeBookmark(event.index);
       final offsets = (state as _Loaded).chapterOffsets;
-       await _readerService.updateReadingProgress(
-         _currentEbookId!,
-         _controller!.currentChapterIndex,
-         currentPage: _controller!.currentPageIndex,
-         pageOffset: offsets[_controller!.currentChapterIndex] ?? 0.0,
-         bookmarks: _controller!.bookmarks,
-       );
+      await _readerService.updateReadingProgress(
+        _currentEbookId!,
+        _controller!.currentChapterIndex,
+        currentPage: _controller!.currentPageIndex,
+        pageOffset: offsets[_controller!.currentChapterIndex] ?? 0.0,
+        bookmarks: _controller!.bookmarks,
+      );
       _emitLoadedState(emit);
     }
   }

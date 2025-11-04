@@ -23,6 +23,8 @@ class AppRouter {
               name: AppRoutes.reader.name,
               pageBuilder: (context, state) {
                 final ebookId = state.pathParameters['ebookId']!;
+                final coverImage = state.extra as String?;
+
                 return NoTransitionPage(
                   child: BlocProvider<ReaderBloc>(
                     create: (context) {
@@ -31,7 +33,9 @@ class AppRouter {
                         libraryService: _ebookLibraryService,
                         appSettingsService: _appSettingsService,
                       );
-                      bloc.add(ReaderEvent.loadEbook(ebookId));
+                      bloc.add(
+                        ReaderEvent.loadEbook(ebookId, coverImage: coverImage),
+                      );
                       return bloc;
                     },
                     child: const ReaderPage(),

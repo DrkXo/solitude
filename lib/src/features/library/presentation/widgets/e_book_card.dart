@@ -55,6 +55,7 @@ class EBookCard extends StatelessWidget {
             pathParameters: {
               'ebookId': entry.id,
             },
+            extra: entry.coverImagePath,
           );
         },
         borderRadius: BorderRadius.circular(12),

@@ -1,6 +1,5 @@
-import 'dart:typed_data';
-
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/utils.dart';
@@ -29,6 +28,7 @@ class _CoverImageState extends State<CoverImage> {
   @override
   void initState() {
     super.initState();
+    
     _decodeImage();
   }
 
@@ -43,8 +43,10 @@ class _CoverImageState extends State<CoverImage> {
   void _decodeImage() {
     if (widget.imagePath != null) {
       _bytes = decodeDataUrl(widget.imagePath!);
+      
     } else {
       _bytes = null;
+      
     }
   }
 

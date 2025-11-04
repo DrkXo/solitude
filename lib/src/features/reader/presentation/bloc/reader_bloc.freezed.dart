@@ -152,11 +152,11 @@ return updateChapterOffset(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( String ebookId)?  loadEbook,TResult Function()?  nextChapter,TResult Function()?  previousChapter,TResult Function()?  nextPage,TResult Function()?  previousPage,TResult Function( String title)?  addBookmark,TResult Function( int index)?  removeBookmark,TResult Function( int index)?  goToBookmark,TResult Function()?  startReading,TResult Function( int chapterIndex)?  updateReadingProgress,TResult Function( int chapterIndex,  double offset)?  updateChapterOffset,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( String ebookId,  String? coverImagePath)?  loadEbook,TResult Function()?  nextChapter,TResult Function()?  previousChapter,TResult Function()?  nextPage,TResult Function()?  previousPage,TResult Function( String title)?  addBookmark,TResult Function( int index)?  removeBookmark,TResult Function( int index)?  goToBookmark,TResult Function()?  startReading,TResult Function( int chapterIndex)?  updateReadingProgress,TResult Function( int chapterIndex,  double offset)?  updateChapterOffset,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _LoadEbook() when loadEbook != null:
-return loadEbook(_that.ebookId);case _NextChapter() when nextChapter != null:
+return loadEbook(_that.ebookId,_that.coverImage);case _NextChapter() when nextChapter != null:
 return nextChapter();case _PreviousChapter() when previousChapter != null:
 return previousChapter();case _NextPage() when nextPage != null:
 return nextPage();case _PreviousPage() when previousPage != null:
@@ -184,11 +184,11 @@ return updateChapterOffset(_that.chapterIndex,_that.offset);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( String ebookId)  loadEbook,required TResult Function()  nextChapter,required TResult Function()  previousChapter,required TResult Function()  nextPage,required TResult Function()  previousPage,required TResult Function( String title)  addBookmark,required TResult Function( int index)  removeBookmark,required TResult Function( int index)  goToBookmark,required TResult Function()  startReading,required TResult Function( int chapterIndex)  updateReadingProgress,required TResult Function( int chapterIndex,  double offset)  updateChapterOffset,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( String ebookId,  String? coverImagePath)  loadEbook,required TResult Function()  nextChapter,required TResult Function()  previousChapter,required TResult Function()  nextPage,required TResult Function()  previousPage,required TResult Function( String title)  addBookmark,required TResult Function( int index)  removeBookmark,required TResult Function( int index)  goToBookmark,required TResult Function()  startReading,required TResult Function( int chapterIndex)  updateReadingProgress,required TResult Function( int chapterIndex,  double offset)  updateChapterOffset,}) {final _that = this;
 switch (_that) {
 case _Started():
 return started();case _LoadEbook():
-return loadEbook(_that.ebookId);case _NextChapter():
+return loadEbook(_that.ebookId,_that.coverImage);case _NextChapter():
 return nextChapter();case _PreviousChapter():
 return previousChapter();case _NextPage():
 return nextPage();case _PreviousPage():
@@ -215,11 +215,11 @@ return updateChapterOffset(_that.chapterIndex,_that.offset);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( String ebookId)?  loadEbook,TResult? Function()?  nextChapter,TResult? Function()?  previousChapter,TResult? Function()?  nextPage,TResult? Function()?  previousPage,TResult? Function( String title)?  addBookmark,TResult? Function( int index)?  removeBookmark,TResult? Function( int index)?  goToBookmark,TResult? Function()?  startReading,TResult? Function( int chapterIndex)?  updateReadingProgress,TResult? Function( int chapterIndex,  double offset)?  updateChapterOffset,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( String ebookId,  String? coverImagePath)?  loadEbook,TResult? Function()?  nextChapter,TResult? Function()?  previousChapter,TResult? Function()?  nextPage,TResult? Function()?  previousPage,TResult? Function( String title)?  addBookmark,TResult? Function( int index)?  removeBookmark,TResult? Function( int index)?  goToBookmark,TResult? Function()?  startReading,TResult? Function( int chapterIndex)?  updateReadingProgress,TResult? Function( int chapterIndex,  double offset)?  updateChapterOffset,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _LoadEbook() when loadEbook != null:
-return loadEbook(_that.ebookId);case _NextChapter() when nextChapter != null:
+return loadEbook(_that.ebookId,_that.coverImage);case _NextChapter() when nextChapter != null:
 return nextChapter();case _PreviousChapter() when previousChapter != null:
 return previousChapter();case _NextPage() when nextPage != null:
 return nextPage();case _PreviousPage() when previousPage != null:
@@ -273,10 +273,11 @@ String toString() {
 
 
 class _LoadEbook implements ReaderEvent {
-  const _LoadEbook(this.ebookId);
+  const _LoadEbook(this.ebookId, {this.coverImage});
   
 
  final  String ebookId;
+ final  String? coverImage;
 
 /// Create a copy of ReaderEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -288,16 +289,16 @@ _$LoadEbookCopyWith<_LoadEbook> get copyWith => __$LoadEbookCopyWithImpl<_LoadEb
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadEbook&&(identical(other.ebookId, ebookId) || other.ebookId == ebookId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoadEbook&&(identical(other.ebookId, ebookId) || other.ebookId == ebookId)&&(identical(other.coverImage, coverImage) || other.coverImage == coverImage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,ebookId);
+int get hashCode => Object.hash(runtimeType,ebookId,coverImage);
 
 @override
 String toString() {
-  return 'ReaderEvent.loadEbook(ebookId: $ebookId)';
+  return 'ReaderEvent.loadEbook(ebookId: $ebookId, coverImagePath: $coverImage)';
 }
 
 
@@ -308,7 +309,7 @@ abstract mixin class _$LoadEbookCopyWith<$Res> implements $ReaderEventCopyWith<$
   factory _$LoadEbookCopyWith(_LoadEbook value, $Res Function(_LoadEbook) _then) = __$LoadEbookCopyWithImpl;
 @useResult
 $Res call({
- String ebookId
+ String ebookId, String? coverImagePath
 });
 
 
@@ -325,10 +326,11 @@ class __$LoadEbookCopyWithImpl<$Res>
 
 /// Create a copy of ReaderEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? ebookId = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? ebookId = null,Object? coverImagePath = freezed,}) {
   return _then(_LoadEbook(
 null == ebookId ? _self.ebookId : ebookId // ignore: cast_nullable_to_non_nullable
-as String,
+as String,coverImage: freezed == coverImagePath ? _self.coverImage : coverImagePath // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -944,11 +946,11 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( EbookXController controller,  int currentChapterIndex,  int currentPageIndex,  Map<int, double> chapterOffsets,  List<Bookmark> bookmarks)?  loaded,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( String? coverImagePath)?  loading,TResult Function( EbookXController controller,  int currentChapterIndex,  int currentPageIndex,  Map<int, double> chapterOffsets,  List<Bookmark> bookmarks)?  loaded,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
-return loading();case _Loaded() when loaded != null:
+return loading(_that.coverImagePath);case _Loaded() when loaded != null:
 return loaded(_that.controller,_that.currentChapterIndex,_that.currentPageIndex,_that.chapterOffsets,_that.bookmarks);case _Error() when error != null:
 return error(_that.message);case _:
   return orElse();
@@ -968,11 +970,11 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( EbookXController controller,  int currentChapterIndex,  int currentPageIndex,  Map<int, double> chapterOffsets,  List<Bookmark> bookmarks)  loaded,required TResult Function( String message)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( String? coverImagePath)  loading,required TResult Function( EbookXController controller,  int currentChapterIndex,  int currentPageIndex,  Map<int, double> chapterOffsets,  List<Bookmark> bookmarks)  loaded,required TResult Function( String message)  error,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
-return loading();case _Loaded():
+return loading(_that.coverImagePath);case _Loaded():
 return loaded(_that.controller,_that.currentChapterIndex,_that.currentPageIndex,_that.chapterOffsets,_that.bookmarks);case _Error():
 return error(_that.message);case _:
   throw StateError('Unexpected subclass');
@@ -991,11 +993,11 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( EbookXController controller,  int currentChapterIndex,  int currentPageIndex,  Map<int, double> chapterOffsets,  List<Bookmark> bookmarks)?  loaded,TResult? Function( String message)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( String? coverImagePath)?  loading,TResult? Function( EbookXController controller,  int currentChapterIndex,  int currentPageIndex,  Map<int, double> chapterOffsets,  List<Bookmark> bookmarks)?  loaded,TResult? Function( String message)?  error,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
-return loading();case _Loaded() when loaded != null:
+return loading(_that.coverImagePath);case _Loaded() when loaded != null:
 return loaded(_that.controller,_that.currentChapterIndex,_that.currentPageIndex,_that.chapterOffsets,_that.bookmarks);case _Error() when error != null:
 return error(_that.message);case _:
   return null;
@@ -1041,33 +1043,67 @@ String toString() {
 
 
 class _Loading implements ReaderState {
-  const _Loading();
+  const _Loading(this.coverImagePath);
   
 
+ final  String? coverImagePath;
 
-
+/// Create a copy of ReaderState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoadingCopyWith<_Loading> get copyWith => __$LoadingCopyWithImpl<_Loading>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading&&(identical(other.coverImagePath, coverImagePath) || other.coverImagePath == coverImagePath));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,coverImagePath);
 
 @override
 String toString() {
-  return 'ReaderState.loading()';
+  return 'ReaderState.loading(coverImagePath: $coverImagePath)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$LoadingCopyWith<$Res> implements $ReaderStateCopyWith<$Res> {
+  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) _then) = __$LoadingCopyWithImpl;
+@useResult
+$Res call({
+ String? coverImagePath
+});
 
 
+
+
+}
+/// @nodoc
+class __$LoadingCopyWithImpl<$Res>
+    implements _$LoadingCopyWith<$Res> {
+  __$LoadingCopyWithImpl(this._self, this._then);
+
+  final _Loading _self;
+  final $Res Function(_Loading) _then;
+
+/// Create a copy of ReaderState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? coverImagePath = freezed,}) {
+  return _then(_Loading(
+freezed == coverImagePath ? _self.coverImagePath : coverImagePath // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
 
 /// @nodoc
 

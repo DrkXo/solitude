@@ -55,6 +55,7 @@ class EBookTile extends StatelessWidget {
             pathParameters: {
               'ebookId': entry.id,
             },
+            extra: entry.coverImagePath,
           );
         },
         leading: showCover
@@ -65,16 +66,16 @@ class EBookTile extends StatelessWidget {
                   color: Theme.of(context).colorScheme.primaryContainer,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                 child: entry.coverImagePath != null
-                     ? ClipRRect(
-                         borderRadius: BorderRadius.circular(8),
-                         child: SizedBox.expand(
-                           child: CoverImage(
-                             imagePath: entry.coverImagePath,
-                             fit: BoxFit.cover,
-                           ),
-                         ),
-                       )
+                child: entry.coverImagePath != null
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: SizedBox.expand(
+                          child: CoverImage(
+                            imagePath: entry.coverImagePath,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      )
                     : Center(
                         child: Icon(
                           LucideIcons.bookOpen,
