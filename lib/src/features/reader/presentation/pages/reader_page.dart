@@ -34,35 +34,69 @@ class _ReaderPageState extends State<ReaderPage> {
     super.dispose();
   }
 
-  void _showChapterDialog(BuildContext context, int totalChapters, int currentChapterIndex, PageController pageController) {
-    showDialog(
+  void _showChapterDialog(
+    BuildContext context,
+    int totalChapters,
+    int currentChapterIndex,
+    PageController pageController,
+  ) {
+    showModalBottomSheet(
       context: context,
+      showDragHandle: true,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Jump to Chapter'),
-          content: SizedBox(
-            width: double.maxFinite,
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: totalChapters,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text('Chapter ${index + 1}'),
-                  selected: index == currentChapterIndex,
-                  onTap: () {
-                    pageController.jumpToPage(index);
-                    Navigator.of(context).pop();
-                  },
-                );
-              },
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Cancel'),
-            ),
-          ],
+        return StatefulBuilder(
+          builder: (context, setState) {
+            ScrollController scrollController = ScrollController();
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              double height = MediaQuery.of(context).size.height * 0.8;
+              double itemHeight = 56.0;
+              double offset =
+                  currentChapterIndex * itemHeight -
+                  (height / 2) +
+                  (itemHeight / 2);
+              if (offset < 0) offset = 0;
+              scrollController.animateTo(
+                offset,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+            });
+            return SizedBox(
+              height: MediaQuery.of(context).size.height * 0.8,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      controller: scrollController,
+                      itemCount: totalChapters,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          key: Key('chapter_$index'),
+                          leading: index == currentChapterIndex
+                              ? Padding(
+                                  padding: const EdgeInsets.only(right: 8.0),
+                                  child: Icon(
+                                    LucideIcons.bookOpen,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.primary,
+                                  ),
+                                )
+                              : null,
+                          title: Text('Chapter ${index + 1}'),
+                          selected: index == currentChapterIndex,
+                          onTap: () {
+                            pageController.jumpToPage(index);
+                            Navigator.of(context).pop();
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
         );
       },
     );
@@ -249,12 +283,17 @@ class _ReaderPageState extends State<ReaderPage> {
                             ReaderTopBar(
                               showBars: _showBars,
                             ),
-                             ReaderBottomBar(
-                               showBars: _showBars,
-                               currentChapterIndex: currentChapterIndex,
-                               totalChapters: controller.totalChapters,
-                               onChapterJump: (context) => _showChapterDialog(context, controller.totalChapters, currentChapterIndex, _pageController),
-                             ),
+                            ReaderBottomBar(
+                              showBars: _showBars,
+                              currentChapterIndex: currentChapterIndex,
+                              totalChapters: controller.totalChapters,
+                              onChapterJump: (context) => _showChapterDialog(
+                                context,
+                                controller.totalChapters,
+                                currentChapterIndex,
+                                _pageController,
+                              ),
+                            ),
                           ],
                         ),
                       ),
