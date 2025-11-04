@@ -75,13 +75,13 @@ class EBookCard extends StatelessWidget {
                       top: Radius.circular(12),
                     ),
                   ),
-                  child: showCover && entry.coverImageHtml != null
+                  child: showCover && entry.coverImagePath != null
                       ? ClipRRect(
                           borderRadius: const BorderRadius.vertical(
                             top: Radius.circular(12),
                           ),
                           child: HtmlWidget(
-                            '<img src="${entry.coverImageHtml!}"/>',
+                            '<img src="${entry.coverImagePath!}"/>',
                             rebuildTriggers: [showCover],
                           ),
                         )

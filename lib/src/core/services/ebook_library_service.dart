@@ -5,7 +5,6 @@ import 'package:drift/drift.dart';
 import 'package:ebook_x/ebook_x.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path/path.dart' as path;
-
 import 'package:uuid/uuid.dart';
 
 import '../../features/library/data/models/ebook_entry.dart';
@@ -17,7 +16,6 @@ import '../utils/utils.dart';
 import 'db/local_db_service.dart';
 
 class EbookLibraryService extends BaseService {
-
   final LocalDbService _localDbService;
 
   EbookLibraryService({
@@ -46,33 +44,35 @@ class EbookLibraryService extends BaseService {
     } catch (e) {
       logger.error('Failed to load ebooks from database: $e');
       // Continue with empty list
-     }
-      for (final dbEbook in dbEbooks) {
-         try {
-           final ebook = await _ebookReader.read(dbEbook.filePath);
-           final entry = EbookEntry(
-             id: dbEbook.id,
-             ebook: ebook,
-             filePath: dbEbook.filePath,
-             fileName: dbEbook.fileName,
-             addedAt: dbEbook.addedAt,
-             lastReadAt: dbEbook.lastReadAt,
-              currentChapter: dbEbook.currentChapter,
-              currentPage: dbEbook.currentPage,
-              pageOffset: dbEbook.pageOffset,
-              fileSize: dbEbook.fileSize,
-              coverImageHtml: dbEbook.coverImage,
-           );
-           _ebooks.add(entry);
-         } catch (e) {
-           _failedEbooks.add(dbEbook.filePath);
-           logger.error('Failed to load ebook ${dbEbook.filePath}: $e');
-         }
-        }
-        if (_failedEbooks.isNotEmpty) {
-          logger.warning('${_failedEbooks.length} ebooks failed to load and were skipped');
-        }
-     _ebooksController.add(List.from(_ebooks));
+    }
+    for (final dbEbook in dbEbooks) {
+      try {
+        final ebook = await _ebookReader.read(dbEbook.filePath);
+        final entry = EbookEntry(
+          id: dbEbook.id,
+          ebook: ebook,
+          filePath: dbEbook.filePath,
+          fileName: dbEbook.fileName,
+          addedAt: dbEbook.addedAt,
+          lastReadAt: dbEbook.lastReadAt,
+          currentChapter: dbEbook.currentChapter,
+          currentPage: dbEbook.currentPage,
+          pageOffset: dbEbook.pageOffset,
+          fileSize: dbEbook.fileSize,
+          coverImagePath: dbEbook.coverImage,
+        );
+        _ebooks.add(entry);
+      } catch (e) {
+        _failedEbooks.add(dbEbook.filePath);
+        logger.error('Failed to load ebook ${dbEbook.filePath}: $e');
+      }
+    }
+    if (_failedEbooks.isNotEmpty) {
+      logger.warning(
+        '${_failedEbooks.length} ebooks failed to load and were skipped',
+      );
+    }
+    _ebooksController.add(List.from(_ebooks));
   }
 
   /// Parses and adds an ebook from the given file path.
@@ -99,7 +99,9 @@ class EbookLibraryService extends BaseService {
     // Check file size (optional, prevent very large files)
     final fileSize = await file.length();
     if (fileSize > AppConfig.maxFileSizeBytes) {
-      throw EbookLibraryException('File is too large. Maximum size is ${AppConfig.maxFileSizeBytes ~/ (1024 * 1024)}MB.');
+      throw EbookLibraryException(
+        'File is too large. Maximum size is ${AppConfig.maxFileSizeBytes ~/ (1024 * 1024)}MB.',
+      );
     }
 
     // Check if already exists (by file path)
@@ -109,35 +111,36 @@ class EbookLibraryService extends BaseService {
 
     try {
       final Ebook ebook = await _ebookReader.read(sanitizedPath);
+
       final entry = EbookEntry(
         id: const Uuid().v4(), // UUID for unique ID
         ebook: ebook,
         filePath: sanitizedPath,
         fileName: path.basename(sanitizedPath),
-         addedAt: DateTime.now(),
-         fileSize: fileSize,
-         coverImageHtml: ebook.metadata.coverImagePath,
+        addedAt: DateTime.now(),
+        fileSize: fileSize,
+        coverImagePath: ebook.metadata.coverImagePath,
       );
 
-       // Save to database
-       await executeDBOperation(
-         () => _localDbService.solitude.ebookDao.addEbook(
-           DbEbooksCompanion(
-             id: Value(entry.id),
-             filePath: Value(entry.filePath),
-             fileName: Value(entry.fileName),
-             title: Value(entry.ebook.metadata.title),
-             author: Value(entry.ebook.metadata.author),
-             addedAt: Value(entry.addedAt),
-             fileSize: Value(entry.fileSize),
-             coverImage: Value(entry.coverImageHtml),
-           ),
-         ),
-         exceptionFactory: (msg) =>
-             EbookLibraryException('Failed to save ebook to database: $msg'),
-       );
+      // Save to database
+      await executeDBOperation(
+        () => _localDbService.solitude.ebookDao.addEbook(
+          DbEbooksCompanion(
+            id: Value(entry.id),
+            filePath: Value(entry.filePath),
+            fileName: Value(entry.fileName),
+            title: Value(entry.ebook.metadata.title),
+            author: Value(entry.ebook.metadata.author),
+            addedAt: Value(entry.addedAt),
+            fileSize: Value(entry.fileSize),
+            coverImage: Value(entry.coverImagePath),
+          ),
+        ),
+        exceptionFactory: (msg) =>
+            EbookLibraryException('Failed to save ebook to database: $msg'),
+      );
 
-       _updateEbooksList(entry);
+      _updateEbooksList(entry);
 
       return entry;
     } catch (e) {
@@ -242,7 +245,7 @@ class EbookLibraryService extends BaseService {
           currentPage: Value(entry.currentPage),
           pageOffset: Value(entry.pageOffset),
           fileSize: Value(entry.fileSize),
-          coverImage: Value(entry.coverImageHtml),
+          coverImage: Value(entry.coverImagePath),
         ),
       ),
     );
@@ -273,21 +276,23 @@ class EbookLibraryService extends BaseService {
           fileName: dbEbook.fileName,
           addedAt: dbEbook.addedAt,
           lastReadAt: dbEbook.lastReadAt,
-           currentChapter: dbEbook.currentChapter,
-           currentPage: dbEbook.currentPage,
-           pageOffset: dbEbook.pageOffset,
-           fileSize: dbEbook.fileSize,
-           coverImageHtml: dbEbook.coverImage,
-         );
-         _ebooks.add(entry);
-       } catch (e) {
-         _failedEbooks.add(dbEbook.filePath);
-         logger.error('Failed to load ebook ${dbEbook.filePath}: $e');
-       }
-     }
-     if (_failedEbooks.isNotEmpty) {
-       logger.warning('${_failedEbooks.length} ebooks failed to load and were skipped');
-     }
+          currentChapter: dbEbook.currentChapter,
+          currentPage: dbEbook.currentPage,
+          pageOffset: dbEbook.pageOffset,
+          fileSize: dbEbook.fileSize,
+          coverImagePath: dbEbook.coverImage,
+        );
+        _ebooks.add(entry);
+      } catch (e) {
+        _failedEbooks.add(dbEbook.filePath);
+        logger.error('Failed to load ebook ${dbEbook.filePath}: $e');
+      }
+    }
+    if (_failedEbooks.isNotEmpty) {
+      logger.warning(
+        '${_failedEbooks.length} ebooks failed to load and were skipped',
+      );
+    }
     _ebooksController.add(List.from(_ebooks));
   }
 

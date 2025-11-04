@@ -65,11 +65,11 @@ class EBookTile extends StatelessWidget {
                   color: Theme.of(context).colorScheme.primaryContainer,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: entry.coverImageHtml != null
+                child: entry.coverImagePath != null
                     ? ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: HtmlWidget(
-                          '<img src="${entry.coverImageHtml!}"/>',
+                          '<img src="${entry.coverImagePath!}"/>',
                           rebuildTriggers: [showCover],
                         ),
                       )
