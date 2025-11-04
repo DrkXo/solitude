@@ -255,6 +255,27 @@ class SettingsPage extends StatelessWidget {
           ),
         ),
         ListTile(
+          title: const Text('HTML Rendering Mode'),
+          trailing: DropdownButton<HtmlRenderingMode>(
+            value: state.appSettings.display.htmlRenderingMode,
+            items: HtmlRenderingMode.values
+                .map(
+                  (mode) => DropdownMenuItem(
+                    value: mode,
+                    child: Text(mode.displayName),
+                  ),
+                )
+                .toList(),
+            onChanged: (value) {
+              if (value != null) {
+                context.read<SettingsBloc>().add(
+                  SettingsEvent.htmlRenderingModeChanged(value),
+                );
+              }
+            },
+          ),
+        ),
+        ListTile(
           title: const Text('Header Font Size Multiplier'),
           trailing: NumericStepper(
             value: state.appSettings.display.headerFontSizeMultiplier,

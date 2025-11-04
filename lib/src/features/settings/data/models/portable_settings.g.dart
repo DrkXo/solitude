@@ -91,27 +91,35 @@ _DisplaySettings _$DisplaySettingsFromJson(
   headerMarginBottom: (json['headerMarginBottom'] as num?)?.toDouble() ?? 10.0,
   footerMarginTop: (json['footerMarginTop'] as num?)?.toDouble() ?? 10.0,
   footerMarginBottom: (json['footerMarginBottom'] as num?)?.toDouble() ?? 10.0,
+  htmlRenderingMode:
+      $enumDecodeNullable(
+        _$HtmlRenderingModeEnumMap,
+        json['htmlRenderingMode'],
+      ) ??
+      HtmlRenderingMode.custom,
 );
 
-Map<String, dynamic> _$DisplaySettingsToJson(_DisplaySettings instance) =>
-    <String, dynamic>{
-      'fontFamily': _$FontFamilyEnumMap[instance.fontFamily]!,
-      'fontSize': instance.fontSize,
-      'fontWeight': instance.fontWeight,
-      'lineHeight': instance.lineHeight,
-      'letterSpacing': instance.letterSpacing,
-      'paragraphSpacing': instance.paragraphSpacing,
-      'theme': _$ThemeOptionEnumMap[instance.theme]!,
-      'orientation': instance.orientation,
-      'textAlign': _$TextAlignOptionEnumMap[instance.textAlign]!,
-      'pageTurnAnimation': instance.pageTurnAnimation,
-      'margins': instance.margins,
-      'headerFontSizeMultiplier': instance.headerFontSizeMultiplier,
-      'headerMarginTop': instance.headerMarginTop,
-      'headerMarginBottom': instance.headerMarginBottom,
-      'footerMarginTop': instance.footerMarginTop,
-      'footerMarginBottom': instance.footerMarginBottom,
-    };
+Map<String, dynamic> _$DisplaySettingsToJson(
+  _DisplaySettings instance,
+) => <String, dynamic>{
+  'fontFamily': _$FontFamilyEnumMap[instance.fontFamily]!,
+  'fontSize': instance.fontSize,
+  'fontWeight': instance.fontWeight,
+  'lineHeight': instance.lineHeight,
+  'letterSpacing': instance.letterSpacing,
+  'paragraphSpacing': instance.paragraphSpacing,
+  'theme': _$ThemeOptionEnumMap[instance.theme]!,
+  'orientation': instance.orientation,
+  'textAlign': _$TextAlignOptionEnumMap[instance.textAlign]!,
+  'pageTurnAnimation': instance.pageTurnAnimation,
+  'margins': instance.margins,
+  'headerFontSizeMultiplier': instance.headerFontSizeMultiplier,
+  'headerMarginTop': instance.headerMarginTop,
+  'headerMarginBottom': instance.headerMarginBottom,
+  'footerMarginTop': instance.footerMarginTop,
+  'footerMarginBottom': instance.footerMarginBottom,
+  'htmlRenderingMode': _$HtmlRenderingModeEnumMap[instance.htmlRenderingMode]!,
+};
 
 const _$FontFamilyEnumMap = {
   FontFamily.merriweather: 'Merriweather',
@@ -132,6 +140,11 @@ const _$TextAlignOptionEnumMap = {
   TextAlignOption.center: 'center',
   TextAlignOption.right: 'right',
   TextAlignOption.justify: 'justify',
+};
+
+const _$HtmlRenderingModeEnumMap = {
+  HtmlRenderingMode.original: 'original',
+  HtmlRenderingMode.custom: 'custom',
 };
 
 _Margins _$MarginsFromJson(Map<String, dynamic> json) => _Margins(

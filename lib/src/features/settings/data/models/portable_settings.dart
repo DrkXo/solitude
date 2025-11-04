@@ -52,6 +52,7 @@ abstract class DisplaySettings with _$DisplaySettings {
     @Default(10.0) double headerMarginBottom,
     @Default(10.0) double footerMarginTop,
     @Default(10.0) double footerMarginBottom,
+    @Default(HtmlRenderingMode.custom) HtmlRenderingMode htmlRenderingMode,
   }) = _DisplaySettings;
 
   factory DisplaySettings.fromJson(Map<String, dynamic> json) =>

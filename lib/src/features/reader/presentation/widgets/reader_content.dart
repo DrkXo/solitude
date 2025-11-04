@@ -92,13 +92,17 @@ class _ReaderContentState extends State<ReaderContent> {
                     enableCaching: true,
                     buildAsync: false,
                     renderMode: RenderMode.sliverList,
-                    rebuildTriggers: [
-                      widget.settingsState.appSettings,
-                    ],
-                    widget.controller.getFullChapterContent().stripStyles(),
-                    customWidgetBuilder: (element) => element.toCustomWidget(
-                      appSettings: widget.settingsState.appSettings,
-                    ),
+                     rebuildTriggers: [
+                       widget.settingsState.appSettings,
+                     ],
+                     widget.settingsState.appSettings.display.htmlRenderingMode == HtmlRenderingMode.original
+                         ? widget.controller.getFullChapterContent()
+                         : widget.controller.getFullChapterContent().stripStyles(),
+                     customWidgetBuilder: widget.settingsState.appSettings.display.htmlRenderingMode == HtmlRenderingMode.original
+                         ? null
+                         : (element) => element.toCustomWidget(
+                               appSettings: widget.settingsState.appSettings,
+                             ),
                   ),
                 ),
               ],

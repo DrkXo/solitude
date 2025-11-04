@@ -709,7 +709,7 @@ $LocalizationSettingsCopyWith<$Res> get localization {
 /// @nodoc
 mixin _$DisplaySettings {
 
- FontFamily get fontFamily; double get fontSize; String get fontWeight; double get lineHeight; double get letterSpacing; double get paragraphSpacing; ThemeOption get theme; String get orientation; TextAlignOption get textAlign; String get pageTurnAnimation; Margins get margins; double get headerFontSizeMultiplier; double get headerMarginTop; double get headerMarginBottom; double get footerMarginTop; double get footerMarginBottom;
+ FontFamily get fontFamily; double get fontSize; String get fontWeight; double get lineHeight; double get letterSpacing; double get paragraphSpacing; ThemeOption get theme; String get orientation; TextAlignOption get textAlign; String get pageTurnAnimation; Margins get margins; double get headerFontSizeMultiplier; double get headerMarginTop; double get headerMarginBottom; double get footerMarginTop; double get footerMarginBottom; HtmlRenderingMode get htmlRenderingMode;
 /// Create a copy of DisplaySettings
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -722,16 +722,16 @@ $DisplaySettingsCopyWith<DisplaySettings> get copyWith => _$DisplaySettingsCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DisplaySettings&&(identical(other.fontFamily, fontFamily) || other.fontFamily == fontFamily)&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize)&&(identical(other.fontWeight, fontWeight) || other.fontWeight == fontWeight)&&(identical(other.lineHeight, lineHeight) || other.lineHeight == lineHeight)&&(identical(other.letterSpacing, letterSpacing) || other.letterSpacing == letterSpacing)&&(identical(other.paragraphSpacing, paragraphSpacing) || other.paragraphSpacing == paragraphSpacing)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.orientation, orientation) || other.orientation == orientation)&&(identical(other.textAlign, textAlign) || other.textAlign == textAlign)&&(identical(other.pageTurnAnimation, pageTurnAnimation) || other.pageTurnAnimation == pageTurnAnimation)&&(identical(other.margins, margins) || other.margins == margins)&&(identical(other.headerFontSizeMultiplier, headerFontSizeMultiplier) || other.headerFontSizeMultiplier == headerFontSizeMultiplier)&&(identical(other.headerMarginTop, headerMarginTop) || other.headerMarginTop == headerMarginTop)&&(identical(other.headerMarginBottom, headerMarginBottom) || other.headerMarginBottom == headerMarginBottom)&&(identical(other.footerMarginTop, footerMarginTop) || other.footerMarginTop == footerMarginTop)&&(identical(other.footerMarginBottom, footerMarginBottom) || other.footerMarginBottom == footerMarginBottom));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DisplaySettings&&(identical(other.fontFamily, fontFamily) || other.fontFamily == fontFamily)&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize)&&(identical(other.fontWeight, fontWeight) || other.fontWeight == fontWeight)&&(identical(other.lineHeight, lineHeight) || other.lineHeight == lineHeight)&&(identical(other.letterSpacing, letterSpacing) || other.letterSpacing == letterSpacing)&&(identical(other.paragraphSpacing, paragraphSpacing) || other.paragraphSpacing == paragraphSpacing)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.orientation, orientation) || other.orientation == orientation)&&(identical(other.textAlign, textAlign) || other.textAlign == textAlign)&&(identical(other.pageTurnAnimation, pageTurnAnimation) || other.pageTurnAnimation == pageTurnAnimation)&&(identical(other.margins, margins) || other.margins == margins)&&(identical(other.headerFontSizeMultiplier, headerFontSizeMultiplier) || other.headerFontSizeMultiplier == headerFontSizeMultiplier)&&(identical(other.headerMarginTop, headerMarginTop) || other.headerMarginTop == headerMarginTop)&&(identical(other.headerMarginBottom, headerMarginBottom) || other.headerMarginBottom == headerMarginBottom)&&(identical(other.footerMarginTop, footerMarginTop) || other.footerMarginTop == footerMarginTop)&&(identical(other.footerMarginBottom, footerMarginBottom) || other.footerMarginBottom == footerMarginBottom)&&(identical(other.htmlRenderingMode, htmlRenderingMode) || other.htmlRenderingMode == htmlRenderingMode));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,fontFamily,fontSize,fontWeight,lineHeight,letterSpacing,paragraphSpacing,theme,orientation,textAlign,pageTurnAnimation,margins,headerFontSizeMultiplier,headerMarginTop,headerMarginBottom,footerMarginTop,footerMarginBottom);
+int get hashCode => Object.hash(runtimeType,fontFamily,fontSize,fontWeight,lineHeight,letterSpacing,paragraphSpacing,theme,orientation,textAlign,pageTurnAnimation,margins,headerFontSizeMultiplier,headerMarginTop,headerMarginBottom,footerMarginTop,footerMarginBottom,htmlRenderingMode);
 
 @override
 String toString() {
-  return 'DisplaySettings(fontFamily: $fontFamily, fontSize: $fontSize, fontWeight: $fontWeight, lineHeight: $lineHeight, letterSpacing: $letterSpacing, paragraphSpacing: $paragraphSpacing, theme: $theme, orientation: $orientation, textAlign: $textAlign, pageTurnAnimation: $pageTurnAnimation, margins: $margins, headerFontSizeMultiplier: $headerFontSizeMultiplier, headerMarginTop: $headerMarginTop, headerMarginBottom: $headerMarginBottom, footerMarginTop: $footerMarginTop, footerMarginBottom: $footerMarginBottom)';
+  return 'DisplaySettings(fontFamily: $fontFamily, fontSize: $fontSize, fontWeight: $fontWeight, lineHeight: $lineHeight, letterSpacing: $letterSpacing, paragraphSpacing: $paragraphSpacing, theme: $theme, orientation: $orientation, textAlign: $textAlign, pageTurnAnimation: $pageTurnAnimation, margins: $margins, headerFontSizeMultiplier: $headerFontSizeMultiplier, headerMarginTop: $headerMarginTop, headerMarginBottom: $headerMarginBottom, footerMarginTop: $footerMarginTop, footerMarginBottom: $footerMarginBottom, htmlRenderingMode: $htmlRenderingMode)';
 }
 
 
@@ -742,7 +742,7 @@ abstract mixin class $DisplaySettingsCopyWith<$Res>  {
   factory $DisplaySettingsCopyWith(DisplaySettings value, $Res Function(DisplaySettings) _then) = _$DisplaySettingsCopyWithImpl;
 @useResult
 $Res call({
- FontFamily fontFamily, double fontSize, String fontWeight, double lineHeight, double letterSpacing, double paragraphSpacing, ThemeOption theme, String orientation, TextAlignOption textAlign, String pageTurnAnimation, Margins margins, double headerFontSizeMultiplier, double headerMarginTop, double headerMarginBottom, double footerMarginTop, double footerMarginBottom
+ FontFamily fontFamily, double fontSize, String fontWeight, double lineHeight, double letterSpacing, double paragraphSpacing, ThemeOption theme, String orientation, TextAlignOption textAlign, String pageTurnAnimation, Margins margins, double headerFontSizeMultiplier, double headerMarginTop, double headerMarginBottom, double footerMarginTop, double footerMarginBottom, HtmlRenderingMode htmlRenderingMode
 });
 
 
@@ -759,7 +759,7 @@ class _$DisplaySettingsCopyWithImpl<$Res>
 
 /// Create a copy of DisplaySettings
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? fontFamily = null,Object? fontSize = null,Object? fontWeight = null,Object? lineHeight = null,Object? letterSpacing = null,Object? paragraphSpacing = null,Object? theme = null,Object? orientation = null,Object? textAlign = null,Object? pageTurnAnimation = null,Object? margins = null,Object? headerFontSizeMultiplier = null,Object? headerMarginTop = null,Object? headerMarginBottom = null,Object? footerMarginTop = null,Object? footerMarginBottom = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? fontFamily = null,Object? fontSize = null,Object? fontWeight = null,Object? lineHeight = null,Object? letterSpacing = null,Object? paragraphSpacing = null,Object? theme = null,Object? orientation = null,Object? textAlign = null,Object? pageTurnAnimation = null,Object? margins = null,Object? headerFontSizeMultiplier = null,Object? headerMarginTop = null,Object? headerMarginBottom = null,Object? footerMarginTop = null,Object? footerMarginBottom = null,Object? htmlRenderingMode = null,}) {
   return _then(_self.copyWith(
 fontFamily: null == fontFamily ? _self.fontFamily : fontFamily // ignore: cast_nullable_to_non_nullable
 as FontFamily,fontSize: null == fontSize ? _self.fontSize : fontSize // ignore: cast_nullable_to_non_nullable
@@ -777,7 +777,8 @@ as double,headerMarginTop: null == headerMarginTop ? _self.headerMarginTop : hea
 as double,headerMarginBottom: null == headerMarginBottom ? _self.headerMarginBottom : headerMarginBottom // ignore: cast_nullable_to_non_nullable
 as double,footerMarginTop: null == footerMarginTop ? _self.footerMarginTop : footerMarginTop // ignore: cast_nullable_to_non_nullable
 as double,footerMarginBottom: null == footerMarginBottom ? _self.footerMarginBottom : footerMarginBottom // ignore: cast_nullable_to_non_nullable
-as double,
+as double,htmlRenderingMode: null == htmlRenderingMode ? _self.htmlRenderingMode : htmlRenderingMode // ignore: cast_nullable_to_non_nullable
+as HtmlRenderingMode,
   ));
 }
 /// Create a copy of DisplaySettings
@@ -871,10 +872,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  String orientation,  TextAlignOption textAlign,  String pageTurnAnimation,  Margins margins,  double headerFontSizeMultiplier,  double headerMarginTop,  double headerMarginBottom,  double footerMarginTop,  double footerMarginBottom)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  String orientation,  TextAlignOption textAlign,  String pageTurnAnimation,  Margins margins,  double headerFontSizeMultiplier,  double headerMarginTop,  double headerMarginBottom,  double footerMarginTop,  double footerMarginBottom,  HtmlRenderingMode htmlRenderingMode)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DisplaySettings() when $default != null:
-return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins,_that.headerFontSizeMultiplier,_that.headerMarginTop,_that.headerMarginBottom,_that.footerMarginTop,_that.footerMarginBottom);case _:
+return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins,_that.headerFontSizeMultiplier,_that.headerMarginTop,_that.headerMarginBottom,_that.footerMarginTop,_that.footerMarginBottom,_that.htmlRenderingMode);case _:
   return orElse();
 
 }
@@ -892,10 +893,10 @@ return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeigh
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  String orientation,  TextAlignOption textAlign,  String pageTurnAnimation,  Margins margins,  double headerFontSizeMultiplier,  double headerMarginTop,  double headerMarginBottom,  double footerMarginTop,  double footerMarginBottom)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  String orientation,  TextAlignOption textAlign,  String pageTurnAnimation,  Margins margins,  double headerFontSizeMultiplier,  double headerMarginTop,  double headerMarginBottom,  double footerMarginTop,  double footerMarginBottom,  HtmlRenderingMode htmlRenderingMode)  $default,) {final _that = this;
 switch (_that) {
 case _DisplaySettings():
-return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins,_that.headerFontSizeMultiplier,_that.headerMarginTop,_that.headerMarginBottom,_that.footerMarginTop,_that.footerMarginBottom);case _:
+return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins,_that.headerFontSizeMultiplier,_that.headerMarginTop,_that.headerMarginBottom,_that.footerMarginTop,_that.footerMarginBottom,_that.htmlRenderingMode);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -912,10 +913,10 @@ return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeigh
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  String orientation,  TextAlignOption textAlign,  String pageTurnAnimation,  Margins margins,  double headerFontSizeMultiplier,  double headerMarginTop,  double headerMarginBottom,  double footerMarginTop,  double footerMarginBottom)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( FontFamily fontFamily,  double fontSize,  String fontWeight,  double lineHeight,  double letterSpacing,  double paragraphSpacing,  ThemeOption theme,  String orientation,  TextAlignOption textAlign,  String pageTurnAnimation,  Margins margins,  double headerFontSizeMultiplier,  double headerMarginTop,  double headerMarginBottom,  double footerMarginTop,  double footerMarginBottom,  HtmlRenderingMode htmlRenderingMode)?  $default,) {final _that = this;
 switch (_that) {
 case _DisplaySettings() when $default != null:
-return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins,_that.headerFontSizeMultiplier,_that.headerMarginTop,_that.headerMarginBottom,_that.footerMarginTop,_that.footerMarginBottom);case _:
+return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeight,_that.letterSpacing,_that.paragraphSpacing,_that.theme,_that.orientation,_that.textAlign,_that.pageTurnAnimation,_that.margins,_that.headerFontSizeMultiplier,_that.headerMarginTop,_that.headerMarginBottom,_that.footerMarginTop,_that.footerMarginBottom,_that.htmlRenderingMode);case _:
   return null;
 
 }
@@ -927,7 +928,7 @@ return $default(_that.fontFamily,_that.fontSize,_that.fontWeight,_that.lineHeigh
 @JsonSerializable()
 
 class _DisplaySettings implements DisplaySettings {
-  const _DisplaySettings({this.fontFamily = FontFamily.openSans, this.fontSize = 18.0, this.fontWeight = 'normal', this.lineHeight = 1.5, this.letterSpacing = 0.2, this.paragraphSpacing = 1.2, this.theme = ThemeOption.dark, this.orientation = 'auto', this.textAlign = TextAlignOption.left, this.pageTurnAnimation = 'slide', this.margins = const Margins(), this.headerFontSizeMultiplier = 1.2, this.headerMarginTop = 10.0, this.headerMarginBottom = 10.0, this.footerMarginTop = 10.0, this.footerMarginBottom = 10.0});
+  const _DisplaySettings({this.fontFamily = FontFamily.openSans, this.fontSize = 18.0, this.fontWeight = 'normal', this.lineHeight = 1.5, this.letterSpacing = 0.2, this.paragraphSpacing = 1.2, this.theme = ThemeOption.dark, this.orientation = 'auto', this.textAlign = TextAlignOption.left, this.pageTurnAnimation = 'slide', this.margins = const Margins(), this.headerFontSizeMultiplier = 1.2, this.headerMarginTop = 10.0, this.headerMarginBottom = 10.0, this.footerMarginTop = 10.0, this.footerMarginBottom = 10.0, this.htmlRenderingMode = HtmlRenderingMode.custom});
   factory _DisplaySettings.fromJson(Map<String, dynamic> json) => _$DisplaySettingsFromJson(json);
 
 @override@JsonKey() final  FontFamily fontFamily;
@@ -946,6 +947,7 @@ class _DisplaySettings implements DisplaySettings {
 @override@JsonKey() final  double headerMarginBottom;
 @override@JsonKey() final  double footerMarginTop;
 @override@JsonKey() final  double footerMarginBottom;
+@override@JsonKey() final  HtmlRenderingMode htmlRenderingMode;
 
 /// Create a copy of DisplaySettings
 /// with the given fields replaced by the non-null parameter values.
@@ -960,16 +962,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DisplaySettings&&(identical(other.fontFamily, fontFamily) || other.fontFamily == fontFamily)&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize)&&(identical(other.fontWeight, fontWeight) || other.fontWeight == fontWeight)&&(identical(other.lineHeight, lineHeight) || other.lineHeight == lineHeight)&&(identical(other.letterSpacing, letterSpacing) || other.letterSpacing == letterSpacing)&&(identical(other.paragraphSpacing, paragraphSpacing) || other.paragraphSpacing == paragraphSpacing)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.orientation, orientation) || other.orientation == orientation)&&(identical(other.textAlign, textAlign) || other.textAlign == textAlign)&&(identical(other.pageTurnAnimation, pageTurnAnimation) || other.pageTurnAnimation == pageTurnAnimation)&&(identical(other.margins, margins) || other.margins == margins)&&(identical(other.headerFontSizeMultiplier, headerFontSizeMultiplier) || other.headerFontSizeMultiplier == headerFontSizeMultiplier)&&(identical(other.headerMarginTop, headerMarginTop) || other.headerMarginTop == headerMarginTop)&&(identical(other.headerMarginBottom, headerMarginBottom) || other.headerMarginBottom == headerMarginBottom)&&(identical(other.footerMarginTop, footerMarginTop) || other.footerMarginTop == footerMarginTop)&&(identical(other.footerMarginBottom, footerMarginBottom) || other.footerMarginBottom == footerMarginBottom));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DisplaySettings&&(identical(other.fontFamily, fontFamily) || other.fontFamily == fontFamily)&&(identical(other.fontSize, fontSize) || other.fontSize == fontSize)&&(identical(other.fontWeight, fontWeight) || other.fontWeight == fontWeight)&&(identical(other.lineHeight, lineHeight) || other.lineHeight == lineHeight)&&(identical(other.letterSpacing, letterSpacing) || other.letterSpacing == letterSpacing)&&(identical(other.paragraphSpacing, paragraphSpacing) || other.paragraphSpacing == paragraphSpacing)&&(identical(other.theme, theme) || other.theme == theme)&&(identical(other.orientation, orientation) || other.orientation == orientation)&&(identical(other.textAlign, textAlign) || other.textAlign == textAlign)&&(identical(other.pageTurnAnimation, pageTurnAnimation) || other.pageTurnAnimation == pageTurnAnimation)&&(identical(other.margins, margins) || other.margins == margins)&&(identical(other.headerFontSizeMultiplier, headerFontSizeMultiplier) || other.headerFontSizeMultiplier == headerFontSizeMultiplier)&&(identical(other.headerMarginTop, headerMarginTop) || other.headerMarginTop == headerMarginTop)&&(identical(other.headerMarginBottom, headerMarginBottom) || other.headerMarginBottom == headerMarginBottom)&&(identical(other.footerMarginTop, footerMarginTop) || other.footerMarginTop == footerMarginTop)&&(identical(other.footerMarginBottom, footerMarginBottom) || other.footerMarginBottom == footerMarginBottom)&&(identical(other.htmlRenderingMode, htmlRenderingMode) || other.htmlRenderingMode == htmlRenderingMode));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,fontFamily,fontSize,fontWeight,lineHeight,letterSpacing,paragraphSpacing,theme,orientation,textAlign,pageTurnAnimation,margins,headerFontSizeMultiplier,headerMarginTop,headerMarginBottom,footerMarginTop,footerMarginBottom);
+int get hashCode => Object.hash(runtimeType,fontFamily,fontSize,fontWeight,lineHeight,letterSpacing,paragraphSpacing,theme,orientation,textAlign,pageTurnAnimation,margins,headerFontSizeMultiplier,headerMarginTop,headerMarginBottom,footerMarginTop,footerMarginBottom,htmlRenderingMode);
 
 @override
 String toString() {
-  return 'DisplaySettings(fontFamily: $fontFamily, fontSize: $fontSize, fontWeight: $fontWeight, lineHeight: $lineHeight, letterSpacing: $letterSpacing, paragraphSpacing: $paragraphSpacing, theme: $theme, orientation: $orientation, textAlign: $textAlign, pageTurnAnimation: $pageTurnAnimation, margins: $margins, headerFontSizeMultiplier: $headerFontSizeMultiplier, headerMarginTop: $headerMarginTop, headerMarginBottom: $headerMarginBottom, footerMarginTop: $footerMarginTop, footerMarginBottom: $footerMarginBottom)';
+  return 'DisplaySettings(fontFamily: $fontFamily, fontSize: $fontSize, fontWeight: $fontWeight, lineHeight: $lineHeight, letterSpacing: $letterSpacing, paragraphSpacing: $paragraphSpacing, theme: $theme, orientation: $orientation, textAlign: $textAlign, pageTurnAnimation: $pageTurnAnimation, margins: $margins, headerFontSizeMultiplier: $headerFontSizeMultiplier, headerMarginTop: $headerMarginTop, headerMarginBottom: $headerMarginBottom, footerMarginTop: $footerMarginTop, footerMarginBottom: $footerMarginBottom, htmlRenderingMode: $htmlRenderingMode)';
 }
 
 
@@ -980,7 +982,7 @@ abstract mixin class _$DisplaySettingsCopyWith<$Res> implements $DisplaySettings
   factory _$DisplaySettingsCopyWith(_DisplaySettings value, $Res Function(_DisplaySettings) _then) = __$DisplaySettingsCopyWithImpl;
 @override @useResult
 $Res call({
- FontFamily fontFamily, double fontSize, String fontWeight, double lineHeight, double letterSpacing, double paragraphSpacing, ThemeOption theme, String orientation, TextAlignOption textAlign, String pageTurnAnimation, Margins margins, double headerFontSizeMultiplier, double headerMarginTop, double headerMarginBottom, double footerMarginTop, double footerMarginBottom
+ FontFamily fontFamily, double fontSize, String fontWeight, double lineHeight, double letterSpacing, double paragraphSpacing, ThemeOption theme, String orientation, TextAlignOption textAlign, String pageTurnAnimation, Margins margins, double headerFontSizeMultiplier, double headerMarginTop, double headerMarginBottom, double footerMarginTop, double footerMarginBottom, HtmlRenderingMode htmlRenderingMode
 });
 
 
@@ -997,7 +999,7 @@ class __$DisplaySettingsCopyWithImpl<$Res>
 
 /// Create a copy of DisplaySettings
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? fontFamily = null,Object? fontSize = null,Object? fontWeight = null,Object? lineHeight = null,Object? letterSpacing = null,Object? paragraphSpacing = null,Object? theme = null,Object? orientation = null,Object? textAlign = null,Object? pageTurnAnimation = null,Object? margins = null,Object? headerFontSizeMultiplier = null,Object? headerMarginTop = null,Object? headerMarginBottom = null,Object? footerMarginTop = null,Object? footerMarginBottom = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? fontFamily = null,Object? fontSize = null,Object? fontWeight = null,Object? lineHeight = null,Object? letterSpacing = null,Object? paragraphSpacing = null,Object? theme = null,Object? orientation = null,Object? textAlign = null,Object? pageTurnAnimation = null,Object? margins = null,Object? headerFontSizeMultiplier = null,Object? headerMarginTop = null,Object? headerMarginBottom = null,Object? footerMarginTop = null,Object? footerMarginBottom = null,Object? htmlRenderingMode = null,}) {
   return _then(_DisplaySettings(
 fontFamily: null == fontFamily ? _self.fontFamily : fontFamily // ignore: cast_nullable_to_non_nullable
 as FontFamily,fontSize: null == fontSize ? _self.fontSize : fontSize // ignore: cast_nullable_to_non_nullable
@@ -1015,7 +1017,8 @@ as double,headerMarginTop: null == headerMarginTop ? _self.headerMarginTop : hea
 as double,headerMarginBottom: null == headerMarginBottom ? _self.headerMarginBottom : headerMarginBottom // ignore: cast_nullable_to_non_nullable
 as double,footerMarginTop: null == footerMarginTop ? _self.footerMarginTop : footerMarginTop // ignore: cast_nullable_to_non_nullable
 as double,footerMarginBottom: null == footerMarginBottom ? _self.footerMarginBottom : footerMarginBottom // ignore: cast_nullable_to_non_nullable
-as double,
+as double,htmlRenderingMode: null == htmlRenderingMode ? _self.htmlRenderingMode : htmlRenderingMode // ignore: cast_nullable_to_non_nullable
+as HtmlRenderingMode,
   ));
 }
 

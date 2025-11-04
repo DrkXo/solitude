@@ -15,6 +15,7 @@ abstract class SettingsEvent with _$SettingsEvent {
   const factory SettingsEvent.headerMarginBottomChanged(double margin) = _HeaderMarginBottomChanged;
   const factory SettingsEvent.footerMarginTopChanged(double margin) = _FooterMarginTopChanged;
   const factory SettingsEvent.footerMarginBottomChanged(double margin) = _FooterMarginBottomChanged;
+  const factory SettingsEvent.htmlRenderingModeChanged(HtmlRenderingMode mode) = _HtmlRenderingModeChanged;
 
   // Behavior settings
   const factory SettingsEvent.readingDirectionChanged(ReadingDirection readingDirection) = _ReadingDirectionChanged;

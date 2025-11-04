@@ -155,6 +155,11 @@ class AppSettingsService extends BaseService {
     await updateDisplaySettings(displaySettings);
   }
 
+  Future<void> setHtmlRenderingMode(HtmlRenderingMode mode) async {
+    final displaySettings = _appSettings.display.copyWith(htmlRenderingMode: mode);
+    await updateDisplaySettings(displaySettings);
+  }
+
   Future<void> setReadingDirection(ReadingDirection readingDirection) async {
     final behaviorSettings = _appSettings.behavior.copyWith(readingDirection: readingDirection);
     await updateBehaviorSettings(behaviorSettings);

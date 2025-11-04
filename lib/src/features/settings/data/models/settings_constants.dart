@@ -165,3 +165,14 @@ enum DateFormat {
   const DateFormat(this.value);
   final String value;
 }
+
+/// HTML rendering modes
+enum HtmlRenderingMode {
+  @JsonValue('original')
+  original('Original HTML Styling'),
+  @JsonValue('custom')
+  custom('Custom Styling');
+
+  const HtmlRenderingMode(this.displayName);
+  final String displayName;
+}

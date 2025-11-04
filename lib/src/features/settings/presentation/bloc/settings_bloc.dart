@@ -40,6 +40,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         headerMarginBottomChanged: (e) => _updateSetting(() => _appSettingsService.setHeaderMarginBottom(e.margin), emit),
         footerMarginTopChanged: (e) => _updateSetting(() => _appSettingsService.setFooterMarginTop(e.margin), emit),
         footerMarginBottomChanged: (e) => _updateSetting(() => _appSettingsService.setFooterMarginBottom(e.margin), emit),
+        htmlRenderingModeChanged: (e) => _updateSetting(() => _appSettingsService.setHtmlRenderingMode(e.mode), emit),
         readingDirectionChanged: (e) => _updateSetting(() => _appSettingsService.setReadingDirection(e.readingDirection), emit),
         rememberLastPositionChanged: (e) => _updateSetting(() => _appSettingsService.setRememberLastPosition(e.remember), emit),
         navigationMethodChanged: (e) => _updateSetting(() => _appSettingsService.setNavigationMethod(e.method), emit),
