@@ -61,20 +61,12 @@ class _ReaderContentState extends State<ReaderContent> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: GestureDetector(
-        behavior: HitTestBehavior.translucent,
-        onTap: () {
-          if (widget.settingsState.appSettings.behavior.navigationMethod ==
-              NavigationMethod.tap) {
-            // don't toggle
-          } else {
-            widget.onToggleBars();
-          }
-        },
-        onTapDown: widget.onTapDown,
-        onHorizontalDragEnd: widget.onHorizontalDragEnd,
-        onVerticalDragEnd: widget.onVerticalDragEnd,
+     return SizedBox.expand(
+       child: GestureDetector(
+         behavior: HitTestBehavior.translucent,
+         onTapDown: widget.onTapDown,
+         onHorizontalDragEnd: widget.onHorizontalDragEnd,
+         onVerticalDragEnd: widget.onVerticalDragEnd,
         child: Container(
           color: Theme.of(context).scaffoldBackgroundColor,
           child: Directionality(
