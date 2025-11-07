@@ -984,12 +984,12 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( String? coverImagePath)?  loading,TResult Function( EbookXController controller,  int currentChapterIndex,  int currentPageIndex,  Map<int, double> chapterOffsets,  List<Bookmark> bookmarks,  bool showBars)?  loaded,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( String? coverImagePath)?  loading,TResult Function( EbookXController controller,  int currentChapterIndex,  int currentPageIndex,  Map<int, double> chapterOffsets,  List<Bookmark> bookmarks,  bool showBars,  PageController? pageController)?  loaded,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading(_that.coverImagePath);case _Loaded() when loaded != null:
-return loaded(_that.controller,_that.currentChapterIndex,_that.currentPageIndex,_that.chapterOffsets,_that.bookmarks,_that.showBars);case _Error() when error != null:
+return loaded(_that.controller,_that.currentChapterIndex,_that.currentPageIndex,_that.chapterOffsets,_that.bookmarks,_that.showBars,_that.pageController);case _Error() when error != null:
 return error(_that.message);case _:
   return orElse();
 
@@ -1008,12 +1008,12 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( String? coverImagePath)  loading,required TResult Function( EbookXController controller,  int currentChapterIndex,  int currentPageIndex,  Map<int, double> chapterOffsets,  List<Bookmark> bookmarks,  bool showBars)  loaded,required TResult Function( String message)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( String? coverImagePath)  loading,required TResult Function( EbookXController controller,  int currentChapterIndex,  int currentPageIndex,  Map<int, double> chapterOffsets,  List<Bookmark> bookmarks,  bool showBars,  PageController? pageController)  loaded,required TResult Function( String message)  error,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading(_that.coverImagePath);case _Loaded():
-return loaded(_that.controller,_that.currentChapterIndex,_that.currentPageIndex,_that.chapterOffsets,_that.bookmarks,_that.showBars);case _Error():
+return loaded(_that.controller,_that.currentChapterIndex,_that.currentPageIndex,_that.chapterOffsets,_that.bookmarks,_that.showBars,_that.pageController);case _Error():
 return error(_that.message);case _:
   throw StateError('Unexpected subclass');
 
@@ -1031,12 +1031,12 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( String? coverImagePath)?  loading,TResult? Function( EbookXController controller,  int currentChapterIndex,  int currentPageIndex,  Map<int, double> chapterOffsets,  List<Bookmark> bookmarks,  bool showBars)?  loaded,TResult? Function( String message)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( String? coverImagePath)?  loading,TResult? Function( EbookXController controller,  int currentChapterIndex,  int currentPageIndex,  Map<int, double> chapterOffsets,  List<Bookmark> bookmarks,  bool showBars,  PageController? pageController)?  loaded,TResult? Function( String message)?  error,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading(_that.coverImagePath);case _Loaded() when loaded != null:
-return loaded(_that.controller,_that.currentChapterIndex,_that.currentPageIndex,_that.chapterOffsets,_that.bookmarks,_that.showBars);case _Error() when error != null:
+return loaded(_that.controller,_that.currentChapterIndex,_that.currentPageIndex,_that.chapterOffsets,_that.bookmarks,_that.showBars,_that.pageController);case _Error() when error != null:
 return error(_that.message);case _:
   return null;
 
@@ -1147,7 +1147,7 @@ as String?,
 
 
 class _Loaded implements ReaderState {
-  const _Loaded(this.controller, this.currentChapterIndex, this.currentPageIndex, final  Map<int, double> chapterOffsets, final  List<Bookmark> bookmarks, this.showBars): _chapterOffsets = chapterOffsets,_bookmarks = bookmarks;
+  const _Loaded(this.controller, this.currentChapterIndex, this.currentPageIndex, final  Map<int, double> chapterOffsets, final  List<Bookmark> bookmarks, this.showBars, this.pageController): _chapterOffsets = chapterOffsets,_bookmarks = bookmarks;
   
 
  final  EbookXController controller;
@@ -1168,6 +1168,7 @@ class _Loaded implements ReaderState {
 }
 
  final  bool showBars;
+ final  PageController? pageController;
 
 /// Create a copy of ReaderState
 /// with the given fields replaced by the non-null parameter values.
@@ -1179,16 +1180,16 @@ _$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.controller, controller) || other.controller == controller)&&(identical(other.currentChapterIndex, currentChapterIndex) || other.currentChapterIndex == currentChapterIndex)&&(identical(other.currentPageIndex, currentPageIndex) || other.currentPageIndex == currentPageIndex)&&const DeepCollectionEquality().equals(other._chapterOffsets, _chapterOffsets)&&const DeepCollectionEquality().equals(other._bookmarks, _bookmarks)&&(identical(other.showBars, showBars) || other.showBars == showBars));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&(identical(other.controller, controller) || other.controller == controller)&&(identical(other.currentChapterIndex, currentChapterIndex) || other.currentChapterIndex == currentChapterIndex)&&(identical(other.currentPageIndex, currentPageIndex) || other.currentPageIndex == currentPageIndex)&&const DeepCollectionEquality().equals(other._chapterOffsets, _chapterOffsets)&&const DeepCollectionEquality().equals(other._bookmarks, _bookmarks)&&(identical(other.showBars, showBars) || other.showBars == showBars)&&(identical(other.pageController, pageController) || other.pageController == pageController));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,controller,currentChapterIndex,currentPageIndex,const DeepCollectionEquality().hash(_chapterOffsets),const DeepCollectionEquality().hash(_bookmarks),showBars);
+int get hashCode => Object.hash(runtimeType,controller,currentChapterIndex,currentPageIndex,const DeepCollectionEquality().hash(_chapterOffsets),const DeepCollectionEquality().hash(_bookmarks),showBars,pageController);
 
 @override
 String toString() {
-  return 'ReaderState.loaded(controller: $controller, currentChapterIndex: $currentChapterIndex, currentPageIndex: $currentPageIndex, chapterOffsets: $chapterOffsets, bookmarks: $bookmarks, showBars: $showBars)';
+  return 'ReaderState.loaded(controller: $controller, currentChapterIndex: $currentChapterIndex, currentPageIndex: $currentPageIndex, chapterOffsets: $chapterOffsets, bookmarks: $bookmarks, showBars: $showBars, pageController: $pageController)';
 }
 
 
@@ -1199,7 +1200,7 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $ReaderStateCopyWith<$Res
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- EbookXController controller, int currentChapterIndex, int currentPageIndex, Map<int, double> chapterOffsets, List<Bookmark> bookmarks, bool showBars
+ EbookXController controller, int currentChapterIndex, int currentPageIndex, Map<int, double> chapterOffsets, List<Bookmark> bookmarks, bool showBars, PageController? pageController
 });
 
 
@@ -1216,7 +1217,7 @@ class __$LoadedCopyWithImpl<$Res>
 
 /// Create a copy of ReaderState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? controller = null,Object? currentChapterIndex = null,Object? currentPageIndex = null,Object? chapterOffsets = null,Object? bookmarks = null,Object? showBars = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? controller = null,Object? currentChapterIndex = null,Object? currentPageIndex = null,Object? chapterOffsets = null,Object? bookmarks = null,Object? showBars = null,Object? pageController = freezed,}) {
   return _then(_Loaded(
 null == controller ? _self.controller : controller // ignore: cast_nullable_to_non_nullable
 as EbookXController,null == currentChapterIndex ? _self.currentChapterIndex : currentChapterIndex // ignore: cast_nullable_to_non_nullable
@@ -1224,7 +1225,8 @@ as int,null == currentPageIndex ? _self.currentPageIndex : currentPageIndex // i
 as int,null == chapterOffsets ? _self._chapterOffsets : chapterOffsets // ignore: cast_nullable_to_non_nullable
 as Map<int, double>,null == bookmarks ? _self._bookmarks : bookmarks // ignore: cast_nullable_to_non_nullable
 as List<Bookmark>,null == showBars ? _self.showBars : showBars // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,freezed == pageController ? _self.pageController : pageController // ignore: cast_nullable_to_non_nullable
+as PageController?,
   ));
 }
 

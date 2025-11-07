@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:ebook_x/ebook_x.dart';
 import 'package:ebook_x/models/bookmark.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -46,6 +47,7 @@ abstract class ReaderState with _$ReaderState {
     Map<int, double> chapterOffsets,
     List<Bookmark> bookmarks,
     bool showBars,
+    PageController? pageController,
   ) = _Loaded;
   const factory ReaderState.error(String message) = _Error;
 }
@@ -79,6 +81,7 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
   final AppSettingsService _appSettingsService;
 
   EbookXController? _controller;
+  PageController? _pageController;
   String? _currentEbookId;
   Timer? _saveProgressTimer;
 
@@ -100,15 +103,17 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
 
       _currentEbookId = event.ebookId;
 
-      _controller = EbookXController(
-        entry.ebook,
-      );
-
       // Load saved reading progress if rememberLastPosition is enabled
       final progress =
           _appSettingsService.appSettings.behavior.rememberLastPosition
           ? _readerService.getReadingProgress(event.ebookId)
           : null;
+
+      _controller = EbookXController(
+        entry.ebook,
+      );
+
+      _pageController = PageController(initialPage: progress?.currentChapter ?? 0);
       Map<int, double> chapterOffsets = {};
       if (progress != null) {
         if (progress.currentChapter > 0) {
@@ -134,6 +139,7 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
       }
 
       _emitLoadedState(emit, chapterOffsets: chapterOffsets);
+      _jumpToCurrentChapter();
     } catch (e) {
       emit(ReaderState.error('Failed to load ebook: $e'));
     }
@@ -145,6 +151,7 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
       if (nextChapterIndex < _controller!.totalChapters) {
         _controller!.goToChapter(nextChapterIndex);
         _emitLoadedState(emit);
+        _jumpToCurrentChapter();
         _saveReadingProgress();
       }
     }
@@ -159,6 +166,7 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
       if (prevChapterIndex >= 0) {
         _controller!.goToChapter(prevChapterIndex);
         _emitLoadedState(emit);
+        _jumpToCurrentChapter();
         _saveReadingProgress();
       }
     }
@@ -177,6 +185,7 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
     if (_controller != null && state is _Loaded) {
       _controller!.goToChapter(event.chapterIndex);
       _emitLoadedState(emit);
+      _jumpToCurrentChapter();
       _saveReadingProgress();
     }
   }
@@ -198,6 +207,7 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
           newOffsets,
           (state as _Loaded).bookmarks,
           (state as _Loaded).showBars,
+          (state as _Loaded).pageController,
         ),
       );
       _saveReadingProgress();
@@ -308,14 +318,22 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
           offsets,
           _controller!.bookmarks,
           bars,
+          _pageController,
         ),
       );
+    }
+  }
+
+  void _jumpToCurrentChapter() {
+    if (_pageController != null && _controller != null && _pageController!.hasClients) {
+      _pageController!.jumpToPage(_controller!.currentChapterIndex);
     }
   }
 
   @override
   Future<void> close() {
     _saveProgressTimer?.cancel();
+    _pageController?.dispose();
     return super.close();
   }
 }

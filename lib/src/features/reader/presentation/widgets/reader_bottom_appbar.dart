@@ -17,55 +17,59 @@ class ReaderBottomAppBar extends StatelessWidget {
     return BlocBuilder<ReaderBloc, ReaderState>(
       builder: (context, state) {
         return state.maybeWhen(
-          loaded: (
-            controller,
-            currentChapterIndex,
-            currentPageIndex,
-            chapterOffsets,
-            bookmarks,
-            showBars,
-          ) {
-            return BottomAppBar(
-              color: Theme.of(context).appBarTheme.backgroundColor ??
-                  Theme.of(context).primaryColor,
-              child: Row(
-                children: [
-                  TextButton(
-                    onPressed: () => _showChapterDialog(
-                      context,
-                      controller.totalChapters,
-                      currentChapterIndex,
-                      pageController,
-                    ),
-                    child: Text(
-                      'Chapter ${currentChapterIndex + 1} of ${controller.totalChapters}',
-                    ),
+          loaded:
+              (
+                controller,
+                currentChapterIndex,
+                currentPageIndex,
+                chapterOffsets,
+                bookmarks,
+                showBars,
+                pageController,
+              ) {
+                return BottomAppBar(
+                  color:
+                      Theme.of(context).appBarTheme.backgroundColor ??
+                      Theme.of(context).primaryColor,
+                  child: Row(
+                    children: [
+                      TextButton(
+                        onPressed: () => _showChapterDialog(
+                          context,
+                          controller.totalChapters,
+                          currentChapterIndex,
+                          pageController!,
+                        ),
+                        child: Text(
+                          'Chapter ${currentChapterIndex + 1} of ${controller.totalChapters}',
+                        ),
+                      ),
+                      const Spacer(),
+                      IconButton(
+                        icon: const Icon(LucideIcons.chevronLeft),
+                        onPressed: currentChapterIndex > 0
+                            ? () {
+                                context.read<ReaderBloc>().add(
+                                  const ReaderEvent.previousChapter(),
+                                );
+                              }
+                            : null,
+                      ),
+                      IconButton(
+                        icon: const Icon(LucideIcons.chevronRight),
+                        onPressed:
+                            currentChapterIndex < controller.totalChapters - 1
+                            ? () {
+                                context.read<ReaderBloc>().add(
+                                  const ReaderEvent.nextChapter(),
+                                );
+                              }
+                            : null,
+                      ),
+                    ],
                   ),
-                  const Spacer(),
-                  IconButton(
-                    icon: const Icon(LucideIcons.chevronLeft),
-                    onPressed: currentChapterIndex > 0
-                        ? () {
-                            context.read<ReaderBloc>().add(
-                              const ReaderEvent.previousChapter(),
-                            );
-                          }
-                        : null,
-                  ),
-                  IconButton(
-                    icon: const Icon(LucideIcons.chevronRight),
-                    onPressed: currentChapterIndex < controller.totalChapters - 1
-                        ? () {
-                            context.read<ReaderBloc>().add(
-                              const ReaderEvent.nextChapter(),
-                            );
-                          }
-                        : null,
-                  ),
-                ],
-              ),
-            );
-          },
+                );
+              },
           orElse: () => const SizedBox(),
         );
       },
@@ -88,7 +92,8 @@ class ReaderBottomAppBar extends StatelessWidget {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               double height = MediaQuery.of(context).size.height * 0.8;
               double itemHeight = 56.0;
-              double offset = currentChapterIndex * itemHeight -
+              double offset =
+                  currentChapterIndex * itemHeight -
                   (height / 2) +
                   (itemHeight / 2);
               if (offset < 0) offset = 0;
@@ -114,15 +119,18 @@ class ReaderBottomAppBar extends StatelessWidget {
                                   padding: const EdgeInsets.only(right: 8.0),
                                   child: Icon(
                                     LucideIcons.bookOpen,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .primary,
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.primary,
                                   ),
                                 )
                               : null,
                           title: Text('Chapter ${index + 1}'),
                           selected: index == currentChapterIndex,
                           onTap: () {
+                            context.read<ReaderBloc>().add(
+                              ReaderEvent.updateReadingProgress(index),
+                            );
                             pageController.jumpToPage(index);
                             Navigator.of(context).pop();
                           },

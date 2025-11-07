@@ -17,36 +17,38 @@ class ReaderAppBar extends StatelessWidget implements PreferredSizeWidget {
     return BlocBuilder<ReaderBloc, ReaderState>(
       builder: (context, state) {
         return state.maybeWhen(
-          loaded: (
-            controller,
-            currentChapterIndex,
-            currentPageIndex,
-            chapterOffsets,
-            bookmarks,
-            showBars,
-          ) {
-            return showBars
-                ? AppBar(
-                    backgroundColor:
-                        Theme.of(context).appBarTheme.backgroundColor ??
+          loaded:
+              (
+                controller,
+                currentChapterIndex,
+                currentPageIndex,
+                chapterOffsets,
+                bookmarks,
+                showBars,
+                pageController,
+              ) {
+                return showBars
+                    ? AppBar(
+                        backgroundColor:
+                            Theme.of(context).appBarTheme.backgroundColor ??
                             Theme.of(context).primaryColor,
-                    actions: [
-                      IconButton(
-                        icon: const Icon(LucideIcons.settings),
-                        onPressed: () {
-                          context.pushNamed(AppRoutes.settings.name);
-                        },
-                      ),
-                      IconButton(
-                        icon: const Icon(LucideIcons.x),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                    ],
-                  )
-                : const SizedBox.shrink();
-          },
+                        actions: [
+                          IconButton(
+                            icon: const Icon(LucideIcons.settings),
+                            onPressed: () {
+                              context.pushNamed(AppRoutes.settings.name);
+                            },
+                          ),
+                          IconButton(
+                            icon: const Icon(LucideIcons.x),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      )
+                    : const SizedBox.shrink();
+              },
           orElse: () => const SizedBox.shrink(),
         );
       },

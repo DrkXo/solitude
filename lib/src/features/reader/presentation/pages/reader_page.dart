@@ -19,20 +19,6 @@ class ReaderPage extends StatefulWidget {
 }
 
 class _ReaderPageState extends State<ReaderPage> {
-  late PageController _pageController;
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController();
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsBloc, SettingsState>(
@@ -48,32 +34,25 @@ class _ReaderPageState extends State<ReaderPage> {
                     chapterOffsets,
                     bookmarks,
                     showBars,
+                    pageController,
                   ) {
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      if (_pageController.hasClients &&
-                          (_pageController.page?.round() ?? 0) !=
-                              currentChapterIndex) {
-                        _pageController.jumpToPage(currentChapterIndex);
-                      }
-                    });
-
                     return Scaffold(
                       appBar: showBars ? const ReaderAppBar() : null,
                       bottomNavigationBar: showBars
-                          ? ReaderBottomAppBar(pageController: _pageController)
+                          ? ReaderBottomAppBar(pageController: pageController!)
                           : null,
                       body: SafeArea(
                         child: PageView.builder(
-                          controller: _pageController,
+                          controller: pageController,
 
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: controller.totalChapters,
-                           itemBuilder: (context, index) => ReaderContent(
-                             controller: controller,
-                             appSettings: settingsState.appSettings,
-                             chapterIndex: index,
-                             offset: chapterOffsets[index] ?? 0.0,
-                           ),
+                          itemBuilder: (context, index) => ReaderContent(
+                            controller: controller,
+                            appSettings: settingsState.appSettings,
+                            chapterIndex: index,
+                            offset: chapterOffsets[index] ?? 0.0,
+                          ),
                         ),
                       ),
                     );
