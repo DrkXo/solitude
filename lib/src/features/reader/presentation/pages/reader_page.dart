@@ -68,12 +68,12 @@ class _ReaderPageState extends State<ReaderPage> {
 
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: controller.totalChapters,
-                          itemBuilder: (context, index) => ReaderContent(
-                            controller: controller,
-                            settingsState: settingsState,
-                            chapterIndex: index,
-                            offset: chapterOffsets[index] ?? 0.0,
-                          ),
+                           itemBuilder: (context, index) => ReaderContent(
+                             controller: controller,
+                             appSettings: settingsState.appSettings,
+                             chapterIndex: index,
+                             offset: chapterOffsets[index] ?? 0.0,
+                           ),
                         ),
                       ),
                     );

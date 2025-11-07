@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../settings/data/models/settings_constants.dart';
-import '../../../settings/presentation/bloc/settings_bloc.dart';
+import '../../../settings/data/models/portable_settings.dart';
 import '../bloc/reader_bloc.dart';
 
 class ReaderGestureHandlers {
   static void Function(TapDownDetails) getOnTapDown(
     BuildContext context,
     EbookXController controller,
-    SettingsState settingsState,
+    AppSettings appSettings,
     int index,
   ) {
     return (details) {
@@ -19,9 +19,9 @@ class ReaderGestureHandlers {
 
       if (tapX < screenWidth * 0.3) {
         // Left zone
-        if (settingsState.appSettings.behavior.navigationMethod ==
+        if (appSettings.behavior.navigationMethod ==
             NavigationMethod.tap) {
-          final action = settingsState.appSettings.behavior.tapZones.left;
+          final action = appSettings.behavior.tapZones.left;
           if (action == 'previousPage' && index > 0) {
             context.read<ReaderBloc>().add(
               const ReaderEvent.previousChapter(),
@@ -30,9 +30,9 @@ class ReaderGestureHandlers {
         }
       } else if (tapX > screenWidth * 0.7) {
         // Right zone
-        if (settingsState.appSettings.behavior.navigationMethod ==
+        if (appSettings.behavior.navigationMethod ==
             NavigationMethod.tap) {
-          final action = settingsState.appSettings.behavior.tapZones.right;
+          final action = appSettings.behavior.tapZones.right;
           if (action == 'nextPage' && index < controller.totalChapters - 1) {
             context.read<ReaderBloc>().add(
               const ReaderEvent.nextChapter(),
@@ -51,10 +51,10 @@ class ReaderGestureHandlers {
   static void Function(DragEndDetails)? getOnHorizontalDragEnd(
     BuildContext context,
     EbookXController controller,
-    SettingsState settingsState,
+    AppSettings appSettings,
     int index,
   ) {
-    if (settingsState.appSettings.behavior.navigationMethod ==
+    if (appSettings.behavior.navigationMethod ==
         NavigationMethod.swipeHorizontal) {
       return (details) {
         const double swipeThreshold = 500.0;
@@ -79,10 +79,10 @@ class ReaderGestureHandlers {
   static void Function(DragEndDetails)? getOnVerticalDragEnd(
     BuildContext context,
     EbookXController controller,
-    SettingsState settingsState,
+    AppSettings appSettings,
     int index,
   ) {
-    if (settingsState.appSettings.behavior.navigationMethod ==
+    if (appSettings.behavior.navigationMethod ==
         NavigationMethod.swipeVertical) {
       return (details) {
         const double swipeThreshold = 500.0;

@@ -5,20 +5,20 @@ import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart
 import 'package:solitude/src/features/reader/presentation/extension/element_widget_extension.dart';
 
 import '../../../settings/data/models/settings_constants.dart';
-import '../../../settings/presentation/bloc/settings_bloc.dart';
+import '../../../settings/data/models/portable_settings.dart';
 import '../bloc/reader_bloc.dart';
 import '../utils/reader_gesture_handlers.dart';
 
 class ReaderContent extends StatefulWidget {
   final EbookXController controller;
-  final SettingsState settingsState;
+  final AppSettings appSettings;
   final int chapterIndex;
   final double offset;
 
   const ReaderContent({
     super.key,
     required this.controller,
-    required this.settingsState,
+    required this.appSettings,
     required this.chapterIndex,
     required this.offset,
   });
@@ -57,35 +57,35 @@ class _ReaderContentState extends State<ReaderContent> {
       return SizedBox.expand(
         child: GestureDetector(
           behavior: HitTestBehavior.translucent,
-          onTapDown: ReaderGestureHandlers.getOnTapDown(
-            context,
-            widget.controller,
-            widget.settingsState,
-            widget.chapterIndex,
-          ),
-          onHorizontalDragEnd: ReaderGestureHandlers.getOnHorizontalDragEnd(
-            context,
-            widget.controller,
-            widget.settingsState,
-            widget.chapterIndex,
-          ),
-          onVerticalDragEnd: ReaderGestureHandlers.getOnVerticalDragEnd(
-            context,
-            widget.controller,
-            widget.settingsState,
-            widget.chapterIndex,
-          ),
+           onTapDown: ReaderGestureHandlers.getOnTapDown(
+             context,
+             widget.controller,
+             widget.appSettings,
+             widget.chapterIndex,
+           ),
+           onHorizontalDragEnd: ReaderGestureHandlers.getOnHorizontalDragEnd(
+             context,
+             widget.controller,
+             widget.appSettings,
+             widget.chapterIndex,
+           ),
+           onVerticalDragEnd: ReaderGestureHandlers.getOnVerticalDragEnd(
+             context,
+             widget.controller,
+             widget.appSettings,
+             widget.chapterIndex,
+           ),
         child: Container(
           color: Theme.of(context).scaffoldBackgroundColor,
           child: Directionality(
             textDirection:
-                widget.settingsState.appSettings.behavior.readingDirection ==
+                widget.appSettings.behavior.readingDirection ==
                     ReadingDirection.rtl
                 ? TextDirection.rtl
                 : TextDirection.ltr,
             child: CustomScrollView(
               controller: _scrollController,
-              physics: widget.settingsState.appSettings.behavior.navigationMethod ==
+              physics: widget.appSettings.behavior.navigationMethod ==
                           NavigationMethod.swipeVertical
                   ? const NeverScrollableScrollPhysics()
                   : null,
@@ -96,17 +96,17 @@ class _ReaderContentState extends State<ReaderContent> {
                     enableCaching: true,
                     buildAsync: false,
                     renderMode: RenderMode.sliverList,
-                     rebuildTriggers: [
-                       widget.settingsState.appSettings,
-                     ],
-                     widget.settingsState.appSettings.display.htmlRenderingMode == HtmlRenderingMode.original
+                      rebuildTriggers: [
+                        widget.appSettings,
+                      ],
+                      widget.appSettings.display.htmlRenderingMode == HtmlRenderingMode.original
                          ? widget.controller.getFullChapterContent()
                          : widget.controller.getFullChapterContent().stripStyles(),
-                     customWidgetBuilder: widget.settingsState.appSettings.display.htmlRenderingMode == HtmlRenderingMode.original
-                         ? null
-                         : (element) => element.toCustomWidget(
-                               appSettings: widget.settingsState.appSettings,
-                             ),
+                      customWidgetBuilder: widget.appSettings.display.htmlRenderingMode == HtmlRenderingMode.original
+                          ? null
+                          : (element) => element.toCustomWidget(
+                                appSettings: widget.appSettings,
+                              ),
                   ),
                 ),
               ],
