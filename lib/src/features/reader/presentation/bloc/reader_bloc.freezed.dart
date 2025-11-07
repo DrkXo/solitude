@@ -152,7 +152,7 @@ return updateChapterOffset(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( String ebookId,  String? coverImagePath)?  loadEbook,TResult Function()?  nextChapter,TResult Function()?  previousChapter,TResult Function()?  nextPage,TResult Function()?  previousPage,TResult Function( String title)?  addBookmark,TResult Function( int index)?  removeBookmark,TResult Function( int index)?  goToBookmark,TResult Function()?  startReading,TResult Function( int chapterIndex)?  updateReadingProgress,TResult Function( int chapterIndex,  double offset)?  updateChapterOffset,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( String ebookId,  String? coverImage)?  loadEbook,TResult Function()?  nextChapter,TResult Function()?  previousChapter,TResult Function()?  nextPage,TResult Function()?  previousPage,TResult Function( String title)?  addBookmark,TResult Function( int index)?  removeBookmark,TResult Function( int index)?  goToBookmark,TResult Function()?  startReading,TResult Function( int chapterIndex)?  updateReadingProgress,TResult Function( int chapterIndex,  double offset)?  updateChapterOffset,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _LoadEbook() when loadEbook != null:
@@ -184,7 +184,7 @@ return updateChapterOffset(_that.chapterIndex,_that.offset);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( String ebookId,  String? coverImagePath)  loadEbook,required TResult Function()  nextChapter,required TResult Function()  previousChapter,required TResult Function()  nextPage,required TResult Function()  previousPage,required TResult Function( String title)  addBookmark,required TResult Function( int index)  removeBookmark,required TResult Function( int index)  goToBookmark,required TResult Function()  startReading,required TResult Function( int chapterIndex)  updateReadingProgress,required TResult Function( int chapterIndex,  double offset)  updateChapterOffset,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( String ebookId,  String? coverImage)  loadEbook,required TResult Function()  nextChapter,required TResult Function()  previousChapter,required TResult Function()  nextPage,required TResult Function()  previousPage,required TResult Function( String title)  addBookmark,required TResult Function( int index)  removeBookmark,required TResult Function( int index)  goToBookmark,required TResult Function()  startReading,required TResult Function( int chapterIndex)  updateReadingProgress,required TResult Function( int chapterIndex,  double offset)  updateChapterOffset,}) {final _that = this;
 switch (_that) {
 case _Started():
 return started();case _LoadEbook():
@@ -215,7 +215,7 @@ return updateChapterOffset(_that.chapterIndex,_that.offset);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( String ebookId,  String? coverImagePath)?  loadEbook,TResult? Function()?  nextChapter,TResult? Function()?  previousChapter,TResult? Function()?  nextPage,TResult? Function()?  previousPage,TResult? Function( String title)?  addBookmark,TResult? Function( int index)?  removeBookmark,TResult? Function( int index)?  goToBookmark,TResult? Function()?  startReading,TResult? Function( int chapterIndex)?  updateReadingProgress,TResult? Function( int chapterIndex,  double offset)?  updateChapterOffset,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( String ebookId,  String? coverImage)?  loadEbook,TResult? Function()?  nextChapter,TResult? Function()?  previousChapter,TResult? Function()?  nextPage,TResult? Function()?  previousPage,TResult? Function( String title)?  addBookmark,TResult? Function( int index)?  removeBookmark,TResult? Function( int index)?  goToBookmark,TResult? Function()?  startReading,TResult? Function( int chapterIndex)?  updateReadingProgress,TResult? Function( int chapterIndex,  double offset)?  updateChapterOffset,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _LoadEbook() when loadEbook != null:
@@ -298,7 +298,7 @@ int get hashCode => Object.hash(runtimeType,ebookId,coverImage);
 
 @override
 String toString() {
-  return 'ReaderEvent.loadEbook(ebookId: $ebookId, coverImagePath: $coverImage)';
+  return 'ReaderEvent.loadEbook(ebookId: $ebookId, coverImage: $coverImage)';
 }
 
 
@@ -309,7 +309,7 @@ abstract mixin class _$LoadEbookCopyWith<$Res> implements $ReaderEventCopyWith<$
   factory _$LoadEbookCopyWith(_LoadEbook value, $Res Function(_LoadEbook) _then) = __$LoadEbookCopyWithImpl;
 @useResult
 $Res call({
- String ebookId, String? coverImagePath
+ String ebookId, String? coverImage
 });
 
 
@@ -326,10 +326,10 @@ class __$LoadEbookCopyWithImpl<$Res>
 
 /// Create a copy of ReaderEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? ebookId = null,Object? coverImagePath = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? ebookId = null,Object? coverImage = freezed,}) {
   return _then(_LoadEbook(
 null == ebookId ? _self.ebookId : ebookId // ignore: cast_nullable_to_non_nullable
-as String,coverImage: freezed == coverImagePath ? _self.coverImage : coverImagePath // ignore: cast_nullable_to_non_nullable
+as String,coverImage: freezed == coverImage ? _self.coverImage : coverImage // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
