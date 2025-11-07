@@ -64,27 +64,8 @@ class _ReaderPageState extends State<ReaderPage> {
                       body: SafeArea(
                         child: PageView.builder(
                           controller: _pageController,
-                          scrollDirection:
-                              settingsState
-                                      .appSettings
-                                      .behavior
-                                      .navigationMethod ==
-                                  NavigationMethod.swipeVertical
-                              ? Axis.vertical
-                              : Axis.horizontal,
-                          physics:
-                              (settingsState
-                                          .appSettings
-                                          .behavior
-                                          .navigationMethod ==
-                                      NavigationMethod.swipeHorizontal ||
-                                  settingsState
-                                          .appSettings
-                                          .behavior
-                                          .navigationMethod ==
-                                      NavigationMethod.swipeVertical)
-                              ? null
-                              : NeverScrollableScrollPhysics(),
+
+                          physics: const NeverScrollableScrollPhysics(),
                           itemCount: controller.totalChapters,
                           itemBuilder: (context, index) => ReaderContent(
                             controller: controller,
@@ -201,11 +182,6 @@ class _ReaderPageState extends State<ReaderPage> {
                                   }
                                 : null,
                           ),
-                          onPageChanged: (page) {
-                            context.read<ReaderBloc>().add(
-                              ReaderEvent.updateReadingProgress(page),
-                            );
-                          },
                         ),
                       ),
                     );
