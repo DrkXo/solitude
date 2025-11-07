@@ -7,16 +7,13 @@ import 'package:solitude/src/features/reader/presentation/extension/element_widg
 import '../../../settings/data/models/settings_constants.dart';
 import '../../../settings/presentation/bloc/settings_bloc.dart';
 import '../bloc/reader_bloc.dart';
+import '../utils/reader_gesture_handlers.dart';
 
 class ReaderContent extends StatefulWidget {
   final EbookXController controller;
   final SettingsState settingsState;
   final int chapterIndex;
   final double offset;
-  final VoidCallback onToggleBars;
-  final Function(TapDownDetails) onTapDown;
-  final Function(DragEndDetails)? onHorizontalDragEnd;
-  final Function(DragEndDetails)? onVerticalDragEnd;
 
   const ReaderContent({
     super.key,
@@ -24,10 +21,6 @@ class ReaderContent extends StatefulWidget {
     required this.settingsState,
     required this.chapterIndex,
     required this.offset,
-    required this.onToggleBars,
-    required this.onTapDown,
-    this.onHorizontalDragEnd,
-    this.onVerticalDragEnd,
   });
 
   @override
@@ -61,12 +54,27 @@ class _ReaderContentState extends State<ReaderContent> {
 
   @override
   Widget build(BuildContext context) {
-     return SizedBox.expand(
-       child: GestureDetector(
-         behavior: HitTestBehavior.translucent,
-         onTapDown: widget.onTapDown,
-         onHorizontalDragEnd: widget.onHorizontalDragEnd,
-         onVerticalDragEnd: widget.onVerticalDragEnd,
+      return SizedBox.expand(
+        child: GestureDetector(
+          behavior: HitTestBehavior.translucent,
+          onTapDown: ReaderGestureHandlers.getOnTapDown(
+            context,
+            widget.controller,
+            widget.settingsState,
+            widget.chapterIndex,
+          ),
+          onHorizontalDragEnd: ReaderGestureHandlers.getOnHorizontalDragEnd(
+            context,
+            widget.controller,
+            widget.settingsState,
+            widget.chapterIndex,
+          ),
+          onVerticalDragEnd: ReaderGestureHandlers.getOnVerticalDragEnd(
+            context,
+            widget.controller,
+            widget.settingsState,
+            widget.chapterIndex,
+          ),
         child: Container(
           color: Theme.of(context).scaffoldBackgroundColor,
           child: Directionality(
