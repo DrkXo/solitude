@@ -32,6 +32,7 @@ abstract class ReaderEvent with _$ReaderEvent {
     int chapterIndex,
     double offset,
   ) = _UpdateChapterOffset;
+  const factory ReaderEvent.toggleBars() = _ToggleBars;
 }
 
 @freezed
@@ -44,6 +45,7 @@ abstract class ReaderState with _$ReaderState {
     int currentPageIndex,
     Map<int, double> chapterOffsets,
     List<Bookmark> bookmarks,
+    bool showBars,
   ) = _Loaded;
   const factory ReaderState.error(String message) = _Error;
 }
@@ -69,6 +71,7 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
     on<_StartReading>(_onStartReading);
     on<_UpdateReadingProgress>(_onUpdateReadingProgress);
     on<_UpdateChapterOffset>(_onUpdateChapterOffset);
+    on<_ToggleBars>(_onToggleBars);
   }
 
   final ReaderService _readerService;
@@ -194,9 +197,17 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
           (state as _Loaded).currentPageIndex,
           newOffsets,
           (state as _Loaded).bookmarks,
+          (state as _Loaded).showBars,
         ),
       );
       _saveReadingProgress();
+    }
+  }
+
+  void _onToggleBars(_ToggleBars event, Emitter<ReaderState> emit) {
+    if (state is _Loaded) {
+      final loaded = state as _Loaded;
+      emit(loaded.copyWith(showBars: !loaded.showBars));
     }
   }
 
@@ -280,6 +291,7 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
   void _emitLoadedState(
     Emitter<ReaderState> emit, {
     Map<int, double>? chapterOffsets,
+    bool? showBars,
   }) {
     if (_controller != null) {
       final offsets =
@@ -287,6 +299,7 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
           (state is _Loaded
               ? (state as _Loaded).chapterOffsets
               : <int, double>{});
+      final bars = showBars ?? (state is _Loaded ? (state as _Loaded).showBars : true);
       emit(
         ReaderState.loaded(
           _controller!,
@@ -294,6 +307,7 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
           _controller!.currentPageIndex,
           offsets,
           _controller!.bookmarks,
+          bars,
         ),
       );
     }
