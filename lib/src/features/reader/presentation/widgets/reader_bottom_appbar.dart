@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
@@ -68,7 +69,7 @@ class ReaderBottomAppBar extends StatelessWidget {
                       ),
                     ],
                   ),
-                );
+                ).animate().scaleY().slideY(begin: 1.0, end: 0.0);
               },
           orElse: () => const SizedBox(),
         );
