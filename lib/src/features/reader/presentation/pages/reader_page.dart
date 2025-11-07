@@ -62,10 +62,10 @@ class _ReaderPageState extends State<ReaderPage> {
                           ? ReaderBottomAppBar(pageController: _pageController)
                           : null,
                       body: SafeArea(
-                        child: PageView.builder(
-                          controller: _pageController,
+                         child: PageView.builder(
+                           controller: _pageController,
 
-                          physics: const NeverScrollableScrollPhysics(),
+                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: controller.totalChapters,
                           itemBuilder: (context, index) => ReaderContent(
                             controller: controller,
@@ -125,62 +125,64 @@ class _ReaderPageState extends State<ReaderPage> {
                                 );
                               }
                             },
-                            onHorizontalDragEnd:
-                                settingsState
-                                        .appSettings
-                                        .behavior
-                                        .navigationMethod ==
-                                    NavigationMethod.swipeHorizontal
-                                ? (details) {
-                                    if (details.velocity.pixelsPerSecond.dx >
-                                        0) {
-                                      if (index > 0) {
-                                        context.read<ReaderBloc>().add(
-                                          const ReaderEvent.previousChapter(),
-                                        );
-                                      }
-                                    } else if (details
-                                            .velocity
-                                            .pixelsPerSecond
-                                            .dx <
-                                        0) {
-                                      if (index <
-                                          controller.totalChapters - 1) {
-                                        context.read<ReaderBloc>().add(
-                                          const ReaderEvent.nextChapter(),
-                                        );
-                                      }
-                                    }
-                                  }
-                                : null,
-                            onVerticalDragEnd:
-                                settingsState
-                                        .appSettings
-                                        .behavior
-                                        .navigationMethod ==
-                                    NavigationMethod.swipeVertical
-                                ? (details) {
-                                    if (details.velocity.pixelsPerSecond.dy <
-                                        0) {
-                                      if (index <
-                                          controller.totalChapters - 1) {
-                                        context.read<ReaderBloc>().add(
-                                          const ReaderEvent.nextChapter(),
-                                        );
-                                      }
-                                    } else if (details
-                                            .velocity
-                                            .pixelsPerSecond
-                                            .dy >
-                                        0) {
-                                      if (index > 0) {
-                                        context.read<ReaderBloc>().add(
-                                          const ReaderEvent.previousChapter(),
-                                        );
-                                      }
-                                    }
-                                  }
-                                : null,
+                             onHorizontalDragEnd:
+                                 settingsState
+                                         .appSettings
+                                         .behavior
+                                         .navigationMethod ==
+                                     NavigationMethod.swipeHorizontal
+                                 ? (details) {
+                                     const double swipeThreshold = 500.0;
+                                     if (details.velocity.pixelsPerSecond.dx >
+                                         swipeThreshold) {
+                                       if (index > 0) {
+                                         context.read<ReaderBloc>().add(
+                                           const ReaderEvent.previousChapter(),
+                                         );
+                                       }
+                                     } else if (details
+                                             .velocity
+                                             .pixelsPerSecond
+                                             .dx <
+                                         -swipeThreshold) {
+                                       if (index <
+                                           controller.totalChapters - 1) {
+                                         context.read<ReaderBloc>().add(
+                                           const ReaderEvent.nextChapter(),
+                                         );
+                                       }
+                                     }
+                                   }
+                                 : null,
+                             onVerticalDragEnd:
+                                 settingsState
+                                         .appSettings
+                                         .behavior
+                                         .navigationMethod ==
+                                     NavigationMethod.swipeVertical
+                                 ? (details) {
+                                     const double swipeThreshold = 500.0;
+                                     if (details.velocity.pixelsPerSecond.dy <
+                                         -swipeThreshold) {
+                                       if (index <
+                                           controller.totalChapters - 1) {
+                                         context.read<ReaderBloc>().add(
+                                           const ReaderEvent.nextChapter(),
+                                         );
+                                       }
+                                     } else if (details
+                                             .velocity
+                                             .pixelsPerSecond
+                                             .dy >
+                                         swipeThreshold) {
+                                       if (index > 0) {
+                                         context.read<ReaderBloc>().add(
+                                           const ReaderEvent.previousChapter(),
+                                         );
+                                       }
+                                     }
+                                   }
+                                 : null,
                           ),
                         ),
                       ),

@@ -77,6 +77,10 @@ class _ReaderContentState extends State<ReaderContent> {
                 : TextDirection.ltr,
             child: CustomScrollView(
               controller: _scrollController,
+              physics: widget.settingsState.appSettings.behavior.navigationMethod ==
+                          NavigationMethod.swipeVertical
+                  ? const NeverScrollableScrollPhysics()
+                  : null,
               slivers: [
                 SliverPadding(
                   padding: EdgeInsets.all(16.0),
