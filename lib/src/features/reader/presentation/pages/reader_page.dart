@@ -215,49 +215,56 @@ class _ReaderPageState extends State<ReaderPage> {
                               offset: chapterOffsets[index] ?? 0.0,
                               onToggleBars: () =>
                                   setState(() => _showBars = !_showBars),
-                              onTapDown: (details) {
-                                if (settingsState
-                                        .appSettings
-                                        .behavior
-                                        .navigationMethod ==
-                                    NavigationMethod.tap) {
-                                  final screenWidth = MediaQuery.of(
-                                    context,
-                                  ).size.width;
-                                  final tapX = details.localPosition.dx;
+                                    onTapDown: (details) {
+                                      final screenWidth = MediaQuery.of(
+                                        context,
+                                      ).size.width;
+                                      final tapX = details.localPosition.dx;
 
-                                  if (tapX < screenWidth * 0.3) {
-                                    // Left zone
-                                    final action = settingsState
-                                        .appSettings
-                                        .behavior
-                                        .tapZones
-                                        .left;
-                                    if (action == 'previousPage' &&
-                                        index > 0) {
-                                      context.read<ReaderBloc>().add(
-                                        const ReaderEvent.previousChapter(),
-                                      );
-                                    }
-                                  } else if (tapX > screenWidth * 0.7) {
-                                    // Right zone
-                                    final action = settingsState
-                                        .appSettings
-                                        .behavior
-                                        .tapZones
-                                        .right;
-                                    if (action == 'nextPage' &&
-                                        index <
-                                            controller.totalChapters - 1) {
-                                      context.read<ReaderBloc>().add(
-                                        const ReaderEvent.nextChapter(),
-                                      );
-                                    }
-                                  } else {
-                                    // Center zone - no action to prevent accidental bar hiding
-                                  }
-                                }
-                              },
+                                      if (tapX < screenWidth * 0.3) {
+                                        // Left zone
+                                        if (settingsState
+                                                .appSettings
+                                                .behavior
+                                                .navigationMethod ==
+                                            NavigationMethod.tap) {
+                                          final action = settingsState
+                                              .appSettings
+                                              .behavior
+                                              .tapZones
+                                              .left;
+                                          if (action == 'previousPage' &&
+                                              index > 0) {
+                                            context.read<ReaderBloc>().add(
+                                              const ReaderEvent.previousChapter(),
+                                            );
+                                          }
+                                        }
+                                      } else if (tapX > screenWidth * 0.7) {
+                                        // Right zone
+                                        if (settingsState
+                                                .appSettings
+                                                .behavior
+                                                .navigationMethod ==
+                                            NavigationMethod.tap) {
+                                          final action = settingsState
+                                              .appSettings
+                                              .behavior
+                                              .tapZones
+                                              .right;
+                                          if (action == 'nextPage' &&
+                                              index <
+                                                  controller.totalChapters - 1) {
+                                            context.read<ReaderBloc>().add(
+                                              const ReaderEvent.nextChapter(),
+                                            );
+                                          }
+                                        }
+                                      } else {
+                                        // Center zone - toggle bars
+                                        setState(() => _showBars = !_showBars);
+                                      }
+                                    },
                               onHorizontalDragEnd:
                                   settingsState
                                           .appSettings
