@@ -28,6 +28,8 @@ class EbookLibraryService extends BaseService {
   final StreamController<List<EbookEntry>> _ebooksController =
       StreamController<List<EbookEntry>>.broadcast();
 
+  List<String> get supportedFormats => _ebookReader.supportedFormats;
+
   Stream<List<EbookEntry>> get ebooksStream => _ebooksController.stream;
 
   /// Returns a list of file paths that failed to load during initialization

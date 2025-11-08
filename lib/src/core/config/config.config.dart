@@ -73,7 +73,7 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i222.EbookLibraryService>(),
       ),
     );
-    gh.factory<_i395.LibraryBloc>(
+    gh.lazySingleton<_i395.LibraryBloc>(
       () => _i395.LibraryBloc(gh<_i222.EbookLibraryService>()),
     );
     gh.lazySingleton<_i585.SettingsBloc>(

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:solitude/src/core/localization/app_localizations.dart';
-import 'package:solitude/src/features/reader/presentation/bloc/reader_bloc.dart';
 
 class ReaderErrorWidget extends StatelessWidget {
   const ReaderErrorWidget({
@@ -32,9 +30,9 @@ class ReaderErrorWidget extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     // Retry loading
-                    context.read<ReaderBloc>().add(
-                      const ReaderEvent.started(),
-                    );
+                    // context.read<ReaderBloc>().add(
+                    //   const ReaderEvent.started(),
+                    // );
                   },
                   child: const Text('Retry'),
                 ),

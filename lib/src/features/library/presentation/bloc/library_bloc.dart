@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/services/ebook_library_service.dart';
 import '../../data/models/ebook_entry.dart';
@@ -11,6 +12,7 @@ part 'library_bloc.freezed.dart';
 part 'library_event.dart';
 part 'library_state.dart';
 
+@lazySingleton
 class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
   LibraryBloc(this._service) : super(const LibraryState.initial()) {
     on<_Started>(_onStarted);
@@ -54,7 +56,7 @@ class LibraryBloc extends Bloc<LibraryEvent, LibraryState> {
     try {
       final result = await FilePicker.platform.pickFiles(
         type: FileType.custom,
-        allowedExtensions: ['epub', 'pdf', 'mobi'],
+        allowedExtensions: _service.supportedFormats,
       );
 
       if (result != null) {

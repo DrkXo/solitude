@@ -8,7 +8,6 @@ import 'core/localization/app_localizations.dart';
 import 'core/theme/theme.dart';
 import 'core/utils/utils.dart';
 import 'features/library/presentation/bloc/library_bloc.dart';
-import 'features/reader/presentation/bloc/reader_bloc.dart';
 import 'features/settings/presentation/bloc/settings_bloc.dart';
 import 'router/app_router.dart';
 
@@ -59,9 +58,7 @@ class Solitude extends StatelessWidget {
         BlocProvider(
           create: (context) => sl<LibraryBloc>(),
         ),
-        BlocProvider(
-          create: (context) => sl<ReaderBloc>(),
-        ),
+
         BlocProvider(
           create: (context) => sl<SettingsBloc>(),
         ),

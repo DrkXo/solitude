@@ -14,7 +14,6 @@ part 'reader_bloc.freezed.dart';
 
 @freezed
 abstract class ReaderEvent with _$ReaderEvent {
-  const factory ReaderEvent.started() = _Started;
   const factory ReaderEvent.loadEbook(
     String ebookId, {
     String? coverImage,
@@ -61,7 +60,6 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
        _libraryService = libraryService,
        _appSettingsService = appSettingsService,
        super(ReaderState.initial()) {
-    on<_Started>(_onStarted);
     on<_LoadEbook>(_onLoadEbook);
     on<_NextChapter>(_onNextChapter);
     on<_PreviousChapter>(_onPreviousChapter);
@@ -85,18 +83,14 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
   String? _currentEbookId;
   Timer? _saveProgressTimer;
 
-  void _onStarted(_Started event, Emitter<ReaderState> emit) {
-    // Initial state
-  }
-
   void _onLoadEbook(_LoadEbook event, Emitter<ReaderState> emit) async {
+    emit(ReaderState.loading(event.coverImage));
     try {
       final entry = _libraryService.getEbook(event.ebookId);
       if (entry == null) {
         emit(ReaderState.error('Ebook not found'));
         return;
       }
-      emit(ReaderState.loading(entry.coverImagePath));
 
       _currentEbookId = event.ebookId;
 
