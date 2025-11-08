@@ -27,15 +27,17 @@ class AppRouter {
                 final ebookId = state.pathParameters['ebookId']!;
                 final coverImage = state.extra as String?;
 
-                  return NoTransitionPage(
-                    child: BlocProvider<ReaderBloc>(
-                      create: (context) => GetIt.I<ReaderBloc>(),
-                      child: ReaderPage(
-                        ebookId: ebookId,
-                        coverImage: coverImage,
-                      ),
+                return NoTransitionPage(
+                  child: BlocProvider<ReaderBloc>(
+                    create: (context) =>
+                        GetIt.I<ReaderBloc>()
+                          ..add(ReaderEvent.loading(coverImage)),
+                    child: ReaderPage(
+                      ebookId: ebookId,
+                      coverImage: coverImage,
                     ),
-                  );
+                  ),
+                );
               },
             ),
           ],

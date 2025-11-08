@@ -33,6 +33,8 @@ abstract class ReaderEvent with _$ReaderEvent {
     double offset,
   ) = _UpdateChapterOffset;
   const factory ReaderEvent.toggleBars() = _ToggleBars;
+  const factory ReaderEvent.loading(String? coverImagePath) =
+      ReaderEvent_Loading;
 }
 
 @freezed
@@ -57,9 +59,9 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
     required EbookLibraryService libraryService,
     required AppSettingsService appSettingsService,
   }) : _readerService = readerService,
-        _libraryService = libraryService,
-        _appSettingsService = appSettingsService,
-        super(ReaderState.loading(null)) {
+       _libraryService = libraryService,
+       _appSettingsService = appSettingsService,
+       super(ReaderState.loading(null)) {
     on<_LoadEbook>(_onLoadEbook);
     on<_NextChapter>(_onNextChapter);
     on<_PreviousChapter>(_onPreviousChapter);
@@ -72,6 +74,7 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
     on<_UpdateReadingProgress>(_onUpdateReadingProgress);
     on<_UpdateChapterOffset>(_onUpdateChapterOffset);
     on<_ToggleBars>(_onToggleBars);
+    on<ReaderEvent_Loading>(_onLoading);
   }
 
   final ReaderService _readerService;
@@ -336,5 +339,12 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
     _saveProgressTimer?.cancel();
     _pageController?.dispose();
     return super.close();
+  }
+
+  FutureOr<void> _onLoading(
+    ReaderEvent_Loading event,
+    Emitter<ReaderState> emit,
+  ) async {
+    emit(ReaderState.loading(event.coverImagePath));
   }
 }
