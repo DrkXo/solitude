@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -76,8 +78,8 @@ class _CoverImageState extends State<CoverImage> {
         errorWidget: (context, url, error) => const Icon(Icons.error),
       );
     } else {
-      return Image.asset(
-        widget.imagePath!,
+      return Image.file(
+        File(widget.imagePath!),
         fit: widget.fit,
         width: widget.width,
         height: widget.height,

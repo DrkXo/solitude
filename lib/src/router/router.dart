@@ -4,7 +4,9 @@ part of 'app_router.dart';
 class AppRouter {
   late final GoRouter router;
 
+  // ignore: unused_field
   final EbookLibraryService _ebookLibraryService;
+  // ignore: unused_field
   final AppSettingsService _appSettingsService;
 
   AppRouter(this._ebookLibraryService, this._appSettingsService) {
@@ -25,22 +27,15 @@ class AppRouter {
                 final ebookId = state.pathParameters['ebookId']!;
                 final coverImage = state.extra as String?;
 
-                return NoTransitionPage(
-                  child: BlocProvider<ReaderBloc>(
-                    create: (context) {
-                      final bloc = ReaderBloc(
-                        readerService: GetIt.I<ReaderService>(),
-                        libraryService: _ebookLibraryService,
-                        appSettingsService: _appSettingsService,
-                      );
-                      bloc.add(
-                        ReaderEvent.loadEbook(ebookId, coverImage: coverImage),
-                      );
-                      return bloc;
-                    },
-                    child: const ReaderPage(),
-                  ),
-                );
+                  return NoTransitionPage(
+                    child: BlocProvider<ReaderBloc>(
+                      create: (context) => GetIt.I<ReaderBloc>(),
+                      child: ReaderPage(
+                        ebookId: ebookId,
+                        coverImage: coverImage,
+                      ),
+                    ),
+                  );
               },
             ),
           ],

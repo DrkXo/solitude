@@ -12,13 +12,29 @@ import '../widgets/reader_content.dart';
 class ReaderPage extends StatefulWidget {
   const ReaderPage({
     super.key,
+    required this.ebookId,
+    this.coverImage,
   });
+
+  final String ebookId;
+  final String? coverImage;
 
   @override
   State<ReaderPage> createState() => _ReaderPageState();
 }
 
 class _ReaderPageState extends State<ReaderPage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ReaderBloc>().add(
+      ReaderEvent.loadEbook(
+        widget.ebookId,
+        coverImage: widget.coverImage,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsBloc, SettingsState>(

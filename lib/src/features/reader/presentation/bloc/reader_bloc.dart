@@ -57,9 +57,9 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
     required EbookLibraryService libraryService,
     required AppSettingsService appSettingsService,
   }) : _readerService = readerService,
-       _libraryService = libraryService,
-       _appSettingsService = appSettingsService,
-       super(ReaderState.initial()) {
+        _libraryService = libraryService,
+        _appSettingsService = appSettingsService,
+        super(ReaderState.loading(null)) {
     on<_LoadEbook>(_onLoadEbook);
     on<_NextChapter>(_onNextChapter);
     on<_PreviousChapter>(_onPreviousChapter);
