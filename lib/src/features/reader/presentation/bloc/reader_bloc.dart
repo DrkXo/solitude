@@ -90,9 +90,6 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
   }
 
   void _onLoadEbook(_LoadEbook event, Emitter<ReaderState> emit) async {
-    if (event.coverImage != null) {
-      emit(ReaderState.loading(event.coverImage));
-    }
     try {
       final entry = _libraryService.getEbook(event.ebookId);
       if (entry == null) {
@@ -103,40 +100,47 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
 
       _currentEbookId = event.ebookId;
 
-      // Load saved reading progress if rememberLastPosition is enabled
-      final progress =
-          _appSettingsService.appSettings.behavior.rememberLastPosition
-          ? _readerService.getReadingProgress(event.ebookId)
-          : null;
+      final chapterOffsets = await Future(() async {
+        // Load saved reading progress if rememberLastPosition is enabled
+        final progress =
+            _appSettingsService.appSettings.behavior.rememberLastPosition
+            ? _readerService.getReadingProgress(event.ebookId)
+            : null;
 
-      _controller = EbookXController(
-        entry.ebook,
-      );
+        _controller = EbookXController(
+          entry.ebook,
+        );
 
-      _pageController = PageController(initialPage: progress?.currentChapter ?? 0);
-      Map<int, double> chapterOffsets = {};
-      if (progress != null) {
-        if (progress.currentChapter > 0) {
-          _controller!.goToChapter(progress.currentChapter);
+        _pageController = PageController(
+          initialPage: progress?.currentChapter ?? 0,
+        );
+        Map<int, double> offsets = {};
+        if (progress != null) {
+          if (progress.currentChapter > 0) {
+            _controller!.goToChapter(progress.currentChapter);
+          }
+          if (progress.currentPage > 0) {
+            _controller!.goToPage(progress.currentPage);
+          }
+          // Load bookmarks
+          for (final bookmark in progress.bookmarks) {
+            _controller!.goToChapter(bookmark.chapterIndex);
+            _controller!.goToPage(bookmark.pageIndex);
+            _controller!.addBookmark(bookmark.title);
+          }
+          // Go back to current position
+          if (progress.currentChapter > 0) {
+            _controller!.goToChapter(progress.currentChapter);
+          }
+          if (progress.currentPage > 0) {
+            _controller!.goToPage(progress.currentPage);
+          }
+          offsets[progress.currentChapter] = progress.pageOffset;
         }
-        if (progress.currentPage > 0) {
-          _controller!.goToPage(progress.currentPage);
-        }
-        // Load bookmarks
-        for (final bookmark in progress.bookmarks) {
-          _controller!.goToChapter(bookmark.chapterIndex);
-          _controller!.goToPage(bookmark.pageIndex);
-          _controller!.addBookmark(bookmark.title);
-        }
-        // Go back to current position
-        if (progress.currentChapter > 0) {
-          _controller!.goToChapter(progress.currentChapter);
-        }
-        if (progress.currentPage > 0) {
-          _controller!.goToPage(progress.currentPage);
-        }
-        chapterOffsets[progress.currentChapter] = progress.pageOffset;
-      }
+        // Ensure loading is visible for at least 100ms
+        await Future.delayed(const Duration(milliseconds: 100));
+        return offsets;
+      });
 
       _emitLoadedState(emit, chapterOffsets: chapterOffsets);
       _jumpToCurrentChapter();
@@ -309,7 +313,8 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
           (state is _Loaded
               ? (state as _Loaded).chapterOffsets
               : <int, double>{});
-      final bars = showBars ?? (state is _Loaded ? (state as _Loaded).showBars : true);
+      final bars =
+          showBars ?? (state is _Loaded ? (state as _Loaded).showBars : true);
       emit(
         ReaderState.loaded(
           _controller!,
@@ -325,7 +330,9 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
   }
 
   void _jumpToCurrentChapter() {
-    if (_pageController != null && _controller != null && _pageController!.hasClients) {
+    if (_pageController != null &&
+        _controller != null &&
+        _pageController!.hasClients) {
       _pageController!.jumpToPage(_controller!.currentChapterIndex);
     }
   }

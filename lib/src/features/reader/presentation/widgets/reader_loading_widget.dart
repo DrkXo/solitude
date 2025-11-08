@@ -45,7 +45,10 @@ class ReaderLoadingWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            const CircularProgressIndicator(),
+            const SizedBox(
+              width: 150,
+              child: LinearProgressIndicator(),
+            ),
             const SizedBox(height: 16),
             Text(
               'Loading book...',
